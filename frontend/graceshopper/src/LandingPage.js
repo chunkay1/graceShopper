@@ -4,9 +4,9 @@ import styles from './LandingPage.module.css'
 
 function LandingPage () {
     return (
-        <body>
-    <header></header>
-    <div className={styles.banner}>
+    <body>
+      <header></header>
+      <div className={styles.banner}>
         <video autoPlay muted loop>
             <source src="mixkit-landscape-of-a-large-lake-during-sunset-from-the-air-4998.mp4" type="video/mp4"/>
         </video>
