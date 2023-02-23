@@ -40,7 +40,7 @@ img {
     color: #000;
     /* use line-height if you want to adjust how far down the main text appears on the page */
     line-height:30vh;
-    /* This single line is where the magic happens to make your text have video bleed-through effect */
+    /* This single line is where the magic happens to make your text have a video bleed-through effect */
     mix-blend-mode: screen;
     font-family: 'Work Sans', sans-serif;
 }
@@ -103,7 +103,7 @@ footer {
     opacity: 65%;
   }
   }
-  
+
 /* This class is for the maintain png, it is added after the initial fade in */
 .afterClass {
     opacity: 100%;
