@@ -16,7 +16,7 @@ function LandingPage () {
         <video autoPlay muted loop>
             <source src="mixkit-landscape-of-a-large-lake-during-sunset-from-the-air-4998.mp4" type="video/mp4"/>
         </video>
-        <h2 className = {styles.fadeIn}>Outspire</h2>
+        <h2 className = {styles.fadeIn}>Hike + Seek</h2>
         <img 
           className={ addClass ? styles.afterClass : styles.fadeIn2 } 
           id="mountain" 
