@@ -8,6 +8,9 @@ img {
     position:absolute;
     margin-left: 13vw;
     border-radius: 1.5%;
+    height: calc(100px + 15vh)
+    /* height: 256px */
+    /* height: 25vh */
 }
 
 .banner {

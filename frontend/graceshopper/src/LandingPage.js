@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LandingPage.module.css'
 
 
 function LandingPage () {
+  const [addClass, setAddClass] = useState(false)
+
+  setTimeout(() =>{
+    setAddClass(true)
+  }, 7800)
+
     return (
-    <body>
+    <div className='mainDiv'>
       <header></header>
       <div className={styles.banner}>
         <video autoPlay muted loop>
             <source src="mixkit-landscape-of-a-large-lake-during-sunset-from-the-air-4998.mp4" type="video/mp4"/>
         </video>
         <h2 className = {styles.fadeIn}>Outspire</h2>
-        <img className={styles.fadeIn2} id="mountain" height = "250px" src ="Icy-Mountains-Transparent-Background.png" alt = "moutain png"/>
+        <img 
+          className={ addClass ? styles.afterClass : styles.fadeIn2 } 
+          id="mountain" 
+          src ="Icy-Mountains-Transparent-Background.png" 
+          alt = "moutain png"
+        />
         <div className={`${styles.container} ${styles.fadeIn2}`}>
 
             <a href="#" className={styles.button}>
@@ -25,7 +36,7 @@ function LandingPage () {
         </div>
     </div>
     <footer></footer>
- </body>
+ </div>
     )
 }
 
