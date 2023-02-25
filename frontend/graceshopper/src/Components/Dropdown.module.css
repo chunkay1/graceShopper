@@ -1,0 +1,25 @@
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #40916C;
+}
+
+.button {
+    margin-top: 5px;
+}
+
+.input {
+    margin: 8px 0px;
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
