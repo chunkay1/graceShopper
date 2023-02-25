@@ -1,6 +1,6 @@
-import styles from './Dropdown.module.css'
+import styles from './LogInForm.module.css'
 
-function Dropdown() {
+function LogInForm() {
     return (
         <div className={styles.container}>
             <h4>Log In</h4>
@@ -41,4 +41,4 @@ function Dropdown() {
     )
 }
 
-export default Dropdown;
+export default LogInForm;

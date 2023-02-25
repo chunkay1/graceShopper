@@ -1,13 +1,14 @@
-import Dropdown from "./Dropdown"
+import LogInForm from "./LogInForm"
+import styles from './NavBar.module.css'
 
-function Test() {
+function NavBar() {
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-success">
                 <div class="container-fluid">
                     <a class="navbar-brand text-white" href="#">Hike & Seek</a>
                     <a class="navbar-brand" href="#">
-                        <img src="SolidForest.png" alt="Forest" width="45" height="36"></img></a>
+                        <img className={styles.icon} src="SolidForest.png" alt="Forest" width="45" height="36"></img></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -28,7 +29,7 @@ function Test() {
                                 </a>
                                 <ul class="dropdown-menu">
                                     {/* <li><a class="dropdown-item" href="#">Action</a></li> */}
-                                    <li><Dropdown /></li>
+                                    <li><LogInForm /></li>
                                 </ul>
                             </li>
                         </ul>
@@ -42,5 +43,5 @@ function Test() {
     )
 }
 
-export default Test
+export default NavBar
 
