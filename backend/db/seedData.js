@@ -2,7 +2,9 @@
 const client = require('./client');
 
 const {
-  
+    createUser,
+    adminCreateItem,
+    getAllItems
 } = require('./');
 
 
@@ -28,6 +30,7 @@ async function createTables() {
   console.log("Starting to build tables...")
 
   // create all tables, in the correct order
+  // address can be a json data type
   try{
 
   await client.query(`
@@ -37,7 +40,7 @@ async function createTables() {
     username varchar(125) UNIQUE NOT NULL,
     password varchar(125) NOT NULL,
     email varchar(125) UNIQUE NOT NULL,
-    address varchar(125) NOT NULL,
+    address varchar(125) NOT NULL,   
     isAdmin boolean DEFAULT false
 
   );
@@ -63,7 +66,7 @@ async function createTables() {
   CREATE TABLE carts (
     id SERIAL ,
     uuid varchar(125) UNIQUE PRIMARY KEY,
-    "userId" 
+    "userId" INTEGER REFERENCES users(id)
   );
 
   `)
@@ -83,7 +86,9 @@ DO NOT CHANGE ANYTHING BELOW. This is default seed data, and will help you start
 async function createInitialUsers() {
   console.log("Starting to create users...")
   try {
-    const usersToCreate = [
+        const usersToCreate = [
+            { username: "albert", password: "bertie99", email:"test1@gmail.com",address:"8008 Herb Kelleher Way, Dallas, TX 75235"},
+            { username: "sandra", password: "sandra123", email:"test2@gmail.com", address:"2400 Aviation Dr, DFW Airport, TX 75261"},
      
     ]
     const users = await Promise.all(usersToCreate.map(createUser));
@@ -102,25 +107,53 @@ async function createInitialItems() {
     console.log("Starting to create items...")
 
     const itemsToCreate = [
-    // create items to populate
+    {
+        name: "hiking shoes",
+        category: "shoes",
+        brand:"Nike",
+        size:"38",
+        price: "800"
+      },
+      {
+        name: "track shoes",
+        category: "shoes",
+        brand:"Addidas",
+        size:"40",
+        price: "500"
+      },
      
     ]
-    const items = await Promise.all(itemsToCreate.map(createItems))
+    const items = await Promise.all(itemsToCreate.map(adminCreateItem))
 
     console.log("items created:")
     console.log(items)
 
-    console.log("Finished creating activities!")
+    console.log("Finished creating items!")
   } catch (error) {
-    console.error("Error creating activities!")
+    console.error("Error creating items!")
     throw error
   }
 }
+
+async function createInitialcarts(){
+
+}
+
+async function createInitialitemsInCart(){
+    
+}
+
 
 
 
 async function rebuildDB() {
   try {
+    await dropTables();
+    await createTables();
+    await createInitialUsers();
+    await createInitialItems();
+    await createInitialitemsInCart();
+    await createInitialcarts();
     
   } catch (error) {
     console.log("Error during rebuildDB")
