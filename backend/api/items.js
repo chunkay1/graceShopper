@@ -2,13 +2,18 @@ const express = require('express');
 const itemsRouter = express.Router();
 
 const {
+    isAdmin
+} = require ('./utils')
+
+const {
     adminCreateItem,
     getAllItems,
     getItemById,
     getItemsByCategory
 } = require('../db/items')
 
-itemsRouter.get('/', async (req, res, next) => {
+//get all items
+itemsRouter.get( '/', async (req, res, next) => {
     try {
         const allItems = await getAllItems()
 
@@ -20,7 +25,8 @@ itemsRouter.get('/', async (req, res, next) => {
     }
 })
 
-itemsRouter.get('/:categoryId', async (req, res , next) => {
+//get items by category
+itemsRouter.get( '/:categoryId', async (req, res , next) => {
     try {        
         const categoryId = req.params
         const byCategory = await getItemsByCategory()
@@ -42,7 +48,8 @@ itemsRouter.get('/:categoryId', async (req, res , next) => {
     }
 })
 
-itemsRouter.get('/:itemId', async (req, res , next) => {
+//get a single item by id
+itemsRouter.get( '/:itemId', async (req, res , next) => {
     try {        
         const itemId = req.params
         const byItemId = await getItemById(itemId)
@@ -64,8 +71,8 @@ itemsRouter.get('/:itemId', async (req, res , next) => {
     }
 })
 
-
-itemsRouter.post('/', isAdminAuthorized, async (req, res, next) => {
+//create a new item (admin)
+itemsRouter.post( '/', isAdmin, async (req, res, next) => {
     const { 
         name,
         category,
@@ -106,6 +113,7 @@ itemsRouter.post('/', isAdminAuthorized, async (req, res, next) => {
     }
 })
 
+//error handler
 itemsRouter.use((error, req, res, next) => {
     res.send(error)
 })
