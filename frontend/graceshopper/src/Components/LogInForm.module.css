@@ -10,9 +10,59 @@
     margin-top: 5px;
 }
 
-.input {
+.inputDivs {
     margin: 8px 0px;
 }
+
+input:focus {
+    outline: none;
+}
+
+.firstHeader,
+.secondHeader {
+    color: white;
+    font-size: 400;
+}
+
+.signUpLink {
+    font-style: italic;
+    color: #DDDF00;
+    transition: color 0.2s;
+}
+
+.signUpLink:hover {
+    color: #344E41;
+}
+
+.submit {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: end;
+    margin-bottom: 2px;
+}
+
+.button {
+    background-color: #DAD7CD;
+    color: #7f4f24;
+    border: none;
+    border-radius: 10%;
+    transition: background-color 0.20s, color, 0.20s;
+}
+
+.button:hover {
+    color: #DAD7CD;
+    background-color: #7f4f24;
+}
+
+.button:active {
+    transform: translateY(.2em);
+    background-color: #DAD7CD;
+    color: #7f4f24;
+}
+
+
+
 
 @media screen and (max-width: 992px) {
     .container {
