@@ -15,6 +15,7 @@ const {
 //get all items
 itemsRouter.get( '/', async (req, res, next) => {
     try {
+        console.log("hello!")
         const allItems = await getAllItems()
 
         res.send(

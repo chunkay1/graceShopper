@@ -1,14 +1,15 @@
 const express = require('express');
-const cors = require('cors')
 const router = express.Router();
+const cors = require('cors')
+router.use(cors())
+
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
-router.use(cors())
 
 // this function still needs to be written
 const {
     getUserById
-} = require ('../db')
+} = require ('../db/users')
 
 //verifies tokens for users and attaches a .user to any request with a valid token
 router.use(async (req, res, next) => {
@@ -45,6 +46,16 @@ router.use(async (req, res, next) => {
     }
   });
 
+  
+router.get('/health', async (req, res, next) => {
+
+  res.status(200).send({
+     message: "all is well!"
+  })
+  next()
+});
+
+
 //api/users
 const usersRouter = require('./users');
 router.use('/users.js', usersRouter);
@@ -53,13 +64,15 @@ router.use('/users.js', usersRouter);
 const itemsRouter = require('./items');
 router.use('/items', itemsRouter);
 
+//keep below commented out until they are built
+
 //api/carts
-const cartsRouter = require('./carts');
-router.use('/carts', cartsRouter);
+// const cartsRouter = require('./carts');
+// router.use('/carts', cartsRouter);
 
 //api/itemsInCart
-const itemsInCartRouter = require('./itemsInCart');
-router.use('/itemsInCart', itemsInCartRouter);
+// const itemsInCartRouter = require('./itemsInCart');
+// router.use('/itemsInCart', itemsInCartRouter);
 
 //404 handler
 router.use((req, res, next) => {
@@ -67,4 +80,4 @@ router.use((req, res, next) => {
     next()
 })
 
-module.exports = router;
+module.exports = router
