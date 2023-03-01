@@ -116,7 +116,7 @@ usersRouter.post( '/login', async (req, res , next) => {
     }
 })
 
-//a simple route to a page that would display your address, name, etc, and later allow you to edit those things
+//a simple route for a page that might display your address, name, etc, and later allow you to edit those things
 usersRouter.get('/me', isUser, async (req, res, next) => {
     try {
         let user = req.user
