@@ -6,6 +6,7 @@ const Register = () => {
      
     return (
         <div>
+            <h1>Register</h1>
             <form onSubmit={(event) => {event.preventDefault()
             console.log(username, password)
             }}>

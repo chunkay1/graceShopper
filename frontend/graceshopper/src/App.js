@@ -1,27 +1,35 @@
-import './App.css';
 import LandingPage from './LandingPage';
-// adding routes
+
 import { Routes, Route } from 'react-router-dom';
 
-import Register from './components/Register';
+import { 
+  Home,
+  Profile,
+  Cart,
+  Checkout,
+  OrderConfirmation,
+  Products,
+  Navbar,
+  Register
+ } from './components';
 
-// NEW APP FUNCTION ---------------------
 const App = () => {
   return (
-    <Routes>
-      
-    </Routes>
+    <div>
+      <h1>GraceShopper</h1>
+      <Routes>
+        <Route path='/' element={<Navbar />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/order-confirmation' element={<OrderConfirmation />} />
+        <Route path='/products' element={<Products />} />
+      </Routes>
+    </div>
   )
 }
-
-// ORIGINAL APP FUNCTION ----------------
-// function App() {
-//   return (
-//     <div className="App">
-//       <LandingPage/>
-//     </div>
-//   );
-// }
 
 export default App;
 
