@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+<link rel="stylesheet" href="../css/bootstrap.css"></link>
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
