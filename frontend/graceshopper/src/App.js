@@ -1,4 +1,7 @@
-import LandingPage from './LandingPage';
+import './App.css';
+import NavBar from './Components/NavBar';
+// import LandingPage from './LandingPage';
+
 
 import { Routes, Route } from 'react-router-dom';
 

@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 // import { Register, Navbar } from './components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+<link rel="stylesheet" href="../css/bootstrap.css"></link>
 
 // INCLUDED IN APP.JS -----------
 const root = ReactDOM.createRoot(document.getElementById('root'));
