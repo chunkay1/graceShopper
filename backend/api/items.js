@@ -2,7 +2,7 @@ const express = require('express');
 const itemsRouter = express.Router();
 
 const {
-    isAdmin
+    isAdministrator
 } = require ('./utils')
 
 const {
@@ -15,6 +15,7 @@ const {
 //get all items
 itemsRouter.get( '/', async (req, res, next) => {
     try {
+        console.log("hello!")
         const allItems = await getAllItems()
 
         res.send(
@@ -29,7 +30,7 @@ itemsRouter.get( '/', async (req, res, next) => {
 itemsRouter.get( '/:categoryId', async (req, res , next) => {
     try {        
         const categoryId = req.params
-        const byCategory = await getItemsByCategory()
+        const byCategory = await getItemsByCategory(categoryId)
 
         if (!byCategory) {
             next ({
@@ -72,7 +73,7 @@ itemsRouter.get( '/:itemId', async (req, res , next) => {
 })
 
 //create a new item (admin)
-itemsRouter.post( '/', isAdmin, async (req, res, next) => {
+itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
     const { 
         name,
         category,

@@ -9,7 +9,7 @@ async function isUser( req, res, next ) {
     next()
 }
 
-async function isAdmin( req, res, next ) {
+async function isAdministrator( req, res, next ) {
     if (!req.admin) {
         res.status(401).send({
             error: "NotAthorized",
@@ -22,5 +22,5 @@ async function isAdmin( req, res, next ) {
 
 module.exports = {
     isUser,
-    isAdmin
+    isAdministrator
 }
