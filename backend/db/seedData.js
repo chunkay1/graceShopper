@@ -3,9 +3,11 @@ const client = require('./client');
 
 const {
     createUser,
-    adminCreateItem,
-    getAllItems
-} = require('./');
+} = require('./users');
+
+const {
+    adminCreateItem
+} = require('./items');
 
 
 async function dropTables() {
@@ -13,8 +15,8 @@ async function dropTables() {
     console.log("Starting to drop tables...");
 
     await client.query(`
-    DROP TABLE IF EXISTS carts;
     DROP TABLE IF EXISTS itemsInCart;
+    DROP TABLE IF EXISTS carts;
     DROP TABLE IF EXISTS items;
     DROP TABLE IF EXISTS users;
   `);
@@ -35,8 +37,7 @@ async function createTables() {
 
   await client.query(`
   CREATE TABLE users (
-    id SERIAL ,
-    uuid varchar(125) UNIQUE PRIMARY KEY,
+    id SERIAL UNIQUE PRIMARY KEY,
     username varchar(125) UNIQUE NOT NULL,
     password varchar(125) NOT NULL,
     email varchar(125) UNIQUE NOT NULL,
@@ -46,8 +47,7 @@ async function createTables() {
   );
 
   CREATE TABLE items (
-    id SERIAL ,
-    uuid varchar(125) UNIQUE PRIMARY KEY,
+    id SERIAL UNIQUE PRIMARY KEY,
     name VARCHAR(125) UNIQUE NOT NULL,
     category TEXT NOT NULL,
     brand TEXT NOT NULL,
@@ -55,18 +55,17 @@ async function createTables() {
     price INTEGER NOT NULL
   );
 
-  CREATE TABLE itemsInCart (
-    id SERIAL ,
-    uuid varchar(125) UNIQUE PRIMARY KEY,
-    "cartId" INTEGER REFERENCES carts(id),
-    "itemsId" INTEGER REFERENCES items(id)
-   
-  );
 
   CREATE TABLE carts (
-    id SERIAL ,
-    uuid varchar(125) UNIQUE PRIMARY KEY,
+    id SERIAL UNIQUE PRIMARY KEY, 
     "userId" INTEGER REFERENCES users(id)
+);
+
+  CREATE TABLE itemsInCart (
+    id SERIAL UNIQUE PRIMARY KEY ,
+    "cartId" INTEGER REFERENCES carts(id),
+    "itemsId" INTEGER REFERENCES items(id)
+
   );
 
   `)
