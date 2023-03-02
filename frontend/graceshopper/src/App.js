@@ -2,6 +2,7 @@ import './styles/App.css';
 import NavBar from './Components/NavBar1';
 // import { Home } from './Components';
 // import LandingPage from './LandingPage';
+import Banner from './Components/Banner';
 
 
 import { Routes, Route } from 'react-router-dom';
@@ -15,14 +16,26 @@ import {
   Products,
   Register
  } from './Components';
+import { useState } from 'react';
 
 const App = () => {
+  const [bannerText, setBannerText] = useState('') 
+
+
   return (
     <div>
       <nav>
         <NavBar />
       </nav>
-      <h1>GraceShopper</h1>
+      <Banner
+        text = {bannerText}
+      />
+
+      <button onClick={() => setBannerText("Gear")}>Gear</button>
+      <button onClick={() => setBannerText("Clothing")}>Clothing</button>
+      <button onClick={() => setBannerText("Shoes")}>Shoes</button>
+      <button onClick={() => setBannerText("Tents")}>Tents</button>
+      
       
       <Routes>
         {/* <Route path='/' element={<NavBar />} /> */}

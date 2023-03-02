@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles/LandingPage.module.css'
+import { Link } from 'react-router-dom'
 
 
 function LandingPage () {
@@ -25,13 +26,13 @@ function LandingPage () {
         />
         <div className={`${styles.container} ${styles.fadeIn2}`}>
 
-            <a className={styles.button}>
+            <Link className={styles.button}>
               <div className={styles.button__line}></div>
               <div className={styles.button__line}></div>
               <span className={styles.button__text}>Explore</span>
               <div className={styles.button__drow1}></div>
               <div className={styles.button__drow2}></div>
-            </a>
+            </Link>
           
         </div>
     </div>
