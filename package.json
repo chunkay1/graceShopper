@@ -1,0 +1,19 @@
+{
+  "name": "graceshopper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunkay1/graceShopper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chunkay1/graceShopper/issues"
+  },
+  "homepage": "https://github.com/chunkay1/graceShopper#readme"
+}
