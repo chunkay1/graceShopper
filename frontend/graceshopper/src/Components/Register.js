@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { setTargetValue } from '../constants/constants';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -10,8 +11,17 @@ const Register = () => {
             <form onSubmit={(event) => {event.preventDefault()
             console.log(username, password)
             }}>
-                <input type='text'placeholder='username'onChange={(event) => setUsername(event.target.value)}/>
-                <input type='password'placeholder='password'onChange={(event) => setPassword(event.target.value)}/>
+                <input 
+                    type='text'
+                    placeholder='username'
+                    id='username'
+                    onChange={setTargetValue(setUsername)}/>
+                
+                <input
+                    type='password'
+                    placeholder='password'
+                    id='password'
+                    onChange={setTargetValue(setPassword)}/>
                 <button type='submit'>Submit</button>
             </form>
         </div>
