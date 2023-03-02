@@ -1,5 +1,6 @@
-import './App.css';
-import NavBar from './Components/NavBar';
+import './styles/App.css';
+import NavBar from './Components/NavBar1';
+// import { Home } from './Components';
 // import LandingPage from './LandingPage';
 
 
@@ -12,16 +13,19 @@ import {
   Checkout,
   OrderConfirmation,
   Products,
-  Navbar,
   Register
- } from './components';
+ } from './Components';
 
 const App = () => {
   return (
     <div>
+      <nav>
+        <NavBar />
+      </nav>
       <h1>GraceShopper</h1>
+      
       <Routes>
-        <Route path='/' element={<Navbar />} />
+        {/* <Route path='/' element={<NavBar />} /> */}
         <Route path='/register' element={<Register />} />
         <Route path='/home' element={<Home />} />
         <Route path='/profile' element={<Profile />} />

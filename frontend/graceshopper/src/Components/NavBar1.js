@@ -1,5 +1,5 @@
 import LogInForm from "./LogInForm"
-import styles from './NavBar.module.css'
+import styles from './NavBar1.module.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
 
 function NavBar() {
@@ -14,7 +14,7 @@ function NavBar() {
                             href="home">Hike & Seek</a>
                         <a
                             class="navbar-brand"
-                            href="#">
+                            href="www.google.com">
                             <img
                                 className={styles.icon}
                                 src="SolidForest.png"
@@ -52,7 +52,7 @@ function NavBar() {
                                 <li className={`nav-item dropdown`}>
                                     <a
                                         class="nav-link dropdown-toggle text-white"
-                                        href="#"
+                                        href="www.google.com"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Log In
                                     </a>
