@@ -1,3 +1,13 @@
 .productCard{
     border: 1px solid black;
+    max-width: 20%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.container {
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+
 }

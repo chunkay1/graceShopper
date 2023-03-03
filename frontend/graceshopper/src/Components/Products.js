@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { getAllItems } from '../api/itemRequests';
 import styles from '../styles/Products.module.css'
 
+
+
 const Products = () => {
     const [products, setProducts] = useState([]);
 
-    
-    const getProductsAsync = async () => {
-        let getProducts = await getAllItems();
-        setProducts(getProducts);
-        console.log('products are', products)
-    }
+    useEffect(() => {
+        const getProductsAsync = async () => {
+            let products = await getAllItems();
+            setProducts(products);
+            console.log('products are', products)
+        }
+        getProductsAsync();
+    }, [])
     
     return (
         <div>
 
             <h1>Products</h1>
 
-            <button 
+            {/* <button 
                 onClick={ (e) => {
                     getProductsAsync();
                 }}>
                 Click me twice
-            </button>
+            </button> */}
             
             <br/>
 
@@ -47,7 +51,7 @@ const Products = () => {
             </button> */}
 
 
-            <div>
+            <div className={styles.container}>
 
                 
                 {
