@@ -1,11 +1,12 @@
 import styles from './LogInForm.module.css'
 import { useState } from 'react';
+import { setTargetValue } from '../constants/constants';
 
-const setTargetValue = (callback) => {
-    return (event) => {
-        callback(event.target.value)
-    }
-}
+// const setTargetValue = (callback) => {
+//     return (event) => {
+//         callback(event.target.value)
+//     }
+// }
 
 function LogInForm() {
     const [username, setUsername] = useState('')
