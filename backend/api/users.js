@@ -12,7 +12,8 @@ const {
     createUser,
     getUserByUsername,
     getUser,
-    getUserById
+    getUserById,
+    getAllUsers
 } = require('../db/users')
 
 //Register
@@ -27,6 +28,7 @@ usersRouter.post( '/register', async (req, res , next) => {
 
     try {        
         const _user = await getUserByUsername()
+        const _users = await getAllUsers()
         
         //next if user already exists
         if (_user) {
@@ -34,6 +36,14 @@ usersRouter.post( '/register', async (req, res , next) => {
                 error: 'usernameAlreadyExists',
                 message: `user ${username} already exists`,
                 name: 'NoDuplicateUsersError'
+            })
+        }
+        //checks for if the email already exists in the db
+        if (_users.filter(user => user.email === email).length) {
+            next ({
+                error: 'emailAlreadyInDatabase',
+                message: `The email ${email} already exists`,
+                name: 'NoDuplicateEmailsError'
             })
         } 
         if (password.length < 7) {

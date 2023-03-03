@@ -91,9 +91,25 @@ async function getUserById(userId) {
 
 }
 
+async function getAllUsers () {
+
+  try{
+    const {rows: users} = await client.query(`
+      SELECT * FROM users;
+    `)
+
+    return users
+
+  } catch (error) {
+    console.error(error,"error getting users");
+    throw error;
+  }
+}
+
 module.exports = {
   createUser,
   getUserByUsername,
   getUser,
-  getUserById
+  getUserById,
+  getAllUsers
 }
