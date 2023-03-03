@@ -17,15 +17,43 @@
     margin: 2em;
     background-color: #B7E4C7;
     box-shadow: 12px 12px 2px 1px #344E41;
+    display: flex;
+    flex-direction: column;
+    width: calc(150px + 18vw);
+    height: fit-content;
+
 }
 
 .header {
     color: #007F5F;
+    font-size: calc(6px + 0.9vh);
 }
 
+.description {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 5px;
+}
+
+h3, p {
+    margin: 0;
+    margin-right: calc(4px + 0.3vw);
+}
+
+h3 {
+    border-right: 1px solid rgb(19, 76, 19);
+    padding-right: 3px;
+}
+
+.image {
+    border-radius: 1%;
+}
 .container {
     /* background-color: red; */
     display: flex;
     flex-direction: row;
-
+    flex-wrap: wrap;
+    width: 99vw;
 }
