@@ -4,7 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
 import { BASEURL } from "../constants/constants"
 
-function NavBar() {
+function NavBar({ token }) {
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-success">
@@ -18,11 +18,11 @@ function NavBar() {
                             class="navbar-brand"
                             href="www.google.com">
                             <img
-                                className={styles.icon}
-                                src="SolidForest.png"
+                                className={`nav-item ${styles.icon}`}
+                                src="TransparentMountains.png"
                                 alt="Forest"
-                                width="45"
-                                height="36">
+                                width="100"
+                                height="50">
                             </img>
                         </a>
                     </div>
@@ -51,6 +51,12 @@ function NavBar() {
                                 </li>
 
                                 {/* <li className={`nav-item dropdown ${styles.dropdown}`}> */}
+
+                                {
+                                    (!token)
+
+                                    ?
+
                                 <li className={`nav-item dropdown`}>
                                     <a
                                         class="nav-link dropdown-toggle text-white"
@@ -66,16 +72,19 @@ function NavBar() {
                                     </ul>
                                 </li>
 
-                                <li class="nav-item">
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link text-white" 
-                                    onClick={ (event) => {
-                                        event.preventDefault();
-                                        console.log('logout!');
-                                        logOut();
-                                    }}>LogOut</button>
-                                </li>
+                                    :
+
+                                    <li class="nav-item">
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-link text-white" 
+                                            onClick={ (event) => {
+                                                console.log('logout!');
+                                                logOut();
+                                                window.location.reload();
+                                            }}>LogOut</button>
+                                    </li>
+                                }
 
                                 <li class="nav-item">
                                     <a

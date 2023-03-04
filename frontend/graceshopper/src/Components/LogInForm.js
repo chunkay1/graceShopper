@@ -21,6 +21,7 @@ function LogInForm() {
                         event.preventDefault();
                         console.log('Submit Form')
                         logIn({username,password});
+                        window.location.reload();
                     }
                 }
             >

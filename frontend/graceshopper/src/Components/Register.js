@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { setTargetValue } from '../constants/constants';
 import { createAccount } from '../api/userRequests';
 import styles from '../styles/Register.module.css'
+import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ token }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
-     
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (token) {
+            navigate("/home");
+        }
+    }, [token])
+
+
     return (
+
         <div className={`container text-center ${styles.container}`}>
+
             <h1>Register</h1>
 
             <form 
@@ -18,7 +29,9 @@ const Register = () => {
                 onSubmit={ (event) => {
                     event.preventDefault();
                     console.log(username, password, email, address);
-                    createAccount({username, password, email, address})
+                    createAccount({username, password, email, address});
+                    navigate("/home");
+                    //^this redirects users to the home page after creating an account. 
                 }}>
 
                 <div class="row justify-content-center">

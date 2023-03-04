@@ -5,7 +5,7 @@ import styles from '../styles/Products.module.css'
 
 
 
-const Products = () => {
+const Products = ({token}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -69,6 +69,22 @@ const Products = () => {
                                       <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
                                       <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
                                     </div>
+
+                                    {
+                                        (!token)
+
+                                        ?
+
+                                        null
+                                        :
+
+                                        <div className={styles.cartbutton}> 
+                                            <button>
+                                                Add to Cart!
+                                            </button>
+                                        </div>
+
+                                    }
                             </div>
                         )
                     
