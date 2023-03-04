@@ -55,17 +55,20 @@ const Products = () => {
 
                 
                 {
-                    products.map(({brand, category, id, name, price, size}) => {
+                    products.map(({brand, category, id, name, price, size, image}) => {
                         return (
                             <div 
                                 className={styles.productCard} 
                                 key={id}>
-                                    <h3 className={styles.header}>Brand: <p className={styles.cardValue}>{brand}</p></h3>
-                                    <h3 className={styles.header}>Category: <p className={styles.cardValue}>{category}</p></h3>
-                                    <h3 className={styles.header}>Id: <p className={styles.cardValue}>{id}</p></h3>
-                                    <h3 className={styles.header}>Name: <p className={styles.cardValue}>{name}</p></h3>
-                                    <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
-                                    <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
+                                    <img src = {image} alt = {'shoes png'} width = {"100%"} className = {styles.image}></img>
+                                    <div className={styles.description}>
+                                      <h3 className={styles.header}>Brand: <p className={styles.cardValue}>{brand}</p></h3>
+                                      <h3 className={styles.header}>Category: <p className={styles.cardValue}>{category}</p></h3>
+                                      <h3 className={styles.header}>Id: <p className={styles.cardValue}>{id}</p></h3>
+                                      <h3 className={styles.header}>Name: <p className={styles.cardValue}>{name}</p></h3>
+                                      <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
+                                      <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
+                                    </div>
                             </div>
                         )
                     

@@ -34,7 +34,6 @@ async function getUserByUsername(userName) {
     if (!rows || !rows.length) return null;
    
     const [user] = rows;
-    delete user.password;
 
     return user;
   } catch (error) {

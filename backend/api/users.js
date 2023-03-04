@@ -30,7 +30,7 @@ usersRouter.post( '/register', async (req, res , next) => {
         const _user = await getUserByUsername()
         const _users = await getAllUsers()
         
-        //next if user already exists
+        //next if username already exists
         if (_user) {
             next ({
                 error: 'usernameAlreadyExists',
@@ -46,6 +46,15 @@ usersRouter.post( '/register', async (req, res , next) => {
                 name: 'NoDuplicateEmailsError'
             })
         } 
+        //checks if the email address is potentially valid
+        if(!email.includes('@') || !email.includes('.com')) {
+            next({
+                error: "invalidEmail",
+                message: "please enter a valid email address",
+                name: "EmailInvalid"
+            })
+        }
+        //checks password length, should be handled on the front end
         if (password.length < 7) {
             next({
                 error: "password too short",
