@@ -124,39 +124,6 @@ async function createInitialItems() {
         price: "128.99",
         image: "shoes2.png"
       },
-
-      {
-        name: "one person tent",
-        category: "gear",
-        brand:"Outdoor-Gear",
-        size:"Small",
-        price: "2000"
-      },
-
-      {
-        name: "group tent",
-        category: "gear",
-        brand:"Outdoor-Gear",
-        size:"Large",
-        price: "3000"
-      },
-
-      {
-        name: "skiing boots",
-        category: "shoes",
-        brand:"Outdoor-Gear",
-        size:"40",
-        price: "1000"
-      },
-
-    {
-        name: "skiing poles",
-        category: "shoes",
-        brand:"Outdoor-Gear",
-        size:"Medium",
-        price: "400"
-      },
-     
       {
         name: "Dunhams",
         category: "shoes",
