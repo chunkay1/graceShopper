@@ -1,5 +1,6 @@
 import './styles/App.css';
 import NavBar from './Components/NavBar1';
+import { useEffect, useState } from 'react';
 // import { Home } from './Components';
 // import LandingPage from './LandingPage';
 
@@ -15,24 +16,36 @@ import {
   Products,
   Register
  } from './Components';
+import { STORAGE_KEY } from './constants/constants';
 
 const App = () => {
+  const [token, setToken] = useState('')
+
+  useEffect(() => {
+    const token = localStorage.getItem(`${STORAGE_KEY}`);
+
+    if(token) {
+      setToken(token)
+    }
+  }, [])
+
   return (
     <div>
       <nav>
-        <NavBar />
+        <NavBar 
+          token={token}/>
       </nav>
       <h1>GraceShopper</h1>
       
       <Routes>
         {/* <Route path='/' element={<NavBar />} /> */}
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<Register token={token}/>} />
         <Route path='/home' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/order-confirmation' element={<OrderConfirmation />} />
-        <Route path='/products' element={<Products />} />
+        <Route path='/products' element={<Products token={token}/>} />
       </Routes>
     </div>
   )

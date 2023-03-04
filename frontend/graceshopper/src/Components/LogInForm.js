@@ -1,6 +1,6 @@
-import styles from './LogInForm.module.css'
+import styles from '../styles/LogInForm.module.css'
 import { useState } from 'react';
-import { BASEURL, setTargetValue } from '../constants/constants';
+import { setTargetValue } from '../constants/constants';
 import { logIn } from '../api/userRequests';
 
 // const setTargetValue = (callback) => {
@@ -13,7 +13,6 @@ function LogInForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-
     return (
         <div className={styles.container}>
             <form
@@ -22,6 +21,7 @@ function LogInForm() {
                         event.preventDefault();
                         console.log('Submit Form')
                         logIn({username,password});
+                        window.location.reload();
                     }
                 }
             >

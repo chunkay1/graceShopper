@@ -12,6 +12,7 @@ export async function createAccount(props) {
     });
 
     try {
+        console.log('body:', body)
         const response = await fetch(
             `${BASEURL}/users/register`,
             {
@@ -75,5 +76,14 @@ export async function logIn(props) {
     } catch (error) {
         console.error(error)
         window.alert(error)
+    }
+}
+
+export async function logOut() {
+    try {
+        localStorage.clear();
+        console.log('logged out!');
+    } catch (error) {
+        console.error(error)
     }
 }
