@@ -77,3 +77,12 @@ export async function logIn(props) {
         window.alert(error)
     }
 }
+
+export async function logOut() {
+    try {
+        localStorage.clear();
+        console.log('logged out!');
+    } catch (error) {
+        console.error(error)
+    }
+}

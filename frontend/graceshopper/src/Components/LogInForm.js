@@ -1,6 +1,6 @@
-import styles from './LogInForm.module.css'
+import styles from '../styles/LogInForm.module.css'
 import { useState } from 'react';
-import { BASEURL, setTargetValue } from '../constants/constants';
+import { setTargetValue } from '../constants/constants';
 import { logIn } from '../api/userRequests';
 
 // const setTargetValue = (callback) => {

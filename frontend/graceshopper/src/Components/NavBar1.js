@@ -1,6 +1,7 @@
 import LogInForm from "./LogInForm"
-import styles from './NavBar1.module.css'
+import styles from '../styles/NavBar1.module.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
+import { logOut } from "../api/userRequests"
 
 function NavBar() {
     return (
@@ -63,6 +64,18 @@ function NavBar() {
                                         <li><LogInForm /></li>
                                     </ul>
                                 </li>
+
+                                <li class="nav-item">
+                                <button 
+                                    type="button" 
+                                    class="btn btn-link text-white" 
+                                    onClick={ (event) => {
+                                        event.preventDefault();
+                                        console.log('logout!');
+                                        logOut();
+                                    }}>LogOut</button>
+                                </li>
+
                                 <li class="nav-item">
                                     <a
                                         class="nav-link text-white" href="products">Products
@@ -74,7 +87,6 @@ function NavBar() {
                                         href="cart">
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
-
                                     </a>
                                 </li>
 
