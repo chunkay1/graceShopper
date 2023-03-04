@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { getAllItems } from '../api/itemRequests';
+import { getAllItems, getProductsByCategory } from '../api/itemRequests';
 import styles from '../styles/Products.module.css'
+import { setTargetValue } from '../constants/constants';
 
 
 
 const Products = ({token}) => {
     const [products, setProducts] = useState([]);
+    const [category, setCategory] = useState('');
 
     useEffect(() => {
         const getProductsAsync = async () => {
@@ -16,6 +18,11 @@ const Products = ({token}) => {
         }
         getProductsAsync();
     }, [])
+
+    let getCategoryItems = async (category)=> {
+        await getProductsByCategory(category);
+    } 
+    
     
     return (
         <div>
@@ -49,6 +56,27 @@ const Products = ({token}) => {
                 }}>
                 Click me Once?
             </button> */}
+            
+            <button onClick={(e) => { console.log('all')}}>View All Products</button>
+            
+            <button 
+                
+                onClick={(e) => { 
+                setTargetValue(setCategory)
+                console.log(category)
+                getCategoryItems('shoes');
+                }}
+            >
+                    
+                Shoes
+                    
+            </button>
+            
+            <button onClick={(e) => { console.log('tents')}}>tents</button>
+            
+            <button onClick={(e) => { console.log('clothes')}}>Clothing</button>
+            
+            <button onClick={(e) => { console.log('grills')}}>Grills and firepits</button>
 
 
             <div className={styles.container}>
@@ -79,7 +107,8 @@ const Products = ({token}) => {
                                         :
 
                                         <div className={styles.cartbutton}> 
-                                            <button>
+                                            <button
+                                                onClick={console.log('Added To Cart!')}>
                                                 Add to Cart!
                                             </button>
                                         </div>
