@@ -1,14 +1,14 @@
-* {
+.mainDiv{
     margin: 0;
     padding: 0;
     user-select: none;
-}
-img {
+} 
+.mountain {
     margin-top: 8vh;
     position:absolute;
     margin-left: 12vw;
     border-radius: 1.5%;
-    height: calc(100px + 15vh)
+    height: calc(100px + 16vh)
     /* height: 256px */
     /* height: 25vh */
 }
@@ -60,7 +60,7 @@ img {
     border: 1px solid black;
 }
 
-header, footer {
+.header, .footer {
     width: 100vw;
     height: 5vh;
     background: linear-gradient(90deg,rgba(19,19,19) 0%, rgba(10, 26, 36, 0.916) 100%);
@@ -168,6 +168,7 @@ footer {
     align-items : center ;
     width : 100% ;
     height : 100% ;
+    color: rgba(53, 86, 96, 0.916)
 }
 .button::before,
 .button::after,
