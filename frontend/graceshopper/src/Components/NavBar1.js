@@ -2,6 +2,7 @@ import LogInForm from "./LogInForm"
 import styles from '../styles/NavBar1.module.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
+import { BASEURL } from "../constants/constants"
 
 function NavBar() {
     return (
@@ -53,7 +54,7 @@ function NavBar() {
                                 <li className={`nav-item dropdown`}>
                                     <a
                                         class="nav-link dropdown-toggle text-white"
-                                        href="www.google.com"
+                                        href={`${BASEURL}`}
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Log In
                                     </a>

@@ -12,6 +12,7 @@ export async function createAccount(props) {
     });
 
     try {
+        console.log('body:', body)
         const response = await fetch(
             `${BASEURL}/users/register`,
             {

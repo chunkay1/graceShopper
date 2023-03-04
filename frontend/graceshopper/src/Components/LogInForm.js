@@ -13,7 +13,6 @@ function LogInForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-
     return (
         <div className={styles.container}>
             <form
