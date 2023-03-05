@@ -87,7 +87,12 @@ const Products = ({token}) => {
                         return (
                             <div>
 
-                                <div class={`card ${styles.productCard}`} style={{width: "18rem"}}>
+                                <div 
+                                    class={`card ${styles.productCard}`} 
+                                    style={{
+                                        width: "18rem",
+                                        backgroundColor: "#B7E4C7"
+                                    }}>
                                     <img src={image} class="card-img-top" alt="..."/>
                                     
                                     <div class="card-body">
