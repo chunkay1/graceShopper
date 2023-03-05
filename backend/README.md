@@ -4,10 +4,11 @@ database name: hikeandseek
 
 To start:
   1. Don't forget to create a .env file with a JWT_SECRET in the backend folder
-  2. navigate to the graceshopper folder and npm install, then npm run start:dev to boot up the server
-  3. navigate to the backend folder and npm install
+  2. navigate to the fontend/graceshopper folder and npm install
+  3. navigate to the backend folder and npm install, then npm run start:dev to boot up the server
   4. make sure you have postgres running ( sudo service postgresql start )
   5. create a db called hikeandseek
+  6. seed the database with npm run seed:dev
 
 
 
@@ -19,3 +20,4 @@ YOU DO NOT NEED TO INSTALL THESE
   npm i postgres
   npm i pg
   npm i bcrypt
+  npm i nodemon
