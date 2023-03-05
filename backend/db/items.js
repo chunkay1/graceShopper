@@ -52,19 +52,19 @@ async function getItemById (itemId) {
     }
 }
 
-async function getItemsByCategory (category) {
+async function getItemsByCategory ({ categoryId }) {
     try {
-        const { rows: items } = await client.query(`
-            SELECT *
-            FROM items
-            WHERE category=${category}
-        `)
+        const _items = await getAllItems ()
 
-        if(!items) {
+        const byCategory = _items.filter((item) => {
+            return item.category === categoryId
+        })
+
+        if(!byCategory) {
             return null
         }
 
-        return items
+        return byCategory
     } catch (error) {
         console.error(error)
         throw error
