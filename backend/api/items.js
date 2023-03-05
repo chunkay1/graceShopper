@@ -15,7 +15,6 @@ const {
 //get all items
 itemsRouter.get( '/', async (req, res, next) => {
     try {
-        console.log("hello!")
         const allItems = await getAllItems()
 
         res.send(
@@ -28,11 +27,13 @@ itemsRouter.get( '/', async (req, res, next) => {
 
 //get items by category
 itemsRouter.get( '/:categoryId', async (req, res , next) => {
-    try {        
+    
+    try {    
+            
         const categoryId = req.params
         const byCategory = await getItemsByCategory(categoryId)
 
-        if (!byCategory) {
+        if (!byCategory || !byCategory.length) {
             next ({
                 error: 'CategoryEmpty',
                 message: 'no items found in this category',

@@ -21,9 +21,10 @@ export async function getAllItems() {
 }
 
 export async function getProductsByCategory(categoryId) {
+
     try {
         const response = await fetch(
-            `${BASEURL}/items/${categoryId}/productCategory`,
+            `${BASEURL}/items/${categoryId}`,
             {
                 method: "GET",
                 headers: {

@@ -63,7 +63,6 @@ const Products = ({token}) => {
                 
                 onClick={(e) => { 
                 setTargetValue(setCategory)
-                console.log(category)
                 getCategoryItems('shoes');
                 }}
             >
@@ -72,11 +71,20 @@ const Products = ({token}) => {
                     
             </button>
             
-            <button onClick={(e) => { console.log('tents')}}>tents</button>
+            <button onClick={(e) => { 
+                setTargetValue(setCategory)
+                getCategoryItems('tents');
+                }}>tents</button>
             
-            <button onClick={(e) => { console.log('clothes')}}>Clothing</button>
+            <button onClick={(e) => { 
+                setTargetValue(setCategory)
+                getCategoryItems('Clothing');
+            }}>Clothing</button>
             
-            <button onClick={(e) => { console.log('grills')}}>Grills and firepits</button>
+            <button onClick={(e) => { 
+                setTargetValue(setCategory)
+                getCategoryItems('Firepits and Grills');
+            }}>Grills and firepits</button>
 
 
             <div className={styles.container}>
