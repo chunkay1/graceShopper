@@ -24,7 +24,8 @@ const Products = ({token}) => {
         await getProductsByCategory(category);
     } 
 
-    const getCartItemProps = async (brand, category, id, name, price, size) => {
+    let getCartItemProps = (brand, category, id, name, price, size) => {
+        console.log('props are', brand, category, id, name, price, size)
         setCartItemProps(
             {
                brand : brand,
@@ -138,10 +139,7 @@ const Products = ({token}) => {
                                                 onClick={async (event) => {
                                                     event.preventDefault();
                                                     console.log('added to cart')
-                                                    console.log(await getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                        console.log('first result is:', result);
-                                                        addToCart(result)
-                                                    }))
+                                                    await addToCart(getCartItemProps(brand, category, id, name, price, size, image)                                                    )
                                                     // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
                                                     //     console.log(result)
                                                     //     addToCart(result);

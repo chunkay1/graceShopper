@@ -49,8 +49,6 @@ export async function logIn(props) {
         
     });
 
-    
-
     try {
         const response = await fetch(
             `${BASEURL}/users/login`,
@@ -71,7 +69,6 @@ export async function logIn(props) {
         }
 
         console.log(replyToken)
-        
         
     } catch (error) {
         console.error(error)
