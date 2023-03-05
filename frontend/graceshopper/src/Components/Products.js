@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { getAllItems, getProductsByCategory } from '../api/itemRequests';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
+import { getAllItems, getProductsByCategory } from '../api/itemRequests';
+import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 
 
@@ -9,6 +9,7 @@ import { setTargetValue } from '../constants/constants';
 const Products = ({token}) => {
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState('');
+    const [cartItemProps, setCartItemProps] = useState({});
 
     useEffect(() => {
         const getProductsAsync = async () => {
@@ -22,6 +23,21 @@ const Products = ({token}) => {
     let getCategoryItems = async (category)=> {
         await getProductsByCategory(category);
     } 
+
+    const getCartItemProps = async (brand, category, id, name, price, size) => {
+        setCartItemProps(
+            {
+               brand : brand,
+               category : category,
+               id : id,
+               name : name,
+               price : price,
+               size : size,
+            }
+        )
+
+        return cartItemProps
+    }
     
     
     return (
@@ -88,7 +104,8 @@ const Products = ({token}) => {
                             <div>
 
                                 <div 
-                                    class={`card ${styles.productCard}`} 
+                                    class={`card ${styles.productCard}`}
+                                    
                                     style={{
                                         width: "18rem",
                                         backgroundColor: "#B7E4C7"
@@ -110,9 +127,19 @@ const Products = ({token}) => {
                                         <div className={styles.buttonDiv}> 
                                             <button
                                                 className={styles.cartButton}
-                                                onClick={(event) => {
+                                                onClick={async (event) => {
                                                     event.preventDefault();
                                                     console.log('added to cart')
+                                                    console.log(await getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                        console.log('first result is:', result);
+                                                        addToCart(result)
+                                                    }))
+                                                    // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                    //     console.log(result)
+                                                    //     addToCart(result);
+                                                    // }).catch((err) => {
+                                                    //     console.log(err)
+                                                    // });
                                                 }}>
                                                 Add to Cart!
                                             </button>
