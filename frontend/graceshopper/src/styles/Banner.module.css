@@ -1,22 +1,13 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     user-select: none;
-}
-img {
-    margin-top: 8vh;
-    position:absolute;
-    margin-left: 12vw;
-    border-radius: 1.5%;
-    height: calc(100px + 15vh)
-    /* height: 256px */
-    /* height: 25vh */
-}
+} */
 
 .banner {
     position: relative;
     width: 100%;
-    height: 15vh;
+    height: 60vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -42,7 +33,7 @@ img {
     text-transform: uppercase;
     color: #000;
     /* use line-height if you want to adjust how far down the main text appears on the page */
-    line-height:15.4vh;
+    line-height:50vh;
     /* This single line is where the magic happens to make your text have a video bleed-through effect */
     mix-blend-mode: screen;
     font-family: 'Work Sans', sans-serif;
@@ -60,9 +51,9 @@ img {
     border: 1px solid black;
 }
 
-header, footer {
+.header, .footer {
     width: 100vw;
-    height: 1vh;
+    height: 0.96vh;
     background: linear-gradient(90deg,rgba(19,19,19) 0%, rgba(10, 26, 36, 0.916) 100%);
     position:sticky;
 }

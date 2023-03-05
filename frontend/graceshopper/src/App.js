@@ -3,7 +3,7 @@ import NavBar from './Components/NavBar1';
 import { useEffect, useState } from 'react';
 // import { Home } from './Components';
 // import LandingPage from './LandingPage';
-import Banner from './Components/Banner';
+
 
 
 import { Routes, Route } from 'react-router-dom';
@@ -16,7 +16,8 @@ import {
   OrderConfirmation,
   Products,
   Register,
-  LandingPage
+  LandingPage,
+  Banner
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
 
@@ -51,6 +52,7 @@ const App = () => {
         <Route path='/home' element={
           <>
             <NavBar token={token}/>
+            <Banner/>
             <Home />
           </>
           } 
