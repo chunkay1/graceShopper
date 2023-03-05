@@ -13,16 +13,14 @@
 .productCard{
     border: 2px solid black;
     border-radius: 4%;
-    padding: 1em;
+    
     margin: 2em;
     background-color: #B7E4C7;
-    box-shadow: 12px 12px 2px 1px #344E41;
-    display: flex;
-    flex-direction: column;
-    width: calc(150px + 18vw);
-    height: fit-content;
-
-}
+    box-shadow: 6px 6px 1px .5px #344E41;
+    /* display: flex;
+    flex-direction: column; */
+    /* width: calc(150px + 18vw); */
+    height: fit-content;}
 
 .header {
     color: #007F5F;
@@ -56,4 +54,33 @@ h3 {
     flex-direction: row;
     flex-wrap: wrap;
     width: 99vw;
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.cartButton{
+    border-radius: 7px;
+    background-color: #16697a;
+    color: #EDE7E3;
+    font-weight: 500;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.cartButton:hover{
+    cursor: pointer;
+    border-color: #16697A;
+    box-shadow: 0 0.5em 0.5em -0.4em #EEEF20;
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+
+.cartButton:active {
+    background-color: #EDE7E3;
+    color: #16697a;
+    border: 1px solid #16697a;
 }
