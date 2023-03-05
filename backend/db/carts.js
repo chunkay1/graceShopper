@@ -22,6 +22,19 @@ async function createCart({ userId }) {
   }
 }
 
+async function getAllCarts() {
+    try {
+      const { rows } = await client.query(`
+        SELECT * FROM carts
+        `);
+  
+      const [carts] = rows;
+      return carts;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 async function getCartById(cartId) {
   try {
     const { rows } = await client.query(`
@@ -40,7 +53,7 @@ async function getCartByUserId({ userId }) {
   try {
     const { rows } = await client.query(`
       SELECT * FROM carts
-      WHERE =${userId};
+      WHERE "userId" =${userId};
       `);
 
     if (!cart) return null;
@@ -72,6 +85,7 @@ async function destroyCart(cartId) {
 
 module.exports = {
   createCart,
+  getAllCarts,
   getCartById,
   getCartByUserId,
   destroyCart

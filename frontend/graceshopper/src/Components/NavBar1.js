@@ -1,8 +1,10 @@
 import LogInForm from "./LogInForm"
-import styles from './NavBar1.module.css'
+import styles from '../styles/NavBar1.module.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
+import { logOut } from "../api/userRequests"
+import { BASEURL } from "../constants/constants"
 
-function NavBar() {
+function NavBar({ token }) {
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-success">
@@ -16,11 +18,11 @@ function NavBar() {
                             class="navbar-brand"
                             href="www.google.com">
                             <img
-                                className={styles.icon}
-                                src="SolidForest.png"
+                                className={`nav-item ${styles.icon}`}
+                                src="TransparentMountains.png"
                                 alt="Forest"
-                                width="45"
-                                height="36">
+                                width="100"
+                                height="50">
                             </img>
                         </a>
                     </div>
@@ -49,10 +51,16 @@ function NavBar() {
                                 </li>
 
                                 {/* <li className={`nav-item dropdown ${styles.dropdown}`}> */}
+
+                                {
+                                    (!token)
+
+                                    ?
+
                                 <li className={`nav-item dropdown`}>
                                     <a
                                         class="nav-link dropdown-toggle text-white"
-                                        href="www.google.com"
+                                        href={`${BASEURL}`}
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Log In
                                     </a>
@@ -63,6 +71,21 @@ function NavBar() {
                                         <li><LogInForm /></li>
                                     </ul>
                                 </li>
+
+                                    :
+
+                                    <li class="nav-item">
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-link text-white" 
+                                            onClick={ (event) => {
+                                                console.log('logout!');
+                                                logOut();
+                                                window.location.reload();
+                                            }}>LogOut</button>
+                                    </li>
+                                }
+
                                 <li class="nav-item">
                                     <a
                                         class="nav-link text-white" href="products">Products
@@ -74,7 +97,6 @@ function NavBar() {
                                         href="cart">
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
-
                                     </a>
                                 </li>
 

@@ -52,7 +52,8 @@ async function createTables() {
     category TEXT NOT NULL,
     brand TEXT NOT NULL,
     size VARCHAR(125) NOT NULL,
-    price INTEGER NOT NULL
+    price VARCHAR(125) NOT NULL,
+    image VARCHAR(125)
   );
 
 
@@ -106,21 +107,215 @@ async function createInitialItems() {
     console.log("Starting to create items...")
 
     const itemsToCreate = [
+      //shoes
     {
-        name: "hiking shoes",
+        name: "TrailBurner",
         category: "shoes",
         brand:"Nike",
-        size:"38",
-        price: "800"
+        size:"8",
+        price: "95.99",
+        image: "shoes1.png"
       },
       {
-        name: "track shoes",
+        name: "Adventurer",
         category: "shoes",
         brand:"Addidas",
-        size:"40",
-        price: "500"
+        size:"11",
+        price: "128.99",
+        image: "shoes2.png"
       },
-     
+      {
+        name: "Dunhams",
+        category: "shoes",
+        brand:"Brooks",
+        size:"7",
+        price: "78.99",
+        image: "shoes3.png"
+      },
+      {
+        name: "ReLeather",
+        category: "shoes",
+        brand:"Adidas",
+        size:"13",
+        price: "135.99",
+        image: "shoes4.png"
+      },
+      {
+        name: "Trail Blazer",
+        category: "shoes",
+        brand:"Nike",
+        size:"9.5",
+        price: "89.99",
+        image: "shoes5.png"
+      },
+      {
+        name: "Windsors",
+        category: "shoes",
+        brand:"KURU",
+        size:"11",
+        price: "165.99",
+        image: "shoes6.png"
+      },
+      {
+        name: "Trekkors",
+        category: "shoes",
+        brand:"Brooks",
+        size:"8",
+        price: "115.99",
+        image: "shoes7.png"
+      },
+
+      //tents
+      {
+        name: "Syndrome Fullfly",
+        category: "tents",
+        brand:"Coleman",
+        size:"2-person",
+        price: "159.99",
+        image: "tent1.png"
+      },
+      {
+        name: "Trail 8",
+        category: "tents",
+        brand:"Kodiak",
+        size:"6-person",
+        price: "89.99",
+        image: "tent2.png"
+      },
+      {
+        name: "Vivo-sun",
+        category: "tents",
+        brand:"Coleman",
+        size:"3-person",
+        price: "169.99",
+        image: "tent3.png"
+      },
+      {
+        name: "Klondike",
+        category: "tents",
+        brand:"Kodiak",
+        size:"4-person",
+        price: "119.99",
+        image: "tent4.png"
+      },
+      {
+        name: "Switchback-cross",
+        category: "tents",
+        brand:"Quest",
+        size:"4-person",
+        price: "179.99",
+        image: "tent5.png"
+      },
+      {
+        name: "Switchback Original",
+        category: "tents",
+        brand:"Quest",
+        size:"8-person",
+        price: "149.99",
+        image: "tent6.png"
+      },
+
+      //Grills and firepits
+      {
+        name: "Copper Fire",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "149.99",
+        image: "firepit1.png"
+      },
+      {
+        name: "Westwood",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "289.99",
+        image: "firepit2.png"
+      },
+      {
+        name: "Brushed Nickle",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "229.99",
+        image: "firepit3.png"
+      },
+      {
+        name: "Portable BBQ",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "129.99",
+        image: "grill1.png"
+      },
+      {
+        name: "Propane Grill Set",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "259.99",
+        image: "grill2.png"
+      },
+      {
+        name: "Glamping Grill",
+        category: "Firepits and Grills",
+        brand:"MegaStove",
+        size:"standard",
+        price: "5429.99",
+        image: "grill3.png"
+      },
+
+      //clothing
+      {
+        name: "Plaid v1",
+        category: "Clothing",
+        brand:"Northface",
+        size:"large",
+        price: "59.99",
+        image: "shirt1.png"
+      },
+      {
+        name: "Plaid v2",
+        category: "Clothing",
+        brand:"Patagonia",
+        size:"medium",
+        price: "49.99",
+        image: "shirt2.png"
+      },
+      {
+        name: "Plaid v3",
+        category: "Clothing",
+        brand:"Patagonia",
+        size:"large",
+        price: "69.99",
+        image: "shirt3.png"
+      },
+      {
+        name: "Insulated Jacket",
+        category: "Clothing",
+        brand:"Patagonia",
+        size:"large",
+        price: "119.99",
+        image: "jacket1.png"
+      },
+      {
+        name: "Camping Jackets",
+        category: "Clothing",
+        brand:"Patagonia",
+        size:"large",
+        price: "129.99",
+        image: "jacket2.png"
+      },
+      {
+        name: "Outdoor Light Jacket",
+        category: "Clothing",
+        brand:"Northface",
+        size:"small",
+        price: "89.99",
+        image: "jacket3.png"
+      }
+
+
     ]
     const items = await Promise.all(itemsToCreate.map(adminCreateItem))
 

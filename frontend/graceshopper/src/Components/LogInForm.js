@@ -1,16 +1,17 @@
-import styles from './LogInForm.module.css'
+import styles from '../styles/LogInForm.module.css'
 import { useState } from 'react';
+import { setTargetValue } from '../constants/constants';
+import { logIn } from '../api/userRequests';
 
-const setTargetValue = (callback) => {
-    return (event) => {
-        callback(event.target.value)
-    }
-}
+// const setTargetValue = (callback) => {
+//     return (event) => {
+//         callback(event.target.value)
+//     }
+// }
 
 function LogInForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
 
     return (
         <div className={styles.container}>
@@ -19,6 +20,8 @@ function LogInForm() {
                     (event) => {
                         event.preventDefault();
                         console.log('Submit Form')
+                        logIn({username,password});
+                        window.location.reload();
                     }
                 }
             >
@@ -53,7 +56,7 @@ function LogInForm() {
 
                 <p className={styles.secondHeader}>Don't Have an Account?
 
-                    <a className={styles.signUpLink} href='www.google.com'>Create One Here!</a>
+                    <a className={styles.signUpLink} href='http://localhost:3000/register'>Create One Here!</a>
                 </p>
             </form>
 

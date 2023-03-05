@@ -12,7 +12,8 @@ const {
     createUser,
     getUserByUsername,
     getUser,
-    getUserById
+    getUserById,
+    getAllUsers
 } = require('../db/users')
 
 //Register
@@ -27,15 +28,33 @@ usersRouter.post( '/register', async (req, res , next) => {
 
     try {        
         const _user = await getUserByUsername()
+        const _users = await getAllUsers()
         
-        //next if user already exists
+        //next if username already exists
         if (_user) {
             next ({
                 error: 'usernameAlreadyExists',
                 message: `user ${username} already exists`,
                 name: 'NoDuplicateUsersError'
             })
+        }
+        //checks for if the email already exists in the db
+        if (_users.filter(user => user.email === email).length) {
+            next ({
+                error: 'emailAlreadyInDatabase',
+                message: `The email ${email} already exists`,
+                name: 'NoDuplicateEmailsError'
+            })
         } 
+        //checks if the email address is potentially valid
+        if(!email.includes('@') || !email.includes('.com')) {
+            next({
+                error: "invalidEmail",
+                message: "please enter a valid email address",
+                name: "EmailInvalid"
+            })
+        }
+        //checks password length, should be handled on the front end
         if (password.length < 7) {
             next({
                 error: "password too short",
