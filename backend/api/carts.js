@@ -11,10 +11,11 @@ const {
     getAllCarts,
     getCartById,
     getCartByUserId,
-    destroyCart
+    destroyCart,
+    attachItemsToCart
 } = require("../db/carts");
 
-// GET /api/carts
+// GET /api/carts get all carts as administrator
 cartsRouter.get("/", isAdministrator, async (req, res) => {
   try {
     const carts = await getAllCarts();
@@ -26,15 +27,19 @@ cartsRouter.get("/", isAdministrator, async (req, res) => {
   }
 });
 
-// GET /api/carts/:cartId
+// GET /api/carts/:cartId get a cart by id
 cartsRouter.get("/:cartId", isUser, async (req, res) => {
 
     const { id } = req.body;
 
     try {
       const cart = await getCartById({id});
-      if (cart) {
-        res.send(cart);
+      const withItems = await attachItemsToCart(cart)
+      if (withItems) {
+        res.send(withItems);
+      } 
+      else if (cart) {
+        res.send(cart)
       }
     } catch (error) {
       throw Error("Failed to get cart by cartId", error);
