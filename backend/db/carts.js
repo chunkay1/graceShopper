@@ -32,7 +32,7 @@ async function attachItemsToCart(cart) {
 //   return cart
 // }
 
-async function createCart({ userId }) {
+async function createCart( userId ) {
   try {
     const {
       rows: [cart],

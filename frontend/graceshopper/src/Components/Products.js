@@ -4,6 +4,9 @@ import { getAllItems, getProductsByCategory, getProductById } from '../api/itemR
 import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
+import { STORAGE_KEY } from '../constants/constants';
+
+// const jwt = require('jsonwebtoken')
 
 
 
@@ -144,8 +147,10 @@ const Products = ({token}) => {
                                                         onClick={async (event) => {
                                                             event.preventDefault();
                                                             console.log('added to cart')
-                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-                                                            console.log(test)
+                                                            
+                                                            // const { [id] : userId } = jwt.verify(token)
+                                                             console.log (await addToCart ({ id , token }))
+                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                                                                             
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
                                                             //     console.log(result)

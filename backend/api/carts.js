@@ -47,7 +47,7 @@ cartsRouter.get("/:cartId", isUser, async (req, res) => {
   });
 
 
-// POST /api/carts
+// POST /api/carts create a new cart if you are a user
 cartsRouter.post("/", isUser, async (req, res, next) => {
   
     const { userId } = req.body;
@@ -73,7 +73,7 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
         name: "noDuplicateCartError",
       });
     } else {
-      const newCart = createCart({ userId });
+      const newCart = createCart( userId );
       res.send(newCart);
     }
   } catch ({ name, message }) {
