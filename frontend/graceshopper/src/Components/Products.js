@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
-import { getAllItems, getProductsByCategory } from '../api/itemRequests';
+import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
 import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
+import SingleProduct from './SingleProduct';
 
 
 
 const Products = ({token}) => {
     const [category, setCategory] = useState('');
     const [cartItemProps, setCartItemProps] = useState({});
-    
     const [products, setProducts] = useState([]);
+    const [singleProduct, setSingleProduct] = useState(false);
     
     useEffect(() => {
-        const getProductsAsync = async () => {
+        const getProductsByCategoryAsync = async () => {
             let allProducts = await getAllItems();
             let categoryItems = allProducts.filter(product => product.category === category)
             console.log(categoryItems)
             setProducts(categoryItems);
         }
-        getProductsAsync();
+        getProductsByCategoryAsync();
     }, [category])
 
     useEffect(() => {
-        const getProductsAsync = async () => {
-            let products = await getAllItems();
-            setProducts(products);
+        const getAllProductsAsync = async () => {
+            let allProducts = await getAllItems();
+            setProducts(allProducts);
             // console.log('products are', products)
         }
-        getProductsAsync();
+        getAllProductsAsync();
     }, [])
     
     let getCategoryItems = async (category)=> {
@@ -47,7 +48,6 @@ const Products = ({token}) => {
                size : size,
             }
         )
-
         return cartItemProps
     }
     
@@ -85,65 +85,86 @@ const Products = ({token}) => {
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
 
+            {
+                singleProduct
 
-            <div className={styles.container}>
+                ?
 
-                
-                {
-                    products.map(({brand, category, id, name, price, size, image}) => {
-                        return (
-                            <div key={id}>
+                    <SingleProduct 
+                        setSingleProduct={setSingleProduct}
+                    />
 
-                                <div 
-                                    class={`card ${styles.productCard}`} 
-                                    style={{
-                                        width: "18rem",
-                                        backgroundColor: "#B7E4C7"
-                                    }}>
-
-                                    <img src={image} class="card-img-top" alt="..."/>
-                                    
-                                    <div class="card-body">
-                                        <h5 class="card-title">Brand</h5>
-                                            <p class="card-text">{brand}</p>
-                                        <h5 class="card-title">Name</h5>
-                                            <p class="card-text">{name}</p>
-                                        {/* <h5 class="card-title">size</h5>
-                                            <p class="card-text">{size}</p> */}
-                                        <h5 class="card-title">Category</h5>
-                                            <p class="card-text">{category}</p>
-                                        {/* <h5 class="card-title">Id</h5>
-                                            <p class="card-text">{id}</p> */}
-                                        
-                                        <div className={styles.buttonDiv}> 
-                                            <button
-                                                className={styles.cartButton}
-                                                onClick={async (event) => {
-                                                    event.preventDefault();
-                                                    console.log('added to cart')
-                                                    let test = await addToCart(getCartItemProps(brand, category, id, name, price, size, image))
-                                                    console.log(test)
-                                                                                                      
-                                                    // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                    //     console.log(result)
-                                                    //     addToCart(result);
-                                                    // }).catch((err) => {
-                                                    //     console.log(err)
-                                                    // });
-                                                }}>
-                                                Add to Cart!
-                                            </button>
+                :
+                    <div className={styles.container}>
+                        
+                        {
+                            products.map(({brand, category, id, name, price, size, image}) => {
+                                return (
+                                    <div key={id}>
+        
+                                        <div 
+                                            class={`card ${styles.productCard}`} 
+                                            style={{
+                                                width: "18rem",
+                                                backgroundColor: "#B7E4C7"
+                                            }}
+                                            onClick={async (e) => {
+                                                // console.log('brand is,', brand);
+                                                // console.log('name is,', name);
+                                                // console.log('price is,', price);
+                                                const info = await getProductById(id);
+                                                console.log(info)
+                                                setSingleProduct(true);
+        
+                                            }}>
+        
+                                            <img src={image} class="card-img-top" alt="..."/>
+                                            
+                                            <div class="card-body">
+                                                <h5 class="card-title">Brand</h5>
+                                                    <p class="card-text">{brand}</p>
+                                                <h5 class="card-title">Name</h5>
+                                                    <p class="card-text">{name}</p>
+                                                {/* <h5 class="card-title">size</h5>
+                                                    <p class="card-text">{size}</p> */}
+                                                <h5 class="card-title">Category</h5>
+                                                    <p class="card-text">{category}</p>
+                                                {/* <h5 class="card-title">Id</h5>
+                                                    <p class="card-text">{id}</p> */}
+                                                
+                                                <div className={styles.buttonDiv}> 
+                                                    <button
+                                                        className={styles.cartButton}
+                                                        onClick={async (event) => {
+                                                            event.preventDefault();
+                                                            console.log('added to cart')
+                                                            let test = await addToCart(getCartItemProps(brand, category, id, name, price, size, image))
+                                                            console.log(test)
+                                                                                                            
+                                                            // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                            //     console.log(result)
+                                                            //     addToCart(result);
+                                                            // }).catch((err) => {
+                                                            //     console.log(err)
+                                                            // });
+                                                        }}>
+                                                        Add to Cart!
+                                                    </button>
+                                                </div>
+                                            </div>
+        
                                         </div>
+        
                                     </div>
+        
+                                )
+                            
+                            })
+                        }
+                    </div>
+            }
 
-                                </div>
 
-                            </div>
-
-                        )
-                    
-                    })
-                }
                 {/* {
                     products.map(({brand, category, id, name, price, size, image}) => {
                         return (
@@ -181,9 +202,8 @@ const Products = ({token}) => {
                     
                     })
                 } */}
-            </div>
-
-        </div>
+            
+         </div>
         
     )
 }

@@ -51,7 +51,7 @@ itemsRouter.get( '/:categoryId', async (req, res , next) => {
 })
 
 //get a single item by id
-itemsRouter.get( '/:itemId', async (req, res , next) => {
+itemsRouter.get( '/:itemId/item', async (req, res , next) => {
     try {        
         const itemId = req.params
         const byItemId = await getItemById(itemId)

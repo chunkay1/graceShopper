@@ -41,3 +41,24 @@ export async function getProductsByCategory(categoryId) {
         console.error(error);
     }
 }
+
+export async function getProductById(id) {
+    try {
+        const response = await fetch(
+            `${BASEURL}/items/${id}/item`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+        )
+
+        const json = await response.json();
+        console.log(`product info for ID #:${id} - info:`, json);
+
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}
