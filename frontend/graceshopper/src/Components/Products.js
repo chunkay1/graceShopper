@@ -9,7 +9,7 @@ import SingleProduct from './SingleProduct';
 
 const Products = ({token}) => {
     const [category, setCategory] = useState('');
-    const [cartItemProps, setCartItemProps] = useState({});
+    const [itemProps, setItemProps] = useState({});
     const [products, setProducts] = useState([]);
     const [singleProduct, setSingleProduct] = useState(false);
     
@@ -36,9 +36,9 @@ const Products = ({token}) => {
         await getProductsByCategory(category);
     } 
 
-    let getCartItemProps = (brand, category, id, name, price, size) => {
+    let getItemProps = (brand, category, id, name, price, size) => {
         console.log('props are', brand, category, id, name, price, size)
-        setCartItemProps(
+        setItemProps(
             {
                brand : brand,
                category : category,
@@ -48,7 +48,7 @@ const Products = ({token}) => {
                size : size,
             }
         )
-        return cartItemProps
+        return itemProps
     }
     
     
@@ -92,6 +92,11 @@ const Products = ({token}) => {
 
                     <SingleProduct 
                         setSingleProduct={setSingleProduct}
+                        setItemProps={setItemProps}
+                        itemProps={itemProps}
+                        token={token}
+                        addToCart={addToCart}
+                        getProductById={getProductById}
                     />
 
                 :
@@ -112,8 +117,9 @@ const Products = ({token}) => {
                                                 // console.log('brand is,', brand);
                                                 // console.log('name is,', name);
                                                 // console.log('price is,', price);
-                                                const info = await getProductById(id);
-                                                console.log(info)
+                                                const props = await getProductById(id);
+                                                setItemProps(props)
+                                                console.log(itemProps)
                                                 setSingleProduct(true);
         
                                             }}>
@@ -138,7 +144,7 @@ const Products = ({token}) => {
                                                         onClick={async (event) => {
                                                             event.preventDefault();
                                                             console.log('added to cart')
-                                                            let test = await addToCart(getCartItemProps(brand, category, id, name, price, size, image))
+                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                             console.log(test)
                                                                                                             
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
