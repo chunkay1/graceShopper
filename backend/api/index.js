@@ -24,10 +24,10 @@ router.use(async (req, res, next) => {
       try {
         const { id, isAdmin } = jwt.verify(token, JWT_SECRET);
         
+        
         //attach a user property to the request object if the token is valid
         if (id) {
           req.user = await getUserById(id);
-          next();
         }
         
         //attach an admin property if the isAdmin boolean is true
@@ -66,13 +66,13 @@ router.use('/items', itemsRouter);
 
 //keep below commented out until they are built
 
-//api/carts
-// const cartsRouter = require('./carts');
-// router.use('/carts', cartsRouter);
+// api/carts
+const cartsRouter = require('./carts');
+router.use('/carts', cartsRouter);
 
-//api/itemsInCart
-// const itemsInCartRouter = require('./itemsInCart');
-// router.use('/itemsInCart', itemsInCartRouter);
+// api/itemsInCart
+const itemsInCartRouter = require('./itemsInCart');
+router.use('/itemsInCart', itemsInCartRouter);
 
 //404 handler
 router.use((req, res, next) => {

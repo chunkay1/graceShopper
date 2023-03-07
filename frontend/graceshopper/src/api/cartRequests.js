@@ -26,9 +26,9 @@ export async function addToCart({ id, token }) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: {
+                body: JSON.stringify ({
                     itemId : id
-                }
+                })
             }
         )
 

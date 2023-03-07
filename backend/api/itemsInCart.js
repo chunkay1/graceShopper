@@ -4,7 +4,10 @@ const itemsInCartRouter = express.Router();
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
 
-const { isUser,isAdministrator } = require("./utils");
+const { 
+    isUser, 
+    isAdministrator 
+  } = require("./utils");
 
 const {
     addItemsToCart,
@@ -14,6 +17,7 @@ const {
     updateItemsInCart,
     destroyItemsInCart
 } = require("../db/itemsInCart");
+
 const { createCart, 
         getCartById,
         getCartByUserId,
@@ -27,10 +31,10 @@ itemsInCartRouter.post("/", isUser, async (req, res, next) => {
   
     const { itemId } = req.body
     const { userId } = req.user
-    
     // const { [id] : userId } = jwt.verify( token )
 
     try{
+        console.log("itemId", itemId, "userId", userId)
       let cart = await getCartByUserId ({ userId })
 
       //if no cart exists, create one
