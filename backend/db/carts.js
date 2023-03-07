@@ -71,12 +71,14 @@ async function destroyCart(cartId) {
         DELETE FROM 
         itemsInCart
         WHERE cartId =${cartId}
+        RETURNING *
         `);
 
     await client.query(`
         DELETE FROM 
         carts
         WHERE id =${cartId}
+        RETURNING *
         `);
     } catch (error) {
     throw error;

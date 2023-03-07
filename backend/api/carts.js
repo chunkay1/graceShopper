@@ -84,8 +84,8 @@ cartsRouter.delete('/:cartId', isUser, async (req, res, next) => {
         
         const cart = await getCartById({cartId});
 
-        await destroyCart({cartId});
-        res.send()
+        const deleteCart = await destroyCart({cart});
+        res.send(deleteCart)
 
     }catch (error) {
         throw Error("Failed to delete cart by cartId", error)
