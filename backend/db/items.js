@@ -33,7 +33,7 @@ async function getAllItems () {
     }
 }
 
-async function getItemById (itemId) {
+async function getItemById ({itemId}) {
     try {
         const { rows: [item] } = await client.query(`
             SELECT *
