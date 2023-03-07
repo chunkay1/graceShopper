@@ -1,6 +1,37 @@
 const client = require("./client");
 // const { attachItemsToCart, getItemById } = require("./items");
 
+async function attachItemsToCart(cart) {
+  
+  const { rows: itemInCart } = await client.query(`
+    SELECT *
+    FROM itemsInCart
+    WHERE "cartId" = ${cart.id}
+  `)
+
+  cart.itemsInCart = itemsInCart
+
+  return cart
+}
+
+//alternate way to try this
+// async function attachItemsToCart(cart) {
+
+//   const { rows: itemInCart } = await client.query(`
+//     SELECT items.*,
+//     itemsInCart."itemsId",
+//     itemsInCart.."cartId",
+//     FROM items
+//     JOIN intemsInCart
+//     ON itemsInCart."itemsId" = items.id
+//     WHERE itemsInCart."cartId"=$1;
+//    `, [cart.id])
+
+//   cart.itemsInCart = itemsInCart
+
+//   return cart
+// }
+
 async function createCart({ userId }) {
   try {
     const {
@@ -90,5 +121,6 @@ module.exports = {
   getAllCarts,
   getCartById,
   getCartByUserId,
-  destroyCart
+  destroyCart,
+  attachItemsToCart
 };
