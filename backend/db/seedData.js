@@ -329,13 +329,13 @@ async function createInitialItems() {
   }
 }
 
-async function createInitialcarts(){
+// async function createInitialcarts(){
 
-}
+// }
 
-async function createInitialitemsInCart(){
+// async function createInitialitemsInCart(){
     
-}
+// }
 
 
 
@@ -346,8 +346,8 @@ async function rebuildDB() {
     await createTables();
     await createInitialUsers();
     await createInitialItems();
-    await createInitialitemsInCart();
-    await createInitialcarts();
+    // await createInitialitemsInCart();
+    // await createInitialcarts();
     
   } catch (error) {
     console.log("Error during rebuildDB")
