@@ -146,10 +146,11 @@ const Products = ({token}) => {
                                                         className={styles.cartButton}
                                                         onClick={async (event) => {
                                                             event.preventDefault();
-                                                            console.log('added to cart')
                                                             
                                                             // const { [id] : userId } = jwt.verify(token)
-                                                             console.log (await addToCart ({ id , token }))
+                                                            console.log("this is the id", id, "this is the token", token)
+                                                             const something = await addToCart ( id, token )
+                                                             console.log("this is something", something)
                                                             // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                                                                             
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {

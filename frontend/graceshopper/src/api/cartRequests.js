@@ -16,10 +16,10 @@ import { BASEURL } from "../constants/constants";
 //     }
 // }
 
-export async function addToCart({ id, token }) {
+export async function addToCart( id, token ) {
     try {
         const response = await fetch(
-            `${BASEURL}/itemsInCart/`, 
+            `${BASEURL}/itemsInCart`, 
             {
                 method: "POST",
                 headers: {

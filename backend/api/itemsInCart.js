@@ -34,7 +34,6 @@ itemsInCartRouter.post("/", isUser, async (req, res, next) => {
     // const { [id] : userId } = jwt.verify( token )
 
     try{
-        console.log("itemId", itemId, "userId", userId)
       let cart = await getCartByUserId ({ userId })
 
       //if no cart exists, create one
