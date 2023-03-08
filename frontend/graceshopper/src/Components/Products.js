@@ -127,14 +127,16 @@ const Products = ({token}) => {
                                             <img src={image} class="card-img-top" alt="..."/>
                                             
                                             <div class="card-body">
-                                                <h5 class="card-title">Brand</h5>
-                                                    <p class="card-text">{brand}</p>
+                                                {/* <h5 class="card-title">Brand</h5>
+                                                    <p class="card-text">{brand}</p> */}
                                                 <h5 class="card-title">Name</h5>
                                                     <p class="card-text">{name}</p>
                                                 {/* <h5 class="card-title">size</h5>
                                                     <p class="card-text">{size}</p> */}
-                                                <h5 class="card-title">Category</h5>
-                                                    <p class="card-text">{category}</p>
+                                                {/* <h5 class="card-title">Category</h5>
+                                                    <p class="card-text">{category}</p> */}
+                                                <h5 class="card-title">Price</h5>
+                                                    <p class="card-text">{price}</p>
                                                 {/* <h5 class="card-title">Id</h5>
                                                     <p class="card-text">{id}</p> */}
                                                 

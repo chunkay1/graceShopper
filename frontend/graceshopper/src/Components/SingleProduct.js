@@ -66,6 +66,19 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                                         }}>
                                                         Add to Cart!
                                                     </button>
+                                                    <button
+                                                        className={styles.cartButton}
+                                                        onClick={async (e) => {
+                                                            // console.log('brand is,', brand);
+                                                            // console.log('name is,', name);
+                                                            // console.log('price is,', price);
+                                                            const props = await getProductById(id);
+                                                            setItemProps(props)
+                                                            console.log(itemProps)
+                                                            setSingleProduct(false);
+                                                        }}>
+                                                        Return to Products
+                                                    </button>
                                                 </div>
                                             </div>
         
