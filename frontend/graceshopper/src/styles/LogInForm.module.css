@@ -4,6 +4,8 @@
     flex-direction: column;
     justify-content: space-around;
     background-color: #40916C;
+    /* Sam changed this */
+    background-color: rgb(24, 82, 51)
 }
 
 .button {
