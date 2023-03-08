@@ -64,7 +64,7 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
     
 
     // check for carts with the same userId
-    const cart = await getCartByUserId({userId});
+    const cart = await getCartByUserId({ userId });
 
     if (cart) {
       next({

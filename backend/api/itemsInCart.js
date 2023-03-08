@@ -24,16 +24,23 @@ const { createCart,
         attachItemsToCart
     } = require("../db/carts");
 
+    itemsInCartRouter.get('/health', async (req, res, next) => {
+
+      res.status(200).send({
+         message: "items in cart is working!"
+      })
+      next()
+    });
 
 // Add items to cart, create new cart if one doesn't exist
 // will need to be rewritten later to accommodate guests
-itemsInCartRouter.post("/", isUser, async (req, res, next) => {
+itemsInCartRouter.post("/addItem", isUser, async (req, res, next) => {
   
     const { itemId } = req.body
-    const { userId } = req.user
-    // const { [id] : userId } = jwt.verify( token )
+    const userId = req.user.id
 
     try{
+      // if no cart exists this will return null, tested - working on 3/8 Sam
       let cart = await getCartByUserId ({ userId })
 
       //if no cart exists, create one
@@ -41,14 +48,11 @@ itemsInCartRouter.post("/", isUser, async (req, res, next) => {
         cart = await createCart( userId )
       }
       
-      //create ItemInCart in the ItemsInCart table
-      const itemInCart = addItemsToCart( cart.id, itemId )
+      //create ItemInCart in the ItemsInCart table, then attach the newly created itemsInCart to the cart
+      const itemInCart = await addItemsToCart( cart.id, itemId )
       const withItems = await attachItemsToCart(cart)
 
       res.send(
-        "Item added to cart",
-        itemInCart,
-        "here is the updated cart",
         withItems
       );
 
@@ -79,6 +83,7 @@ itemsInCartRouter.delete("/", isUser, async (req, res, next) => {
 });
 
 itemsInCartRouter.use((error, req, res, next) => {
+    console.log("error caught in itemsInCart Router")
     res.send(error);
   });
 

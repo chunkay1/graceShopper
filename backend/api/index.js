@@ -11,7 +11,7 @@ const {
     getUserById
 } = require ('../db/users')
 
-//verifies tokens for users and attaches a .user to any request with a valid token
+// verifies tokens for users and attaches a .user to any request with a valid token
 router.use(async (req, res, next) => {
     const prefix = 'Bearer ';
     const auth = req.header('Authorization');
@@ -22,18 +22,21 @@ router.use(async (req, res, next) => {
       const token = auth.slice(prefix.length);
   
       try {
-        const { id, isAdmin } = jwt.verify(token, JWT_SECRET);
+        const { id } = jwt.verify(token, JWT_SECRET);
+        
         
         //attach a user property to the request object if the token is valid
         if (id) {
           req.user = await getUserById(id);
-          console.log("this is req.user", req.user)
         }
         
         //attach an admin property if the isAdmin boolean is true
-        if (isAdmin) {
+        if (req.user.isadmin) {
           req.admin = true
         }
+
+        //move on to the next route
+        next()
 
       } catch ({ name, message }) {
         next ({name, message});

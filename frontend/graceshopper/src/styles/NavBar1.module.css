@@ -12,8 +12,15 @@
 
 .dropdown {
     background-color: #40916C;
+    /* changed by Sam */
+    background-color: rgb(19, 66, 41);
 }
 
 .cartIcon {
     font-size: 20px;
+}
+
+.mainBar {
+    /* made a change here experimenting with a gradient, feel free to reverse it or modify it! -Sam */
+    background: linear-gradient(90deg,rgb(41, 79, 56) 0%, rgba(19, 66, 41, 0.916) 100%);
 }

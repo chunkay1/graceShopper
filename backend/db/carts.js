@@ -9,7 +9,8 @@ async function attachItemsToCart(cart) {
     WHERE "cartId" = ${cart.id}
   `)
 
-  cart.itemsInCart = itemsInCart
+  cart.itemsInCart = itemInCart
+  console.log("these are the items attached to your cart", cart.itemsInCart)
 
   return cart
 }
@@ -34,18 +35,16 @@ async function attachItemsToCart(cart) {
 
 async function createCart( userId ) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
+    const { rows: [cart] } = await client.query(
       `
         INSERT INTO carts ("userId")
         VALUES ($1)
-        RETURNING *
+        RETURNING *;
         `,
-      [userId]
+        [userId]
     );
 
-    console.log(cart);
+    console.log("This is cart in createCart", cart);
     return cart;
   } catch (error) {
     console.log(error, "error creating cart");
@@ -82,15 +81,17 @@ async function getCartById(cartId) {
 
 async function getCartByUserId({ userId }) {
   try {
-    const { rows } = await client.query(`
+    const { rows: [cart] } = await client.query(`
       SELECT * FROM carts
       WHERE "userId" =${userId};
       `);
 
-    if (!cart) return null;
-
-    const [cart] = rows;
-    return cart;
+    if (!cart) {
+      return null;
+    }
+    else {
+      return cart;
+    }
   } catch (error) {
     throw error;
   }

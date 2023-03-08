@@ -19,18 +19,19 @@ import { BASEURL } from "../constants/constants";
 export async function addToCart( id, token ) {
     try {
         const response = await fetch(
-            `${BASEURL}/itemsInCart`, 
+            `${BASEURL}/itemsInCart/addItem`, 
             {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify ({
-                    itemId : id
+                    itemId: id
                 })
             }
         )
+        console.log(response)
 
         const json = await response.json();
         console.log(json);

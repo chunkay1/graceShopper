@@ -88,6 +88,13 @@ const Products = ({token}) => {
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
 
+            {/* tests adding to cart with some set info */}
+            <button onClick={async (e) => { 
+                const addedToCart = await addToCart(7, token)
+                console.log(addedToCart)
+            }}> add to cart test</button>
+
+
             {
                 singleProduct
 
@@ -111,7 +118,7 @@ const Products = ({token}) => {
                                     <div key={id}>
         
                                         <div 
-                                            class={`card ${styles.productCard}`} 
+                                            className={`card ${styles.productCard}`} 
                                             style={{
                                                 width: "18rem",
                                                 backgroundColor: "#B7E4C7"

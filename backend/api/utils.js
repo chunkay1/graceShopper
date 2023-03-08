@@ -1,4 +1,5 @@
 async function isUser( req, res, next ) {
+    console.log("isUser function hit in api/utils")
     if (!req.user) {
         res.status(401).send({
             error: "NotAthorized",
