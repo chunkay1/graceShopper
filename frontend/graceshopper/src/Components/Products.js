@@ -20,7 +20,7 @@ const Products = ({token}) => {
         const getProductsByCategoryAsync = async () => {
             let allProducts = await getAllItems();
             let categoryItems = allProducts.filter(product => product.category === category)
-            console.log(categoryItems)
+            // console.log(categoryItems)
             setProducts(categoryItems);
         }
         getProductsByCategoryAsync();
@@ -40,7 +40,7 @@ const Products = ({token}) => {
     } 
 
     let getItemProps = (brand, category, id, name, price, size) => {
-        console.log('props are', brand, category, id, name, price, size)
+        // console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
                brand : brand,
@@ -130,7 +130,7 @@ const Products = ({token}) => {
                                                 // console.log('price is,', price);
                                                 const props = await getProductById(id);
                                                 setItemProps(props)
-                                                console.log(itemProps)
+                                                // console.log(itemProps)
                                                 setSingleProduct(true);
         
                                             }}>
@@ -157,18 +157,18 @@ const Products = ({token}) => {
                                                         onClick={async (event) => {
                                                             event.preventDefault();
 
-                                                            console.log('added to cart')
+                                                            // console.log('added to cart')
                                                             let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-                                                            console.log(test);
+                                                            // console.log(test);
                                                             // this prevents from going to single product view after clicking add to cart
                                                             const props = await getProductById(id);
                                                             setItemProps(props)
-                                                            console.log(itemProps)
+                                                            // console.log(itemProps)
                                                             setSingleProduct(false);
 
                                                             
                                                             // const { [id] : userId } = jwt.verify(token)
-                                                            console.log("this is the id", id, "this is the token", token)
+                                                            // console.log("this is the id", id, "this is the token", token)
                                                              const something = await addToCart ( id, token )
                                                              console.log("this is something", something)
                                                             // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))

@@ -27,13 +27,42 @@ cartsRouter.get("/", isAdministrator, async (req, res) => {
   }
 });
 
-// GET /api/carts/:cartId get a cart by id
-cartsRouter.get("/:cartId", isUser, async (req, res) => {
+cartsRouter.get('/health', async (req, res, next) => {
+  res.status(200).send({
+     message: "all is well!"
+  })
+});
 
-    const { id } = req.body;
+// GET /api/carts/:cartId get a cart by id
+// cartsRouter.get("/:cartId", isUser, async (req, res) => {
+
+//     const { id } = req.body;
+
+//     try {
+//       const cart = await getCartById({id});
+//       const withItems = await attachItemsToCart(cart)
+//       if (withItems) {
+//         res.send(withItems);
+//       } 
+//       else if (cart) {
+//         res.send(cart)
+//       }
+//     } catch (error) {
+//       throw Error("Failed to get cart by cartId", error);
+//     }
+//   });
+
+// GET /api/carts/:userId gets a cart by userId
+//this is nearly identical to api/carts/:userId, except we're grabbing the cart by userId instead.
+//I couldn't figure out how to capture the cartId and set it into our get request
+cartsRouter.get("/:userId", isUser, async (req, res) => {
+
+    const { userId } = req.params;
 
     try {
-      const cart = await getCartById({id});
+      console.log('hit');
+      const cart = await getCartByUserId(userId);
+      console.log('cart is:', cart)
       const withItems = await attachItemsToCart(cart)
       if (withItems) {
         res.send(withItems);

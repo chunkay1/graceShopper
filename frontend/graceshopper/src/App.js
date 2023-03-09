@@ -67,7 +67,7 @@ const App = () => {
         <Route path='/cart' element={
           <>
             <NavBar token={token}/>
-            <Cart />
+            <Cart token={token} />
           </>
           } 
         />

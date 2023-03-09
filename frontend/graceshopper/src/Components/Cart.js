@@ -1,7 +1,10 @@
 import {React, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { myProfile } from '../api/userRequests';
+import { getCartByUserId } from '../api/cartRequests';
+import { cartHealth } from '../api/testRequests';
 
-const Cart = () => {
+const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
 
   // useEffect(() => {
@@ -58,7 +61,7 @@ const Cart = () => {
     let cartPrice = 0;
     for (let i = 0; i < itemsInTestCart.length; ++i) {
       let individualPrice = Number(itemsInTestCart[i].price);
-      console.log(typeof(individualPrice));
+      // console.log(typeof(individualPrice));
       cartPrice += individualPrice
     }
 
@@ -76,6 +79,22 @@ const Cart = () => {
           console.log(itemsInTestCart.length);
         }}>
         Test
+      </button>
+
+      <button 
+        onClick={async (event) => {
+          event.preventDefault();
+          //myProfile returns a #, which is the logged in users' ID#
+          let myID = await myProfile(token)
+          console.log('myId is,', myID);
+          //we then pass that ID # to pull the users' cart. 
+          //this can all be thrown into a useEffect once the details are ironed out. 
+          await getCartByUserId(myID, token)
+          //had to be sure the /carts api was working
+          await cartHealth()
+          // console.log(itemsInTestCart.length);
+        }}>
+        Get Cart Testing
       </button>
             
       <div class="py-5 text-center">
