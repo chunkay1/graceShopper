@@ -17,3 +17,17 @@
 .cartIcon {
     font-size: 20px;
 }
+/* NAVBAR TOGGLER */
+/* div {
+    color: red;
+} */
+
+#container-fluid {
+    color: red;
+}
+
+.navbar{
+    background-color: white;
+    border-color: white;
+    color: white;
+}
