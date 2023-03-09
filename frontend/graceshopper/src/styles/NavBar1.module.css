@@ -20,6 +20,21 @@
     font-size: 20px;
 }
 
+/* NAVBAR TOGGLER */
+/* div {
+    color: red;
+} */
+
+#container-fluid {
+    color: red;
+}
+
+.navbar{
+    background-color: white;
+    border-color: white;
+    color: white;
+
+
 .mainBar {
     /* made a change here experimenting with a gradient, feel free to reverse it or modify it! -Sam */
     background: linear-gradient(90deg,rgb(41, 79, 56) 0%, rgba(19, 66, 41, 0.916) 100%);

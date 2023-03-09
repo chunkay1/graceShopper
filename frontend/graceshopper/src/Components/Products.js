@@ -123,6 +123,7 @@ const Products = ({token}) => {
                                                 width: "18rem",
                                                 backgroundColor: "#B7E4C7"
                                             }}
+                                            // this is where you click the div and it takes you to the single product view
                                             onClick={async (e) => {
                                                 // console.log('brand is,', brand);
                                                 // console.log('name is,', name);
@@ -155,12 +156,23 @@ const Products = ({token}) => {
                                                         className={styles.cartButton}
                                                         onClick={async (event) => {
                                                             event.preventDefault();
+
+                                                            console.log('added to cart')
+                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                            console.log(test);
+                                                            // this prevents from going to single product view after clicking add to cart
+                                                            const props = await getProductById(id);
+                                                            setItemProps(props)
+                                                            console.log(itemProps)
+                                                            setSingleProduct(false);
+
                                                             
                                                             // const { [id] : userId } = jwt.verify(token)
                                                             console.log("this is the id", id, "this is the token", token)
                                                              const something = await addToCart ( id, token )
                                                              console.log("this is something", something)
                                                             // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+
                                                                                                             
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
                                                             //     console.log(result)
