@@ -2,14 +2,14 @@ const client = require('./client')
 
 //unsure how to handle uuid, should this happen in javascript or sql- in this file, in this function, or elsewhere?
 
-async function adminCreateItem ({ name, category, brand, size, price, image }) {
+async function adminCreateItem ({ name, category, brand, size, price, image, description }) {
     try {
         const { rows: [item] } = await client.query(`
-            INSERT INTO items (name, category, brand, size, price, image)
-            VALUES($1, $2, $3, $4, $5, $6)
+            INSERT INTO items (name, category, brand, size, price, image, description)
+            VALUES($1, $2, $3, $4, $5, $6, $7)
             ON CONFLICT (name) DO NOTHING
             RETURNING *;
-        `, [name, category, brand, size, price, image])
+        `, [name, category, brand, size, price, image, description])
 
         return item
 
