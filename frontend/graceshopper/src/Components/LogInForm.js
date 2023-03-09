@@ -17,10 +17,10 @@ function LogInForm() {
         <div className={styles.container}>
             <form
                 onSubmit={
-                    (event) => {
+                    async (event) => {
                         event.preventDefault();
                         console.log('Submit Form')
-                        logIn({username,password});
+                        await logIn({username,password});
                         window.location.reload();
                     }
                 }

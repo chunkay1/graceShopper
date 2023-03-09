@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [itemsInCart, setItemsInCart] = useState([]);
@@ -326,7 +327,10 @@ const Cart = () => {
 
             <hr class="my-4"/>
 
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit Your Order</button>
+            <Link to={'/order-confirmation'}>
+              <button class="w-100 btn btn-primary btn-lg" type="submit">Submit Your Order</button>
+            </Link>
+
 
           </form>
 
