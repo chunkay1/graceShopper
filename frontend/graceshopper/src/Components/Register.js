@@ -22,7 +22,7 @@ const Register = ({ token }) => {
 
         <div className={`container text-center ${styles.container}`}>
 
-            <h1>Register</h1>
+            <h1 id='reg-h1'>Register</h1>
 
             <form 
                 
