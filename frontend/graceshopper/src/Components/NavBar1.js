@@ -7,7 +7,7 @@ import { BASEURL } from "../constants/constants"
 function NavBar({ token }) {
     return (
         <div>
-            <nav class="navbar navbar-expand-lg bg-success">
+            <nav class={`navbar navbar-expand-lg bg-success ${styles.mainBar}`}>
                 <div class="container-fluid">
 
                     <div className={styles.TitleandIcon}>

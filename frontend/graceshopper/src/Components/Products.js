@@ -4,6 +4,9 @@ import { getAllItems, getProductsByCategory, getProductById } from '../api/itemR
 import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
+import { STORAGE_KEY } from '../constants/constants';
+
+// const jwt = require('jsonwebtoken')
 
 
 
@@ -85,6 +88,13 @@ const Products = ({token}) => {
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
 
+            {/* tests adding to cart with some set info */}
+            <button onClick={async (e) => { 
+                const addedToCart = await addToCart(7, token)
+                console.log(addedToCart)
+            }}> add to cart test</button>
+
+
             {
                 singleProduct
 
@@ -108,7 +118,7 @@ const Products = ({token}) => {
                                     <div key={id}>
         
                                         <div 
-                                            class={`card ${styles.productCard}`} 
+                                            className={`card ${styles.productCard}`} 
                                             style={{
                                                 width: "18rem",
                                                 backgroundColor: "#B7E4C7"
@@ -146,6 +156,7 @@ const Products = ({token}) => {
                                                         className={styles.cartButton}
                                                         onClick={async (event) => {
                                                             event.preventDefault();
+
                                                             console.log('added to cart')
                                                             let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                             console.log(test);
@@ -154,6 +165,14 @@ const Products = ({token}) => {
                                                             setItemProps(props)
                                                             console.log(itemProps)
                                                             setSingleProduct(false);
+
+                                                            
+                                                            // const { [id] : userId } = jwt.verify(token)
+                                                            console.log("this is the id", id, "this is the token", token)
+                                                             const something = await addToCart ( id, token )
+                                                             console.log("this is something", something)
+                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+
                                                                                                             
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
                                                             //     console.log(result)
