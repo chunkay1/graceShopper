@@ -21,7 +21,7 @@ const {
 const { createCart, 
         getCartById,
         getCartByUserId,
-        attachItemsToCart
+        attachItemsToCart,
     } = require("../db/carts");
 
     itemsInCartRouter.get('/health', async (req, res, next) => {

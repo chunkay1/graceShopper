@@ -12,7 +12,8 @@ const {
     getCartById,
     getCartByUserId,
     destroyCart,
-    attachItemsToCart
+    attachItemsToCart,
+    getCartAndItemDetails
 } = require("../db/carts");
 
 // GET /api/carts get all carts as administrator
@@ -63,7 +64,8 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       // console.log('hit');
       const cart = await getCartByUserId(userId);
       console.log('cart is:', cart)
-      const withItems = await attachItemsToCart(cart)
+      const withItems = await getCartAndItemDetails(cart)
+      // console.log('test is', await getCartAndItemDetails(cart))
       if (withItems) {
         res.send(withItems);
       } 

@@ -57,7 +57,7 @@ export async function getUserCart(token) {
         )
         const json = await response.json();
         const itemsInCart = json.itemsInCart
-        console.log(`cart info for user is:`, itemsInCart);
+        console.log(`cart info for user is:`, json);
         // const id = json.user.id;
         // console.log('user ID is:', id)
 

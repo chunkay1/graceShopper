@@ -33,6 +33,23 @@ async function attachItemsToCart(cart) {
 //   return cart
 // }
 
+async function getCartAndItemDetails(cart) {
+  console.log('gibberish')
+  const { rows: itemInCart } = await client.query(`
+     SELECT *
+     FROM items
+     JOIN itemsInCart
+     ON items.id = itemsInCart."itemsId" 
+     WHERE itemsInCart."cartId"=$1;
+    `, [cart.id])
+
+  cart.itemsInCart = itemInCart
+  
+  console.log('cart and item details are', cart)
+
+  return cart
+}
+
 async function createCart( userId ) {
   try {
     const { rows: [cart] } = await client.query(
@@ -123,5 +140,6 @@ module.exports = {
   getCartById,
   getCartByUserId,
   destroyCart,
-  attachItemsToCart
+  attachItemsToCart,
+  getCartAndItemDetails
 };
