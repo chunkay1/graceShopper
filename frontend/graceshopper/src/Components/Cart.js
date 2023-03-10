@@ -7,13 +7,14 @@ import { cartHealth } from '../api/testRequests';
 const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
 
-  // useEffect(() => {
-  //   const getCartItemsAsync = async () => {
-  //     const cartItems = await getCartItems();
-  //     setItemsInCart(cartItems);
-  //   }
-  //   getCartItemsAsync();
-  // }, [])
+  useEffect(() => {
+    const getCartItemsAsync = async () => {
+      let cartItems = await getUserCart(token);
+      console.log('use Effect is', cartItems.itemsInCart)
+      setItemsInCart(cartItems.itemsInCart);
+    }
+    getCartItemsAsync();
+  }, [token])
 
   //^^just a guess at what the end useEffect might look like - this will most likely change. 
 
@@ -57,10 +58,10 @@ const Cart = ({ token }) => {
   // const cartPrice = itemsInTestCart.reduce(
   //   (accumulator, currentValue) => accumulator + currentValue, startingCartPrice
   // );
-  let totalCartPrice = (itemsInTestCart) => {
+  let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
-    for (let i = 0; i < itemsInTestCart.length; ++i) {
-      let individualPrice = Number(itemsInTestCart[i].price);
+    for (let i = 0; i < itemsInCart.length; ++i) {
+      let individualPrice = Number(itemsInCart[i].price);
       // console.log(typeof(individualPrice));
       cartPrice += individualPrice
     }
@@ -75,7 +76,7 @@ const Cart = ({ token }) => {
       <button 
         onClick={(event) => {
           event.preventDefault();
-          totalCartPrice(itemsInTestCart);
+          totalCartPrice(itemsInCart);
           console.log(itemsInTestCart.length);
         }}>
         Test
@@ -90,6 +91,7 @@ const Cart = ({ token }) => {
           //we then pass that ID # to pull the users' cart. 
           //this can all be thrown into a useEffect once the details are ironed out. 
           await getUserCart(token);
+          console.log(itemsInCart)
           //had to be sure the /carts api was working
           await cartHealth()
           // console.log(itemsInTestCart.length);
@@ -118,7 +120,7 @@ const Cart = ({ token }) => {
           <ul class="list-group mb-3">
 
             {
-              itemsInTestCart.map(({brand, name, size, price}) => {
+              itemsInCart.map(({brand, name, size, price}) => {
                 return(
                   <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
@@ -170,7 +172,7 @@ const Cart = ({ token }) => {
 
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>{totalCartPrice(itemsInTestCart).toFixed(2)}</strong>
+              <strong>{totalCartPrice(itemsInCart).toFixed(2)}</strong>
             </li>
 
           </ul>
