@@ -39,7 +39,7 @@
     margin-top: 5px;
 }
 
-h3, p {
+/* h3, p {
     margin: 0;
     margin-right: calc(4px + 0.3vw);
 }
@@ -47,7 +47,7 @@ h3, p {
 h3 {
     border-right: 1px solid rgb(19, 76, 19);
     padding-right: 3px;
-}
+} */
 
 .image {
     border-radius: 1%;
