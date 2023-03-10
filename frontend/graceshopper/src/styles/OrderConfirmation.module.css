@@ -1,13 +1,69 @@
-/* .order-confirmation-container {
-    color: purple;
-} */
-
+/* whole container */
 .ordercontainer {
-    outline: auto;
-    background-color: lightgray;
-    margin-top: 100px;
+    
+    margin-left: 20rem;
+    margin-right: 20rem;
+    margin-top: 90px;
+    /* margin-left: 100px; */
+    /* padding: 50px; */
+    /* max-height: 80vh;
+    max-width: 80vw;
+    min-height: 80vh;
+    min-width: 80vw; */
+    background-color: rgba(211, 211, 211, 0.798);
+
+    height: 50rem;
+    width: 50rem; 
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* position: relative; */
+    min-width: 50%;
+    max-width: 50%;
+    position: fixed;
+   
 }
 
-/* span {
-    background-color: yellow;
-} */
+.ordercontainer:after {
+    content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+/* line: our order has been received */
+.h1OrderReceived {
+    font-weight: bold;
+    margin-top: 130px;
+    margin-bottom: 90px;
+}
+
+/* checkmark img */
+.imgCheckmark {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 50px;
+    
+}
+
+/* line: Thank you for your purchase! */
+.h1ThankYou {
+    margin-bottom: 50px;
+}
+
+/* line: Your order confirmation number is... */
+.pConfirmationNum {
+    margin-bottom: 50px;
+}
+
+/* When the browser is at least 600px and above */
+@media screen and (min-width: 1430px) {
+    .h1ThankYou {
+      /* Apply some styles */
+      color: blue;
+    }
+  }
+  
+  /* HELPFUL LINKS */
+  /* https://css-tricks.com/a-complete-guide-to-css-media-queries/ */
+  /* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
