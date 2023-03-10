@@ -11,7 +11,7 @@
 }
 
 .carousel {
-    max-width: calc(250px + 105vmin);
+    max-width: calc(250px + 95vmin);
     border-radius: 2%;
     box-shadow: 4px 4px 10px black;
     display: flex;
