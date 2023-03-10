@@ -41,7 +41,7 @@ itemsInCartRouter.post("/addItem", isUser, async (req, res, next) => {
 
     try{
       // if no cart exists this will return null, tested - working on 3/8 Sam
-      let cart = await getCartByUserId ({ userId })
+      let cart = await getCartByUserId (userId)
 
       //if no cart exists, create one
       if (!cart) {

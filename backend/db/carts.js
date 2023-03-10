@@ -79,7 +79,7 @@ async function getCartById(cartId) {
   }
 }
 
-async function getCartByUserId({ userId }) {
+async function getCartByUserId(userId) {
   try {
     const { rows: [cart] } = await client.query(`
       SELECT * FROM carts

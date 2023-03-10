@@ -84,3 +84,26 @@ export async function logOut() {
         console.error(error)
     }
 }
+
+export async function myProfile(token) {
+    try {
+        const response = await fetch(
+            `${BASEURL}/users/me`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+            }
+        )
+        const json = await response.json();
+        // console.log('user info is:', json);
+        const id = json.user.id;
+        // console.log('user ID is:', id)
+
+        return id
+    } catch (error) {
+        console.error(error)
+    }
+}
