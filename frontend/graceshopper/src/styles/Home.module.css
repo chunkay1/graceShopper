@@ -1,16 +1,22 @@
-/* .image {
+.image {
 
 }
 
 .productCard {
-   
-} */
+   flex: 0 0 calc(100%/3);
+   display: block;
+   padding: 0.5em;
+}
 
 .carousel {
-    max-width: calc(170px + 8.5vw);
+    max-width: calc(300px + 50vmin);
     border-radius: 2%;
     box-shadow: 2px 2px 2px black;
+    display: flex;
+    /* padding: 1em; */
 }
+
+
 .header {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: calc(10px + 0.65vmin);
