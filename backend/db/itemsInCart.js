@@ -1,16 +1,16 @@
 const client = require("./client");
 
-async function addItemsToCart( cartId, itemsId ) {
+async function addItemsToCart(cartId, itemsId) {
   try {
     const { rows: [itemInCart] } = await client.query(
       `
-        INSERT INTO itemsInCart ("cartId", "itemsId")
-        VALUES ($1, $2)
+        INSERT INTO itemsInCart ("cartId", "itemsId", quantity)
+        VALUES ($1, $2, $3)
         RETURNING *;
       `,
-      [cartId, itemsId]
+      [cartId, itemsId, 1]
     );
-    
+
     return itemInCart;
   } catch (error) {
     throw Error(error);
@@ -63,30 +63,37 @@ async function getItemsInCartByCartId({ cartId }) {
     throw error;
   }
 }
-async function updateItemsInCart({ id, ...fields }) {
-    
-    const setString = Object.keys(fields)
-    .map((key, index) => `"${key}"=$${index + 1}`)
-    .join(", ");
-
-  if (setString.length === 0) {
-    return;
-  }
+async function updateItemsInCart( itemInCartId, quantity ) {
 
   try {
     const {
-      rows: [itemsInCart],
+      rows: [itemInCart],
     } = await client.query(
       `
-              UPDATE itemsInCart
-              SET ${setString}
-              WHERE id=${id}
-              RETURNING *;
-              `,
-      Object.values(fields)
+        UPDATE itemsInCart
+        SET quantity=${quantity}
+        WHERE id=${itemInCartId}
+        RETURNING *;
+      `,
+      [quantity]
     );
 
-    // Another way:
+    return itemInCart;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// updateItemsInCart({ id, ...fields })
+  //   const setString = Object.keys(fields)
+  //   .map((key, index) => `"${key}"=$${index + 1}`)
+  //   .join(", ");
+
+  // if (setString.length === 0) {
+  //   return;
+  // }
+
+// Another way:
     // const { cartId, itemsId } = fields
     // let returned
     //   const {rows:[updated]} = await client.query(`
@@ -97,27 +104,21 @@ async function updateItemsInCart({ id, ...fields }) {
     //   `,[itemsId,id])
     //   returned = updated
 
-    return routine;
-  } catch (error) {
-    throw error;
-  }
-}
-
 async function destroyItemsInCart(id) {
-    try {
-     const { rows: [itemInCart] } = await client.query(`
+  try {
+    const { rows: [itemInCart] } = await client.query(`
           DELETE FROM 
           itemsInCart
           WHERE id =${id}
           RETURNING *
           `);
 
-      return itemInCart
-    }catch (error) {
-     throw error;
-    }
+    return itemInCart
+  } catch (error) {
+    throw error;
+  }
 }
-  
+
 module.exports = {
   addItemsToCart,
   getItemsInCartById,
