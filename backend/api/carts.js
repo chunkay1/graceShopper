@@ -55,12 +55,12 @@ cartsRouter.get('/health', async (req, res, next) => {
 // GET /api/carts/:userId gets a cart by userId
 //this is nearly identical to api/carts/:userId, except we're grabbing the cart by userId instead.
 //I couldn't figure out how to capture the cartId and set it into our get request
-cartsRouter.get("/:userId", isUser, async (req, res) => {
+cartsRouter.get("/userCart", isUser, async (req, res) => {
 
-    const { userId } = req.params;
+    const userId  = req.user.id
 
     try {
-      console.log('hit');
+      // console.log('hit');
       const cart = await getCartByUserId(userId);
       console.log('cart is:', cart)
       const withItems = await attachItemsToCart(cart)

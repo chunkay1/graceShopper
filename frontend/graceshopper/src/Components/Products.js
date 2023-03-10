@@ -158,7 +158,7 @@ const Products = ({token}) => {
                                                             event.preventDefault();
 
                                                             // console.log('added to cart')
-                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                             // console.log(test);
                                                             // this prevents from going to single product view after clicking add to cart
                                                             const props = await getProductById(id);

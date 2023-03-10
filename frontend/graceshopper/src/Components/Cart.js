@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { myProfile } from '../api/userRequests';
-import { getCartByUserId } from '../api/cartRequests';
+import { getUserCart } from '../api/cartRequests';
 import { cartHealth } from '../api/testRequests';
 
 const Cart = ({ token }) => {
@@ -85,11 +85,11 @@ const Cart = ({ token }) => {
         onClick={async (event) => {
           event.preventDefault();
           //myProfile returns a #, which is the logged in users' ID#
-          let myID = await myProfile(token)
-          console.log('myId is,', myID);
+          // let myID = await myProfile(token)
+          // console.log('myId is,', myID);
           //we then pass that ID # to pull the users' cart. 
           //this can all be thrown into a useEffect once the details are ironed out. 
-          await getCartByUserId(myID, token)
+          await getUserCart(token);
           //had to be sure the /carts api was working
           await cartHealth()
           // console.log(itemsInTestCart.length);

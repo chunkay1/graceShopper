@@ -17,6 +17,7 @@ import { BASEURL } from "../constants/constants";
 // }
 
 export async function addToCart( id, token ) {
+    // console.log('id type is', typeof(id))
     try {
         const response = await fetch(
             `${BASEURL}/itemsInCart/addItem`, 
@@ -42,10 +43,10 @@ export async function addToCart( id, token ) {
     }
 }
 
-export async function getCartByUserId(userId, token) {
+export async function getUserCart(token) {
     try {
         const response = await fetch(
-            `${BASEURL}/carts/${userId}`,
+            `${BASEURL}/carts/userCart`,
             {
                 method: "GET",
                 headers: {
@@ -56,7 +57,7 @@ export async function getCartByUserId(userId, token) {
         )
         const json = await response.json();
         const itemsInCart = json.itemsInCart
-        console.log(`cart info for user # ${userId} is:`, itemsInCart);
+        console.log(`cart info for user is:`, itemsInCart);
         // const id = json.user.id;
         // console.log('user ID is:', id)
 
