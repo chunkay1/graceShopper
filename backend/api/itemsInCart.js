@@ -21,7 +21,7 @@ const {
 const { createCart, 
         getCartById,
         getCartByUserId,
-        attachItemsToCart
+        attachItemsToCart,
     } = require("../db/carts");
 
     itemsInCartRouter.get('/health', async (req, res, next) => {
@@ -61,8 +61,43 @@ itemsInCartRouter.post("/addItem", isUser, async (req, res, next) => {
     }
 });
 
-// delete items to cart
 
+itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
+  
+  const { itemInCartId, quantity } = req.body
+  const userId = req.user.id
+
+  try{
+    // find the cart by userId
+    let cart = await getCartByUserId (userId)
+
+    //if no cart exists send an error
+    if (!cart) {
+      next({
+        error: "Cart doesn't exist"
+      })
+    }
+    
+    //updating the quantity of the itemInCart
+    const updatedItemInCart = await updateItemsInCart( itemInCartId, quantity ) 
+    //re-attaching all itemsInCart then send back the whole cart
+    const withItems = await attachItemsToCart(cart)
+
+    res.send(
+      withItems
+    );
+
+  }catch (error) {
+      next(error)
+  }
+});
+
+
+
+
+
+
+// delete items to cart
 itemsInCartRouter.delete("/", isUser, async (req, res, next) => {
 
     const { itemInCartId, cartId } = req.body;
