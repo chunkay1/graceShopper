@@ -8,15 +8,23 @@ const Home = () => {
   const [allItems, setAllItems] = useState([])
   const [randomizer, setRandomizer] = useState(0)
   const [randomize, setRandomize] = useState(false)
+  const [carouselRender, setCarouselRender] = useState(false)
   const [carousel1, setCarousel1] = useState([])
 
   useEffect(() => {
-    async function helper() {
-      setAllItems(await getAllItems())
-      console.log("this is all items", allItems)
-    }
-    helper()
+
+    getAllItems().then((items) => {
+      setAllItems(items)
+      setCarouselRender(true)
+    })
+    // async function helper() {
+    //   setAllItems(await getAllItems()).then(() => {
+    //     setCarouselRender(true)
+    //   })
+    // }
+    // helper()
   }, [])
+
 
   useEffect(() => {
     setCarousel1([randomHelper(), randomHelper(), randomHelper()])
@@ -26,33 +34,40 @@ const Home = () => {
     return Math.floor(Math.random() * (allItems.length - 1) + 1)
   }
 
-
-
-
-
-
   //setCarousel1( allItems.filter (item => item.id === randomizer[0] || randomizer[1] || randomizer[2]) )
-
-
 
   return (
     <div className={styles.homeDiv}>
+      {/* <img src={'abstractMountain.jpg'} alt = 'abstract mountain' width={"100%"}></img> */}
       <div id="carouselExampleAutoplaying" className={`carousel slide ${styles.carousel}`} data-bs-ride="carousel">
         <div className={`carousel-inner ${styles.carousel}`}>
-            {/* <img src="..." class="d-block w-100" alt="..." /> */}
-            {/* <div class="carousel-item active" className={styles.productCard}>
-                  <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-                  <div className={styles.description}>
-                    <p className={styles.cardValue}>{allItems[0].brand}</p>
-                    <p className={styles.cardValue}>{allItems[0].name}</p>
-                    <h3 className={styles.header}>Price: <p className={styles.cardValue}>{allItems[0].price}</p></h3>
-                    <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3>
-                  </div>
-                </div> */}
-
-            {allItems.map(({ id, image, name, price, size, category, brand }) => {
+          {/* <img src="..." class="d-block w-100" alt="..." /> */}
+          {carouselRender &&
+            <>
+              <div class="carousel-item active" className={styles.productCard}>
+                <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                <div className={styles.description}>
+                  <p className={styles.cardValue}>{allItems[0].brand}</p>
+                  <p className={styles.cardValue}>{allItems[0].name}</p>
+                  <h3 className={styles.header}>Price: <p className={styles.cardValue}>{allItems[0].price}</p></h3>
+                  <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3>
+                </div>
+              </div>
+              {/* <div class="carousel-item active" className={styles.productCard}>
+                <img src={allItems[1].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                <div className={styles.description}>
+                  <p className={styles.cardValue}>{allItems[1].brand}</p>
+                  <p className={styles.cardValue}>{allItems[1].name}</p>
+                  <h3 className={styles.header}>Price: <p className={styles.cardValue}>{allItems[1].price}</p></h3>
+                  <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[1].size}</p></h3>
+                </div>
+              </div> */}
+            </>
+          }
+          {
+            allItems.map(({ id, image, name, price, size, category, brand }) => {
               return (
-                <div class="carousel-item active" 
+                <div class="carousel-item"
                   className={styles.productCard}
                   key={id}>
                   <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
@@ -63,14 +78,11 @@ const Home = () => {
                     <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
                   </div>
                 </div>
- 
               )
             }
             )
-            }
+          }
 
-
-         
           {/* <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="..." />
           </div>
