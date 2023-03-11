@@ -1,3 +1,5 @@
+import { Form } from 'react-router-dom';
+
 // export { default as NavBar } from './Navbar';
 export { default as Register } from './Register';
 export { default as Home } from './Home';
@@ -9,4 +11,5 @@ export { default as Products } from './Products';
 export { default as LandingPage} from './LandingPage'
 export { default as Banner } from './Banner'
 export { default as SingleProduct } from './SingleProduct'
+export { default as Admin } from './Admin'
 // export { default as LandingPage } from './LandingPage';
