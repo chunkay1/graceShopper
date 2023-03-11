@@ -47,14 +47,13 @@ const Home = () => {
           {
             carouselRender &&
             <>
-              <div ref={ref} class="carousel-item active" className={styles.productCard}>
-                <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+              <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
                 <div className={styles.description}>
-                  <p className={styles.cardValue}>{allItems[0].brand}</p>
-                  <p className={styles.cardValue}>{allItems[0].name}</p>
-                  <h3 className={styles.header}>Price: <p className={styles.cardValue}>{allItems[0].price}</p></h3>
-                  <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3>
+                  <span className={styles.cardValue}>{allItems[0].brand}&nbsp;&nbsp;{allItems[0].name}&nbsp;&nbsp;<span className={styles.price}>${allItems[0].price}</span></span>
+                  {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+                  {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
                 </div>
+                <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
               </div>
 
             </>
@@ -66,13 +65,12 @@ const Home = () => {
                   <div class='carousel-item'
                     className={styles.productCard}
                     key={id}>
-                    <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
                     <div className={styles.description}>
-                      <p className={styles.cardValue}>{brand}</p>
-                      <p className={styles.cardValue}>{name}</p>
-                      <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
-                      <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
+                    <span className={styles.cardValue}>{brand}&nbsp;&nbsp;{name}&nbsp;&nbsp;<span className={styles.cardValue}>${price}</span></span>
+                  {/* <p className={styles.cardValue}>{name}</p> */}
+                  {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
                     </div>
+                    <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
                   </div>
                 )
               }
