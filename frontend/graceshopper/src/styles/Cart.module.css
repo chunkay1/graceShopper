@@ -1,0 +1,4 @@
+.priceAndIcons{
+    display: flex;
+    flex-direction: column;
+}

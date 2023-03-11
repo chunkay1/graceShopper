@@ -68,3 +68,33 @@ export async function getUserCart(token) {
         console.error(error)
     }
 }
+
+export async function deleteItemFromCart(itemInCartId, cartId, token) {
+     try {
+        const response = await fetch(
+            `${BASEURL}/itemsInCart/`,
+            {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify ({
+                    itemInCartId: itemInCartId,
+                    cartId: cartId,
+                })
+            }
+        )
+        const json = await response.json();
+        // const itemsInCart = json.itemsInCart
+        console.log(`deleted item successfully in API route`, json);
+        // const id = json.user.id;
+        // console.log('user ID is:', id)
+
+        return json
+
+        
+    } catch (error) {
+        console.error(error)
+    }
+}

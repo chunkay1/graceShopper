@@ -34,7 +34,7 @@ async function getItemsInCartById(id) {
   }
 }
 
-async function getItemsInCartByItemsId({ itemsId }) {
+async function getItemsInCartByItemsId( itemsId ) {
   try {
     const { rows } = await client.query(
       `SELECT * FROM itemsInCart
@@ -49,15 +49,15 @@ async function getItemsInCartByItemsId({ itemsId }) {
   }
 }
 
-async function getItemsInCartByCartId({ cartId }) {
+async function getItemsInCartByCartId( cartId ) {
   try {
     const { rows } = await client.query(
       `SELECT * FROM itemsInCart
-            WHERE "cartId" = ${cartId};
-            `
+      WHERE "cartId" = ${cartId};
+      `
     );
 
-    const [itemsInCart] = rows;
+    const itemsInCart = rows;
     return itemsInCart;
   } catch (error) {
     throw error;
@@ -104,20 +104,37 @@ async function updateItemsInCart( itemInCartId, quantity ) {
     //   `,[itemsId,id])
     //   returned = updated
 
-async function destroyItemsInCart(id) {
+//added the cartID as an argument to ensure we're only targeting and deleting items within a specific cart
+//this should prevent us from deleting every instance of a particular item across all carts. 
+async function destroyItemsInCart(id, cartId) {
   try {
     const { rows: [itemInCart] } = await client.query(`
-          DELETE FROM 
-          itemsInCart
-          WHERE id =${id}
+          DELETE FROM itemsInCart
+          WHERE "itemsId"=$1
+          AND "cartId"=$2
           RETURNING *
-          `);
-
+          `, [id, cartId]);
+    
     return itemInCart
   } catch (error) {
     throw error;
   }
 }
+
+// async function destroyItemsInCart(id) {
+//   try {
+//     const { rows: [itemInCart] } = await client.query(`
+//           DELETE FROM 
+//           itemsInCart
+//           WHERE "itemsId"=${id}
+//           RETURNING *
+//           `);
+
+//     return itemInCart
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 module.exports = {
   addItemsToCart,

@@ -1,8 +1,9 @@
 import {React, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { myProfile } from '../api/userRequests';
-import { getUserCart } from '../api/cartRequests';
+import { getUserCart, deleteItemFromCart } from '../api/cartRequests';
 import { cartHealth } from '../api/testRequests';
+import styles from '../styles/Cart.module.css'
 
 const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
@@ -88,13 +89,9 @@ const Cart = ({ token }) => {
           //myProfile returns a #, which is the logged in users' ID#
           // let myID = await myProfile(token)
           // console.log('myId is,', myID);
-          //we then pass that ID # to pull the users' cart. 
-          //this can all be thrown into a useEffect once the details are ironed out. 
+          
           await getUserCart(token);
-          console.log(itemsInCart)
-          //had to be sure the /carts api was working
           await cartHealth()
-          // console.log(itemsInTestCart.length);
         }}>
         Get Cart Testing
       </button>
@@ -120,14 +117,52 @@ const Cart = ({ token }) => {
           <ul class="list-group mb-3">
 
             {
-              itemsInCart.map(({brand, name, size, price}) => {
+              itemsInCart.map(({brand, name, size, price, itemsId, id}) => {
                 return(
                   <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
                       <h6 class="my-0">{brand}</h6>
                       <small class="text-muted">{name}, Size: {size}</small>
                     </div>
-                    <span class="text-muted">{price}</span>
+                    
+                    <div className={styles.priceAndIcons}>
+                      <span class="text-muted">{price}</span>
+                      <small class="text-muted">
+                        <i 
+                          className={`bi bi-trash3 ${styles.deleteIcon}`}
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            // console.log('delete item!')
+                            let cart = await getUserCart(token)
+                            
+                            console.log('full cart is', cart)
+                            //full cart is an object
+                            // { 
+                            //   id: carts.id, 
+                            //   userId: carts.userId, 
+                            //   itemsInCart: [
+                            //     {brand: items.brand, 
+                            //     cartId: itemsInCart.cartId,
+                            //     category:  items.category,
+                            //     description: items.description,
+                            //     id: itemsInCart.id?
+                            //     image: items.image,
+                            //     itemsId: itemsInCart.itemsId,
+                            //     name: items.name,
+                            //     price: items.price,
+                            //     quantity: itemsInCart.quantity
+                            //     size: items.size}
+                            //   ]
+                            // }
+                            
+                            console.log('itemId is', itemsId)
+                            console.log('cart item Id is,', id)
+                            console.log('arguments are', itemsId, id)
+
+                            //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts. 
+                            await deleteItemFromCart(itemsId, id, token)
+                          }}></i></small>
+                    </div>
                   </li>
                 )
               })
