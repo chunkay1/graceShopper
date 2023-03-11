@@ -103,13 +103,37 @@ itemsInCartRouter.delete("/", isUser, async (req, res, next) => {
     const { itemInCartId, cartId } = req.body;
 
     try{
-      const itemInCart = await getItemsInCartById ({itemInCartId});
-      const deletedItemInCart = await destroyItemsInCart({itemInCart});
+      // const itemInCart = await getItemsInCartByItemsId (itemInCartId);
+
+      // console.log('item in cart is:', itemInCart)
+      // console.log('itemID in cart is:', itemInCart.itemsId)
+      console.log('cartId is:', cartId)
+
+      const itemsInCart = await getItemsInCartByCartId (cartId);
+
+      console.log('cart items by cartID are:', itemsInCart)
+
+      //in theory this will only allow us to delete a specified item from the itemsInCart table by confirming the cartId before deleting an item by itemId
+      const deletedItemInCart = itemsInCart.map(
+        ({cartId, itemsId}) => {
+          console.log('single itemsId:', itemsId)
+          if(itemInCartId === itemsId) {
+            console.log(`success! itemInCartId: ${itemInCartId} equals itemsId ${itemsId}`)
+            destroyItemsInCart(itemsId, cartId)
+          }
+        })
+
+      console.log('deletedItemInCart is', deletedItemInCart)
+
+      // const deletedItemInCart = await destroyItemsInCart(itemInCart.itemsId);
 
       //will also need to grab the cart and remove the associated item on the javascript level, otherwise it will show that it is still in the cart even after it's been removed from the db
 
+      //by grabbing the item by its' itemID inside of the itemsInCart table we are able to 
+
       if (deletedItemInCart) {
-        res.send(`item successfully removed`, deletedItemInCart);
+        console.log('item successfully deleted')
+        res.send(deletedItemInCart);
       }
 
     }catch (error) {

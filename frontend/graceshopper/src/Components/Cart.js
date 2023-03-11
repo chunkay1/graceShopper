@@ -133,13 +133,32 @@ const Cart = ({ token }) => {
                           onClick={async (e) => {
                             e.preventDefault();
                             // console.log('delete item!')
-                            let cartId = await getUserCart(token)
-                            console.log('full cart is', cartId)
-                            console.log('cartId is', cartId.id)
+                            let cart = await getUserCart(token)
+                            
+                            console.log('full cart is', cart)
+                            //full cart is an object
+                            // { 
+                            //   id: carts.id, 
+                            //   userId: carts.userId, 
+                            //   itemsInCart: [
+                            //     {brand: items.brand, 
+                            //     cartId: itemsInCart.cartId,
+                            //     category:  items.category,
+                            //     description: items.description,
+                            //     id: itemsInCart.id?
+                            //     image: items.image,
+                            //     itemsId: itemsInCart.itemsId,
+                            //     name: items.name,
+                            //     price: items.price,
+                            //     quantity: itemsInCart.quantity
+                            //     size: items.size}
+                            //   ]
+                            // }
+                            
                             console.log('itemId is', itemsId)
                             console.log('cart item Id is,', id)
-                            console.log('arguments are', itemsId, cartId.id)
-                            await deleteItemFromCart(itemsId, cartId.id, token)
+                            console.log('arguments are', itemsId, id)
+                            await deleteItemFromCart(itemsId, id, token)
                           }}></i></small>
                     </div>
                   </li>

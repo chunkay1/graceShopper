@@ -65,7 +65,7 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       const cart = await getCartByUserId(userId);
       console.log('cart is:', cart)
       const withItems = await getCartAndItemDetails(cart)
-      // console.log('test is', await getCartAndItemDetails(cart))
+      console.log('withItems is:', withItems)
       if (withItems) {
         res.send(withItems);
       } 

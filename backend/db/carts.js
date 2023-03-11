@@ -34,7 +34,7 @@ async function attachItemsToCart(cart) {
 // }
 
 async function getCartAndItemDetails(cart) {
-  console.log('gibberish')
+  // console.log('gibberish')
   const { rows: itemInCart } = await client.query(`
      SELECT *
      FROM items
@@ -45,7 +45,7 @@ async function getCartAndItemDetails(cart) {
 
   cart.itemsInCart = itemInCart
   
-  console.log('cart and item details are', cart)
+  // console.log('cart and item details are', cart)
 
   return cart
 }
