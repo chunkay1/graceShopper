@@ -134,9 +134,11 @@ const Cart = ({ token }) => {
                             e.preventDefault();
                             // console.log('delete item!')
                             let cartId = await getUserCart(token)
+                            console.log('full cart is', cartId)
                             console.log('cartId is', cartId.id)
                             console.log('itemId is', itemsId)
                             console.log('cart item Id is,', id)
+                            console.log('arguements are', itemsId, cartId.id)
                             await deleteItemFromCart(itemsId, cartId.id, token )
                           }}></i></small>
                     </div>
