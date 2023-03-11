@@ -1,7 +1,7 @@
 import styles from '../styles/Products.module.css'
 
 function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToCart, getProductById}) {
-    const {image, category, id, name, price, size, brand} = itemProps;
+    const {image, category, id, name, price, size, brand, description} = itemProps;
     return(
 
         <>
@@ -44,6 +44,8 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                                     <p class="card-text">{size}</p>
                                                 <h5 class="card-title">Category</h5>
                                                     <p class="card-text">{category}</p>
+                                                <h5 class="card-title">Description</h5>
+                                                    <p class="card-text">{description}</p>
                                                 <h5 class="card-title">Price</h5>
                                                     <p class="card-text">{price}</p>
                                                 
