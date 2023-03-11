@@ -33,6 +33,7 @@ async function attachItemsToCart(cart) {
 //   return cart
 // }
 
+//the below returns a complete object with cart and item details for ease of use on the frontend. 
 async function getCartAndItemDetails(cart) {
   // console.log('gibberish')
   const { rows: itemInCart } = await client.query(`

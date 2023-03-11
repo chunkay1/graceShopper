@@ -158,6 +158,8 @@ const Cart = ({ token }) => {
                             console.log('itemId is', itemsId)
                             console.log('cart item Id is,', id)
                             console.log('arguments are', itemsId, id)
+
+                            //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts. 
                             await deleteItemFromCart(itemsId, id, token)
                           }}></i></small>
                     </div>

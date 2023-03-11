@@ -104,11 +104,12 @@ async function updateItemsInCart( itemInCartId, quantity ) {
     //   `,[itemsId,id])
     //   returned = updated
 
+//added the cartID as an argument to ensure we're only targeting and deleting items within a specific cart
+//this should prevent us from deleting every instance of a particular item across all carts. 
 async function destroyItemsInCart(id, cartId) {
   try {
     const { rows: [itemInCart] } = await client.query(`
-          DELETE FROM 
-          itemsInCart
+          DELETE FROM itemsInCart
           WHERE "itemsId"=$1
           AND "cartId"=$2
           RETURNING *
