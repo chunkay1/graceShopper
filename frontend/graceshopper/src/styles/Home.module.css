@@ -3,16 +3,49 @@
 }
 
 .productCard {
-   flex: 0 0 calc(100%/3);
+   flex: 0 0 calc(101%/3);
    display: block;
-   padding: 0.5em;
-   font-size: calc(12px + 0.65vmin);
-   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   padding: 0 0.5em 0 0;
+   background-color: rgba(201, 215, 217, 0.7);
+   /* font-size: calc(12px + 0.65vmin);
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+}
+/* .firstCard {
+    padding-left: 0;
+} */
+/* .firstProductCard {
+   flex: 0 0 calc(33.1%);
+   display: block;
+   padding: 0 0 0.5em 0;
+   /* font-size: calc(12px + 0.65vmin);
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }*/
+
+.description {
+    display: flex;
+    flex-direction: column;
+    font-size: calc(11px + 0.65vmin);
+    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    width: calc(100%/3);
+    position: absolute;
+    color: rgb(243, 251, 251);
+    height: 100%;
+    justify-content: flex-end;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+/* .price {
+    font-size: calc(011px + 0.65vmin);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} */
+.cardValue {
+    background-color: rgba(48, 73, 73, 0.7);
+    /* background-color: rgba(2, 45, 22, 0.7); */
+    width: 97%;
 }
 
 .carousel {
     max-width: calc(250px + 95vmin);
-    border-radius: 2%;
+    border-radius: 1%;
     box-shadow: 4px 4px 10px black;
     display: flex;
     /* padding: 1em; */

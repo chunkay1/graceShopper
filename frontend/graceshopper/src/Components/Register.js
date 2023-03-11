@@ -20,11 +20,17 @@ const Register = ({ token }) => {
 
     return (
 
-        <div className={`container text-center ${styles.container}`}>
+        <div className={`container text-center ${styles.outterContainer}`}>
 
-            <h1 id='reg-h1'>Register</h1>
+            <img className={`${styles.img}`} alt='gif' src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif'></img>
+
+            <div className={`container text-center ${styles.innerContainer}`}>
+
+            
+            <h1 className={`${styles.pageTitle}`}>Register</h1>
 
             <form 
+                className={`${styles.registerForm}`}
                 
                 onSubmit={ (event) => {
                     event.preventDefault();
@@ -129,13 +135,18 @@ const Register = ({ token }) => {
                 
                 <div className={`col-12 ${styles.submit}`}>
                         <button 
-                            class="btn btn-primary"
+                            className={`${styles.submitButton}`}
+                            class="btn btn-warning"
                             type="submit">
                                 Submit form
                         </button>
+                        
                 </div>
 
             </form>
+            
+            </div>
+            
         </div>
     )
 
