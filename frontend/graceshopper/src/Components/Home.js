@@ -16,14 +16,37 @@ const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
 
   //below will be used to set a smaller, random pool of items for the carousels
-  const [carousel1, setCarousel1] = useState([])
-  const [carousel2, setCarousel2] = useState([])
-  const [randomizer, setRandomizer] = useState(0)
-  const [randomize, setRandomize] = useState(false)
+  const [carouselItems, setCarouselItems] = useState([])
+  // const [randomHelper, setRandomizer] = useState(0)
+  const [randomSet, setRandomSet] = useState([])
+  const [randomizerReady, setRandomizerReady] = useState(false)
+  const [initiateRender, setInitiateRender] = useState(false)
+  const [randomSetDone, setRandomSetDone] = useState(false)
 
   useEffect(() => {
-    setCarousel1([randomHelper(), randomHelper(), randomHelper()])
-  }, [])
+    setRandomSet([randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()])
+    setRandomSetDone(true)
+  }, [randomizerReady])
+
+  useEffect(() => {
+    
+      const tempArray = []
+      for (let i = 0; i < randomSet.length; ++i) {
+        let curNum = randomSet[i]
+        const randomItem = allItems.filter(item => item.id === curNum)
+        tempArray.push(randomItem)
+      }
+      setCarouselItems(tempArray)
+      console.log(carouselItems)
+      setInitiateRender(true)
+  }, [randomSetDone])
+
+  useEffect(() => {
+    if (carouselItems && allItems) {
+      setCarouselRender(true)
+    }
+  }, [initiateRender])
+
   function randomHelper() {
     return Math.floor(Math.random() * (allItems.length - 1) + 1)
   }
@@ -31,7 +54,7 @@ const Home = () => {
   useEffect(() => {
     getAllItems().then((items) => {
       setAllItems(items)
-      setCarouselRender(true)
+      setRandomizerReady(true)
     })
   }, [])
 
@@ -45,36 +68,44 @@ const Home = () => {
       <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
         <div className={`carousel-inner ${styles.carousel}`}>
           {
-            carouselRender &&
-            <>
-              <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-                <div className={styles.description}>
-                  <span className={styles.cardValue}>{allItems[0].brand}&nbsp;&nbsp;{allItems[0].name}&nbsp;&nbsp;<span className={styles.price}>${allItems[0].price}</span></span>
-                  {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-                  {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
-                </div>
-                <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-              </div>
+            // carouselRender && allItems &&
+            // <>
+            //   <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+            //     <div className={styles.description}>
+            //       <span className={styles.cardValue}>
+            //         <span className={styles.brand}> {allItems[0].brand} </span>
+            //         <span className={styles.name}>{allItems[0].name}</span>
+            //         <span className={styles.price}>${allItems[0].price}</span>
+            //       </span>
+            //       {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+            //       {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
+            //     </div>
+            //     <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+            //   </div>
 
-            </>
+            // </>
           }
-          {
-            allItems.map(({ id, image, name, price, size, category, brand }, index) => {
-              if (id > 1) {
-                return (
-                  <div class='carousel-item'
-                    className={styles.productCard}
-                    key={id}>
-                    <div className={styles.description}>
-                    <span className={styles.cardValue}>{brand}&nbsp;&nbsp;{name}&nbsp;&nbsp;<span className={styles.cardValue}>${price}</span></span>
-                  {/* <p className={styles.cardValue}>{name}</p> */}
-                  {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
-                    </div>
-                    <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+          {carouselItems &&
+            carouselItems.map(({ id, image, name, price, size, category, brand }, index) => {
+              // if (id && id > 1) {
+              return (
+                <div class='carousel-item'
+                  className={styles.productCard}
+                  key={id}>
+                  <div className={styles.description}>
+                    <span className={styles.cardValue}>
+                      <span className={styles.brand}> {brand} </span>
+                      <span className={styles.name}>{name}</span>
+                      <span className={styles.price}>${price}</span>
+                    </span>
+                    {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+                    {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
                   </div>
-                )
-              }
+                  <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                </div>
+              )
             }
+              // }
             )
           }
         </div>
@@ -104,6 +135,10 @@ const Home = () => {
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <button onClick={() => {
+        console.log("randomSet", randomSet)
+        console.log("carousel items", carouselItems)
+      }}>test</button>
     </div>
 
 
@@ -120,4 +155,4 @@ export default Home;
   //   ride: "false"
   // })
 
-  //setCarousel1( allItems.filter (item => item.id === randomizer[0] || randomizer[1] || randomizer[2]) )
+  //setCarousel1( allItems.filter (item => item.id === randomHelper[0] || randomHelper[1] || randomHelper[2]) )

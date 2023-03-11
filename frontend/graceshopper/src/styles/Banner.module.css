@@ -59,7 +59,7 @@
 }
 
 /* An inverse gradient of the header */
-footer {
+.footer {
     background: linear-gradient(90deg,rgba(10, 26, 36, 0.916) 0%, rgb(19, 19, 19) 100%);
 }
 
