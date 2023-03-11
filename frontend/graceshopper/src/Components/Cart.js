@@ -138,8 +138,8 @@ const Cart = ({ token }) => {
                             console.log('cartId is', cartId.id)
                             console.log('itemId is', itemsId)
                             console.log('cart item Id is,', id)
-                            console.log('arguements are', itemsId, cartId.id)
-                            await deleteItemFromCart(itemsId, cartId.id, token )
+                            console.log('arguments are', itemsId, cartId.id)
+                            await deleteItemFromCart(itemsId, cartId.id, token)
                           }}></i></small>
                     </div>
                   </li>
