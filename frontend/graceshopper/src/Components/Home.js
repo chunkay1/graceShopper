@@ -18,44 +18,73 @@ const Home = () => {
   //below will be used to set a smaller, random pool of items for the carousels
   const [carouselItems, setCarouselItems] = useState([])
   // const [randomHelper, setRandomizer] = useState(0)
-  const [randomSet, setRandomSet] = useState([])
-  const [randomizerReady, setRandomizerReady] = useState(false)
   const [initiateRender, setInitiateRender] = useState(false)
-  const [randomSetDone, setRandomSetDone] = useState(false)
+  // const randomSet = [randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()]
+
+  // useEffect(() => {
+  //   setRandomSet([randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()])
+  //   setRandomSetDone(true)
+  // }, [randomizerReady])
+
+  // useEffect(() => {
+  //     const tempArray = []
+  //     for (let i = 0; i < randomSet.length; ++i) {
+  //       let curNum = randomSet[i] 
+  //       const randomItem = allItems.filter(item => item.id === curNum)
+  //       tempArray.push(randomItem)
+  //     }
+  //     console.log(tempArray)
+  //     if (tempArray[0] !== []) {
+  //       setCarouselItems(tempArray)
+  //       console.log("this is carousel Items", carouselItems)
+  //       setInitiateRender(true)
+  //     }
+
+  //   }, [reRun])
+
+  // useEffect(() => {
+  //   if (carouselItems.length) {
+  //     setCarouselRender(true)
+  //   }
+  // }, [initiateRender])
+
+  // function randomHelper() {
+  //   return Math.floor(Math.random() * (allItems.length - 1) + 1)
+  // }
+
+  // useEffect(() => {
+  //   getAllItems().then((items) => {
+  //     setAllItems(items)
+  //     setTimeout(() => {
+  //       setReRun(true)
+  //     }, 2000)
+  //   })
+  // }, [reRun])
 
   useEffect(() => {
-    setRandomSet([randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()])
-    setRandomSetDone(true)
-  }, [randomizerReady])
-
-  useEffect(() => {
-    
-      const tempArray = []
-      for (let i = 0; i < randomSet.length; ++i) {
-        let curNum = randomSet[i]
-        const randomItem = allItems.filter(item => item.id === curNum)
-        tempArray.push(randomItem)
-      }
-      setCarouselItems(tempArray)
-      console.log(carouselItems)
-      setInitiateRender(true)
-  }, [randomSetDone])
-
-  useEffect(() => {
-    if (carouselItems && allItems) {
+    if (carouselItems.length) {
       setCarouselRender(true)
     }
   }, [initiateRender])
 
-  function randomHelper() {
-    return Math.floor(Math.random() * (allItems.length - 1) + 1)
-  }
-
   useEffect(() => {
-    getAllItems().then((items) => {
-      setAllItems(items)
-      setRandomizerReady(true)
-    })
+    
+    async function helper() {
+      await getAllItems().then((items) => {
+        console.log("these are the items", items)
+
+        for (let i = 0; i < 8; ++i) {
+          let curNum = Math.floor(Math.random() * (items.length - 1) + 1)
+          console.log("this is curNum", curNum)
+          const randomItem = items.filter(item => item.id === curNum)
+          carouselItems.push(randomItem[0])
+        }
+        console.log("this is carousel Items", carouselItems)
+        setInitiateRender(true)
+      })
+    }
+    helper()
+
   }, [])
 
   //carousel animation effects called when either end is clicked
@@ -68,44 +97,46 @@ const Home = () => {
       <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
         <div className={`carousel-inner ${styles.carousel}`}>
           {
-            // carouselRender && allItems &&
-            // <>
-            //   <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-            //     <div className={styles.description}>
-            //       <span className={styles.cardValue}>
-            //         <span className={styles.brand}> {allItems[0].brand} </span>
-            //         <span className={styles.name}>{allItems[0].name}</span>
-            //         <span className={styles.price}>${allItems[0].price}</span>
-            //       </span>
-            //       {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-            //       {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
-            //     </div>
-            //     <img src={allItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-            //   </div>
-
-            // </>
-          }
-          {carouselItems &&
-            carouselItems.map(({ id, image, name, price, size, category, brand }, index) => {
-              // if (id && id > 1) {
-              return (
-                <div class='carousel-item'
-                  className={styles.productCard}
-                  key={id}>
-                  <div className={styles.description}>
-                    <span className={styles.cardValue}>
-                      <span className={styles.brand}> {brand} </span>
-                      <span className={styles.name}>{name}</span>
-                      <span className={styles.price}>${price}</span>
-                    </span>
-                    {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-                    {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
-                  </div>
-                  <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+            carouselRender && carouselItems.length &&
+            <>
+              {console.log("line 106", carouselItems)}
+              <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+                <div className={styles.description}>
+                  <span className={styles.cardValue}>
+                    {console.log(carouselItems[0].brand)}
+                    <span className={styles.brand}> {carouselItems[0].brand} </span>
+                    <span className={styles.name}>{carouselItems[0].name}</span>
+                    <span className={styles.price}>${carouselItems[0].price}</span>
+                  </span>
+                  {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+                  {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
                 </div>
-              )
+                <img src={carouselItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+              </div>
+
+            </>
+          }
+          {carouselRender &&
+            carouselItems.map(({ id, image, name, price, size, category, brand }, index) => {
+              if (index > 1) {
+                return (
+                  <div class='carousel-item'
+                    className={styles.productCard}
+                    key={index}>
+                    <div className={styles.description}>
+                      <span className={styles.cardValue}>
+                        <span className={styles.brand}> {brand} </span>
+                        <span className={styles.name}>{name}</span>
+                        <span className={styles.price}>${price}</span>
+                      </span>
+                      {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+                      {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
+                    </div>
+                    <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                  </div>
+                )
+              }
             }
-              // }
             )
           }
         </div>
@@ -135,10 +166,6 @@ const Home = () => {
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <button onClick={() => {
-        console.log("randomSet", randomSet)
-        console.log("carousel items", carouselItems)
-      }}>test</button>
     </div>
 
 
