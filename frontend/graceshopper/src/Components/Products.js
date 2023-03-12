@@ -30,7 +30,7 @@ const Products = ({token}) => {
         const getAllProductsAsync = async () => {
             let allProducts = await getAllItems();
             setProducts(allProducts);
-            // console.log('products are', products)
+            console.log('products are', allProducts)
         }
         getAllProductsAsync();
     }, [])
@@ -39,7 +39,7 @@ const Products = ({token}) => {
         await getProductsByCategory(category);
     } 
 
-    let getItemProps = (brand, category, id, name, price, size) => {
+    let getItemProps = (brand, category, id, name, price, size, inventory) => {
         // console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
@@ -49,6 +49,7 @@ const Products = ({token}) => {
                name : name,
                price : price,
                size : size,
+               inventory: inventory
             }
         )
         return itemProps
@@ -113,7 +114,7 @@ const Products = ({token}) => {
                     <div className={styles.container}>
                         
                         {
-                            products.map(({brand, category, id, name, price, size, image}) => {
+                            products.map(({brand, category, id, name, price, size, image, inventory}) => {
                                 return (
                                     <div key={id}>
         
@@ -148,8 +149,8 @@ const Products = ({token}) => {
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
                                                     <p class="card-text">${price}</p>
-                                                {/* <h5 class="card-title">Id</h5>
-                                                    <p class="card-text">{id}</p> */}
+                                                <h5 class="card-title">Inventory</h5>
+                                                    <p class="card-text">{inventory}</p>
                                                 
                                                 <div className={styles.buttonDiv}> 
                                                     <button
