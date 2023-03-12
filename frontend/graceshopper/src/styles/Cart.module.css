@@ -2,3 +2,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.quantity{
+    display: flex;
+    flex-direction: row;
+}
+
+.count{
+    padding: 0;
+    margin: 0;
+}

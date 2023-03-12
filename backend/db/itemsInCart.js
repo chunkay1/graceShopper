@@ -63,20 +63,23 @@ async function getItemsInCartByCartId( cartId ) {
     throw error;
   }
 }
-async function updateItemsInCart( itemInCartId, quantity ) {
+async function updateItemsInCart( itemInCartId, quantity, cartID ) {
 
   try {
-    const {
-      rows: [itemInCart],
-    } = await client.query(
+    const { rows } = await client.query(
       `
         UPDATE itemsInCart
-        SET quantity=${quantity}
-        WHERE id=${itemInCartId}
+        SET quantity = $1
+        WHERE "itemsId" = $2
+        AND "cartId" = $3
         RETURNING *;
       `,
-      [quantity]
+      [quantity, itemInCartId, cartID]
     );
+
+    const itemInCart = rows;
+
+    console.log('updated item in DB is:', itemInCart)
 
     return itemInCart;
   } catch (error) {
@@ -84,6 +87,26 @@ async function updateItemsInCart( itemInCartId, quantity ) {
   }
 }
 
+// async function updateItemsInCart( itemInCartId, quantity ) {
+
+//   try {
+//     const {
+//       rows: [itemInCart],
+//     } = await client.query(
+//       `
+//         UPDATE itemsInCart
+//         SET quantity=${quantity}
+//         WHERE id=${itemInCartId}
+//         RETURNING *;
+//       `,
+//       [quantity]
+//     );
+
+//     return itemInCart;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 // updateItemsInCart({ id, ...fields })
   //   const setString = Object.keys(fields)
   //   .map((key, index) => `"${key}"=$${index + 1}`)

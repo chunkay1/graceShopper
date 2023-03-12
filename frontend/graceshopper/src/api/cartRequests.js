@@ -56,14 +56,10 @@ export async function getUserCart(token) {
             }
         )
         const json = await response.json();
-        // const itemsInCart = json.itemsInCart
+
         console.log(`cart info for user is:`, json);
-        // const id = json.user.id;
-        // console.log('user ID is:', id)
 
         return json
-
-        
     } catch (error) {
         console.error(error)
     }
@@ -86,10 +82,7 @@ export async function deleteItemFromCart(itemInCartId, cartId, token) {
             }
         )
         const json = await response.json();
-        // const itemsInCart = json.itemsInCart
-        console.log(`deleted item successfully in API route`, json);
-        // const id = json.user.id;
-        // console.log('user ID is:', id)
+        console.log(`deleted item successfully in API route`);
 
         return json
 
@@ -98,3 +91,31 @@ export async function deleteItemFromCart(itemInCartId, cartId, token) {
         console.error(error)
     }
 }
+
+export async function updateCartQuantity(itemInCartId, cartID, newQuantity, token) {
+    try {
+       const response = await fetch(
+           `${BASEURL}/itemsInCart/change-quantity`,
+           {
+               method: "PATCH",
+               headers: {
+                   'Content-Type': 'application/json',
+                   "Authorization": `Bearer ${token}`
+               },
+               body: JSON.stringify ({
+                   itemInCartId: itemInCartId,
+                   cartID: cartID,
+                   newQuantity: newQuantity
+               })
+           }
+       )
+       const json = await response.json();
+
+       return json
+
+       
+   } catch (error) {
+       console.error(error)
+   }
+}
+

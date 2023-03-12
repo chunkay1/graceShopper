@@ -62,36 +62,68 @@ itemsInCartRouter.post("/addItem", isUser, async (req, res, next) => {
 });
 
 
-itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
+// itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
   
-  const { itemInCartId, quantity } = req.body
-  const userId = req.user.id
+//   const { itemInCartId, quantity } = req.body
+//   const userId = req.user.id
+
+//   try{
+//     // find the cart by userId
+//     let cart = await getCartByUserId (userId)
+
+//     //if no cart exists send an error
+//     if (!cart) {
+//       next({
+//         error: "Cart doesn't exist"
+//       })
+//     }
+    
+//     //updating the quantity of the itemInCart
+//     const updatedItemInCart = await updateItemsInCart( itemInCartId, quantity ) 
+//     //re-attaching all itemsInCart then send back the whole cart
+//     const withItems = await attachItemsToCart(cart)
+
+//     res.send(
+//       withItems
+//     );
+
+//   }catch (error) {
+//       next(error)
+//   }
+// });
+
+itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
+  const {itemInCartId, newQuantity, cartID} = req.body;
 
   try{
-    // find the cart by userId
-    let cart = await getCartByUserId (userId)
-
-    //if no cart exists send an error
-    if (!cart) {
-      next({
-        error: "Cart doesn't exist"
-      })
-    }
+    // find the cart by cartId
+    // console.log('cartId is', cartID)
+    const cart = await getItemsInCartByCartId (cartID);
+    console.log('cart to be updated is:', cart)
     
-    //updating the quantity of the itemInCart
-    const updatedItemInCart = await updateItemsInCart( itemInCartId, quantity ) 
-    //re-attaching all itemsInCart then send back the whole cart
-    const withItems = await attachItemsToCart(cart)
+    const updatedItemInCart = cart.map(
+      ({cartId, itemsId}) => {
+        // console.log('arguments are:', itemInCartId, cartId, newQuantity)
+        
+        if (itemInCartId === itemsId) {
+          // console.log(`success! itemInCartId: ${itemInCartId} equals itemsId ${itemsId}`)
+          //updating the quantity of the itemInCart
+          updateItemsInCart(itemsId, newQuantity, cartID )
+        }
+      }
+    )
+    
+    console.log('updated item is', updatedItemInCart) 
 
-    res.send(
-      withItems
-    );
+    if(updatedItemInCart) {
+      console.log('item successfully updated')
+      res.send(updatedItemInCart)
+    }
 
   }catch (error) {
       next(error)
   }
 });
-
 
 
 
