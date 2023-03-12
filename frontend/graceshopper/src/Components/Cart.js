@@ -1,69 +1,66 @@
 import {React, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { myProfile } from '../api/userRequests';
-import { getUserCart, deleteItemFromCart } from '../api/cartRequests';
+import { getUserCart, deleteItemFromCart, updateCartQuantity } from '../api/cartRequests';
 import { cartHealth } from '../api/testRequests';
 import styles from '../styles/Cart.module.css'
 
 const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [cartID, setCartID] = useState(0); 
 
   useEffect(() => {
     const getCartItemsAsync = async () => {
       let cartItems = await getUserCart(token);
       console.log('use Effect is', cartItems.itemsInCart)
       setItemsInCart(cartItems.itemsInCart);
+      setCartID(cartItems.id)
     }
     getCartItemsAsync();
   }, [token])
 
   //^^just a guess at what the end useEffect might look like - this will most likely change. 
 
-  let itemsInTestCart = [
-    {
-      name: "Adventurer",
-      category: "shoes",
-      brand:"Addidas",
-      size:"11",
-      price: "128.99",
-      image: "shoes2.png"
-    },
-    {
-      name: "Dunhams",
-      category: "shoes",
-      brand:"Brooks",
-      size:"7",
-      price: "78.99",
-      image: "shoes3.png"
-    },
-    {
-      name: "ReLeather",
-      category: "shoes",
-      brand:"Adidas",
-      size:"13",
-      price: "135.99",
-      image: "shoes4.png"
-    },
-    {
-      name: "Trail Blazer",
-      category: "shoes",
-      brand:"Nike",
-      size:"9.5",
-      price: "89.99",
-      image: "shoes5.png"
-    }
-  ]
+  // let itemsInTestCart = [
+  //   {
+  //     name: "Adventurer",
+  //     category: "shoes",
+  //     brand:"Addidas",
+  //     size:"11",
+  //     price: "128.99",
+  //     image: "shoes2.png"
+  //   },
+  //   {
+  //     name: "Dunhams",
+  //     category: "shoes",
+  //     brand:"Brooks",
+  //     size:"7",
+  //     price: "78.99",
+  //     image: "shoes3.png"
+  //   },
+  //   {
+  //     name: "ReLeather",
+  //     category: "shoes",
+  //     brand:"Adidas",
+  //     size:"13",
+  //     price: "135.99",
+  //     image: "shoes4.png"
+  //   },
+  //   {
+  //     name: "Trail Blazer",
+  //     category: "shoes",
+  //     brand:"Nike",
+  //     size:"9.5",
+  //     price: "89.99",
+  //     image: "shoes5.png"
+  //   }
+  // ]
 
   
-
-  // const cartPrice = itemsInTestCart.reduce(
-  //   (accumulator, currentValue) => accumulator + currentValue, startingCartPrice
-  // );
   let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
     for (let i = 0; i < itemsInCart.length; ++i) {
       let individualPrice = Number(itemsInCart[i].price);
-      // console.log(typeof(individualPrice));
       cartPrice += individualPrice
     }
 
@@ -75,20 +72,11 @@ const Cart = ({ token }) => {
       <h1>My Cart</h1>
 
       <button 
-        onClick={(event) => {
-          event.preventDefault();
-          totalCartPrice(itemsInCart);
-          console.log(itemsInTestCart.length);
-        }}>
-        Test
-      </button>
-
-      <button 
         onClick={async (event) => {
           event.preventDefault();
           //myProfile returns a #, which is the logged in users' ID#
           // let myID = await myProfile(token)
-          // console.log('myId is,', myID);
+          console.log('cartId', cartID);
           
           await getUserCart(token);
           await cartHealth()
@@ -117,7 +105,7 @@ const Cart = ({ token }) => {
           <ul class="list-group mb-3">
 
             {
-              itemsInCart.map(({brand, name, size, price, itemsId, id}) => {
+              itemsInCart.map(({brand, name, size, price, itemsId, id, quantity}) => {
                 return(
                   <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
@@ -157,11 +145,43 @@ const Cart = ({ token }) => {
                             
                             console.log('itemId is', itemsId)
                             console.log('cart item Id is,', id)
-                            console.log('arguments are', itemsId, id)
+                            // console.log('arguments are', itemsId, id)
 
                             //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts. 
-                            await deleteItemFromCart(itemsId, id, token)
-                          }}></i></small>
+                            await deleteItemFromCart(itemsId, cartID, token)
+                          }}></i>
+                        
+                        <div className={styles.quantity}>
+                          { quantity <= 1
+                            ?
+                              null
+                            :
+                              <i 
+                              class="bi bi-dash"
+                              onClick={async (e) => {
+                                //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
+                                e.preventDefault();
+                                let decrementQuantity = quantity - 1;
+                                console.log('itemId is', itemsId)
+                                console.log('arguments are', itemsId, cartID, decrementQuantity)
+                                let updatedCartItem = await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
+                                console.log('updated cart item is:', updatedCartItem)
+                              }}></i>
+                          }
+                         
+                          <p className={styles.count}>{quantity}</p>
+                          <i 
+                            class="bi bi-plus"
+                            onClick={async (e) => {
+                              e.preventDefault();
+                              let incrementQuantity = quantity + 1;
+                              let updatedCartItem = await updateCartQuantity(itemsId, cartID, incrementQuantity, token)
+                              console.log('updated cart item is:', updatedCartItem)
+                            }}></i>
+                        </div>
+
+                        </small>
+                          
                     </div>
                   </li>
                 )
