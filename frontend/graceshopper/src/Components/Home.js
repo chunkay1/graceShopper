@@ -113,7 +113,6 @@ const Home = () => {
             }
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
-            console.log('prev')
             //creates a custom bounceback effect if you hit prev on left side
             if (scrollPosition === 0) {
               setScrollPosition(width)
@@ -127,12 +126,11 @@ const Home = () => {
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
-            console.log("next")
             if (scrollPosition === 0) {
               setScrollPosition(width)
             }
+            //creates a custom bounceback effect if you hit next on the right side at the end of the carousel
             else if (scrollPosition === (carouselItems.length - 4) * width) {
-              console.log("total width", width * (carouselItems.length - 3), "scroll position", scrollPosition)
               setScrollPosition((carouselItems.length - 5) * width)
             }
             else {
@@ -180,7 +178,6 @@ const Home = () => {
             }
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
-            console.log('prev')
             if (scrollPosition2 === 0) {
               setScrollPosition2(width)
             }
@@ -193,8 +190,6 @@ const Home = () => {
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
-            console.log("next")
-            console.log("this is scrollPosition2", scrollPosition2, "this is width*5", width * 5)
             //creates a custom bounceback effect if you hit prev on left side
             if (scrollPosition2 === 0) {
               setScrollPosition2(width)
