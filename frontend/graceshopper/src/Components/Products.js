@@ -65,15 +65,15 @@ const Products = ({token}) => {
             }}>View All Products</button>
             
             <button onClick={(e) => { 
-                getCategoryItems('shoes');
-                setCategory('shoes');
+                getCategoryItems('Shoes');
+                setCategory('Shoes');
 
             }}>Shoes</button>
             
             <button onClick={(e) => { 
                 // setTargetValue(setCategory)
-                getCategoryItems('tents');
-                setCategory('tents');
+                getCategoryItems('Tents');
+                setCategory('Tents');
                 }}>tents</button>
             
             <button onClick={(e) => { 
@@ -147,7 +147,7 @@ const Products = ({token}) => {
                                                 {/* <h5 class="card-title">Category</h5>
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
-                                                    <p class="card-text">{price}</p>
+                                                    <p class="card-text">${price}</p>
                                                 {/* <h5 class="card-title">Id</h5>
                                                     <p class="card-text">{id}</p> */}
                                                 
@@ -196,45 +196,6 @@ const Products = ({token}) => {
                         }
                     </div>
             }
-
-
-                {/* {
-                    products.map(({brand, category, id, name, price, size, image}) => {
-                        return (
-                            <div 
-                                className={styles.productCard} 
-                                key={id}>
-                                    <img src = {image} alt = {'shoes png'} width = {"100%"} className = {styles.image}></img>
-                                    <div className={styles.description}>
-                                      <h3 className={styles.header}>Brand: <p className={styles.cardValue}>{brand}</p></h3>
-                                      <h3 className={styles.header}>Category: <p className={styles.cardValue}>{category}</p></h3>
-                                      <h3 className={styles.header}>Id: <p className={styles.cardValue}>{id}</p></h3>
-                                      <h3 className={styles.header}>Name: <p className={styles.cardValue}>{name}</p></h3>
-                                      <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
-                                      <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
-                                    </div>
-
-                                    {
-                                        (!token)
-
-                                        ?
-
-                                        null
-                                        :
-
-                                        <div className={styles.cartbutton}> 
-                                            <button
-                                                onClick={console.log('Added To Cart!')}>
-                                                Add to Cart!
-                                            </button>
-                                        </div>
-
-                                    }
-                            </div>
-                        )
-                    
-                    })
-                } */}
             
          </div>
         
