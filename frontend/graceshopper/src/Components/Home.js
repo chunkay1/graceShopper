@@ -12,7 +12,7 @@ const Home = () => {
   const [carouselRender, setCarouselRender] = useState(false)
   //measures the width of the first card for the carousel animation to move the proper amount
   const [ref, { width }] = useMeasure()
-  //tracks the position that's rendered in the carousel
+  //tracks the positions that are visible in the carousels
   const [scrollPosition, setScrollPosition] = useState(0)
   const [scrollPosition2, setScrollPosition2] = useState(0)
 
@@ -29,7 +29,7 @@ const Home = () => {
     }
   }, [initiateRender])
 
-  //grab all items, then pull out random products by their indexes while preventing duplicates
+  //grab all items, then pull out random products by their indexes while preventing duplicates (still occationally produces a single duplicate)
   useEffect(() => {
 
     async function helper() {
@@ -114,6 +114,7 @@ const Home = () => {
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
             console.log('prev')
+            //creates a custom bounceback effect if you hit prev on left side
             if (scrollPosition === 0) {
               setScrollPosition(width)
             }
@@ -129,6 +130,10 @@ const Home = () => {
             console.log("next")
             if (scrollPosition === 0) {
               setScrollPosition(width)
+            }
+            else if (scrollPosition === (carouselItems.length - 4) * width) {
+              console.log("total width", width * (carouselItems.length - 3), "scroll position", scrollPosition)
+              setScrollPosition((carouselItems.length - 5) * width)
             }
             else {
               setScrollPosition(scrollPosition + width)
@@ -189,8 +194,14 @@ const Home = () => {
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
             console.log("next")
+            console.log("this is scrollPosition2", scrollPosition2, "this is width*5", width * 5)
+            //creates a custom bounceback effect if you hit prev on left side
             if (scrollPosition2 === 0) {
               setScrollPosition2(width)
+            }
+            //creates a custom bounceback effect for the right side
+            else if (scrollPosition2 === width * 2) {
+              setScrollPosition2(width * 1)
             }
             else {
               setScrollPosition2(scrollPosition2 + width)
