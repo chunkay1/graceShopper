@@ -51,6 +51,7 @@ const Home = () => {
   //carousel animation effects called when either end is clicked
   useEffect(() => {
     $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600)
+    $(`.headings`).animate({ scrollRight: scrollPosition }, 600)
   }, [scrollPosition])
 
   return (
@@ -58,11 +59,12 @@ const Home = () => {
       <div className={styles.carouselBackground}>
       <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
         <div className={`carousel-inner ${styles.carousel}`}>
+        <h4 className={`headings ${styles.heading}`}>Top sellers near you</h4>
           {
             carouselRender && carouselItems.length &&
             <>
               <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-              <h4 className={styles.heading}>Top sellers near you</h4>
+              {/* <h4 className={styles.heading}>Top sellers near you</h4> */}
                 <div className={styles.description}>
                   <span className={styles.cardValue}>
                     {console.log(carouselItems[0].brand)}
@@ -124,6 +126,34 @@ const Home = () => {
             setScrollPosition(scrollPosition + width)
           }
         }}>
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div>
+      <div className={styles.carouselBackground2}>
+      <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
+        {/* <div className={`carousel-inner ${styles.carousel}`}>
+            <>
+              <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+              <h4 className={styles.heading}>Top sellers near you</h4>
+                <div className={styles.description}>
+                  <span className={styles.cardValue}>
+                    {console.log(carouselItems[0].brand)}
+                    <span className={styles.brand}> {carouselItems[0].brand} </span>
+                    <span className={styles.name}>{carouselItems[0].name}</span>
+                    <span className={styles.price}>${carouselItems[0].price}</span>
+                  </span>
+                </div>
+                <img src={carouselItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+              </div>
+            </>
+        </div> */}
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
