@@ -115,7 +115,7 @@ async function createInitialItems() {
       //shoes
     {
         name: "TrailBurner",
-        category: "shoes",
+        category: "Shoes",
         brand:"Nike",
         size:"8",
         price: "95.99",
@@ -124,8 +124,8 @@ async function createInitialItems() {
       },
       {
         name: "Adventurer",
-        category: "shoes",
-        brand:"Addidas",
+        category: "Shoes",
+        brand:"Adidas",
         size:"11",
         price: "128.99",
         image: "shoes2.png",
@@ -133,7 +133,7 @@ async function createInitialItems() {
       },
       {
         name: "Dunhams",
-        category: "shoes",
+        category: "Shoes",
         brand:"Brooks",
         size:"7",
         price: "78.99",
@@ -142,7 +142,7 @@ async function createInitialItems() {
       },
       {
         name: "ReLeather",
-        category: "shoes",
+        category: "Shoes",
         brand:"Adidas",
         size:"13",
         price: "135.99",
@@ -151,7 +151,7 @@ async function createInitialItems() {
       },
       {
         name: "Trail Blazer",
-        category: "shoes",
+        category: "Shoes",
         brand:"Nike",
         size:"9.5",
         price: "89.99",
@@ -160,7 +160,7 @@ async function createInitialItems() {
       },
       {
         name: "Windsors",
-        category: "shoes",
+        category: "Shoes",
         brand:"KURU",
         size:"11",
         price: "165.99",
@@ -169,7 +169,7 @@ async function createInitialItems() {
       },
       {
         name: "Trekkors",
-        category: "shoes",
+        category: "Shoes",
         brand:"Brooks",
         size:"8",
         price: "115.99",
@@ -180,7 +180,7 @@ async function createInitialItems() {
       //tents
       {
         name: "Syndrome Fullfly",
-        category: "tents",
+        category: "Tents",
         brand:"Coleman",
         size:"2-person",
         price: "159.99",
@@ -189,7 +189,7 @@ async function createInitialItems() {
       },
       {
         name: "Trail 8",
-        category: "tents",
+        category: "Tents",
         brand:"Kodiak",
         size:"6-person",
         price: "89.99",
@@ -198,7 +198,7 @@ async function createInitialItems() {
       },
       {
         name: "Vivo-sun",
-        category: "tents",
+        category: "Tents",
         brand:"Coleman",
         size:"3-person",
         price: "169.99",
@@ -207,7 +207,7 @@ async function createInitialItems() {
       },
       {
         name: "Klondike",
-        category: "tents",
+        category: "Tents",
         brand:"Kodiak",
         size:"4-person",
         price: "119.99",
@@ -216,7 +216,7 @@ async function createInitialItems() {
       },
       {
         name: "Switchback-cross",
-        category: "tents",
+        category: "Tents",
         brand:"Quest",
         size:"4-person",
         price: "179.99",
@@ -225,7 +225,7 @@ async function createInitialItems() {
       },
       {
         name: "Switchback Original",
-        category: "tents",
+        category: "Tents",
         brand:"Quest",
         size:"8-person",
         price: "149.99",
