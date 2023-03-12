@@ -82,7 +82,7 @@ export async function deleteItemFromCart(itemInCartId, cartId, token) {
             }
         )
         const json = await response.json();
-        console.log(`deleted item successfully in API route`, json);
+        console.log(`deleted item successfully in API route`);
 
         return json
 
