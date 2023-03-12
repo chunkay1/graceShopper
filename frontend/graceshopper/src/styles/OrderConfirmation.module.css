@@ -1,35 +1,62 @@
 /* whole container */
-.ordercontainer {
+/* .ordercontainer { */
     
-    margin-left: 20rem;
+    /* margin-left: 20rem;
     margin-right: 20rem;
-    margin-top: 90px;
+    margin-top: 90px; */
+    /* height: 50rem;
+    width: 50rem;  */
+
+
     /* margin-left: 100px; */
     /* padding: 50px; */
     /* max-height: 80vh;
     max-width: 80vw;
     min-height: 80vh;
     min-width: 80vw; */
-    background-color: rgba(211, 211, 211, 0.798);
-
-    height: 50rem;
-    width: 50rem; 
+    /* background-color: rgba(211, 211, 211, 0.798);
 
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
     /* position: relative; */
-    min-width: 50%;
+    /* min-width: 50%;
     max-width: 50%;
     position: fixed;
    
+} */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
 }
 
-.ordercontainer:after {
+/* .ordercontainer:after {
     content: "";
   display: block;
   padding-bottom: 100%;
+   
+} */
+
+.ordercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 3px solid black; */
+    box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.3);
+    margin: 10%;
+    background-color: rgba(211, 211, 211, 0.798);
+    
 }
+
+.btn {
+    margin-bottom: 20px;
+}
+
 
 /* line: our order has been received */
 .h1OrderReceived {
@@ -64,6 +91,22 @@
     }
   }
   
+  @media (min-width: 768px){
+    .ordercontainer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .h1ThankYou {
+        align-items: center;
+    }
+
+    .h1OrderReceived {
+        align-items: center;
+    }
+
+    
+  }
   /* HELPFUL LINKS */
   /* https://css-tricks.com/a-complete-guide-to-css-media-queries/ */
   /* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */

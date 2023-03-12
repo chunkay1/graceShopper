@@ -8,8 +8,8 @@ const OrderConfirmation = () => {
      
     return (
         // bootstrap styling 
-        <div>
-        <div id='container' class={`order-confirmation-container ${styles.ordercontainer}`}>
+        <div className='container'>
+        <div class={`order-confirmation-container ${styles.ordercontainer}`}>
             
             <h1 class={`h1-order-received ${styles.h1OrderReceived}`}>Your order has been received</h1>
             <img class={`img-checkmark ${styles.imgCheckmark}`} src='https://cdn-icons-png.flaticon.com/512/4436/4436481.png' alt='Green checkmark'/>
@@ -21,9 +21,7 @@ const OrderConfirmation = () => {
                   Continue Shopping</button>
             </Link>
 
-    
-        </div>
-        
+            </div>
         </div>
         
     )

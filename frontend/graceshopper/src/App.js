@@ -20,6 +20,7 @@ import {
   Banner
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
+import Admin from './Components/Admin';
 
 const App = () => {
   const [token, setToken] = useState('')
@@ -91,6 +92,14 @@ const App = () => {
             <Products token={token}/>
           </>
           } 
+        />
+        {/*  */}
+        <Route path='/admin' element={
+          <>
+            <NavBar token={token}/> 
+            <Admin token={token}/>
+          </>
+          }
         />
       </Routes>
 
