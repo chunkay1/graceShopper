@@ -7,7 +7,6 @@ import useMeasure from 'react-use-measure'
 
 
 const Home = () => {
-  const [allItems, setAllItems] = useState([])
   //prevents the first card from rendering before allItems are set
   const [carouselRender, setCarouselRender] = useState(false)
   //measures the width of the first card for the carousel animation to move the proper amount
@@ -32,7 +31,7 @@ const Home = () => {
     async function helper() {
       await getAllItems().then((items) => {
         let numberHistory = []
-        
+
         for (let i = 0; i < 8; ++i) {
           let curNum = Math.floor(Math.random() * (items.length - 1) + 1)
 
@@ -42,7 +41,6 @@ const Home = () => {
             carouselItems.push(randomItem[0])
           }
         }
-        console.log("this is carousel Items", carouselItems)
         setInitiateRender(true)
       })
     }
@@ -62,8 +60,8 @@ const Home = () => {
           {
             carouselRender && carouselItems.length &&
             <>
-              {console.log("line 106", carouselItems)}
               <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+              <h4 className={styles.heading}>Top sellers near you</h4>
                 <div className={styles.description}>
                   <span className={styles.cardValue}>
                     {console.log(carouselItems[0].brand)}
