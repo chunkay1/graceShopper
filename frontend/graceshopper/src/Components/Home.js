@@ -55,6 +55,7 @@ const Home = () => {
 
   return (
     <div className={styles.homeDiv}>
+      <div className={styles.carouselBackground}>
       <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
         <div className={`carousel-inner ${styles.carousel}`}>
           {
@@ -126,6 +127,7 @@ const Home = () => {
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+      </div>
       </div>
     </div>
 
