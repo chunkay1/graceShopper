@@ -21,46 +21,6 @@ const Home = () => {
   const [initiateRender, setInitiateRender] = useState(false)
   // const randomSet = [randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()]
 
-  // useEffect(() => {
-  //   setRandomSet([randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()])
-  //   setRandomSetDone(true)
-  // }, [randomizerReady])
-
-  // useEffect(() => {
-  //     const tempArray = []
-  //     for (let i = 0; i < randomSet.length; ++i) {
-  //       let curNum = randomSet[i] 
-  //       const randomItem = allItems.filter(item => item.id === curNum)
-  //       tempArray.push(randomItem)
-  //     }
-  //     console.log(tempArray)
-  //     if (tempArray[0] !== []) {
-  //       setCarouselItems(tempArray)
-  //       console.log("this is carousel Items", carouselItems)
-  //       setInitiateRender(true)
-  //     }
-
-  //   }, [reRun])
-
-  // useEffect(() => {
-  //   if (carouselItems.length) {
-  //     setCarouselRender(true)
-  //   }
-  // }, [initiateRender])
-
-  // function randomHelper() {
-  //   return Math.floor(Math.random() * (allItems.length - 1) + 1)
-  // }
-
-  // useEffect(() => {
-  //   getAllItems().then((items) => {
-  //     setAllItems(items)
-  //     setTimeout(() => {
-  //       setReRun(true)
-  //     }, 2000)
-  //   })
-  // }, [reRun])
-
   useEffect(() => {
     if (carouselItems.length) {
       setCarouselRender(true)
@@ -68,16 +28,19 @@ const Home = () => {
   }, [initiateRender])
 
   useEffect(() => {
-    
+
     async function helper() {
       await getAllItems().then((items) => {
-        console.log("these are the items", items)
-
+        let numberHistory = []
+        
         for (let i = 0; i < 8; ++i) {
           let curNum = Math.floor(Math.random() * (items.length - 1) + 1)
-          console.log("this is curNum", curNum)
-          const randomItem = items.filter(item => item.id === curNum)
-          carouselItems.push(randomItem[0])
+
+          if (!numberHistory.includes(curNum)) {
+            numberHistory.push(curNum)
+            const randomItem = items.filter(item => item.id === curNum)
+            carouselItems.push(randomItem[0])
+          }
         }
         console.log("this is carousel Items", carouselItems)
         setInitiateRender(true)
