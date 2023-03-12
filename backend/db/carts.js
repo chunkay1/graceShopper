@@ -101,7 +101,8 @@ async function getCartByUserId(userId) {
   try {
     const { rows: [cart] } = await client.query(`
       SELECT * FROM carts
-      WHERE "userId" =${userId};
+      WHERE "userId" = ${userId}
+      AND purchased = false;
       `);
 
     if (!cart) {

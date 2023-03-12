@@ -43,7 +43,6 @@ async function createTables() {
     email varchar(125) UNIQUE NOT NULL,
     address varchar(125) NOT NULL,   
     isAdmin boolean DEFAULT false
-
   );
 
   CREATE TABLE items (
@@ -60,7 +59,8 @@ async function createTables() {
 
   CREATE TABLE carts (
     id SERIAL UNIQUE PRIMARY KEY, 
-    "userId" INTEGER REFERENCES users(id) 
+    "userId" INTEGER REFERENCES users(id),
+    purchased BOOLEAN DEFAULT false
 );
 
   CREATE TABLE itemsInCart (
