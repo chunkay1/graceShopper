@@ -65,6 +65,28 @@ export async function getUserCart(token) {
     }
 }
 
+export async function checkoutCart(cartId, token) {
+    try {
+        const response = await fetch(
+            `${BASEURL}/carts/${cartId}`,
+            {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+            }
+        )
+        const json = await response.json();
+
+        console.log(`checked out cart:`, json);
+
+        return json
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function deleteItemFromCart(itemInCartId, cartId, token) {
      try {
         const response = await fetch(

@@ -81,7 +81,7 @@ async function getAllCarts() {
     } catch (error) {
       throw error;
     }
-  }
+}
 
 async function getCartById(cartId) {
   try {
@@ -103,6 +103,26 @@ async function getCartByUserId(userId) {
       SELECT * FROM carts
       WHERE "userId" = ${userId}
       AND purchased = false;
+      `);
+
+    if (!cart) {
+      return null;
+    }
+    else {
+      return cart;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function checkoutCart(cartId) {
+    try{ 
+      const { rows: [cart] } = await client.query(`
+      UPDATE carts
+      SET purchased=true
+      WHERE "id" = ${cartId}
+      RETURNING *
       `);
 
     if (!cart) {
@@ -141,6 +161,7 @@ module.exports = {
   getAllCarts,
   getCartById,
   getCartByUserId,
+  checkoutCart,
   destroyCart,
   attachItemsToCart,
   getCartAndItemDetails
