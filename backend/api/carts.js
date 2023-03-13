@@ -153,40 +153,7 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
   }
 });
 
-cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
-
-  const userId = req.user.id
-
-  try {
-    const cart = await getCartByUserId(userId);
-    const withItems = await getCartAndItemDetails(cart).then((fullCart) =>{ 
-      let cartItems = fullCart.itemsInCart
-      cartItems.map(async ({inventory, quantity, itemsId}) => {
-        const newInventory = inventory - quantity;
-        console.log('new inventory is:', newInventory)
-        await updateInventory(newInventory, itemsId)
-        console.log('new inventory set')
-      })
-    })
-    
-    let cartItems = withItems.itemsInCart
-
-    console.log('cartItems are:', cartItems)
-    
-    
-
-
-    const cartId = parseInt(req.params.cartId);
-    console.log('backend api cartID is: ', cartId)
-    const checkoutCart = await checkoutCart(cartId)
-    console.log('return cart is', checkoutCart)
-
-    res.send(checkoutCart)
-  } catch (error) {
-    throw Error('failed to checkout cart with cartId: ')
-  }
-})
-
+// the route below works
 // cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
 //   try {
 //     const cartId = parseInt(req.params.cartId);
@@ -199,6 +166,36 @@ cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
 //     throw Error('failed to checkout cart with cartId: ', cartId)
 //   }
 // })
+
+//this route updates inventory upon checkout by reducing inventory by the quantity in cart.
+cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const testCart = await getCartByUserId(userId);
+    console.log('test cart is:', testCart)
+    const withItems = await getCartAndItemDetails(testCart)
+    console.log('with items is:', withItems)
+    console.log('this should be an array', withItems.itemsInCart);
+    withItems.itemsInCart.map(async ({inventory, quantity, itemsId}) => {
+      console.log('item id is', itemsId)
+      console.log('inventory is', inventory, 'quantity is', quantity)
+      let newInventory = (inventory - quantity);
+      console.log(newInventory, 'is new Inventory')
+      console.log('user id is:', userId)
+      await updateInventory(newInventory, itemsId)
+    })
+
+
+    const cartId = parseInt(req.params.cartId);
+    console.log('backend api cartID is: ', cartId)
+    const cart = await checkoutCart(cartId)
+    console.log('return cart is', cart)
+
+    res.send(cart)
+  } catch (error) {
+    throw Error('failed to checkout cart with cartId: ', cartId)
+  }
+})
 
 // DELETE /api/carts/:cartId
 cartsRouter.delete('/:cartId', isUser, async (req, res, next) => {

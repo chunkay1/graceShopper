@@ -125,10 +125,6 @@ const Cart = ({ token }) => {
                             //     size: items.size}
                             //   ]
                             // }
-                            
-                            console.log('itemId is', itemsId)
-                            console.log('cart item Id is,', id)
-                            // console.log('arguments are', itemsId, id)
 
                             //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts.
                             
@@ -137,6 +133,7 @@ const Cart = ({ token }) => {
                           }}></i>
                         
                         <div className={styles.quantity}>
+                          
                           { quantity <= 1
                             ?
                               null
@@ -171,9 +168,7 @@ const Cart = ({ token }) => {
                             :
 
                             null
-          
-                        }
-
+                          }
                           
                         </div>
 
