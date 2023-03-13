@@ -1,5 +1,6 @@
 const express = require("express");
 const cartsRouter = express.Router();
+const stripe = require('stripe')('sk_test_51MkrV7LhUbC2qSKjwkRldGXO3SWOaNfdWAE6UlMRnJdexd051wYtfauJIPq8UrhGDwSIlHgp4xGYnzqLBVVdP7bW00bkQL5qn2')
 
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
@@ -12,7 +13,9 @@ const {
     getCartById,
     getCartByUserId,
     destroyCart,
-    attachItemsToCart
+    attachItemsToCart,
+    getCartAndItemDetails,
+    checkoutCart
 } = require("../db/carts");
 
 // GET /api/carts get all carts as administrator
@@ -27,19 +30,54 @@ cartsRouter.get("/", isAdministrator, async (req, res) => {
   }
 });
 
-// GET /api/carts/:cartId get a cart by id
-cartsRouter.get("/:cartId", isUser, async (req, res) => {
+cartsRouter.get('/health', async (req, res, next) => {
+  res.status(200).send({
+     message: "all is well!"
+  })
+});
 
-    const { id } = req.body;
+// GET /api/carts/:cartId get a cart by id
+// cartsRouter.get("/:cartId", isUser, async (req, res) => {
+
+//     const { id } = req.body;
+
+//     try {
+//       const cart = await getCartById({id});
+//       const withItems = await attachItemsToCart(cart)
+//       if (withItems) {
+//         res.send(withItems);
+//       } 
+//       else if (cart) {
+//         res.send(cart)
+//       }
+//     } catch (error) {
+//       throw Error("Failed to get cart by cartId", error);
+//     }
+//   });
+
+// GET /api/carts/:userId gets a cart by userId
+//this is nearly identical to api/carts/:userId, except we're grabbing the cart by userId instead.
+//I couldn't figure out how to capture the cartId and set it into our get request
+cartsRouter.get("/userCart", isUser, async (req, res) => {
+
+    const userId  = req.user.id
 
     try {
-      const cart = await getCartById({id});
-      const withItems = await attachItemsToCart(cart)
+      // console.log('hit');
+      const cart = await getCartByUserId(userId);
+      // console.log('cart is:', cart)
+      const withItems = await getCartAndItemDetails(cart)
+      // console.log('withItems is:', withItems)
       if (withItems) {
         res.send(withItems);
       } 
       else if (cart) {
         res.send(cart)
+      } else if(!cart) {
+        res.send({
+          message: "Whoops, doesn't look like there's an active cart...yet",
+          name: "noCartError",
+        })
       }
     } catch (error) {
       throw Error("Failed to get cart by cartId", error);
@@ -80,6 +118,19 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
     next({ name, message });
   }
 });
+
+cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
+  try {
+    const cartId = parseInt(req.params.cartId);
+    console.log('backend api cartID is: ', cartId)
+    const cart = await checkoutCart(cartId)
+    console.log('return cart is', cart)
+
+    res.send(cart)
+  } catch (error) {
+    throw Error('failed to checkout cart with cartId: ', cartId)
+  }
+})
 
 // DELETE /api/carts/:cartId
 cartsRouter.delete('/:cartId', isUser, async (req, res, next) => {

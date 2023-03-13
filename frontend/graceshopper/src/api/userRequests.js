@@ -85,27 +85,27 @@ export async function logOut() {
     }
 }
 
-//added function to check for admin user
-export const AdminUser = async (token) => {
+export async function myProfile(token) {
     try {
-      const response = await fetch(
-        `${BASEURL}/users/me`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
+        const response = await fetch(
+            `${BASEURL}/users/me`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+            }
+        )
+        const json = await response.json();
+        // console.log('user info is:', json);
+        const id = json.user.id;
+        const admin = json.user.isAdmin
+        // console.log('user ID is:', id)
+        // console.log( admin)
 
-      const json = await response.json();
-      const me = json.isAdmin;
-  
-      return me;
-
+        return id, admin
     } catch (error) {
-      console.log('Failed to fetch admin user.');
-      console.error(error);
-      throw error;
+        console.error(error)
     }
-  };
+}

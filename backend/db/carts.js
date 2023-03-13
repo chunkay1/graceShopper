@@ -33,6 +33,24 @@ async function attachItemsToCart(cart) {
 //   return cart
 // }
 
+//the below returns a complete object with cart and item details for ease of use on the frontend. 
+async function getCartAndItemDetails(cart) {
+  // console.log('gibberish')
+  const { rows: itemInCart } = await client.query(`
+     SELECT *
+     FROM items
+     JOIN itemsInCart
+     ON items.id = itemsInCart."itemsId" 
+     WHERE itemsInCart."cartId"=$1;
+    `, [cart.id])
+
+  cart.itemsInCart = itemInCart
+  
+  // console.log('cart and item details are', cart)
+
+  return cart
+}
+
 async function createCart( userId ) {
   try {
     const { rows: [cart] } = await client.query(
@@ -63,7 +81,7 @@ async function getAllCarts() {
     } catch (error) {
       throw error;
     }
-  }
+}
 
 async function getCartById(cartId) {
   try {
@@ -79,11 +97,32 @@ async function getCartById(cartId) {
   }
 }
 
-async function getCartByUserId({ userId }) {
+async function getCartByUserId(userId) {
   try {
     const { rows: [cart] } = await client.query(`
       SELECT * FROM carts
-      WHERE "userId" =${userId};
+      WHERE "userId" = ${userId}
+      AND purchased = false;
+      `);
+
+    if (!cart) {
+      return null;
+    }
+    else {
+      return cart;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function checkoutCart(cartId) {
+    try{ 
+      const { rows: [cart] } = await client.query(`
+      UPDATE carts
+      SET purchased=true
+      WHERE "id" = ${cartId}
+      RETURNING *
       `);
 
     if (!cart) {
@@ -122,6 +161,8 @@ module.exports = {
   getAllCarts,
   getCartById,
   getCartByUserId,
+  checkoutCart,
   destroyCart,
-  attachItemsToCart
+  attachItemsToCart,
+  getCartAndItemDetails
 };

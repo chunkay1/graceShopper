@@ -22,6 +22,7 @@ import {
   AddProducts
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
+import Admin from './Components/Admin';
 
 const App = () => {
   const [token, setToken] = useState('')
@@ -69,7 +70,7 @@ const App = () => {
         <Route path='/cart' element={
           <>
             <NavBar token={token}/>
-            <Cart />
+            <Cart token={token} />
           </>
           } 
         />
@@ -94,13 +95,15 @@ const App = () => {
           </>
           } 
         />
-      <Route path='/admin-products' element={
+        
+        <Route path='/admin' element={
           <>
             <NavBar token={token}/> 
-            <AdminProducts token={token}/>
+            <Admin token={token}/>
           </>
-          } 
+          }
         />
+      </Routes>
 
         <Route path='/add-products' element={
           <>

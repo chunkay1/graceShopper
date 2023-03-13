@@ -1,3 +1,47 @@
-/* #reg-h1 {
-    background-color: red;
+.outterContainer {
+    display: flex;
+    margin-top: 100px;
+    /* background-color: rgb(252, 228, 68); */
+}
+
+.innerContainer {
+    background-color: rgba(19, 66, 41, 0.643);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img {
+    opacity: .55;
+    padding-right: 100px;
+    
+}
+
+.registerForm {
+    color: white;
+    /* display: flex;
+    flex-direction: column;
+    justify-content:right; */
+}
+
+.pageTitle {
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.submit, .submitButton{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+/* Form with gif as background img - issues with opacity */
+/* .innerContainer {
+    background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    opacity: .7;
 } */
