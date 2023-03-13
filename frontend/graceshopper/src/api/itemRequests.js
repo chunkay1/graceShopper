@@ -62,3 +62,38 @@ export async function getProductById(id) {
         console.error(error);
     }
 }
+
+// added the function for adding products
+export async function addProducts(token,props,products,setProducts,itemProps,setItemProps) {
+
+    const body = JSON.stringify({
+        itemProps
+        // name: props.name,
+        // category: props.password,
+        // brand: props.brand,
+        // size: props.size,
+        // price: props.price,
+        // description: props.description,
+    });
+
+    try {
+        const response = await fetch(`${BASEURL}/:add-item/item`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body,
+        });
+
+        const json = await response.json();
+        console.log(json);
+        const responseProduct = json;
+        setProducts([responseProduct,...products]);
+
+    }catch (error) {
+        console.log(error);
+      }
+
+      setItemProps("");
+    }

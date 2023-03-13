@@ -8,7 +8,7 @@ function Banner ({ bannerText = '' }) {
     const [textChanger, setTextChanger] = useState(bannerText)
 
     return (
-    <div className='mainDiv'>
+    <div className={styles.mainDiv}>
       <header className={styles.header}></header>
       <div className={styles.banner}>
         <video autoPlay muted loop>

@@ -7,7 +7,7 @@
 .banner {
     position: relative;
     width: 100%;
-    height: 60vh;
+    height: 80vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@
     text-transform: uppercase;
     color: #000;
     /* use line-height if you want to adjust how far down the main text appears on the page */
-    line-height:50vh;
+    line-height:70vh;
     /* This single line is where the magic happens to make your text have a video bleed-through effect */
     mix-blend-mode: screen;
     font-family: 'Work Sans', sans-serif;
@@ -59,7 +59,7 @@
 }
 
 /* An inverse gradient of the header */
-footer {
+.footer {
     background: linear-gradient(90deg,rgba(10, 26, 36, 0.916) 0%, rgb(19, 19, 19) 100%);
 }
 
@@ -74,6 +74,9 @@ footer {
     opacity: 0%;
     animation: fadeIn 7s 4s;
     animation-fill-mode: forwards;
+}
+.mainDiv {
+    /* margin-bottom: 10vh; */
 }
 
 @keyframes fadeIn {
