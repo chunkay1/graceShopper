@@ -17,7 +17,9 @@ import {
   Products,
   Register,
   LandingPage,
-  Banner
+  Banner,
+  AdminProducts,
+  AddProducts
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
 
@@ -92,8 +94,25 @@ const App = () => {
           </>
           } 
         />
-      </Routes>
+      <Route path='/admin-products' element={
+          <>
+            <NavBar token={token}/> 
+            <AdminProducts token={token}/>
+          </>
+          } 
+        />
 
+        <Route path='/add-products' element={
+          <>
+            <NavBar token={token}/> 
+            <AddProducts 
+              token={token}
+            />
+          </>
+          } 
+        />
+
+      </Routes>
     </div>
   )
 }

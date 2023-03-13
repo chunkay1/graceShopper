@@ -84,3 +84,28 @@ export async function logOut() {
         console.error(error)
     }
 }
+
+//added function to check for admin user
+export const AdminUser = async (token) => {
+    try {
+      const response = await fetch(
+        `${BASEURL}/users/me`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const json = await response.json();
+      const me = json.isAdmin;
+  
+      return me;
+
+    } catch (error) {
+      console.log('Failed to fetch admin user.');
+      console.error(error);
+      throw error;
+    }
+  };
