@@ -74,7 +74,7 @@ itemsRouter.get( '/:itemId/item', async (req, res , next) => {
 })
 
 //create a new item (admin)
-itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
+itemsRouter.post( '/:add-item/item', isAdministrator, async (req, res, next) => {
     const { 
         name,
         category,
@@ -87,6 +87,7 @@ itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
         const items = await getAllItems()
 
         // check for items with the same name
+        // items may have the same name , same category , different brands
         if (items) {
             const _item = items.find(elem => elem.name === name)
             

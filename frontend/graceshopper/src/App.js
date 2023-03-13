@@ -17,7 +17,9 @@ import {
   Products,
   Register,
   LandingPage,
-  Banner
+  Banner,
+  AdminProducts,
+  AddProducts
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
 import Admin from './Components/Admin';
@@ -93,7 +95,7 @@ const App = () => {
           </>
           } 
         />
-        {/*  */}
+        
         <Route path='/admin' element={
           <>
             <NavBar token={token}/> 
@@ -103,6 +105,17 @@ const App = () => {
         />
       </Routes>
 
+        <Route path='/add-products' element={
+          <>
+            <NavBar token={token}/> 
+            <AddProducts 
+              token={token}
+            />
+          </>
+          } 
+        />
+
+      </Routes>
     </div>
   )
 }
