@@ -116,6 +116,25 @@ async function getCartByUserId(userId) {
   }
 }
 
+async function getPreviousCartsByUserId(userId) {
+  try {
+    const { rows: cart } = await client.query(`
+      SELECT * FROM carts
+      WHERE "userId" = ${userId}
+      AND purchased = true;
+      `);
+
+    if (!cart) {
+      return null;
+    }
+    else {
+      return cart;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function checkoutCart(cartId) {
     try{ 
       const { rows: [cart] } = await client.query(`
@@ -161,6 +180,7 @@ module.exports = {
   getAllCarts,
   getCartById,
   getCartByUserId,
+  getPreviousCartsByUserId,
   checkoutCart,
   destroyCart,
   attachItemsToCart,

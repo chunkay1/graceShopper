@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
 import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
-import { addToCart } from '../api/cartRequests';
+import { addToCart, getOrderHistory } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
 import { STORAGE_KEY } from '../constants/constants';
@@ -30,7 +30,7 @@ const Products = ({token}) => {
         const getAllProductsAsync = async () => {
             let allProducts = await getAllItems();
             setProducts(allProducts);
-            // console.log('products are', products)
+            console.log('products are', allProducts)
         }
         getAllProductsAsync();
     }, [])
@@ -39,7 +39,7 @@ const Products = ({token}) => {
         await getProductsByCategory(category);
     } 
 
-    let getItemProps = (brand, category, id, name, price, size) => {
+    let getItemProps = (brand, category, id, name, price, size, inventory) => {
         // console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
@@ -49,6 +49,7 @@ const Products = ({token}) => {
                name : name,
                price : price,
                size : size,
+               inventory: inventory
             }
         )
         return itemProps
@@ -90,9 +91,10 @@ const Products = ({token}) => {
 
             {/* tests adding to cart with some set info */}
             <button onClick={async (e) => { 
-                const addedToCart = await addToCart(7, token)
-                console.log(addedToCart)
-            }}> add to cart test</button>
+                e.preventDefault();
+                const orderHistory = await getOrderHistory(token)
+                console.log(orderHistory)
+            }}> Order History Test</button>
 
 
             {
@@ -113,7 +115,7 @@ const Products = ({token}) => {
                     <div className={styles.container}>
                         
                         {
-                            products.map(({brand, category, id, name, price, size, image}) => {
+                            products.map(({brand, category, id, name, price, size, image, inventory}) => {
                                 return (
                                     <div key={id}>
         
@@ -148,42 +150,50 @@ const Products = ({token}) => {
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
                                                     <p class="card-text">${price}</p>
-                                                {/* <h5 class="card-title">Id</h5>
-                                                    <p class="card-text">{id}</p> */}
+                                                <h5 class="card-title">Inventory</h5>
+                                                    <p class="card-text">{inventory}</p>
                                                 
-                                                <div className={styles.buttonDiv}> 
-                                                    <button
-                                                        className={styles.cartButton}
-                                                        onClick={async (event) => {
-                                                            event.preventDefault();
+                                                { inventory < 1 ?  <h5>Sold Out!</h5> : null}
 
-                                                            // console.log('added to cart')
-                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-                                                            // console.log(test);
-                                                            // this prevents from going to single product view after clicking add to cart
-                                                            const props = await getProductById(id);
-                                                            setItemProps(props)
-                                                            // console.log(itemProps)
-                                                            setSingleProduct(false);
+                                                { (inventory >= 1) && token ? 
+                                                
+                                                    <div className={styles.buttonDiv}> 
+                                                        <button
+                                                            className={styles.cartButton}
+                                                            onClick={async (event) => {
+                                                                event.preventDefault();
+                                                                // console.log('added to cart')
+                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                                // console.log(test);
+                                                                // this prevents from going to single product view after clicking add to cart
+                                                                const props = await getProductById(id);
+                                                                setItemProps(props)
+                                                                // console.log(itemProps)
+                                                                setSingleProduct(false);      
+                                                                // const { [id] : userId } = jwt.verify(token)
+                                                                // console.log("this is the id", id, "this is the token", token)
+                                                                const something = await addToCart ( id, token )
+                                                                console.log("this is something", something)
+                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
 
-                                                            
-                                                            // const { [id] : userId } = jwt.verify(token)
-                                                            // console.log("this is the id", id, "this is the token", token)
-                                                             const something = await addToCart ( id, token )
-                                                             console.log("this is something", something)
-                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                                                                                
+                                                                // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                                //     console.log(result)
+                                                                //     addToCart(result);
+                                                                // }).catch((err) => {
+                                                                //     console.log(err)
+                                                                // });
+                                                            }}>
+                                                            Add to Cart!
+                                                        </button>
+                                                    </div>
 
-                                                                                                            
-                                                            // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                            //     console.log(result)
-                                                            //     addToCart(result);
-                                                            // }).catch((err) => {
-                                                            //     console.log(err)
-                                                            // });
-                                                        }}>
-                                                        Add to Cart!
-                                                    </button>
-                                                </div>
+                                                :
+
+                                                    null
+                                                }
+
+                                                
                                             </div>
         
                                         </div>

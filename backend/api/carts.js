@@ -12,11 +12,14 @@ const {
     getAllCarts,
     getCartById,
     getCartByUserId,
+    getPreviousCartsByUserId,
     destroyCart,
     attachItemsToCart,
     getCartAndItemDetails,
     checkoutCart
 } = require("../db/carts");
+
+const {updateInventory} = require("../db/items")
 
 // GET /api/carts get all carts as administrator
 cartsRouter.get("/", isAdministrator, async (req, res) => {
@@ -67,7 +70,7 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       const cart = await getCartByUserId(userId);
       // console.log('cart is:', cart)
       const withItems = await getCartAndItemDetails(cart)
-      // console.log('withItems is:', withItems)
+      console.log('withItems is:', withItems)
       if (withItems) {
         res.send(withItems);
       } 
@@ -81,6 +84,37 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       }
     } catch (error) {
       throw Error("Failed to get cart by cartId", error);
+    }
+  });
+
+
+cartsRouter.get("/userCart/orderHistory", isUser, async (req, res) => {
+
+    const userId  = req.user.id
+
+    try {
+      // console.log('hit');
+      const carts = await getPreviousCartsByUserId(userId)
+      console.log('previous carts are:', carts)
+      let orderHistory = [];
+      for (let i = 0; i < carts.length; ++i) {
+        let cart = carts[i]
+        orderHistory.push(await getCartAndItemDetails(cart))
+      }
+      
+      // console.log('withItems is:', withItems)
+      
+      res.send(orderHistory);
+       
+      
+       if(!carts) {
+        res.send({
+          message: "Couldn't locate any orders",
+          name: "noOrdersError",
+        })
+      }
+    } catch (error) {
+      throw Error(`Failed to get order history by userId ${userId}`, error);
     }
   });
 
@@ -119,8 +153,39 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
   }
 });
 
+// the route below works
+// cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
+//   try {
+//     const cartId = parseInt(req.params.cartId);
+//     console.log('backend api cartID is: ', cartId)
+//     const cart = await checkoutCart(cartId)
+//     console.log('return cart is', cart)
+
+//     res.send(cart)
+//   } catch (error) {
+//     throw Error('failed to checkout cart with cartId: ', cartId)
+//   }
+// })
+
+//this route updates inventory upon checkout by reducing inventory by the quantity in cart.
 cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
   try {
+    const userId = req.user.id
+    const testCart = await getCartByUserId(userId);
+    console.log('test cart is:', testCart)
+    const withItems = await getCartAndItemDetails(testCart)
+    console.log('with items is:', withItems)
+    console.log('this should be an array', withItems.itemsInCart);
+    withItems.itemsInCart.map(async ({inventory, quantity, itemsId}) => {
+      console.log('item id is', itemsId)
+      console.log('inventory is', inventory, 'quantity is', quantity)
+      let newInventory = (inventory - quantity);
+      console.log(newInventory, 'is new Inventory')
+      console.log('user id is:', userId)
+      await updateInventory(newInventory, itemsId)
+    })
+
+
     const cartId = parseInt(req.params.cartId);
     console.log('backend api cartID is: ', cartId)
     const cart = await checkoutCart(cartId)
