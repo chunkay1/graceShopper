@@ -64,11 +64,14 @@ const Home = () => {
 
 
   return (
+    <>
     <div className={styles.homeDiv}>
       <div className={styles.carouselBackground}>
+      <h4 className={`headings ${styles.heading}`}>Top sellers, near you</h4>
+      {/* <hr className = {styles.firstLine}></hr>
+      <hr className= {styles.secondLine}></hr> */}
         <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
           <div id = 'carousel-inner1' className={`carousel-inner ${styles.carousel}`}>
-            <h4 className={`headings ${styles.heading}`}>Top sellers near you</h4>
             {
               carouselRender && carouselItems.length &&
               <>
@@ -146,11 +149,12 @@ const Home = () => {
       {/* beginning of second Carousel */}
 
       <div className={styles.carouselBackground2}>
+        <h4 className={`headings ${styles.heading}`}>Explore by category</h4>
         <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
           <div className={`carousel-inner ${styles.carousel2}`} id = 'carousel-inner2'>
             <div class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
               <div className={styles.description}>
-                <span className={styles.cardValue}>
+                <span className={styles.cardValue2}>
                   {categories[0].category}
                 </span>
               </div>
@@ -207,7 +211,13 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <div className={styles.backgroundImg}></div>
+      {/* <div className={styles.backgroundImg2}></div> */}
+      {/* <div className={styles.backgroundImg3}></div> */}
     </div>
+    {/* <div className={styles.backgroundImg}></div> */}
+    {/* <div className={styles.backgroundImg2}></div> */}
+    </>
 
 
   )
