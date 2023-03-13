@@ -4,7 +4,6 @@ import { addProducts } from "../api/itemRequests";
 
 const AddProducts = ({ token, itemProps, setItemProps }) => {
 
-
   return (
     <form
       id="add-product"

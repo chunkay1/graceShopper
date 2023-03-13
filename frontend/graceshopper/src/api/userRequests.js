@@ -100,11 +100,12 @@ export async function myProfile(token) {
         const json = await response.json();
         // console.log('user info is:', json);
         const id = json.user.id;
-        const admin = json.user.isAdmin
+        const admin = json.user.isAdmin;
         // console.log('user ID is:', id)
         // console.log( admin)
 
         return id, admin
+        
     } catch (error) {
         console.error(error)
     }
