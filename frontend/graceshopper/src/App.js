@@ -1,10 +1,6 @@
 import './styles/App.css';
 import NavBar from './Components/NavBar1';
 import { useEffect, useState } from 'react';
-// import { Home } from './Components';
-// import LandingPage from './LandingPage';
-
-
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -18,11 +14,10 @@ import {
   Register,
   LandingPage,
   Banner,
-  AdminProducts,
+  Admin,
   AddProducts
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
-import Admin from './Components/Admin';
 
 const App = () => {
   const [token, setToken] = useState('')
@@ -103,8 +98,6 @@ const App = () => {
           </>
           }
         />
-      </Routes>
-
         <Route path='/add-products' element={
           <>
             <NavBar token={token}/> 
@@ -114,7 +107,6 @@ const App = () => {
           </>
           } 
         />
-
       </Routes>
     </div>
   )
