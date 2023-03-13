@@ -7,7 +7,8 @@ import styles from '../styles/Cart.module.css'
 
 const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
-  const [cartID, setCartID] = useState(0); 
+  const [cartID, setCartID] = useState(0);
+  const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
 
   useEffect(() => {
     const getCartItemsAsync = async () => {
@@ -57,13 +58,18 @@ const Cart = ({ token }) => {
   
   let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
+    console.log(itemsInCart)
     for (let i = 0; i < itemsInCart.length; ++i) {
-      let individualPrice = Number(itemsInCart[i].price);
+      let itemPrice = Number(itemsInCart[i].price);
+      let quantity = itemsInCart[i].quantity
+      let individualPrice = (itemPrice * quantity)
       cartPrice += individualPrice
     }
-
     return cartPrice
   }
+
+  let numberOfItems = (itemsInCart) => itemsInCart.reduce(function (prev, next) {
+    return prev + next.quantity; }, 0);
 
   return (
     <div>
@@ -97,7 +103,7 @@ const Cart = ({ token }) => {
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-pill">{(itemsInCart.length)}</span>
+            <span class="badge bg-primary rounded-pill">{numberOfItems(itemsInCart)}</span>
           </h4>
 
           <ul class="list-group mb-3">

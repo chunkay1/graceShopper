@@ -152,39 +152,47 @@ const Products = ({token}) => {
                                                 <h5 class="card-title">Inventory</h5>
                                                     <p class="card-text">{inventory}</p>
                                                 
-                                                <div className={styles.buttonDiv}> 
-                                                    <button
-                                                        className={styles.cartButton}
-                                                        onClick={async (event) => {
-                                                            event.preventDefault();
+                                                { inventory < 1 ?  <h5>Sold Out!</h5> : null}
 
-                                                            // console.log('added to cart')
-                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-                                                            // console.log(test);
-                                                            // this prevents from going to single product view after clicking add to cart
-                                                            const props = await getProductById(id);
-                                                            setItemProps(props)
-                                                            // console.log(itemProps)
-                                                            setSingleProduct(false);
+                                                { (inventory >= 1) && token ? 
+                                                
+                                                    <div className={styles.buttonDiv}> 
+                                                        <button
+                                                            className={styles.cartButton}
+                                                            onClick={async (event) => {
+                                                                event.preventDefault();
+                                                                // console.log('added to cart')
+                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                                // console.log(test);
+                                                                // this prevents from going to single product view after clicking add to cart
+                                                                const props = await getProductById(id);
+                                                                setItemProps(props)
+                                                                // console.log(itemProps)
+                                                                setSingleProduct(false);      
+                                                                // const { [id] : userId } = jwt.verify(token)
+                                                                // console.log("this is the id", id, "this is the token", token)
+                                                                const something = await addToCart ( id, token )
+                                                                console.log("this is something", something)
+                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
 
-                                                            
-                                                            // const { [id] : userId } = jwt.verify(token)
-                                                            // console.log("this is the id", id, "this is the token", token)
-                                                             const something = await addToCart ( id, token )
-                                                             console.log("this is something", something)
-                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                                                                                
+                                                                // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                                //     console.log(result)
+                                                                //     addToCart(result);
+                                                                // }).catch((err) => {
+                                                                //     console.log(err)
+                                                                // });
+                                                            }}>
+                                                            Add to Cart!
+                                                        </button>
+                                                    </div>
 
-                                                                                                            
-                                                            // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                            //     console.log(result)
-                                                            //     addToCart(result);
-                                                            // }).catch((err) => {
-                                                            //     console.log(err)
-                                                            // });
-                                                        }}>
-                                                        Add to Cart!
-                                                    </button>
-                                                </div>
+                                                :
+
+                                                    null
+                                                }
+
+                                                
                                             </div>
         
                                         </div>
