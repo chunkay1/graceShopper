@@ -9,7 +9,7 @@ const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [cartID, setCartID] = useState(0);
   const [cartChange, setCartChange] = useState(false)
-  const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
+  
 
   // useEffect(() => {
   //   const getCartItemsAsync = async () => {
@@ -108,7 +108,8 @@ const Cart = ({ token }) => {
                             //full cart is an object
                             // { 
                             //   id: carts.id, 
-                            //   userId: carts.userId, 
+                            //   userId: carts.userId,
+                            //   purchased: false, 
                             //   itemsInCart: [
                             //     {brand: items.brand, 
                             //     cartId: itemsInCart.cartId,
@@ -116,6 +117,7 @@ const Cart = ({ token }) => {
                             //     description: items.description,
                             //     id: itemsInCart.id?
                             //     image: items.image,
+                            //     inventory: items.inventory,
                             //     itemsId: itemsInCart.itemsId,
                             //     name: items.name,
                             //     price: items.price,

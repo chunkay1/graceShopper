@@ -62,7 +62,7 @@ async function createTables() {
     id SERIAL UNIQUE PRIMARY KEY, 
     "userId" INTEGER REFERENCES users(id),
     purchased BOOLEAN DEFAULT false
-);
+  );
 
   CREATE TABLE itemsInCart (
     id SERIAL UNIQUE PRIMARY KEY ,

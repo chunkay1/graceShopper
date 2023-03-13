@@ -12,6 +12,7 @@ const {
     getAllCarts,
     getCartById,
     getCartByUserId,
+    getPreviousCartsByUserId,
     destroyCart,
     attachItemsToCart,
     getCartAndItemDetails,
@@ -81,6 +82,37 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       }
     } catch (error) {
       throw Error("Failed to get cart by cartId", error);
+    }
+  });
+
+
+cartsRouter.get("/userCart/orderHistory", isUser, async (req, res) => {
+
+    const userId  = req.user.id
+
+    try {
+      // console.log('hit');
+      const carts = await getPreviousCartsByUserId(userId)
+      console.log('previous carts are:', carts)
+      let orderHistory = [];
+      for (let i = 0; i < carts.length; ++i) {
+        let cart = carts[i]
+        orderHistory.push(await getCartAndItemDetails(cart))
+      }
+      
+      // console.log('withItems is:', withItems)
+      
+      res.send(orderHistory);
+       
+      
+       if(!carts) {
+        res.send({
+          message: "Couldn't locate any orders",
+          name: "noOrdersError",
+        })
+      }
+    } catch (error) {
+      throw Error(`Failed to get order history by userId ${userId}`, error);
     }
   });
 

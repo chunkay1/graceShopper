@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
 import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
-import { addToCart } from '../api/cartRequests';
+import { addToCart, getOrderHistory } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
 import { STORAGE_KEY } from '../constants/constants';
@@ -91,9 +91,10 @@ const Products = ({token}) => {
 
             {/* tests adding to cart with some set info */}
             <button onClick={async (e) => { 
-                const addedToCart = await addToCart(7, token)
-                console.log(addedToCart)
-            }}> add to cart test</button>
+                e.preventDefault();
+                const orderHistory = await getOrderHistory(token)
+                console.log(orderHistory)
+            }}> Order History Test</button>
 
 
             {
