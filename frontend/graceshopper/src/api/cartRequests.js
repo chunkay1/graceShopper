@@ -65,6 +65,28 @@ export async function getUserCart(token) {
     }
 }
 
+export async function getOrderHistory(token) {
+    try {
+        const response = await fetch(
+            `${BASEURL}/carts/userCart/orderHistory`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+            }
+        )
+        const json = await response.json();
+
+        console.log(`your order history:`, json);
+
+        return json
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function checkoutCart(cartId, token) {
     try {
         const response = await fetch(

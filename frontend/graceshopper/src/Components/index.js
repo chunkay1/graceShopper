@@ -9,7 +9,7 @@ export { default as Checkout } from './Checkout';
 export { default as OrderConfirmation } from './OrderConfirmation';
 export { default as Products } from './Products';
 
-export { default as AddProducts } from './AddProducts';
+export { default as AddProducts } from './AddProducts.js';
 export { default as LandingPage} from './LandingPage'
 export { default as Banner } from './Banner'
 export { default as SingleProduct } from './SingleProduct'
