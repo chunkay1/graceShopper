@@ -52,6 +52,32 @@ async function getItemById ({itemId}) {
     }
 }
 
+async function updateInventory (newInventory, itemId) {
+
+    try {
+        console.log('hit updateInventory DB method')
+        console.log(typeof(newInventory), typeof(itemId))
+        console.log(`newInventory is:`, newInventory, ' itemId is ', itemId)
+        const { rows } = await client.query(
+            `
+              UPDATE items
+              SET inventory = $1
+              WHERE id = $2
+              RETURNING *;
+            `,
+            [newInventory, itemId]
+        );
+        console.log('maybe?')
+        
+        const updatedInventory = rows;
+
+        console.log('updated inventory item is:', updatedInventory);
+
+    } catch (error) {
+        throw error   
+    }
+}
+
 async function getItemsByCategory ({ categoryId }) {
     try {
         const _items = await getAllItems ()
@@ -75,5 +101,6 @@ module.exports = {
     adminCreateItem,
     getAllItems,
     getItemById,
+    updateInventory,
     getItemsByCategory
 }

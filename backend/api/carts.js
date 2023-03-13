@@ -19,6 +19,8 @@ const {
     checkoutCart
 } = require("../db/carts");
 
+const {updateInventory} = require("../db/items")
+
 // GET /api/carts get all carts as administrator
 cartsRouter.get("/", isAdministrator, async (req, res) => {
   try {
@@ -68,7 +70,7 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
       const cart = await getCartByUserId(userId);
       // console.log('cart is:', cart)
       const withItems = await getCartAndItemDetails(cart)
-      // console.log('withItems is:', withItems)
+      console.log('withItems is:', withItems)
       if (withItems) {
         res.send(withItems);
       } 
@@ -152,17 +154,51 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
 });
 
 cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
+
+  const userId = req.user.id
+
   try {
+    const cart = await getCartByUserId(userId);
+    const withItems = await getCartAndItemDetails(cart).then((fullCart) =>{ 
+      let cartItems = fullCart.itemsInCart
+      cartItems.map(async ({inventory, quantity, itemsId}) => {
+        const newInventory = inventory - quantity;
+        console.log('new inventory is:', newInventory)
+        await updateInventory(newInventory, itemsId)
+        console.log('new inventory set')
+      })
+    })
+    
+    let cartItems = withItems.itemsInCart
+
+    console.log('cartItems are:', cartItems)
+    
+    
+
+
     const cartId = parseInt(req.params.cartId);
     console.log('backend api cartID is: ', cartId)
-    const cart = await checkoutCart(cartId)
-    console.log('return cart is', cart)
+    const checkoutCart = await checkoutCart(cartId)
+    console.log('return cart is', checkoutCart)
 
-    res.send(cart)
+    res.send(checkoutCart)
   } catch (error) {
-    throw Error('failed to checkout cart with cartId: ', cartId)
+    throw Error('failed to checkout cart with cartId: ')
   }
 })
+
+// cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
+//   try {
+//     const cartId = parseInt(req.params.cartId);
+//     console.log('backend api cartID is: ', cartId)
+//     const cart = await checkoutCart(cartId)
+//     console.log('return cart is', cart)
+
+//     res.send(cart)
+//   } catch (error) {
+//     throw Error('failed to checkout cart with cartId: ', cartId)
+//   }
+// })
 
 // DELETE /api/carts/:cartId
 cartsRouter.delete('/:cartId', isUser, async (req, res, next) => {
