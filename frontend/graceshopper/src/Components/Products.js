@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
 import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
+import { myProfile } from '../api/userRequests';
 import { addToCart, getOrderHistory } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
@@ -95,6 +96,13 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                 console.log(orderHistory)
             }}> Order History Test</button>
 
+            <button onClick={async (e) => { 
+                e.preventDefault();
+                const user = await myProfile(token)
+                console.log(user)
+            }}> Admin Test</button>
+
+
 
             {
                 singleProduct
@@ -165,10 +173,11 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                                                                 // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
                                                                 // console.log(test);
                                                                 // this prevents from going to single product view after clicking add to cart
+                                                                setSingleProduct(false);  
                                                                 const props = await getProductById(id);
                                                                 setItemProps(props)
                                                                 // console.log(itemProps)
-                                                                setSingleProduct(false);      
+                                                                     
                                                                 // const { [id] : userId } = jwt.verify(token)
                                                                 // console.log("this is the id", id, "this is the token", token)
                                                                 const something = await addToCart ( id, token )

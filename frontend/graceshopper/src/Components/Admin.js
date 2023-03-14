@@ -12,7 +12,7 @@ import AddProducts from "./AddProducts";
 // import SingleProduct from './SingleProduct';
 // const jwt = require('jsonwebtoken')
 
-const Admin = async ({token,category,setCategory,products,setProducts,itemProps,setItemProps,singleProduct,setSingleProduct }) => {
+const Admin = ({token,category,setCategory,products,setProducts,itemProps,setItemProps,singleProduct,setSingleProduct }) => {
    
     useEffect(() => {
         const getProductsByCategoryAsync = async () => {
@@ -38,7 +38,7 @@ const Admin = async ({token,category,setCategory,products,setProducts,itemProps,
     } 
 
     // calling the AdminUser function
-    const admin = await myProfile();
+    // const admin = await myProfile();
 
     const getItemProps = (brand, category, id, name, price, size) => {
 
@@ -63,13 +63,15 @@ const Admin = async ({token,category,setCategory,products,setProducts,itemProps,
             <h1>Products</h1>
 
             {/* checking if user is admin, then show the add products button */}
-            {admin ? 
+            {/* {admin ? 
+
             <button onClick={(e) => { 
                 e.preventDefault();
                 
                 <AddProducts products={products} setProducts={setProducts} token={token} />
 
-            }}>Add Products</button> : null}
+            }}>Add Products</button> 
+            : null} */}
             
             <button onClick={(e) => { 
                 window.location.reload();
