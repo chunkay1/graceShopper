@@ -15,27 +15,8 @@ async function attachItemsToCart(cart) {
   return cart
 }
 
-//alternate way to try this
-// async function attachItemsToCart(cart) {
-
-//   const { rows: itemInCart } = await client.query(`
-//     SELECT items.*,
-//     itemsInCart."itemsId",
-//     itemsInCart.."cartId",
-//     FROM items
-//     JOIN intemsInCart
-//     ON itemsInCart."itemsId" = items.id
-//     WHERE itemsInCart."cartId"=$1;
-//    `, [cart.id])
-
-//   cart.itemsInCart = itemsInCart
-
-//   return cart
-// }
-
-//the below returns a complete object with cart and item details for ease of use on the frontend. 
 async function getCartAndItemDetails(cart) {
-  // console.log('gibberish')
+
   const { rows: itemInCart } = await client.query(`
      SELECT *
      FROM items
@@ -45,8 +26,6 @@ async function getCartAndItemDetails(cart) {
     `, [cart.id])
 
   cart.itemsInCart = itemInCart
-  
-  // console.log('cart and item details are', cart)
 
   return cart
 }
@@ -62,10 +41,8 @@ async function createCart( userId ) {
         [userId]
     );
 
-    console.log("This is cart in createCart", cart);
     return cart;
   } catch (error) {
-    console.log(error, "error creating cart");
     throw error;
   }
 }

@@ -68,12 +68,6 @@ export async function addProducts(token,props,products,setProducts,itemProps,set
 
     const body = JSON.stringify({
         itemProps
-        // name: props.name,
-        // category: props.password,
-        // brand: props.brand,
-        // size: props.size,
-        // price: props.price,
-        // description: props.description,
     });
 
     try {
