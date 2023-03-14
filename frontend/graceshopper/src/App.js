@@ -25,6 +25,7 @@ const App = () => {
   //moved upstream from products.js so that it can be set and linked to from the homepage carousels
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
@@ -58,6 +59,7 @@ const App = () => {
             <Home 
               setSingleProduct = {setSingleProduct}
               setItemProps = {setItemProps}
+              setCategory = {setCategory}
             />
           </>
           } 
@@ -99,6 +101,8 @@ const App = () => {
             setItemProps = {setItemProps}
             singleProduct = {singleProduct}
             setSingleProduct = {setSingleProduct}
+            category = {category}
+            setCategory = {setCategory}
             />
           </>
           } 
