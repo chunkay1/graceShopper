@@ -53,7 +53,7 @@ async function createTables() {
     size VARCHAR(125) NOT NULL,
     price VARCHAR(125) NOT NULL,
     image VARCHAR(125),
-    description VARCHAR(500),
+    description VARCHAR(600),
     inventory INTEGER
   );
 
@@ -369,7 +369,93 @@ async function createInitialItems() {
         image: "jacket3.png",
         description: "Our outdoor light jacket for sale is the perfect choice for mild weather and outdoor activities. With a lightweight and breathable design, this jacket is made from durable and weather-resistant fabric, ensuring long-lasting use. The adjustable hood and cuffs provide added protection from the elements, while the multiple pockets offer convenient storage for your essentials.",
         inventory: 200
+      },
+      //skis
+
+      {
+        name: "Nordica Ski Boots",
+        category: "Skis",
+        brand:"The Ascent",
+        size:"Medium",
+        price: "329.99",
+        image: "skiBoots1.png",
+        description: "Introducing a pair of high-quality ski boots designed for both intermediate and advanced skiers. These boots feature a stiff flex and a narrow last, providing excellent precision and control on the slopes. The customizable liner ensures a comfortable fit for all-day skiing adventures.",
+        inventory: 200
+      },
+      {
+        name: "Cruise Ski Boots",
+        category: "Skis",
+        brand:"Nordica",
+        size:"Medium",
+        price: "429.99",
+        image: "skiboots2.png",
+        description: "These ski boots are designed for advanced skiers looking for precise control and maximum performance on the slopes. They feature a stiff flex rating and a narrow last width for optimal power transfer, as well as a heat-moldable liner for a custom fit. The buckles are micro-adjustable to ensure a secure and comfortable fit, and the boots are compatible with both alpine and touring bindings.",
+        inventory: 200
+      },
+      {
+        name: "Kore 93",
+        category: "Skis",
+        brand:"The Ascent",
+        size:"Any",
+        price: "629.99",
+        image: "skis1.png",
+        description: "These skis are built for intermediate to advanced skiers who want versatility and ease of use on the mountain. They have a medium width underfoot for a balanced blend of stability and agility, and a rocker-camber-rocker profile that enhances turn initiation and provides smooth edge-to-edge transitions. The skis are constructed with a lightweight wood core and reinforced with fiberglass for durability and responsiveness, making them suitable for all-mountain skiing.",
+        inventory: 200
+      },
+      {
+        name: "Slender Atomic Skis",
+        category: "Skis",
+        brand:"Nordica",
+        size:"Any",
+        price: "529.99",
+        image: "skis2.png",
+        description: "These skis are built for intermediate to advanced skiers looking for a versatile all-mountain experience. They have a medium width waist and moderate rocker for easy turn initiation and stability at high speeds, while the camber underfoot provides edge hold and pop. The wood core is reinforced with carbon fiber and fiberglass for a lively and responsive feel, and the top sheet features a stylish design that looks great on the mountain.",
+        inventory: 200
+      },
+
+      //snowboards
+      {
+        name: "Downslider",
+        category: "Snowboards",
+        brand:"BURTON",
+        size:"Any",
+        price: "335.99",
+        image: "snowboard1.png",
+        description: "This snowboard is perfect for intermediate to advanced riders looking for a versatile all-mountain board. It features a medium flex rating and a directional twin shape with a setback stance, providing a balance between freestyle and freeride performance. The camber underfoot and rocker in the tip and tail provide a stable and playful ride, while the sintered base ensures optimal speed and durability. The board's graphics are eye-catching and unique, making it stand out on the mountain.",
+        inventory: 200
+      },
+      {
+        name: "Ripcord",
+        category: "Snowboards",
+        brand:"BURTON",
+        size:"Any",
+        price: "479.99",
+        image: "snowboard2.png",
+        description: "These snowboards are perfect for intermediate to advanced riders who want a versatile and responsive board for all-mountain riding. They have a medium flex rating and a directional shape with a setback stance for improved float in powder and stability at high speeds. The base is made of durable sintered material for maximum speed and long-lasting performance, while the top sheet features eye-catching graphics that look great on the slopes. The boards come in a variety of sizes to accommodate different rider heights and weights.",
+        inventory: 200
+      },
+      {
+        name: "Pulse X",
+        category: "Snowboards",
+        brand:"BURTON",
+        size:"Any",
+        price: "355.99",
+        image: "snowboard3.png",
+        description: "These snowboards are designed for intermediate to advanced riders who want a high-performance experience on the mountain. They have a medium flex and a hybrid camber profile, which combines camber underfoot with rocker in the tip and tail for a responsive and forgiving ride. The wood core is reinforced with carbon fiber and Kevlar for strength and pop, and the base is made of high-quality sintered material for speed and durability. The graphics are eye-catching and stylish, making these boards stand out on the slopes.",
+        inventory: 200
+      },
+      {
+        name: "Judge 54",
+        category: "Snowboards",
+        brand:"BURTON",
+        size:"Any",
+        price: "175.99",
+        image: "snowboardboots1.png",
+        description: "These snowboard boots are designed for intermediate to advanced riders who want a comfortable and responsive boot for all-mountain riding. They have a medium flex rating and a heat-moldable liner for a custom fit, as well as a dual-zone BOA lacing system for easy and precise adjustments on the go. The outsole is made of durable rubber for good grip on snow and ice, while the inner sole features shock-absorbing materials for a smoother ride. The boots are compatible with most snowboard bindings and come in a variety of sizes to fit different foot shapes.",
+        inventory: 200
       }
+
+
 
 
     ]

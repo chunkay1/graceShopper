@@ -11,21 +11,10 @@ import { STORAGE_KEY } from '../constants/constants';
 
 
 
-const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemProps}) => {
-    const [category, setCategory] = useState('');
+const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemProps, category, setCategory}) => {
+    // const [category, setCategory] = useState('');
     const [products, setProducts] = useState([]);
    
-    
-    useEffect(() => {
-        const getProductsByCategoryAsync = async () => {
-            let allProducts = await getAllItems();
-            let categoryItems = allProducts.filter(product => product.category === category)
-            // console.log(categoryItems)
-            setProducts(categoryItems);
-        }
-        getProductsByCategoryAsync();
-    }, [category])
-
     useEffect(() => {
         const getAllProductsAsync = async () => {
             let allProducts = await getAllItems();
@@ -34,6 +23,20 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
         }
         getAllProductsAsync();
     }, [])
+    
+    useEffect(() => {
+        const getProductsByCategoryAsync = async () => {
+            // let allProducts = await getAllItems();
+            // let categoryItems = allProducts.filter(product => product.category === category)
+            // console.log(categoryItems)
+            console.log("category in products.js", category)
+            await getProductsByCategory(category).then ((filteredProducts) =>{
+                setProducts(filteredProducts);
+            })
+            // setProducts(categoryItems);
+        }
+        getProductsByCategoryAsync();
+    }, [category])
     
     let getCategoryItems = async (category)=> {
         await getProductsByCategory(category);
@@ -88,6 +91,18 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                 getCategoryItems('Firepits and Grills');
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
+
+            <button onClick={(e) => { 
+                // setTargetValue(setCategory)
+                getCategoryItems('Snowboards');
+                setCategory('Snowboards');
+            }}>Snowboards</button>
+
+            <button onClick={(e) => { 
+                // setTargetValue(setCategory)
+                getCategoryItems('Skis');
+                setCategory('Skis');
+            }}>Skis</button> 
 
             {/* tests adding to cart with some set info */}
             <button onClick={async (e) => { 

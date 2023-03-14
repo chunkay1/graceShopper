@@ -8,7 +8,7 @@ import { categories } from '../constants/constants';
 import { Link } from 'react-router-dom';
 
 
-const Home = ({ setItemProps, setSingleProduct }) => {
+const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
   //prevents the first card from rendering before allItems are set
   const [carouselRender, setCarouselRender] = useState(false)
   //measures the width of the first card for the carousel animation to move the proper amount
@@ -67,6 +67,7 @@ const Home = ({ setItemProps, setSingleProduct }) => {
   return (
     <>
       <div className={styles.homeDiv}>
+        <div className={styles.topBar}></div>
         <div className={styles.carouselBackground}>
           <h4 className={`headings ${styles.heading}`}>Top sellers, near you</h4>
           {/* <hr className = {styles.firstLine}></hr>
@@ -79,7 +80,6 @@ const Home = ({ setItemProps, setSingleProduct }) => {
                   <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
                     {/* <h4 className={styles.heading}>Top sellers near you</h4> */}
                     <Link onClick={() => {
-                      console.log("hello")
                       setItemProps(carouselItems[0])
                       setSingleProduct(true)
                     }} to="/products">
@@ -108,7 +108,6 @@ const Home = ({ setItemProps, setSingleProduct }) => {
                         className={styles.productCard}
                         key={index}>
                         <Link onClick={() => {
-                          console.log("hello")
                           setItemProps(carouselItems[index])
                           setSingleProduct(true)
                         }} to="/products">
@@ -169,27 +168,38 @@ const Home = ({ setItemProps, setSingleProduct }) => {
           <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
             <div className={`carousel-inner ${styles.carousel2}`} id='carousel-inner2'>
               <div class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-                <div className={styles.description}>
-                  <span className={styles.cardValue2}>
-                    {categories[0].category}
-                  </span>
-                </div>
+                <Link onClick={() => {
+                  setCategory(categories[0].category)
+                  setSingleProduct(false)
+                }} to="/products">
+                  <div className={styles.description}>
+                    <span className={styles.cardValue2}>
+                      {categories[0].category}
+                    </span>
+                  </div>
+                </Link>
 
                 <img src={categories[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
               </div>
 
               {
-                categories.map(({ category, image }, index) => {
+                categories.map(({ category, image, siteCategory }, index) => {
                   if (index > 0) {
                     return (
                       <div class='carousel-item'
                         className={styles.productCard}
                         key={index}>
-                        <div className={styles.description}>
-                          <span className={styles.cardValue2}>
-                            {category}
-                          </span>
-                        </div>
+                        <Link onClick={() => {
+                          setCategory(siteCategory)
+                          setSingleProduct(false)
+                          console.log(siteCategory)
+                        }} to="/products">
+                          <div className={styles.description}>
+                            <span className={styles.cardValue2}>
+                              {category}
+                            </span>
+                          </div>
+                        </Link>
                         <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
                       </div>
                     )
@@ -216,8 +226,8 @@ const Home = ({ setItemProps, setSingleProduct }) => {
                 setScrollPosition2(width)
               }
               //creates a custom bounceback effect for the right side
-              else if (scrollPosition2 === width * 2) {
-                setScrollPosition2(width * 1)
+              else if (scrollPosition2 === width * 3) {
+                setScrollPosition2(width * 2)
               }
               else {
                 setScrollPosition2(scrollPosition2 + width)
@@ -229,12 +239,43 @@ const Home = ({ setItemProps, setSingleProduct }) => {
           </div>
         </div>
 
+        {/* transparent divider and mountain background img*/}
+        <div className={styles.divider}></div>
         <span className={styles.backgroundImg}></span>
-        {/* <span className={styles.backgroundImg2}></span> */}
-        {/* <div className={styles.backgroundImg3}></div> */}
+
+        {/* about me card deck */}
+        <div className={`card-deck ${styles.cardDeck}`}>
+          <div className={`card ${styles.aboutCards}`}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Aboutheadshot.jpg"} alt="Card image cap" />
+            <div className={`card-body ${styles.aboutBody}`}>
+              <h5 className={`card-title ${styles.aboutName}`}>Samuel Banister</h5>
+              <h6 className={styles.aboutTitle}>Fullstack Developer</h6>
+              <p className={`card-text ${styles.aboutSummary}`}>Sam brings the passion to fullstack developments and aims to build the coolest, craziest things possible. His proudest accomplishments on this project are creating the landing page, helping to spearhead the backend database and api, and building this modern homepage you're browsing now.</p>
+            </div>
+          </div>
+          <div className={`card ${styles.aboutCards}`}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+            <div className={`card-body ${styles.aboutBody}`}>
+              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
+              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+          <div className={`card ${styles.aboutCards}`}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+            <div className={`card-body ${styles.aboutBody}`}>
+              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
+              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+          <div className={`card ${styles.aboutCards}`}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+            <div className={`card-body ${styles.aboutBody}`}>
+              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
+              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* <div className={styles.backgroundImg}></div> */}
-      {/* <div className={styles.backgroundImg2}></div> */}
     </>
 
 
