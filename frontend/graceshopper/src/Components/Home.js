@@ -5,9 +5,10 @@ import styles from '../styles/Home.module.css'
 import $ from 'jquery'
 import useMeasure from 'react-use-measure'
 import { categories } from '../constants/constants';
+import { Link } from 'react-router-dom';
 
 
-const Home = () => {
+const Home = ({ setItemProps, setSingleProduct }) => {
   //prevents the first card from rendering before allItems are set
   const [carouselRender, setCarouselRender] = useState(false)
   //measures the width of the first card for the carousel animation to move the proper amount
@@ -65,158 +66,175 @@ const Home = () => {
 
   return (
     <>
-    <div className={styles.homeDiv}>
-      <div className={styles.carouselBackground}>
-      <h4 className={`headings ${styles.heading}`}>Top sellers, near you</h4>
-      {/* <hr className = {styles.firstLine}></hr>
+      <div className={styles.homeDiv}>
+        <div className={styles.carouselBackground}>
+          <h4 className={`headings ${styles.heading}`}>Top sellers, near you</h4>
+          {/* <hr className = {styles.firstLine}></hr>
       <hr className= {styles.secondLine}></hr> */}
-        <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
-          <div id = 'carousel-inner1' className={`carousel-inner ${styles.carousel}`}>
-            {
-              carouselRender && carouselItems.length &&
-              <>
-                <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-                  {/* <h4 className={styles.heading}>Top sellers near you</h4> */}
-                  <div className={styles.description}>
-                    <span className={styles.cardValue}>
-                      <span className={styles.brand}> {carouselItems[0].brand} </span>
-                      <span className={styles.name}>{carouselItems[0].name}</span>
-                      <span className={styles.price}>${carouselItems[0].price}</span>
-                    </span>
-                    {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-                    {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
-                  </div>
-                  <img src={carouselItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-                </div>
-
-              </>
-            }
-            {carouselRender &&
-              carouselItems.map(({ id, image, name, price, size, category, brand }, index) => {
-                if (index > 1) {
-                  return (
-                    <div class='carousel-item'
-                      className={styles.productCard}
-                      key={index}>
+          <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
+            <div id='carousel-inner1' className={`carousel-inner ${styles.carousel}`}>
+              {
+                carouselRender && carouselItems.length &&
+                <>
+                  <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+                    {/* <h4 className={styles.heading}>Top sellers near you</h4> */}
+                    <Link onClick={() => {
+                      console.log("hello")
+                      setItemProps(carouselItems[0])
+                      setSingleProduct(true)
+                    }} to="/products">
                       <div className={styles.description}>
                         <span className={styles.cardValue}>
-                          <span className={styles.brand}> {brand} </span>
-                          <span className={styles.name}>{name}</span>
-                          <span className={styles.price}>${price}</span>
+                          <span className={styles.brand}> {carouselItems[0].brand} </span>
+                          <span className={styles.name}>{carouselItems[0].name}</span>
+                          <span className={styles.price}>${carouselItems[0].price}</span>
                         </span>
+
                         {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
                         {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
                       </div>
-                      <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-                    </div>
-                  )
-                }
-              }
-              )
-            }
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
-            //creates a custom bounceback effect if you hit prev on left side
-            if (scrollPosition === 0) {
-              setScrollPosition(width)
-            }
-            else {
-              setScrollPosition(scrollPosition - width)
-            }
+                    </Link>
 
-          }}>
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
-            if (scrollPosition === 0) {
-              setScrollPosition(width)
-            }
-            //creates a custom bounceback effect if you hit next on the right side at the end of the carousel
-            else if (scrollPosition === (carouselItems.length - 4) * width) {
-              setScrollPosition((carouselItems.length - 5) * width)
-            }
-            else {
-              setScrollPosition(scrollPosition + width)
-            }
-          }}>
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+                    <img src={carouselItems[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
 
-      {/* beginning of second Carousel */}
-
-      <div className={styles.carouselBackground2}>
-        <h4 className={`headings ${styles.heading}`}>Explore by category</h4>
-        <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
-          <div className={`carousel-inner ${styles.carousel2}`} id = 'carousel-inner2'>
-            <div class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-              <div className={styles.description}>
-                <span className={styles.cardValue2}>
-                  {categories[0].category}
-                </span>
-              </div>
-              <img src={categories[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
-            </div>
-
-            {
-              categories.map(({ category, image }, index) => {
-                if (index > 0) {
-                return (
-                  <div class='carousel-item'
-                    className={styles.productCard}
-                    key={index}>
-                    <div className={styles.description}>
-                      <span className={styles.cardValue2}>
-                        {category}
-                      </span>
-                    </div>
-                    <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
                   </div>
-                )
-                }
+                </>
               }
-              )
-            }
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
-            if (scrollPosition2 === 0) {
-              setScrollPosition2(width)
-            }
-            else {
-              setScrollPosition2(scrollPosition2 - width)
-            }
+              {carouselRender &&
+                carouselItems.map(({ id, image, name, price, size, category, brand }, index) => {
+                  if (index > 1) {
+                    return (
+                      <div class='carousel-item'
+                        className={styles.productCard}
+                        key={index}>
+                        <Link onClick={() => {
+                          console.log("hello")
+                          setItemProps(carouselItems[index])
+                          setSingleProduct(true)
+                        }} to="/products">
+                          <div className={styles.description}>
+                            <span className={styles.cardValue}>
+                              <span className={styles.brand}> {brand} </span>
+                              <span className={styles.name}>{name}</span>
+                              <span className={styles.price}>${price}</span>
+                            </span>
+                            {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
+                            {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
+                          </div>
+                        </Link>
+                        <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                      </div>
+                    )
+                  }
+                }
+                )
+              }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
+              //creates a custom bounceback effect if you hit prev on left side
+              if (scrollPosition === 0) {
+                setScrollPosition(width)
+              }
+              else {
+                setScrollPosition(scrollPosition - width)
+              }
 
-          }}>
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
-            //creates a custom bounceback effect if you hit prev on left side
-            if (scrollPosition2 === 0) {
-              setScrollPosition2(width)
-            }
-            //creates a custom bounceback effect for the right side
-            else if (scrollPosition2 === width * 2) {
-              setScrollPosition2(width * 1)
-            }
-            else {
-              setScrollPosition2(scrollPosition2 + width)
-            }
-          }}>
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+            }}>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
+              if (scrollPosition === 0) {
+                setScrollPosition(width)
+              }
+              //creates a custom bounceback effect if you hit next on the right side at the end of the carousel
+              else if (scrollPosition === (carouselItems.length - 4) * width) {
+                setScrollPosition((carouselItems.length - 5) * width)
+              }
+              else {
+                setScrollPosition(scrollPosition + width)
+              }
+            }}>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
+
+        {/* beginning of second Carousel */}
+        <div className={styles.saleBanner}></div>
+
+        <div className={styles.carouselBackground2}>
+          <h4 className={`headings ${styles.heading}`}>Explore by category</h4>
+          <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
+            <div className={`carousel-inner ${styles.carousel2}`} id='carousel-inner2'>
+              <div class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
+                <div className={styles.description}>
+                  <span className={styles.cardValue2}>
+                    {categories[0].category}
+                  </span>
+                </div>
+
+                <img src={categories[0].image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+              </div>
+
+              {
+                categories.map(({ category, image }, index) => {
+                  if (index > 0) {
+                    return (
+                      <div class='carousel-item'
+                        className={styles.productCard}
+                        key={index}>
+                        <div className={styles.description}>
+                          <span className={styles.cardValue2}>
+                            {category}
+                          </span>
+                        </div>
+                        <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
+                      </div>
+                    )
+                  }
+                }
+                )
+              }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
+              if (scrollPosition2 === 0) {
+                setScrollPosition2(width)
+              }
+              else {
+                setScrollPosition2(scrollPosition2 - width)
+              }
+
+            }}>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
+              //creates a custom bounceback effect if you hit prev on left side
+              if (scrollPosition2 === 0) {
+                setScrollPosition2(width)
+              }
+              //creates a custom bounceback effect for the right side
+              else if (scrollPosition2 === width * 2) {
+                setScrollPosition2(width * 1)
+              }
+              else {
+                setScrollPosition2(scrollPosition2 + width)
+              }
+            }}>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+        <span className={styles.backgroundImg}></span>
+        {/* <span className={styles.backgroundImg2}></span> */}
+        {/* <div className={styles.backgroundImg3}></div> */}
       </div>
-      <div className={styles.backgroundImg}></div>
+      {/* <div className={styles.backgroundImg}></div> */}
       {/* <div className={styles.backgroundImg2}></div> */}
-      {/* <div className={styles.backgroundImg3}></div> */}
-    </div>
-    {/* <div className={styles.backgroundImg}></div> */}
-    {/* <div className={styles.backgroundImg2}></div> */}
     </>
 
 

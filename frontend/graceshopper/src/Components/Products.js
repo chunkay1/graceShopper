@@ -10,11 +10,10 @@ import { STORAGE_KEY } from '../constants/constants';
 
 
 
-const Products = ({token}) => {
+const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemProps}) => {
     const [category, setCategory] = useState('');
-    const [itemProps, setItemProps] = useState({});
     const [products, setProducts] = useState([]);
-    const [singleProduct, setSingleProduct] = useState(false);
+   
     
     useEffect(() => {
         const getProductsByCategoryAsync = async () => {
