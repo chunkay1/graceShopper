@@ -1,5 +1,5 @@
 import styles from '../styles/LogInForm.module.css'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { setTargetValue } from '../constants/constants';
 import { logIn } from '../api/userRequests';
 

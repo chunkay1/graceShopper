@@ -99,11 +99,15 @@ export async function myProfile(token) {
         )
         const json = await response.json();
         // console.log('user info is:', json);
+
+        // const id = json.user.id;
+        const admin = json.user.isAdmin;
+
         // const user = json.user
         // const id = json.user.id;
         const admin = json.user
         // console.log('user ID is:', id)
-        // console.log( admin)
+        console.log( admin)
 
         return admin
         
