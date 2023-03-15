@@ -63,7 +63,7 @@ h3 {
 .buttonDiv{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 5px;
 }
 
