@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import styles from '../styles/Products.module.css'
+// import styles from '../styles/Products.module.css'
+import styles from '../styles/SingleProduct.module.css'
 import { getUserCart, deleteItemFromCart, updateCartQuantity} from '../api/cartRequests';
 
 function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToCart, getProductById}) {
@@ -34,16 +35,6 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
             return null
           })
     }, [itemsInCart, id])
-
-
-    //   const itemFound = itemsInCart.filter((itemInCart) => {
-        
-    //     if (itemInCart.itemsId === id) {
-    //         return itemInCart.quantity
-    //     }
-
-    //     return null
-    //   })
     
     return(
 
@@ -107,76 +98,67 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                 Return to Products
                             </button>
 
-                            {/* <button
-                                className={styles.cartButton}
-                                onClick={async (event) => {
-                                    event.preventDefault();
-                                    console.log('added to cart');
-                                    let test = await addToCart(id, token);
-                                    console.log('single product added to cart', test);
-                                    setCartState(true)
-                                }}>
-                                Add to Cart!
-                            </button> */}
-
                             {
                                 cartState && cartItemQuantity >= 1 
 
                                 ?
+                                <div className={styles.cartControl}>
 
-                                <small class="text-muted">
-                                    <i 
-                                        className={`bi bi-trash3 ${styles.deleteIcon}`}
-                                        onClick={async (e) => {
-                                        e.preventDefault();
-                                        // console.log('delete item!')
-                                        await deleteItemFromCart(id, cartID, token)
-                                        setCartChange(true)
-                                        setCartState(false)
-                                        }}>
-                                    </i>
-                                    
-                                    <div className={styles.quantity}>
-                                        
-                                        { cartItemQuantity <= 1
-                                        ?
-                                            null
-                                        :
-                                            <i 
-                                            class="bi bi-dash"
-                                            onClick={async (e) => {
-                                            
-                                            e.preventDefault();
-                                            let decrementQuantity = cartItemQuantity - 1;
-                                            console.log('itemId is', id)
-                                            console.log('arguments are', id, cartID, decrementQuantity)
-                                            let updatedCartItem = await updateCartQuantity(id, cartID, decrementQuantity, token)
-                                            setCartChange(true)
-                                            console.log('updated cart item is:', updatedCartItem)
-                                            }}></i>
-                                        }
-                                    
-                                        <p className={styles.count}>{cartItemQuantity}</p>
-
-                                        {cartItemQuantity < inventory ? 
+                                    <small className={`text-muted`}>
                                         <i 
-                                        class="bi bi-plus"
-                                        onClick={async (e) => {
+                                            className={`bi bi-trash3 ${styles.deleteIcon}`}
+                                            onClick={async (e) => {
                                             e.preventDefault();
-                                            let incrementQuantity = cartItemQuantity + 1;
-                                            let updatedCartItem = await updateCartQuantity(id, cartID, incrementQuantity, token)
+                                            // console.log('delete item!')
+                                            await deleteItemFromCart(id, cartID, token)
                                             setCartChange(true)
-                                            console.log('updated cart item is:', updatedCartItem)
-                                        }}></i>
+                                            setCartState(false)
+                                            }}>
+                                        </i>
+                                        
+                                        <div className={styles.quantityControl}>
+                                            
+                                            { cartItemQuantity <= 1
+                                            ?
+                                                null
+                                            :
+                                                <i 
+                                                class="bi bi-dash"
+                                                onClick={async (e) => {
+                                                
+                                                e.preventDefault();
+                                                let decrementQuantity = cartItemQuantity - 1;
+                                                console.log('itemId is', id)
+                                                console.log('arguments are', id, cartID, decrementQuantity)
+                                                let updatedCartItem = await updateCartQuantity(id, cartID, decrementQuantity, token)
+                                                setCartChange(true)
+                                                console.log('updated cart item is:', updatedCartItem)
+                                                }}></i>
+                                            }
+                                        
+                                            <p className={styles.count}>{cartItemQuantity}</p>
 
-                                        :
+                                            {cartItemQuantity < inventory ? 
+                                            <i 
+                                            class="bi bi-plus"
+                                            onClick={async (e) => {
+                                                e.preventDefault();
+                                                let incrementQuantity = cartItemQuantity + 1;
+                                                let updatedCartItem = await updateCartQuantity(id, cartID, incrementQuantity, token)
+                                                setCartChange(true)
+                                                console.log('updated cart item is:', updatedCartItem)
+                                            }}></i>
 
-                                         null
-                                        }
-                            
-                                    </div>
+                                            :
 
-                                </small>
+                                            null
+                                            }
+                                
+                                        </div>
+
+                                    </small>
+                                </div>
+
 
                                 :
                                 <button
