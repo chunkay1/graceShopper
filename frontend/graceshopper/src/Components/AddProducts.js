@@ -13,6 +13,7 @@ const AddProducts = ({ token,products,setProducts }) => {
   const [size,setSize] = useState([]);
 
   return (
+    <>
     <form
       id="add-product"
       onSubmit={async (e) => {
@@ -103,6 +104,7 @@ const AddProducts = ({ token,products,setProducts }) => {
 
       <button>Submit</button>
     </form>
+    </>
   );
 };
 
