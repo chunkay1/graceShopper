@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
 import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
+import { myProfile } from '../api/userRequests';
 import { addToCart, getOrderHistory } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
@@ -13,6 +14,7 @@ import { STORAGE_KEY } from '../constants/constants';
 const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemProps, category, setCategory}) => {
     // const [category, setCategory] = useState('');
     const [products, setProducts] = useState([]);
+    const [cartState, setCartState] = useState(false)
    
     useEffect(() => {
         const getAllProductsAsync = async () => {
@@ -110,6 +112,17 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                 console.log(orderHistory)
             }}> Order History Test</button>
 
+            {/* <button onClick={async (e) => { 
+                e.preventDefault();
+                const user = await myProfile(token)
+                console.log(user)
+            }}> Admin Test</button> */}
+
+            <button onClick={async (e) => { 
+                e.preventDefault();
+                setCartState(false)
+            }}> Cart State Test</button>
+
 
             {
                 singleProduct
@@ -146,7 +159,7 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                                                 // console.log('price is,', price);
                                                 const props = await getProductById(id);
                                                 setItemProps(props)
-                                                // console.log(itemProps)
+                                                console.log(itemProps)
                                                 setSingleProduct(true);
         
                                             }}>
@@ -169,6 +182,7 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                                                 
                                                 { inventory < 1 ?  <h5>Sold Out!</h5> : null}
 
+                                                
                                                 { (inventory >= 1) && token ? 
                                                 
                                                     <div className={styles.buttonDiv}> 
@@ -176,37 +190,20 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                                                             className={styles.cartButton}
                                                             onClick={async (event) => {
                                                                 event.preventDefault();
-                                                                // console.log('added to cart')
-                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-                                                                // console.log(test);
-                                                                // this prevents from going to single product view after clicking add to cart
-                                                                const props = await getProductById(id);
-                                                                setItemProps(props)
-                                                                // console.log(itemProps)
-                                                                setSingleProduct(false);      
-                                                                // const { [id] : userId } = jwt.verify(token)
-                                                                // console.log("this is the id", id, "this is the token", token)
+                                                                event.stopPropagation();
+                                                                
                                                                 const something = await addToCart ( id, token )
                                                                 console.log("this is something", something)
-                                                                // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
-
-                                                                                                                
-                                                                // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                                //     console.log(result)
-                                                                //     addToCart(result);
-                                                                // }).catch((err) => {
-                                                                //     console.log(err)
-                                                                // });
-                                                            }}>
+                                                                setCartState(true)
+                                                                }}>
                                                             Add to Cart!
                                                         </button>
                                                     </div>
 
-                                                :
+                                                : 
 
                                                     null
                                                 }
-
                                                 
                                             </div>
         

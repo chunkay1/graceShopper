@@ -75,137 +75,135 @@ const Cart = ({ token }) => {
         
       </div>
 
-      <div class="row g-5">
+      <div className={`col md-5 justify-content-center`}>
+        <div class="row justify-content-center">
 
-        <div class="col-md-5 col-lg-4 order-md-last">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-pill">{numberOfItems(itemsInCart)}</span>
-          </h4>
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span className={`text ${styles.cartLabel}`}>Your cart</span>
+              <span className={`badge rounded-pill ${styles.countBadge}`}>{numberOfItems(itemsInCart)}</span>
+            </h4>
 
-          <ul class="list-group mb-3">
+            <ul class="list-group mb-3">
 
-            {
-              itemsInCart.map(({brand, name, size, price, itemsId, id, quantity, inventory}) => {
-                return(
-                  <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div>
-                      <h6 class="my-0">{brand}</h6>
-                      <small class="text-muted">{name}, Size: {size}</small>
-                    </div>
-                    
-                    <div className={styles.priceAndIcons}>
-                      <span class="text-muted">{price}</span>
-                      <small class="text-muted">
-                        <i 
-                          className={`bi bi-trash3 ${styles.deleteIcon}`}
-                          onClick={async (e) => {
-                            e.preventDefault();
-                            // console.log('delete item!')
-                            let cart = await getUserCart(token)
-                            
-                            console.log('full cart is', cart)
-                            //full cart is an object
-                            // { 
-                            //   id: carts.id, 
-                            //   userId: carts.userId,
-                            //   purchased: false, 
-                            //   itemsInCart: [
-                            //     {brand: items.brand, 
-                            //     cartId: itemsInCart.cartId,
-                            //     category:  items.category,
-                            //     description: items.description,
-                            //     id: itemsInCart.id?
-                            //     image: items.image,
-                            //     inventory: items.inventory,
-                            //     itemsId: itemsInCart.itemsId,
-                            //     name: items.name,
-                            //     price: items.price,
-                            //     quantity: itemsInCart.quantity
-                            //     size: items.size}
-                            //   ]
-                            // }
+              {
+                itemsInCart.map(({brand, name, size, price, itemsId, id, quantity, inventory}) => {
+                  return(
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                      <div>
+                        <h6 class="my-0">{brand}</h6>
+                        <small class="text-muted">{name}, Size: {size}</small>
+                      </div>
+                      
+                      <div className={styles.priceAndIcons}>
+                        <span class="text-muted">{price}</span>
+                        <small class="text-muted">
+                          <i 
+                            className={`bi bi-trash3 ${styles.deleteIcon}`}
+                            onClick={async (e) => {
+                              e.preventDefault();
+                              // console.log('delete item!')
+                              let cart = await getUserCart(token)
+                              
+                              console.log('full cart is', cart)
+                              //full cart is an object
+                              // { 
+                              //   id: carts.id, 
+                              //   userId: carts.userId,
+                              //   purchased: false, 
+                              //   itemsInCart: [
+                              //     {brand: items.brand, 
+                              //     cartId: itemsInCart.cartId,
+                              //     category:  items.category,
+                              //     description: items.description,
+                              //     id: itemsInCart.id?
+                              //     image: items.image,
+                              //     inventory: items.inventory,
+                              //     itemsId: itemsInCart.itemsId,
+                              //     name: items.name,
+                              //     price: items.price,
+                              //     quantity: itemsInCart.quantity
+                              //     size: items.size}
+                              //   ]
+                              // }
 
-                            //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts.
-                            
-                            await deleteItemFromCart(itemsId, cartID, token)
-                            setCartChange(true)
-                          }}></i>
-                        
-                        <div className={styles.quantity}>
+                              //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts.
+                              
+                              await deleteItemFromCart(itemsId, cartID, token)
+                              setCartChange(true)
+                            }}></i>
                           
-                          { quantity <= 1
-                            ?
-                              null
-                            :
+                          <div className={styles.quantity}>
+                            
+                            { quantity <= 1
+                              ?
+                                null
+                              :
+                                <i 
+                                class="bi bi-dash"
+                                onClick={async (e) => {
+                                  //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
+                                  e.preventDefault();
+                                  let decrementQuantity = quantity - 1;
+                                  console.log('itemId is', itemsId)
+                                  console.log('arguments are', itemsId, cartID, decrementQuantity)
+                                  let updatedCartItem = await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
+                                  setCartChange(true)
+                                  console.log('updated cart item is:', updatedCartItem)
+                                }}></i>
+                            }
+                          
+                            <p className={styles.count}>{quantity}</p>
+
+                            {quantity < inventory ? 
                               <i 
-                              class="bi bi-dash"
+                              class="bi bi-plus"
                               onClick={async (e) => {
-                                //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
                                 e.preventDefault();
-                                let decrementQuantity = quantity - 1;
-                                console.log('itemId is', itemsId)
-                                console.log('arguments are', itemsId, cartID, decrementQuantity)
-                                let updatedCartItem = await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
+                                let incrementQuantity = quantity + 1;
+                                let updatedCartItem = await updateCartQuantity(itemsId, cartID, incrementQuantity, token)
                                 setCartChange(true)
                                 console.log('updated cart item is:', updatedCartItem)
                               }}></i>
-                          }
-                         
-                          <p className={styles.count}>{quantity}</p>
 
-                          {quantity < inventory ? 
-                            <i 
-                            class="bi bi-plus"
-                            onClick={async (e) => {
-                              e.preventDefault();
-                              let incrementQuantity = quantity + 1;
-                              let updatedCartItem = await updateCartQuantity(itemsId, cartID, incrementQuantity, token)
-                              setCartChange(true)
-                              console.log('updated cart item is:', updatedCartItem)
-                            }}></i>
+                              :
 
-                            :
+                              null
+                            }
+                            
+                          </div>
 
-                            null
-                          }
-                          
-                        </div>
+                          </small>
+                            
+                      </div>
+                    </li>
+                  )
+                })
+              }
 
-                        </small>
-                          
-                    </div>
-                  </li>
-                )
-              })
-            }
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong>{totalCartPrice(itemsInCart).toFixed(2)}</strong>
+              </li>
 
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>{totalCartPrice(itemsInCart).toFixed(2)}</strong>
-            </li>
+            </ul>
 
-          </ul>
+          </div>
 
         </div>
 
-        <div class="col-md-7 col-lg-8">
-          {/* <h4 class="mb-3">Billing address</h4> */}
-
-          {/* <form class="needs-validation" novalidate="">
+        <div class="row justify-content-center">
+          <div class="col-md-5 text-center">
             
-            <Link to={'/order-confirmation'}>
-              <button class="w-100 btn btn-primary btn-lg" type="submit">Submit Your Order</button>
-            </Link>
-          </form> */}
+            <button 
+              // className={`${styles.button}`}
+              className={`btn btn-primary btn-lg ${styles.button}`}
+              onClick={async (event) => {
+                event.preventDefault();
+                console.log(await checkoutCart(cartID, token))
+              }} >Checkout</button>
 
-          <button 
-            class="w-50 btn btn-primary btn-lg"
-            onClick={async (event) => {
-              event.preventDefault();
-              console.log(await checkoutCart(cartID, token))
-            }} >Proceed to Checkout</button>
-
+          </div>
         </div>
 
       </div>

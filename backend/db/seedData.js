@@ -42,7 +42,7 @@ async function createTables() {
     password varchar(125) NOT NULL,
     email varchar(125) UNIQUE NOT NULL,
     address varchar(125) NOT NULL,   
-    isAdmin boolean 
+    "isAdmin" boolean DEFAULT false
   );
 
   CREATE TABLE items (
