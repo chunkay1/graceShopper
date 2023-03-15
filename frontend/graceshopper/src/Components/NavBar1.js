@@ -12,7 +12,7 @@ function NavBar({ token }) {
 
                     <div className={styles.TitleandIcon}>
                         <a
-                            class="navbar-brand text-white"
+                            className={`navbar-brand text-white ${styles.title}`}
                             href="home">Hike & Seek</a>
                         <a
                             class="navbar-brand"
@@ -91,9 +91,9 @@ function NavBar({ token }) {
                                         class="nav-link text-white" href="products">Products
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li className={`nav-item`}>
                                     <a
-                                        class="nav-link text-white"
+                                        className={`nav-link text-white ${styles.cartIconLi}`}
                                         href="cart">
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>

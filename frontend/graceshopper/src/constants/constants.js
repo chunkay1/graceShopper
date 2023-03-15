@@ -18,6 +18,11 @@ export const categories = [
         siteCategory: 'Clothing'
     },
     {
+        category: 'Tents',
+        image: 'category-tents3.png',
+        siteCategory: 'Tents'
+    },
+    {
         category: 'Skiing',
         image: 'category-skiing3.png',
         siteCategory: 'Skis'
@@ -32,11 +37,6 @@ export const categories = [
         image: 'category-firepits-and-grills3.png',
         siteCategory: 'Firepits and Grills'
     },
-    {
-        category: 'Tents',
-        image: 'category-tents3.png',
-        siteCategory: 'Tents'
-    }
 ]
 
 export const STORAGE_KEY = 'replyToken';
