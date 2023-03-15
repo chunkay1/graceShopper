@@ -22,6 +22,11 @@ import { STORAGE_KEY } from './constants/constants';
 const App = () => {
   const [token, setToken] = useState('')
 
+  //moved upstream from products.js so that it can be set and linked to from the homepage carousels
+  const [singleProduct, setSingleProduct] = useState(false);
+  const [itemProps, setItemProps] = useState({});
+  const [category, setCategory] = useState('');
+
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 
@@ -51,7 +56,11 @@ const App = () => {
           <>
             <NavBar token={token}/>
             <Banner/>
-            <Home />
+            <Home 
+              setSingleProduct = {setSingleProduct}
+              setItemProps = {setItemProps}
+              setCategory = {setCategory}
+            />
           </>
           } 
         />
@@ -86,7 +95,15 @@ const App = () => {
         <Route path='/products' element={
           <>
             <NavBar token={token}/> 
-            <Products token={token}/>
+            <Products 
+            token={token}
+            itemProps = {itemProps}
+            setItemProps = {setItemProps}
+            singleProduct = {singleProduct}
+            setSingleProduct = {setSingleProduct}
+            category = {category}
+            setCategory = {setCategory}
+            />
           </>
           } 
         />
@@ -98,6 +115,7 @@ const App = () => {
           </>
           }
         />
+        
         <Route path='/add-products' element={
           <>
             <NavBar token={token}/> 

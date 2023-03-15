@@ -8,9 +8,20 @@ import { myProfile } from '../api/userRequests';
 import AddProducts from "./AddProducts";
 // const jwt = require('jsonwebtoken')
 
+
 const Admin = ({token,setProducts }) => {
 
     const [admin, setAdmin] = useState('');
+  
+    useEffect(() => {
+        const getProductsByCategoryAsync = async () => {
+            const allProducts = await getAllItems();
+            const categoryItems = allProducts.filter(product => product.category === category)
+            console.log(categoryItems)
+            setProducts(categoryItems);
+        }
+        getProductsByCategoryAsync();
+    }, [category,setProducts])
 
     useEffect(() => {
         const getAllProductsAsync = async () => {
@@ -25,6 +36,23 @@ const Admin = ({token,setProducts }) => {
     const getAdmin = async () => {
       const admin = await myProfile();
       setAdmin (admin);
+
+// const admin = await myProfile();
+
+    const getItemProps = (brand, category, id, name, price, size) => {
+
+        console.log('props are', brand, category, id, name, price, size)
+        setItemProps(
+            {
+               brand : brand,
+               category : category,
+               id : id,
+               name : name,
+               price : price,
+               size : size,
+            }
+        )
+        return itemProps
     }
 
     getAdmin();
@@ -53,13 +81,15 @@ const Admin = ({token,setProducts }) => {
             <h1>Admin</h1>
             {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
             {/* checking if user is admin, then show the add products button */}
-            {admin ? 
+            {/* {admin ? 
+
             <button onClick={(e) => { 
                 e.preventDefault();
                 
                 <AddProducts setProducts={setProducts} token={token} />
 
-            }}>Add Products</button> : null}
+            }}>Add Products</button> 
+            : null} */}
             
             <button onClick={(e) => { 
                 window.location.reload();

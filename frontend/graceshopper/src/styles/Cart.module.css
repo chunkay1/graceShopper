@@ -12,3 +12,38 @@
     padding: 0;
     margin: 0;
 }
+
+.button{
+    background-color: blueviolet;
+}
+
+.button{
+    border-radius: 7px;
+    background-color: #16697a;
+    color: #EDE7E3;
+    font-weight: 500;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.button:hover{
+    cursor: pointer;
+    border-color: #16697A;
+    background-color: #16697a;
+    box-shadow: 0 0.5em 0.5em -0.4em #74ad18;
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: #EDE7E3;
+    color: #16697a;
+    border: 1px solid #16697a;
+}
+
+.countBadge {
+    background: #16697a;
+}
+
+.cartLabel{
+    color: #16697A
+}
