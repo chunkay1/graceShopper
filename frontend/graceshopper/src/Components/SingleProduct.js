@@ -149,7 +149,7 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                                 console.log('updated cart item is:', updatedCartItem)
                                             }}></i>
 
-                                            :
+                                            : 
 
                                             null
                                             }
@@ -160,7 +160,7 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                 </div>
 
 
-                                :
+                                : token ?
                                 <button
                                 className={styles.cartButton}
                                 onClick={async (event) => {
@@ -173,6 +173,8 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                 }}>
                                 Add to Cart!
                                 </button>
+                                :
+                                null
                             }
 
                             
