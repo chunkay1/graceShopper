@@ -2,7 +2,7 @@ import styles from '../styles/Products.module.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
 // import styles from '../styles/Products.module.css'
-import styles from '../styles/SingleProduct.module.css'
+// import styles from '../styles/SingleProduct.module.css'
 import { getUserCart, deleteItemFromCart, updateCartQuantity} from '../api/cartRequests';
 
 function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToCart, getProductById}) {
