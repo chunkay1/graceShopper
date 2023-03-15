@@ -1,50 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css'
 import { getAllItems, getProductsByCategory, getProductById } from '../api/itemRequests';
-import { myProfile } from '../api/userRequests';
-import { addToCart, getOrderHistory } from '../api/cartRequests';
+import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
-import { STORAGE_KEY } from '../constants/constants';
+import AddProducts from "./AddProducts";
+
+// import { STORAGE_KEY } from '../constants/constants';
 
 // const jwt = require('jsonwebtoken')
 
 
-
-const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemProps, category, setCategory}) => {
-    // const [category, setCategory] = useState('');
+const Products = ({token}) => {
+    const [category, setCategory] = useState('');
+    const [itemProps, setItemProps] = useState({});
     const [products, setProducts] = useState([]);
-    const [cartState, setCartState] = useState(false)
-   
+    const [singleProduct, setSingleProduct] = useState(false);
+    
+    useEffect(() => {
+        const getProductsByCategoryAsync = async () => {
+            let allProducts = await getAllItems();
+            let categoryItems = allProducts.filter(product => product.category === category)
+            console.log(categoryItems)
+            setProducts(categoryItems);
+        }
+        getProductsByCategoryAsync();
+    }, [category])
+
     useEffect(() => {
         const getAllProductsAsync = async () => {
             let allProducts = await getAllItems();
             setProducts(allProducts);
-            console.log('products are', allProducts)
+            // console.log('products are', products)
         }
         getAllProductsAsync();
     }, [])
-    
-    useEffect(() => {
-        const getProductsByCategoryAsync = async () => {
-            // let allProducts = await getAllItems();
-            // let categoryItems = allProducts.filter(product => product.category === category)
-            // console.log(categoryItems)
-            console.log("category in products.js", category)
-            await getProductsByCategory(category).then ((filteredProducts) =>{
-                setProducts(filteredProducts);
-            })
-            // setProducts(categoryItems);
-        }
-        getProductsByCategoryAsync();
-    }, [category])
     
     let getCategoryItems = async (category)=> {
         await getProductsByCategory(category);
     } 
 
-    let getItemProps = (brand, category, id, name, price, size, inventory) => {
-        // console.log('props are', brand, category, id, name, price, size)
+    let getItemProps = (brand, category, id, name, price, size) => {
+        console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
                brand : brand,
@@ -53,7 +50,6 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                name : name,
                price : price,
                size : size,
-               inventory: inventory
             }
         )
         return itemProps
@@ -70,15 +66,15 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
             }}>View All Products</button>
             
             <button onClick={(e) => { 
-                getCategoryItems('Shoes');
-                setCategory('Shoes');
+                getCategoryItems('shoes');
+                setCategory('shoes');
 
             }}>Shoes</button>
             
             <button onClick={(e) => { 
                 // setTargetValue(setCategory)
-                getCategoryItems('Tents');
-                setCategory('Tents');
+                getCategoryItems('tents');
+                setCategory('tents');
                 }}>tents</button>
             
             <button onClick={(e) => { 
@@ -93,36 +89,18 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
 
-            <button onClick={(e) => { 
-                // setTargetValue(setCategory)
-                getCategoryItems('Snowboards');
-                setCategory('Snowboards');
-            }}>Snowboards</button>
-
-            <button onClick={(e) => { 
-                // setTargetValue(setCategory)
-                getCategoryItems('Skis');
-                setCategory('Skis');
-            }}>Skis</button> 
-
             {/* tests adding to cart with some set info */}
             <button onClick={async (e) => { 
-                e.preventDefault();
-                const orderHistory = await getOrderHistory(token)
-                console.log(orderHistory)
-            }}> Order History Test</button>
+                const addedToCart = await addToCart(7, token)
+                console.log(addedToCart)
+            }}> add to cart test</button>
 
-            {/* <button onClick={async (e) => { 
-                e.preventDefault();
-                const user = await myProfile(token)
-                console.log(user)
-            }}> Admin Test</button> */}
 
-            <button onClick={async (e) => { 
-                e.preventDefault();
-                setCartState(false)
-            }}> Cart State Test</button>
-
+            <button onClick={async(e) => { 
+                console.log('this is a test');
+                <AddProducts />
+       
+            }}>Add Products</button>
 
             {
                 singleProduct
@@ -142,7 +120,7 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                     <div className={styles.container}>
                         
                         {
-                            products.map(({brand, category, id, name, price, size, image, inventory}) => {
+                            products.map(({brand, category, id, name, price, size, image}) => {
                                 return (
                                     <div key={id}>
         
@@ -176,35 +154,43 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                                                 {/* <h5 class="card-title">Category</h5>
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
-                                                    <p class="card-text">${price}</p>
-                                                <h5 class="card-title">Inventory</h5>
-                                                    <p class="card-text">{inventory}</p>
+                                                    <p class="card-text">{price}</p>
+                                                {/* <h5 class="card-title">Id</h5>
+                                                    <p class="card-text">{id}</p> */}
                                                 
-                                                { inventory < 1 ?  <h5>Sold Out!</h5> : null}
+                                                <div className={styles.buttonDiv}> 
+                                                    <button
+                                                        className={styles.cartButton}
+                                                        onClick={async (event) => {
+                                                            event.preventDefault();
 
-                                                
-                                                { (inventory >= 1) && token ? 
-                                                
-                                                    <div className={styles.buttonDiv}> 
-                                                        <button
-                                                            className={styles.cartButton}
-                                                            onClick={async (event) => {
-                                                                event.preventDefault();
-                                                                event.stopPropagation();
-                                                                
-                                                                const something = await addToCart ( id, token )
-                                                                console.log("this is something", something)
-                                                                setCartState(true)
-                                                                }}>
-                                                            Add to Cart!
-                                                        </button>
-                                                    </div>
+                                                            console.log('added to cart')
+                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                            console.log(test);
+                                                            // this prevents from going to single product view after clicking add to cart
+                                                            const props = await getProductById(id);
+                                                            setItemProps(props)
+                                                            console.log(itemProps)
+                                                            setSingleProduct(false);
 
-                                                : 
+                                                            
+                                                            // const { [id] : userId } = jwt.verify(token)
+                                                            console.log("this is the id", id, "this is the token", token)
+                                                             const something = await addToCart ( id, token )
+                                                             console.log("this is something", something)
+                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
 
-                                                    null
-                                                }
-                                                
+                                                                                                            
+                                                            // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
+                                                            //     console.log(result)
+                                                            //     addToCart(result);
+                                                            // }).catch((err) => {
+                                                            //     console.log(err)
+                                                            // });
+                                                        }}>
+                                                        Add to Cart!
+                                                    </button>
+                                                </div>
                                             </div>
         
                                         </div>
@@ -217,6 +203,45 @@ const Products = ({token, singleProduct, setSingleProduct, itemProps, setItemPro
                         }
                     </div>
             }
+
+
+                {/* {
+                    products.map(({brand, category, id, name, price, size, image}) => {
+                        return (
+                            <div 
+                                className={styles.productCard} 
+                                key={id}>
+                                    <img src = {image} alt = {'shoes png'} width = {"100%"} className = {styles.image}></img>
+                                    <div className={styles.description}>
+                                      <h3 className={styles.header}>Brand: <p className={styles.cardValue}>{brand}</p></h3>
+                                      <h3 className={styles.header}>Category: <p className={styles.cardValue}>{category}</p></h3>
+                                      <h3 className={styles.header}>Id: <p className={styles.cardValue}>{id}</p></h3>
+                                      <h3 className={styles.header}>Name: <p className={styles.cardValue}>{name}</p></h3>
+                                      <h3 className={styles.header}>Price: <p className={styles.cardValue}>{price}</p></h3>
+                                      <h3 className={styles.header}>Size: <p className={styles.cardValue}>{size}</p></h3>
+                                    </div>
+
+                                    {
+                                        (!token)
+
+                                        ?
+
+                                        null
+                                        :
+
+                                        <div className={styles.cartbutton}> 
+                                            <button
+                                                onClick={console.log('Added To Cart!')}>
+                                                Add to Cart!
+                                            </button>
+                                        </div>
+
+                                    }
+                            </div>
+                        )
+                    
+                    })
+                } */}
             
          </div>
         

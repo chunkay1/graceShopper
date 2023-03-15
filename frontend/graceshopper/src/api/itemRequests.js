@@ -64,34 +64,34 @@ export async function getProductById(id) {
 }
 
 // added the function for adding products
-export async function addProducts(token,props,products,setProducts,itemProps,setItemProps) {
+// export async function addProducts(token,props,products,setProducts,itemProps,setItemProps) {
 
-    const body = JSON.stringify({
-        name: props.name,
-        category: props.password,
-        brand: props.brand,
-        size: props.size,
-        price: props.price,
-        description: props.description,
-    });
+//     const body = JSON.stringify({
+//         name: props.name,
+//         category: props.password,
+//         brand: props.brand,
+//         size: props.size,
+//         price: props.price,
+//         description: props.description,
+//     });
 
-    try {
-        const response = await fetch(`${BASEURL}/:add-item/item`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body,
-        });
+//     try {
+//         const response = await fetch(`${BASEURL}/items, {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${token}`,
+//           },
+//           body,
+//         });
 
-        const json = await response.json();
-        console.log(json);
-        const responseProduct = json;
-        setProducts([responseProduct,...products]);
-        console.log(responseProduct)
+//         const json = await response.json();
+//         console.log(json);
+//         const responseProduct = json;
+//         setProducts([responseProduct,...products]);
+//         console.log(responseProduct)
 
-    }catch (error) {
-        console.log(error);
-      }
-    }
+//     }catch (error) {
+//         console.log(error);
+//       }
+//     }
