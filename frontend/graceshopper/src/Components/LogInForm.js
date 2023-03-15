@@ -9,19 +9,23 @@ import { logIn } from '../api/userRequests';
 //     }
 // }
 
-function LogInForm() {
+function LogInForm({ loginDropdown, setLoginDropdown }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    return (
+    return ( 
         <div className={styles.container}>
             <form
                 onSubmit={
                     async (event) => {
                         event.preventDefault();
                         console.log('Submit Form')
-                        await logIn({username,password});
-                        window.location.reload();
+                        await logIn({username,password}).then((response) => {
+                            alert(response.message)
+                            setLoginDropdown(false)
+                        })
+                        //no longer needed to re-render the navbar
+                        // window.location.reload();
                     }
                 }
             >

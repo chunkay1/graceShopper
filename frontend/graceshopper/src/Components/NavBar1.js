@@ -4,8 +4,12 @@ import React from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
 import { BASEURL } from "../constants/constants"
+import { useState } from "react";
 
 function NavBar({ token }) {
+    const [loginDropdown, setLoginDropdown] = useState(true)
+
+
     return (
         <div>
             <nav class={`navbar navbar-expand-lg bg-success ${styles.mainBar}`}>
@@ -54,7 +58,7 @@ function NavBar({ token }) {
                                 {/* <li className={`nav-item dropdown ${styles.dropdown}`}> */}
 
                                 {
-                                    (!token)
+                                    (!token && loginDropdown)
 
                                     ?
 
@@ -69,13 +73,18 @@ function NavBar({ token }) {
                                     <ul
                                         className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
                                         {/* <li><a class="dropdown-item" href="#">Action</a></li> */}
-                                        <li><LogInForm /></li>
+                                        <li>
+                                            <LogInForm 
+                                              loginDropdown = {loginDropdown} 
+                                              setLoginDropdown = {setLoginDropdown}
+                                            />
+                                        </li>
                                     </ul>
                                 </li>
 
                                     :
 
-                                    <li class="nav-item">
+                                    <li className={`nav-item ${styles.logout}`}>
                                         <button 
                                             type="button" 
                                             class="btn btn-link text-white" 
