@@ -186,46 +186,51 @@
     display: flex;
     justify-content: center;
     /* margin-top: calc(20px + 10vh); */
-    min-height: 250vh;
+    min-height: 248vh;
 }
 
 .divider {
     width: 100%;
     margin-top: 130vh;
-    height: 10vh;
+    height: 9vh;
     background-color: rgba(48, 73, 73, 0.7);
     position: absolute;
 }
 
 .cardDeck {
     position: absolute;
-    margin-top: 165vh;
+    margin-top: 160vh;
     display: flex;
     width: 100%;
-    padding: 0 4vw 0 0vw;
+    padding: 0 8vw 0 4vw;
     height: 40vh; 
     justify-content: space-between;
     align-content: space-between;
+    background: transparent;
 }
 
 .aboutCards {
     flex: 0 0 calc(70%/4);
     margin-left: 4vw;
-    height: fit-content;
+    min-height: fit-content;
+    background-color: transparent;
     /* background-color: rgba(48, 73, 73, 0.7) */
-    background-color: rgb(247, 247, 247, 0.7)
 }
 .aboutImg {
     border-radius: 1%;
     width: 100%;
+    object-fit: cover;
+    height: 80%;
 }
 
 .aboutBody {
-    background-color: rgba(48, 73, 73, 0.7)
+    background-color: rgba(48, 73, 73, 0.8);
 }
 
 .aboutName {
   color: rgb(238, 238, 238);
+  display: flex;
+  justify-content: space-between;
 }
 
 .aboutTitle {
@@ -236,6 +241,12 @@
 
 .aboutSummary {
     color: rgb(207, 203, 203)
+}
+
+.linkWrapper {
+    width: 17.5%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .backgroundImg {
