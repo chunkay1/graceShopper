@@ -64,11 +64,14 @@ export async function logIn(props) {
         console.log(json);
         const replyToken = json.token;
 
+
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-
+        
         console.log(replyToken)
+
+        return json
         
     } catch (error) {
         console.error(error)
