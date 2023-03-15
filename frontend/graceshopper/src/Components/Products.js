@@ -4,12 +4,11 @@ import { getAllItems, getProductsByCategory, getProductById } from '../api/itemR
 import { addToCart } from '../api/cartRequests';
 import { setTargetValue } from '../constants/constants';
 import SingleProduct from './SingleProduct';
-import AddProducts from "./AddProducts";
+// import AddProducts from "./AddProducts";
 
 // import { STORAGE_KEY } from '../constants/constants';
 
 // const jwt = require('jsonwebtoken')
-
 
 const Products = ({token}) => {
     const [category, setCategory] = useState('');
@@ -94,13 +93,6 @@ const Products = ({token}) => {
                 const addedToCart = await addToCart(7, token)
                 console.log(addedToCart)
             }}> add to cart test</button>
-
-
-            <button onClick={async(e) => { 
-                console.log('this is a test');
-                <AddProducts />
-       
-            }}>Add Products</button>
 
             {
                 singleProduct
