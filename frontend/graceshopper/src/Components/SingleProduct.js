@@ -1,4 +1,5 @@
 import styles from '../styles/Products.module.css'
+import React from 'react';
 
 function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToCart, getProductById}) {
     const {image, category, id, name, price, size, brand, description} = itemProps;

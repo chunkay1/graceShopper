@@ -1,4 +1,4 @@
-.image {}
+/* .image {} */
 .productCard {
     flex: 0 0 calc(101%/3);
     display: block;
@@ -181,7 +181,7 @@
     /* background-image: url("../../public/mountainBackground.png"); */
     /* background-image: url("../../public/altMountainBackground.png"); */
     /* background-image: url("../../public/campingBackground.png"); */
-    background-image: url("../../public/SolidForest.png");
+    /* background-image: url("../../public/SolidForest.png"); */
     background-blend-mode: darken;
     /* Set a specific height */
     

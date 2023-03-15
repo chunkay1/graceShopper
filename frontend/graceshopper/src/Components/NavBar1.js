@@ -1,5 +1,6 @@
 import LogInForm from "./LogInForm"
 import styles from '../styles/NavBar1.module.css'
+import React from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
 import { BASEURL } from "../constants/constants"

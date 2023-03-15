@@ -67,13 +67,12 @@ export async function getProductById(id) {
 export async function addProducts(token,props,products,setProducts,itemProps,setItemProps) {
 
     const body = JSON.stringify({
-        itemProps
-        // name: props.name,
-        // category: props.password,
-        // brand: props.brand,
-        // size: props.size,
-        // price: props.price,
-        // description: props.description,
+        name: props.name,
+        category: props.password,
+        brand: props.brand,
+        size: props.size,
+        price: props.price,
+        description: props.description,
     });
 
     try {
@@ -90,10 +89,9 @@ export async function addProducts(token,props,products,setProducts,itemProps,set
         console.log(json);
         const responseProduct = json;
         setProducts([responseProduct,...products]);
+        console.log(responseProduct)
 
     }catch (error) {
         console.log(error);
       }
-
-      setItemProps("");
     }
