@@ -6,6 +6,7 @@ import $ from 'jquery'
 import useMeasure from 'react-use-measure'
 import { categories } from '../constants/constants';
 import { Link } from 'react-router-dom';
+import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io";
 
 
 const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
@@ -246,11 +247,21 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
         {/* about me card deck */}
         <div className={`card-deck ${styles.cardDeck}`}>
           <div className={`card ${styles.aboutCards}`}>
-            <img className={`card-img-top ${styles.aboutImg}`} src={"Aboutheadshot.jpg"} alt="Card image cap" />
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Aboutheadshot.jpg"} alt="About Samuel Banister" />
             <div className={`card-body ${styles.aboutBody}`}>
-              <h5 className={`card-title ${styles.aboutName}`}>Samuel Banister</h5>
+              <h5 className={`card-title ${styles.aboutName}`}>Samuel Banister
+                <span className={styles.linkWrapper}>
+                  <a href={'https://github.com/Samson343'} target="_blank" rel="noreferrer">
+                    <IoLogoGithub size={18} color="azure" />
+                  </a>
+                  <a href={'https://www.linkedin.com/in/sam-banister/'} target="_blank" rel="noreferrer">
+                      <IoLogoLinkedin size={21} color = 'azure' />
+                  </a>
+
+                </span>
+              </h5>
               <h6 className={styles.aboutTitle}>Fullstack Developer</h6>
-              <p className={`card-text ${styles.aboutSummary}`}>Sam brings the passion to fullstack developments and aims to build the coolest, craziest things possible. His proudest accomplishments on this project are creating the landing page, helping to spearhead the backend database and api, and building this modern homepage you're browsing now.</p>
+              <p className={`card-text ${styles.aboutSummary}`}>Sam brings the passion to fullstack development and aims to build the coolest, craziest things possible. His proudest accomplishments on this project are creating the landing page, helping to spearhead the backend database and api, and building this modern homepage you're browsing now.</p>
             </div>
           </div>
           <div className={`card ${styles.aboutCards}`}>
