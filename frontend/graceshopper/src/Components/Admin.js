@@ -13,15 +13,15 @@ const Admin = ({token,setProducts,itemProps,setItemProps }) => {
 
     const [admin, setAdmin] = useState('');
 
-    useEffect(() => {
-        const getProductsByCategoryAsync = async () => {
-            const allProducts = await getAllItems();
-            const categoryItems = allProducts.filter(product => product.category === category)
-            console.log(categoryItems)
-            setProducts(categoryItems);
-        }
-        getProductsByCategoryAsync();
-    }, [setProducts])
+    // useEffect(() => {
+    //     const getProductsByCategoryAsync = async () => {
+    //         const allProducts = await getAllItems();
+    //         const categoryItems = allProducts.filter(product => product.category === category)
+    //         console.log(categoryItems)
+    //         setProducts(categoryItems);
+    //     }
+    //     getProductsByCategoryAsync();
+    // }, [setProducts])
 
     useEffect(() => {
         const getAllProductsAsync = async () => {
