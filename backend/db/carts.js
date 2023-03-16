@@ -93,6 +93,7 @@ async function getCartById(cartId) {
     const [cart] = rows;
     return cart;
   } catch (error) {
+    console.log('could not fetch DB cart')
     throw error;
   }
 }

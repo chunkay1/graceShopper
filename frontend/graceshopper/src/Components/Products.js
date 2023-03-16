@@ -40,7 +40,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
         await getProductsByCategory(category);
     }
 
-    let getItemProps = (brand, category, id, name, price, size) => {
+    let getItemProps = (brand, category, id, name, price, size, inventory) => {
         console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
@@ -50,6 +50,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                 name: name,
                 price: price,
                 size: size,
+                inventory:inventory,
             }
         )
         return itemProps
@@ -113,7 +114,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                     <div className={styles.container}>
 
                         {
-                            products.map(({ brand, category, id, name, price, size, image }) => {
+                            products.map(({ brand, category, id, name, price, size, image, inventory }) => {
                                 return (
                                     <div key={id}>
 
@@ -148,17 +149,19 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
                                                 <p class="card-text">{price}</p>
+                                                <h5 class="card-title">Inventory</h5>
+                                                <p class="card-text">{inventory}</p>
                                                 {/* <h5 class="card-title">Id</h5>
                                                     <p class="card-text">{id}</p> */}
 
-                                                <div className={styles.buttonDiv}>
+                                                {/* <div className={styles.buttonDiv}>
                                                     <button
                                                         className={styles.cartButton}
                                                         onClick={async (event) => {
                                                             event.preventDefault();
 
                                                             console.log('added to cart')
-                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image, inventory))
                                                             console.log(test);
                                                             // this prevents from going to single product view after clicking add to cart
                                                             const props = await getProductById(id);
@@ -183,7 +186,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                                                         }}>
                                                         Add to Cart!
                                                     </button>
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                         </div>

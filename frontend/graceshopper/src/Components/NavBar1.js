@@ -87,7 +87,7 @@ function NavBar({ token }) {
                                     <li className={`nav-item ${styles.logout}`}>
                                         <button 
                                             type="button" 
-                                            class="btn btn-link text-white" 
+                                            className={`btn btn-link text-white ${styles.logOut}`} 
                                             onClick={ (event) => {
                                                 console.log('logout!');
                                                 logOut();

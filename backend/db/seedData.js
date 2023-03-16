@@ -462,7 +462,7 @@ async function createInitialItems() {
     const items = await Promise.all(itemsToCreate.map(adminCreateItem))
 
     console.log("items created:")
-    console.log(items)
+    // console.log(items)
 
     console.log("Finished creating items!")
   } catch (error) {
