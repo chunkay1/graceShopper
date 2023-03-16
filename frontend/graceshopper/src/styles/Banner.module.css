@@ -33,7 +33,7 @@
     text-transform: uppercase;
     color: #000;
     /* use line-height if you want to adjust how far down the main text appears on the page */
-    line-height:70vh;
+    line-height:75vh;
     /* This single line is where the magic happens to make your text have a video bleed-through effect */
     mix-blend-mode: screen;
     font-family: 'Work Sans', sans-serif;

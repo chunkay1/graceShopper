@@ -26,7 +26,7 @@ const App = () => {
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
   const [category, setCategory] = useState('');
-
+  
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 

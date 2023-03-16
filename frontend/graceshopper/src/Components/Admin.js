@@ -26,6 +26,50 @@ const Admin = ({ token }) => {
       {/* checking if user is admin, then show the add products button */}
       {/* {admin ? 
 
+const Admin = ({token,setProducts,itemProps,setItemProps }) => {
+
+    const [admin, setAdmin] = useState('');
+
+    // useEffect(() => {
+    //     const getProductsByCategoryAsync = async () => {
+    //         const allProducts = await getAllItems();
+    //         const categoryItems = allProducts.filter(product => product.category === category)
+    //         console.log(categoryItems)
+    //         setProducts(categoryItems);
+    //     }
+    //     getProductsByCategoryAsync();
+    // }, [setProducts])
+
+    useEffect(() => {
+        const getAllProductsAsync = async () => {
+            let allProducts = await getAllItems();
+            setProducts(allProducts);
+            // console.log('products are', products)
+        }
+        getAllProductsAsync();
+    }, [setProducts])
+
+    // calling the AdminUser function
+    useEffect(() => {
+        if (token) {
+          myProfile(token)
+            .then((admin) => {
+              setAdmin(admin);
+            })
+            .catch((error) => {
+              console.log(`Failed to fetch admin`);
+            });
+        }
+      })
+    
+    return (
+        <div>
+
+            <h1>Admin</h1>
+            {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
+            {/* checking if user is admin, then show the add products button */}
+            {/* {admin ? 
+
             <button onClick={(e) => { 
                 e.preventDefault();
                 
