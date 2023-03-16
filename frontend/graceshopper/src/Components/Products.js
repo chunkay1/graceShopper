@@ -10,11 +10,18 @@ import SingleProduct from './SingleProduct';
 
 // const jwt = require('jsonwebtoken')
 
-const Products = ({token}) => {
-    const [category, setCategory] = useState('');
-    const [itemProps, setItemProps] = useState({});
+
+const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory}) => {
     const [products, setProducts] = useState([]);
-    const [singleProduct, setSingleProduct] = useState(false);
+
+    useEffect(() => {
+        const getAllProductsAsync = async () => {
+            let allProducts = await getAllItems();
+            setProducts(allProducts);
+            // console.log('products are', products)
+        }
+        getAllProductsAsync();
+    }, [])
     
     useEffect(() => {
         const getProductsByCategoryAsync = async () => {
@@ -25,15 +32,6 @@ const Products = ({token}) => {
         }
         getProductsByCategoryAsync();
     }, [category])
-
-    useEffect(() => {
-        const getAllProductsAsync = async () => {
-            let allProducts = await getAllItems();
-            setProducts(allProducts);
-            // console.log('products are', products)
-        }
-        getAllProductsAsync();
-    }, [])
     
     let getCategoryItems = async (category)=> {
         await getProductsByCategory(category);
