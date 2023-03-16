@@ -119,9 +119,7 @@ const App = () => {
         <Route path='/add-products' element={
           <>
             <NavBar token={token}/> 
-            <AddProducts 
-              token={token}
-            />
+            <AddProducts token={token}/>
           </>
           } 
         />
