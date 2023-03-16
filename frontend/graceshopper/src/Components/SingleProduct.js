@@ -1,8 +1,8 @@
-import styles from '../styles/Products.module.css'
+// import styles from '../styles/Products.module.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
 // import styles from '../styles/Products.module.css'
-// import styles from '../styles/SingleProduct.module.css'
+import styles from '../styles/SingleProduct.module.css'
 import { getUserCart, deleteItemFromCart, updateCartQuantity} from '../api/cartRequests';
 
 function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToCart, getProductById}) {
@@ -16,10 +16,16 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
     useEffect(() => {
         const getCartItemAsync = async () => {
           let cart = await getUserCart(token);
-          console.log('use Effect is', cart.itemsInCart)
-          setItemsInCart(cart.itemsInCart)
-          setCartID(cart.id)
-          setCartChange(false)
+          if(cart) {
+              console.log('use Effect is', cart.itemsInCart)
+              setItemsInCart(cart.itemsInCart)
+              setCartID(cart.id)
+              setCartChange(false)
+          } else {
+            setItemsInCart([])
+            setCartID(null)
+          }
+
         }
         getCartItemAsync();
       }, [token, cartChange])
@@ -162,7 +168,7 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                 </div>
 
 
-                                : token ?
+                                : (inventory >= 1) && token ?
                                 <button
                                 className={styles.cartButton}
                                 onClick={async (event) => {

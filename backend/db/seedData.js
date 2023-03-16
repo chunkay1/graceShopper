@@ -42,7 +42,7 @@ async function createTables() {
     password varchar(125) NOT NULL,
     email varchar(125) UNIQUE NOT NULL,
     address varchar(125) NOT NULL,   
-    "isAdmin" boolean DEFAULT false
+    "isAdmin" boolean DEFAULT FALSE
   );
 
   CREATE TABLE items (
@@ -462,7 +462,7 @@ async function createInitialItems() {
     const items = await Promise.all(itemsToCreate.map(adminCreateItem))
 
     console.log("items created:")
-    console.log(items)
+    // console.log(items)
 
     console.log("Finished creating items!")
   } catch (error) {

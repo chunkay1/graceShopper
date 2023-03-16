@@ -64,11 +64,14 @@ export async function logIn(props) {
         console.log(json);
         const replyToken = json.token;
 
+
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-
+        
         console.log(replyToken)
+
+        return json
         
     } catch (error) {
         console.error(error)
@@ -101,6 +104,7 @@ export async function myProfile(token) {
         // console.log('user info is:', json);
 
         // const id = json.user.id;
+        console.log(json)
         const admin = json.user.isAdmin;
 
         // const user = json.user
