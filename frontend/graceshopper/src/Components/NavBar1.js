@@ -5,9 +5,12 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
 import { BASEURL } from "../constants/constants"
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function NavBar({ token }) {
     const [loginDropdown, setLoginDropdown] = useState(true)
+
+    const navigate = useNavigate()
 
 
     return (
@@ -91,6 +94,7 @@ function NavBar({ token }) {
                                             onClick={ (event) => {
                                                 console.log('logout!');
                                                 logOut();
+                                                navigate('/home');
                                                 window.location.reload();
                                             }}>LogOut</button>
                                     </li>
