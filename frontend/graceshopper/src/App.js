@@ -109,7 +109,8 @@ const App = () => {
         
         <Route path='/admin' element={
           <>
-            <NavBar token={token}/> 
+            <NavBar token={token}/>
+            <Admin token={token}/> 
           </>
           }
         />
