@@ -104,6 +104,7 @@ export async function myProfile(token) {
         // console.log('user info is:', json);
 
         // const id = json.user.id;
+        console.log(json)
         const admin = json.user.isAdmin;
 
         // const user = json.user
