@@ -11,7 +11,7 @@ import SingleProduct from './SingleProduct';
 // const jwt = require('jsonwebtoken')
 
 
-const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory}) => {
+const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -22,72 +22,75 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
         }
         getAllProductsAsync();
     }, [])
-    
+
     useEffect(() => {
         const getProductsByCategoryAsync = async () => {
             let allProducts = await getAllItems();
-            let categoryItems = allProducts.filter(product => product.category === category)
-            console.log(categoryItems)
-            setProducts(categoryItems);
+            if (category) {
+                let categoryItems = allProducts.filter(product => product.category === category)
+                setProducts(categoryItems);
+                console.log(categoryItems)
+            }
+
         }
         getProductsByCategoryAsync();
     }, [category])
-    
-    let getCategoryItems = async (category)=> {
+
+    let getCategoryItems = async (category) => {
         await getProductsByCategory(category);
-    } 
+    }
 
     let getItemProps = (brand, category, id, name, price, size) => {
         console.log('props are', brand, category, id, name, price, size)
         setItemProps(
             {
-               brand : brand,
-               category : category,
-               id : id,
-               name : name,
-               price : price,
-               size : size,
+                brand: brand,
+                category: category,
+                id: id,
+                name: name,
+                price: price,
+                size: size,
             }
         )
         return itemProps
     }
-    
-    
+
+
     return (
         <div>
 
             <h1>Products</h1>
-            
-            <button onClick={(e) => { 
+
+            <button onClick={(e) => {
                 window.location.reload();
             }}>View All Products</button>
-            
-            <button onClick={(e) => { 
+
+            <button onClick={(e) => {
                 getCategoryItems('shoes');
                 setCategory('shoes');
 
             }}>Shoes</button>
-            
-            <button onClick={(e) => { 
+
+            <button onClick={(e) => {
                 // setTargetValue(setCategory)
                 getCategoryItems('tents');
                 setCategory('tents');
-                }}>tents</button>
-            
-            <button onClick={(e) => { 
+            }}>tents</button>
+
+            <button onClick={(e) => {
                 setTargetValue(setCategory)
                 getCategoryItems('Clothing');
                 setCategory('Clothing');
             }}>Clothing</button>
-            
-            <button onClick={(e) => { 
+
+            <button onClick={(e) => {
                 // setTargetValue(setCategory)
                 getCategoryItems('Firepits and Grills');
                 setCategory('Firepits and Grills');
             }}>Grills and firepits</button>
 
             {/* tests adding to cart with some set info */}
-            <button onClick={async (e) => { 
+            <button onClick={async (e) => {
                 const addedToCart = await addToCart(7, token)
                 console.log(addedToCart)
             }}> add to cart test</button>
@@ -95,9 +98,9 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
             {
                 singleProduct
 
-                ?
+                    ?
 
-                    <SingleProduct 
+                    <SingleProduct
                         setSingleProduct={setSingleProduct}
                         setItemProps={setItemProps}
                         itemProps={itemProps}
@@ -106,16 +109,16 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
                         getProductById={getProductById}
                     />
 
-                :
+                    :
                     <div className={styles.container}>
-                        
+
                         {
-                            products.map(({brand, category, id, name, price, size, image}) => {
+                            products.map(({ brand, category, id, name, price, size, image }) => {
                                 return (
                                     <div key={id}>
-        
-                                        <div 
-                                            className={`card ${styles.productCard}`} 
+
+                                        <div
+                                            className={`card ${styles.productCard}`}
                                             style={{
                                                 width: "18rem",
                                                 backgroundColor: "#B7E4C7"
@@ -129,26 +132,26 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
                                                 setItemProps(props)
                                                 console.log(itemProps)
                                                 setSingleProduct(true);
-        
+
                                             }}>
-        
-                                            <img src={image} class="card-img-top" alt="..."/>
-                                            
+
+                                            <img src={image} class="card-img-top" alt="..." />
+
                                             <div class="card-body">
                                                 {/* <h5 class="card-title">Brand</h5>
                                                     <p class="card-text">{brand}</p> */}
                                                 <h5 class="card-title">Name</h5>
-                                                    <p class="card-text">{name}</p>
+                                                <p class="card-text">{name}</p>
                                                 {/* <h5 class="card-title">size</h5>
                                                     <p class="card-text">{size}</p> */}
                                                 {/* <h5 class="card-title">Category</h5>
                                                     <p class="card-text">{category}</p> */}
                                                 <h5 class="card-title">Price</h5>
-                                                    <p class="card-text">{price}</p>
+                                                <p class="card-text">{price}</p>
                                                 {/* <h5 class="card-title">Id</h5>
                                                     <p class="card-text">{id}</p> */}
-                                                
-                                                <div className={styles.buttonDiv}> 
+
+                                                <div className={styles.buttonDiv}>
                                                     <button
                                                         className={styles.cartButton}
                                                         onClick={async (event) => {
@@ -163,14 +166,14 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
                                                             console.log(itemProps)
                                                             setSingleProduct(false);
 
-                                                            
+
                                                             // const { [id] : userId } = jwt.verify(token)
                                                             console.log("this is the id", id, "this is the token", token)
-                                                             const something = await addToCart ( id, token )
-                                                             console.log("this is something", something)
+                                                            const something = await addToCart(id, token)
+                                                            console.log("this is something", something)
                                                             // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
 
-                                                                                                            
+
                                                             // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
                                                             //     console.log(result)
                                                             //     addToCart(result);
@@ -182,20 +185,20 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
                                                     </button>
                                                 </div>
                                             </div>
-        
+
                                         </div>
-        
+
                                     </div>
-        
+
                                 )
-                            
+
                             })
                         }
                     </div>
             }
 
 
-                {/* {
+            {/* {
                     products.map(({brand, category, id, name, price, size, image}) => {
                         return (
                             <div 
@@ -232,9 +235,9 @@ const Products = ({token, itemProps, setItemProps, singleProduct, setSingleProdu
                     
                     })
                 } */}
-            
-         </div>
-        
+
+        </div>
+
     )
 }
 
