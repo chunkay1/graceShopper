@@ -66,7 +66,7 @@ const App = () => {
         <Route path='/profile' element={
           <>
             <NavBar token={token}/> 
-            <Profile />
+            <Profile token={token}/>
           </>
           } 
         />
