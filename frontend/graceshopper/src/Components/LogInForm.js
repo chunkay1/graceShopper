@@ -25,7 +25,9 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
                         console.log('Submit Form')
                         await logIn({username,password}).then(async (response) => {
                             alert(response.message)
-                            setLoginDropdown(false)
+                            if (response.token) {
+                                setLoginDropdown(false)
+                            }
 
                             await myProfile(response.token).then ((data) => {
                                 if (data === true) {
