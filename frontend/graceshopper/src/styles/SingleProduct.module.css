@@ -91,16 +91,19 @@
 }
 
 .cartControl {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     text-align: center;
+    /* justify-content: center; */
+    align-items: center;
+    width: 15%;
 }
 
 .quantityControl {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
-    margin: 0 5px;
-    padding: 0 5px;
+    /* margin: 0 5px;
+    padding: 0 5px; */
 }

@@ -63,29 +63,58 @@ cartsRouter.get('/health', async (req, res, next) => {
 //I couldn't figure out how to capture the cartId and set it into our get request
 cartsRouter.get("/userCart", isUser, async (req, res) => {
 
-    const userId  = req.user.id
+  const userId  = req.user.id
 
-    try {
-      // console.log('hit');
-      const cart = await getCartByUserId(userId);
-      // console.log('cart is:', cart)
-      const withItems = await getCartAndItemDetails(cart)
-      console.log('withItems is:', withItems)
-      if (withItems) {
-        res.send(withItems);
-      } 
-      else if (cart) {
-        res.send(cart)
-      } else if(!cart) {
-        res.send({
-          message: "Whoops, doesn't look like there's an active cart...yet",
-          name: "noCartError",
-        })
-      }
-    } catch (error) {
-      throw Error("Failed to get cart by cartId", error);
+  try {
+    console.log('1: hit /userCart in /api/carts.js');
+    const cart = await getCartByUserId(userId);
+    if ( cart === null) {
+      const newCart = await createCart( userId );
+      console.log(newCart)
+      res.send(newCart)
     }
-  });
+    const withItems = await getCartAndItemDetails(cart)
+    // console.log('2: hit cart and withItems in api/carts.js')
+    if (withItems) {
+       res.send(withItems);
+    } 
+    else if (cart) {
+      res.send(cart)
+    } else if(!cart) {
+      res.send({
+        message: "Whoops, doesn't look like there's an active cart...yet",
+        name: "noCartError",
+      })
+    }
+  } catch (error) {
+    throw Error("Failed to get cart by cartId", error);
+  }
+});
+// cartsRouter.get("/userCart", isUser, async (req, res) => {
+
+//   const userId  = req.user.id
+
+//   try {
+//     // console.log('hit');
+//     const cart = await getCartByUserId(userId);
+//     // console.log('cart is:', cart)
+//     const withItems = await getCartAndItemDetails(cart)
+//     console.log('withItems is:', withItems)
+//     if (withItems) {
+//        res.send(withItems);
+//     } 
+//     else if (cart) {
+//       res.send(cart)
+//     } else if(!cart) {
+//       res.send({
+//         message: "Whoops, doesn't look like there's an active cart...yet",
+//         name: "noCartError",
+//       })
+//     }
+//   } catch (error) {
+//     throw Error("Failed to get cart by cartId", error);
+//   }
+// });
 
 
 cartsRouter.get("/userCart/orderHistory", isUser, async (req, res) => {
@@ -145,7 +174,7 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
         name: "noDuplicateCartError",
       });
     } else {
-      const newCart = createCart( userId );
+      const newCart = await createCart( userId );
       res.send(newCart);
     }
   } catch ({ name, message }) {

@@ -90,7 +90,7 @@ function NavBar({ token }) {
                                     <li className={`nav-item ${styles.logout}`}>
                                         <button 
                                             type="button" 
-                                            class="btn btn-link text-white" 
+                                            className={`btn btn-link text-white ${styles.logOut}`} 
                                             onClick={ (event) => {
                                                 console.log('logout!');
                                                 logOut();
@@ -105,9 +105,17 @@ function NavBar({ token }) {
                                         class="nav-link text-white" href="products">Products
                                     </a>
                                 </li>
-                                <li className={`nav-item`}>
+                                <li className="nav-item">
                                     <a
+                                         class="nav-link text-white" href="profile">Profile
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link text-white"
+
                                         className={`nav-link text-white ${styles.cartIconLi}`}
+
                                         href="cart">
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>

@@ -9,30 +9,19 @@ const Admin = ({ token }) => {
 
 //   const [adminproducts, setAdminProducts] = useState([]);
 
-//   useEffect(() => {
-//     const getAllProductsAsync = async () => {
-//     let allProducts = await getAllItems();
-//     setAdminProducts(allProducts);
-//     }
-//     getAllProductsAsync();
-// }, [adminproducts])
-
   return (
     <>
       <h1 className={`${styles.title}`}>Admin</h1>
 
       {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
+      {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
+      {/* checking if user is admin, then show the add products button */}
+    
+    
+       {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
+       {/* checking if user is admin, then show the add products button */}      
     
     <div className={`${styles.subNav}`}>
-
-        {/* <button
-        onClick={(e) => {
-          window.location.reload();
-        }}
-        >
-        View All Products
-        </button> */}
-
         <Link to="/add-products">Add Products</Link>
     </div>
 
