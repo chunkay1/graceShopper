@@ -13,6 +13,7 @@ import {
   Products,
   Register,
   LandingPage,
+  Admin,
   Banner,
   AddProducts
  } from './Components';
