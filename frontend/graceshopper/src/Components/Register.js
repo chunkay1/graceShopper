@@ -15,7 +15,7 @@ const Register = ({ token }) => {
         if (token) {
             navigate("/home");
         }
-    }, [token])
+    })
 
 
     return (

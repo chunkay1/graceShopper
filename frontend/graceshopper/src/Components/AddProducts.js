@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import { BASEURL } from "../constants/constants";
+import styles from '../styles/AddProducts.module.css'
+import { useNavigate } from 'react-router-dom';
 
 // import { addProducts } from "../api/itemRequests";
 
@@ -11,11 +13,15 @@ const AddProducts = ({ token,products,setProducts }) => {
   const [addbrand,setAddBrand] = useState([]);
   const [adddescription, setAddDescription] = useState([]);
   const [addsize,setAddSize] = useState([]);
+  const [addinventory,SetAddInventory] = useState([]);
+  const [image,setImage] = useState([]);
+
+  const navigate = useNavigate()
 
   return (
     <>
     <form
-      id="add-product"
+      className={`${styles.addItemForm}`}
       onSubmit={async (e) => {
 
         e.preventDefault();
@@ -33,7 +39,8 @@ const AddProducts = ({ token,products,setProducts }) => {
                       addbrand,
                       addsize,
                       addprice,
-                      adddescription
+                      adddescription,
+                      addinventory
                         
                   }),
 
@@ -49,12 +56,16 @@ const AddProducts = ({ token,products,setProducts }) => {
                   console.log(error);
                 }
 
-                setAddName('');
-                setAddDescription('');
-                setAddPrice('');
-                setAddSize('');
-                setAddBrand('')
-                setAddCategory('')
+                // setAddName('');
+                // setAddDescription('');
+                // setAddPrice('');
+                // setAddSize('');
+                // setAddBrand('');
+                // setAddCategory('');
+                // SetAddInventory('');
+                // setImage('');
+
+                navigate('/admin')
 
               }}>
         {/* try {
@@ -66,43 +77,79 @@ const AddProducts = ({ token,products,setProducts }) => {
         }
         setItemProps("");
        */}
+      <div className={styles.addItem}>
+      <label for="name">Name:</label>
       <input
       placeholder="name"
       value= {addname}
       onChange={(e) => setAddName(e.target.value)}
       ></input>
+      </div>
 
+      <div className={styles.AddItem}>
+      <label for="brand">Brand:</label>
       <input
         placeholder="brand"
         value={addbrand}
         onChange={(e) => setAddBrand(e.target.value)}
       ></input>
+      </div>
 
+      <div className={styles.AddItem}>
+      <label for="category">Category:</label>
       <input
         placeholder="category"
         value={addcategory}
         onChange={(e) => setAddCategory(e.target.value)}
       ></input>
+      </div>
 
+    <div className={styles.AddItem}>
+    <label for="size">Size:</label>
       <input
         placeholder="size"
         value={addsize}
         onChange={(e) => setAddSize(e.target.value)}
       ></input>
+    </div>
 
+    <div className={styles.AddItem}>
+    <label for="price">Price:</label>
       <input
         placeholder="price"
         value={addprice}
         onChange={(e) => setAddPrice(e.target.value)}
       ></input>
+    </div>
 
+    <div className={styles.AddItem}>
+    <label for="description">Description:</label>
       <input
         placeholder="description"
         value={adddescription}
         onChange={(e) => setAddDescription(e.target.value)}
       ></input>
+    </div>
 
-      <button>Submit</button>
+    <div className={styles.AddItem}>
+    <label for="inventory">Inventory:</label>
+        <input
+        placeholder="inventory"
+        value={addinventory}
+        onChange={(e) => SetAddInventory(e.target.value)}
+      ></input> 
+    </div>
+
+    <div className={styles.AddItem}>
+    <label for="image">Image:</label>
+      <input
+        placeholder="image"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      ></input> 
+    </div>
+
+      <button className={styles.itemSubmit}>Submit</button>
     </form>
     </>
   );
