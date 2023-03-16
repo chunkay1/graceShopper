@@ -82,20 +82,46 @@ const Profile = ({ token }) => {
 
             { orderState ?
             //    map here so I can get the list for every single order - refer to Cart.js line 89 (and Products.js)
-                <div className={styles.container}>
-                    <ul className={styles.orderDetails}>
-                        <li>Order Number</li>
-                        
+            // {
+            //     orderDetails.map(({name, brand, size, price}) => {
+            //         return(
+                       
+            //         )
+            //     })
+            // }
+
+            orderHistory.map(({name, brand, size, price}) => {
+                return(
+                    <div className={styles.container}>
+                        <ul className={styles.orderDetails}>
+                            <li>Order Number</li>
+                
                         <ul className={styles.orderItems}>
-                            {/* for loop or map */}
+                    {/* for loop or map */}
                             <li>Name</li>
                             <li>Brand</li>
                             <li>Size</li>
                             <li>Price</li>
                         </ul>
                         <ul>Total Price</ul>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                )
+            })
+        //     <div className={styles.container}>
+        //     <ul className={styles.orderDetails}>
+        //         <li>Order Number</li>
+                
+        //         <ul className={styles.orderItems}>
+        //             {/* for loop or map */}
+        //             <li>Name</li>
+        //             <li>Brand</li>
+        //             <li>Size</li>
+        //             <li>Price</li>
+        //         </ul>
+        //         <ul>Total Price</ul>
+        //     </ul>
+        // </div>
 
                 :
 
