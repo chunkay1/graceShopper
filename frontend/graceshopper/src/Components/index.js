@@ -13,5 +13,5 @@ export { default as AddProducts } from './AddProducts.js';
 export { default as LandingPage} from './LandingPage'
 export { default as Banner } from './Banner'
 export { default as SingleProduct } from './SingleProduct'
-export { default as Admin } from './Admin'
+// export { default as Admin } from './Admin'
 // export { default as LandingPage } from './LandingPage';

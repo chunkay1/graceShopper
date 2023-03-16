@@ -16,10 +16,16 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
     useEffect(() => {
         const getCartItemAsync = async () => {
           let cart = await getUserCart(token);
-          console.log('use Effect is', cart.itemsInCart)
-          setItemsInCart(cart.itemsInCart)
-          setCartID(cart.id)
-          setCartChange(false)
+          if(cart) {
+              console.log('use Effect is', cart.itemsInCart)
+              setItemsInCart(cart.itemsInCart)
+              setCartID(cart.id)
+              setCartChange(false)
+          } else {
+            setItemsInCart([])
+            setCartID(null)
+          }
+
         }
         getCartItemAsync();
       }, [token, cartChange])

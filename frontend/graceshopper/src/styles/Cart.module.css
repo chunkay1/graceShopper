@@ -1,23 +1,24 @@
-.priceAndIcons{
+.priceAndIcons {
     display: flex;
     flex-direction: column;
+    border: 1px solid red;
 }
 
-.quantity{
+.quantity {
     display: flex;
     flex-direction: row;
 }
 
-.count{
+.count {
     padding: 0;
     margin: 0;
 }
 
-.button{
+.button {
     background-color: blueviolet;
 }
 
-.button{
+.button {
     border-radius: 7px;
     background-color: #16697a;
     color: #EDE7E3;
@@ -25,7 +26,7 @@
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
 
-.button:hover{
+.button:hover {
     cursor: pointer;
     border-color: #16697A;
     background-color: #16697a;
@@ -44,6 +45,6 @@
     background: #16697a;
 }
 
-.cartLabel{
+.cartLabel {
     color: #16697A
 }
