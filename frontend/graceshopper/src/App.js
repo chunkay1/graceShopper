@@ -25,7 +25,7 @@ const App = () => {
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
   const [category, setCategory] = useState('');
-
+  
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 
@@ -117,9 +117,7 @@ const App = () => {
         <Route path='/add-products' element={
           <>
             <NavBar token={token}/> 
-            <AddProducts 
-              token={token}
-            />
+            <AddProducts token={token}/>
           </>
           } 
         />

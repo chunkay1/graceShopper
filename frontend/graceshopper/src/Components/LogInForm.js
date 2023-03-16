@@ -2,6 +2,8 @@ import styles from '../styles/LogInForm.module.css'
 import React, { useState } from 'react';
 import { setTargetValue } from '../constants/constants';
 import { logIn } from '../api/userRequests';
+import { myProfile } from '../api/userRequests';
+import { useNavigate } from 'react-router-dom'
 
 // const setTargetValue = (callback) => {
 //     return (event) => {
@@ -9,19 +11,36 @@ import { logIn } from '../api/userRequests';
 //     }
 // }
 
-function LogInForm() {
+function LogInForm({ loginDropdown, setLoginDropdown }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
-    return (
+    return ( 
         <div className={styles.container}>
             <form
                 onSubmit={
                     async (event) => {
                         event.preventDefault();
                         console.log('Submit Form')
-                        await logIn({username,password});
-                        window.location.reload();
+                        await logIn({username,password}).then(async (response) => {
+                            alert(response.message)
+
+                            if (response.token) {
+                                setLoginDropdown(false)
+                            }
+
+                            setLoginDropdown(false) 
+
+
+                            await myProfile(response.token).then ((data) => {
+                                if (data === true) {
+                                    navigate('/admin')
+                                }
+                            })
+                        })
+                        //no longer needed to re-render the navbar
+                        // window.location.reload();
                     }
                 }
             >
