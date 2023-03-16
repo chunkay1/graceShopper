@@ -14,7 +14,7 @@ import {
   Register,
   LandingPage,
   Banner,
-  // Admin,
+  Admin,
   AddProducts
  } from './Components';
 import { STORAGE_KEY } from './constants/constants';
@@ -26,7 +26,7 @@ const App = () => {
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
   const [category, setCategory] = useState('');
-
+  
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 
@@ -108,20 +108,18 @@ const App = () => {
           } 
         />
         
-        {/* <Route path='/admin' element={
+        <Route path='/admin' element={
           <>
             <NavBar token={token}/> 
             <Admin token={token}/>
           </>
           }
         />
-         */}
+        
         <Route path='/add-products' element={
           <>
             <NavBar token={token}/> 
-            <AddProducts 
-              token={token}
-            />
+            <AddProducts token={token}/>
           </>
           } 
         />

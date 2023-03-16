@@ -5,12 +5,12 @@ import { BASEURL } from "../constants/constants";
 
 const AddProducts = ({ token,products,setProducts }) => {
 
-  const [name, setName] = useState([]);
-  const [category,setCategory] = useState([]);
-  const [price, setPrice] = useState([]);
-  const [brand,setBrand] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [size,setSize] = useState([]);
+  const [addname, setAddName] = useState([]);
+  const [addcategory,setAddCategory] = useState([]);
+  const [addprice, setAddPrice] = useState([]);
+  const [addbrand,setAddBrand] = useState([]);
+  const [adddescription, setAddDescription] = useState([]);
+  const [addsize,setAddSize] = useState([]);
 
   return (
     <>
@@ -28,12 +28,12 @@ const AddProducts = ({ token,products,setProducts }) => {
                       Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
-                      name,
-                      category,
-                      brand,
-                      size,
-                      price,
-                      description
+                      addname,
+                      addcategory,
+                      addbrand,
+                      addsize,
+                      addprice,
+                      adddescription
                         
                   }),
 
@@ -49,12 +49,12 @@ const AddProducts = ({ token,products,setProducts }) => {
                   console.log(error);
                 }
 
-                setName('');
-                setDescription('');
-                setPrice('');
-                setSize('');
-                setBrand('')
-                setCategory('')
+                setAddName('');
+                setAddDescription('');
+                setAddPrice('');
+                setAddSize('');
+                setAddBrand('')
+                setAddCategory('')
 
               }}>
         {/* try {
@@ -68,38 +68,38 @@ const AddProducts = ({ token,products,setProducts }) => {
        */}
       <input
       placeholder="name"
-      value= {name}
-      onChange={(e) => setName(e.target.value)}
+      value= {addname}
+      onChange={(e) => setAddName(e.target.value)}
       ></input>
 
       <input
         placeholder="brand"
-        value={brand}
-        onChange={(e) => setBrand(e.target.value)}
+        value={addbrand}
+        onChange={(e) => setAddBrand(e.target.value)}
       ></input>
 
       <input
         placeholder="category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        value={addcategory}
+        onChange={(e) => setAddCategory(e.target.value)}
       ></input>
 
       <input
         placeholder="size"
-        value={size}
-        onChange={(e) => setSize(e.target.value)}
+        value={addsize}
+        onChange={(e) => setAddSize(e.target.value)}
       ></input>
 
       <input
         placeholder="price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        value={addprice}
+        onChange={(e) => setAddPrice(e.target.value)}
       ></input>
 
       <input
         placeholder="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={adddescription}
+        onChange={(e) => setAddDescription(e.target.value)}
       ></input>
 
       <button>Submit</button>
