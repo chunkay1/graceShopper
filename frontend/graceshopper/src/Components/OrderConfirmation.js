@@ -28,9 +28,24 @@ const OrderConfirmation = () => {
             <div className={styles.detailsContainer}>
               {
                 orderItems.map(({brand, category, name, quantity, size, price}) => {
-                  return ( 
-                    <div className={styles.orderItem}>
-                      <p>{brand}</p>
+                  return (
+                    <div className={styles.orderDiv}>
+                      <span className={styles.orderItem}>
+                          <h6 className={styles.itemHeader}>Brand: </h6>
+                            <p className={styles.itemContent}>{brand}</p>
+
+                          <h6 className={styles.itemHeader}>Name:</h6>
+                            <p className={styles.itemContent}>{name}</p>
+
+                          <h6 className={styles.itemHeader}>Size:</h6>
+                            <p className={styles.itemContent}>{size}</p>
+
+                          <h6 className={styles.itemHeader}>Quantity:</h6>
+                            <p className={styles.itemContent}>{quantity}</p>
+
+                          <h6 className={styles.itemHeader}>Price:</h6>
+                            <p className={styles.itemContent}>${price}</p>
+                      </span>
                     </div>
                   )
                 })

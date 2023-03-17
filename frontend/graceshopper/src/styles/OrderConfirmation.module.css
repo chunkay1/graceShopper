@@ -83,7 +83,45 @@
     margin-bottom: 50px;
 }
 
+.detailsContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
 
+
+/* .itemHeader,
+.itemContent {
+    margin: 0 3px;
+    padding: 0 3px;
+} */
+
+.itemHeader {
+    margin: 0 1px 0 4px;
+}
+
+.itemContent {
+    margin: 0 4px 0 1px;
+}
+
+.orderDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderItem {
+    box-sizing: border-box;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 3px 0;
+}
 
 /* When the browser is at least 600px and above */
 @media screen and (min-width: 1430px) {
