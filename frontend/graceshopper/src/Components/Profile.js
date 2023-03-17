@@ -1,3 +1,49 @@
+// FINAL VERSION //////////////////////////////////////////////
+import React, { useEffect, useState } from 'react';
+import { getOrderHistory, } from '../api/cartRequests';
+import styles from '../styles/Profile.module.css'
+
+const Profile = ({ token }) => {
+  const [orderHistory, setOrderHistory] = useState([]);
+
+  useEffect(() => {
+    getOrderHistory(token).then((answer) => {
+      if (answer) {
+        setOrderHistory(answer)
+      }
+    })
+  }, [token])
+
+  return (
+    <div class={styles.mainContainer}>
+      <h1 class={styles.h1Profile}>Profile</h1>
+
+      <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+
+      { orderHistory.length &&
+
+        orderHistory.map((order) => {
+          return (
+            <ul key={order.id}>
+
+              {
+                order.itemsInCart.map((itemInCart) => {
+                  return (
+                    <li key={itemInCart.id}>{itemInCart.name}</li>
+                  )
+                })
+              }
+
+            </ul>
+          )
+        })
+      }
+      
+    </div>
+  )
+}
+
+export default Profile;
 // FULL VERSION //////////////////////////////////////////////
 // import React, { useEffect, useState } from 'react';
 // import { getOrderHistory,  } from '../api/cartRequests';
@@ -42,22 +88,22 @@
 // export default Profile;
 
 // BUTTON ONLY VERSION - WED 3/15 ///////////////////////////////////////////////
-import React, { useEffect, useState } from 'react';
-import { getOrderHistory,  } from '../api/cartRequests';
-import styles from '../styles/Profile.module.css'
+// import React, { useEffect, useState } from 'react';
+// import { getOrderHistory,  } from '../api/cartRequests';
+// import styles from '../styles/Profile.module.css'
 
-const Profile = ({ token }) => {
-     const [orderHistory, setOrderHistory] = useState([]);
-     const [orderState, setOrderState] = useState(false);
-     const [testState, setTestState] = useState(false);
+// const Profile = ({ token }) => {
+//      const [orderHistory, setOrderHistory] = useState([]);
+//      const [orderState, setOrderState] = useState(false);
+//      const [testState, setTestState] = useState(false);
 
-    const allOrders = getOrderHistory(token).then((answer) => {
-    setTestState(true)
-    })
+//     const allOrders = getOrderHistory(token).then((answer) => {
+//     setTestState(true)
+//     })
         
-    useEffect(() => {
-    setOrderHistory(allOrders)
-    }, [testState])
+//     useEffect(() => {
+//     setOrderHistory(allOrders)
+//     }, [testState])
     // console.log(token)
     //  useEffect(() => {
     //      const getOrderHistoryAsync = async (token) => {
@@ -70,33 +116,53 @@ const Profile = ({ token }) => {
     //      console.log(orderHistory)
     //  }, [token, orderHistory])
      
-    return (
-        <div class={styles.mainContainer}>
-            <h1 class={styles.h1Profile}>Profile</h1>
+    // return (
+    //     <div class={styles.mainContainer}>
+    //         <h1 class={styles.h1Profile}>Profile</h1>
 
-            {/* <h1>Hi there, `${user}`</h1> */}
+    //         {/* <h1>Hi there, `${user}`</h1> */}
 
-            <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+    //         <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
 
-            <button class='btn btn-info' onClick={async (e) => { 
-                e.preventDefault();
-               await getOrderHistory(token).then((value) => {
-                    setOrderHistory(value)
-                })
+    //         <button class='btn btn-info' onClick={async (e) => { 
+    //             e.preventDefault();
+    //            await getOrderHistory(token).then((value) => {
+    //                 setOrderHistory(value)
+    //             })
             
-                console.log('frontend orderhistory:',orderHistory)
+    //             console.log('frontend orderhistory:',orderHistory)
                 
                
-                setOrderState(true)
+    //             setOrderState(true)
                 
-            }}>Get Order History</button>
+    //         }}>Get Order History</button>
 
            
-            <h5 class={styles.h5}>And find something new that you'll love!</h5>
+    //         <h5 class={styles.h5}>And find something new that you'll love!</h5>
             
 
-            { orderState ?
+    //         { orderState ?
 
+    //         orderHistory.itemsInCart.map(({name, brand, size, price}) => {
+                            
+    //             return(
+    //                 <div className={styles.container}>
+    //                     <ul className={styles.orderDetails}>
+    //                         <li>Order Number</li>
+                
+    //                     <ul className={styles.orderItems}>
+    //                 {/* for loop or map */}
+    //                         <li>Name</li>
+    //                         <li>Brand</li>
+    //                         <li>Size</li>
+    //                         <li>Price</li>
+    //                     </ul>
+    //                     <ul>Total Price</ul>
+    //                     </ul>
+    //                 </div>
+    //             )
+    //         })
+//////////////////////////////////////////////////////////////////////////
         //     return(
         //         for(let i =0; i < orderHistory.length; i++) {
         //             let orderHistoryObj = orderHistory[i].itemsInCart
@@ -119,7 +185,7 @@ const Profile = ({ token }) => {
                  
         //      })
         //  }
-            console.log(orderHistory.itemsInCart)
+            // console.log(orderHistory.itemsInCart)
             // orderHistory.itemsInCart.map(({name, brand, size, price}) => {
                 
             //     return(
@@ -154,16 +220,16 @@ const Profile = ({ token }) => {
         //     </ul>
         // </div>
 
-                :
+//                 :
 
-                null}
+//                 null}
             
-        </div>
+//         </div>
         
-    )
-}
+//     )
+// }
 
-export default Profile;
+// export default Profile;
 
 // BUTTON ONLY VERSION - THU 3/16 //////////////////////////////////////////
 // import React, { useEffect, useState } from 'react';
