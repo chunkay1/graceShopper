@@ -11,6 +11,7 @@ const Admin = ({ token }) => {
 
   return (
     <>
+
       <h1 className={`${styles.title}`}>Admin</h1>
 
       {/* <button className={`btn btn-info ${styles.viewUsersButton}`} onClick={() => {console.log('View Users button clicked!')}}>View/Manage Users</button> */}
@@ -29,8 +30,8 @@ const Admin = ({ token }) => {
       {/* <button onClick={(e) => { 
                 getAllUsers();
               }}>Get All Users</button>  */}
-    </>
-  );
-};
+     </>
+  )
+}
 
 export default Admin;
