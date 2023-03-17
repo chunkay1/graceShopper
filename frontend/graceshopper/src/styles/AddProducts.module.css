@@ -2,30 +2,36 @@
    
     display: flex;
     flex-direction: column;
-    justify-items:center;
-    width: 80vw;
-    height: 60vh;
-    padding: 12px 20px;
-    margin: 8px 0;
+    justify-content:center;
+    width: 90vw;
+    height: 85vh;
+    padding: 20px 20px;
+    margin: 15px 40px;
     border: 1px solid #ccc;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     box-sizing: border-box;
+    background-color: rgba(192, 211, 201, 0.643);
 
 }
 
 .addItem{
-    display: flex;
-    flex-direction: row;
-    margin: 10px
-
+    width: 80%;
+    padding: 10px 15px;
+    margin: 3px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box
+    
 }
 
 .itemSubmit{
-    background-color: lightblue;
+    background-color: rgba(19, 66, 41, 0.643);
     font-size: 1.5rem;  
     width: 80%;
-    padding: 14px 20px;
-    margin: 8px 0;
+    height: 20%;
+    padding: 15px 15px;
+    margin: 20px;
     border: none;
     border-radius: 4px;
   }
