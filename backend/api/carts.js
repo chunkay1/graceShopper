@@ -201,18 +201,16 @@ cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
   try {
     const userId = req.user.id
     const testCart = await getCartByUserId(userId);
-    console.log('test cart is:', testCart)
     const withItems = await getCartAndItemDetails(testCart)
-    console.log('with items is:', withItems)
-    console.log('this should be an array', withItems.itemsInCart);
+   
     withItems.itemsInCart.map(async ({inventory, quantity, itemsId}) => {
-      console.log('item id is', itemsId)
-      console.log('inventory is', inventory, 'quantity is', quantity)
+     
       let newInventory = (inventory - quantity);
-      console.log(newInventory, 'is new Inventory')
-      console.log('user id is:', userId)
+     
       await updateInventory(newInventory, itemsId)
     })
+
+
 
 
     const cartId = parseInt(req.params.cartId);
@@ -220,7 +218,15 @@ cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
     const cart = await checkoutCart(cartId)
     console.log('return cart is', cart)
 
-    res.send(cart)
+    const newCart = await getCartByUserId(userId)
+
+    if (!newCart) {
+        await createCart(userId)
+    }
+
+  
+
+    res.send(newCart)
   } catch (error) {
     throw Error('failed to checkout cart with cartId: ', cartId)
   }

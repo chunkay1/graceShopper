@@ -16,14 +16,16 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
     useEffect(() => {
         const getCartItemAsync = async () => {
           let cart = await getUserCart(token);
-          if(cart) {
-              console.log('use Effect is', cart.itemsInCart)
-              setItemsInCart(cart.itemsInCart)
-              setCartID(cart.id)
-              setCartChange(false)
-          } else {
+          console.log('useEffect cart is:', cart)
+          if(!cart.itemsInCart) {
             setItemsInCart([])
             setCartID(null)
+              
+          } else {
+            console.log('if (cart) success', cart.itemsInCart)
+            setItemsInCart(cart.itemsInCart)
+            setCartID(cart.id)
+            setCartChange(false)
           }
 
         }
@@ -31,17 +33,20 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
       }, [token, cartChange])
 
     useEffect(() => {
-        itemsInCart.filter((itemInCart) => {
-            console.log(itemInCart)
-            if (itemInCart.itemsId === id) {
-                console.log(`id matched, itemsId ${itemInCart.itemsId} is equal to id ${id}`)
-                setCartState(true)
-                setCartItemQuantity(itemInCart.quantity)
-                console.log(`cartItemQuantity is ${itemInCart.quantity}`)
+        if(itemsInCart.length > 0) {
+            itemsInCart.map((itemInCart) => {
+                // console.log(itemInCart)
+                if (itemInCart.itemsId === id) {
+                    // console.log(`id matched, itemsId ${itemInCart.itemsId} is equal to id ${id}`)
+                    setCartState(true)
+                    setCartItemQuantity(itemInCart.quantity)
+                    // console.log(`cartItemQuantity is ${itemInCart.quantity}`)
             }
-    
-            return null
-          })
+                return null
+              })
+        } else {
+            console.log('no items in cart')
+        }
     }, [itemsInCart, id])
     
     return(

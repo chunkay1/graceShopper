@@ -24,9 +24,11 @@ const Cart = ({ token }) => {
   useEffect(() => {
     const getCartItemsAsync = async () => {
       let cartItems = await getUserCart(token);
-      console.log('use Effect is', cartItems.itemsInCart)
-      setItemsInCart(cartItems.itemsInCart);
-      setCartID(cartItems.id)
+      if (cartItems) {
+        setItemsInCart(cartItems.itemsInCart);
+        setCartID(cartItems.id)
+      }
+
       setCartChange(false)
     }
     getCartItemsAsync();

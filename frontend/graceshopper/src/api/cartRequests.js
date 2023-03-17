@@ -52,7 +52,7 @@ export async function getUserCart(token) {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${token}`
-                },
+                }, 
             }
         )
         const json = await response.json();
