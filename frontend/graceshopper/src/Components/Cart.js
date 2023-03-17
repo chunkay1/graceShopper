@@ -207,7 +207,7 @@ const Cart = ({ token }) => {
             
             <button 
               // className={`${styles.button}`}
-              className={`btn btn-primary btn-lg ${styles.button}`}
+              className={`${styles.button}`}
               onClick={async (event) => {
                 event.preventDefault();
                 console.log(await checkoutCart(cartID, token))

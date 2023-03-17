@@ -21,6 +21,10 @@
 .button {
     border-radius: 7px;
     background-color: #16697a;
+    padding: 0.25em .75em;
+    box-sizing: content-box;
+    height: 1.5em;
+    border-radius: 7px;
     color: #EDE7E3;
     font-weight: 500;
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
