@@ -20,6 +20,7 @@ const AddProducts = ({ token,products,setProducts }) => {
 
   return (
     <>
+    <h3 className={`${styles.title}`}> Add Product </h3>
     <form
       className={`${styles.addItemForm}`}
       onSubmit={async (e) => {
