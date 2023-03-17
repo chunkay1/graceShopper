@@ -6,7 +6,19 @@ const OrderConfirmation = () => {
 
   let confirmationNumber =  Math.floor(Math.random() * 1000000);
   const location = useLocation();
-  const orderItems = location.state.orderedItems.itemsInCart
+  const orderItems = location.state.orderedItems.itemsInCart;
+
+  let totalCartPrice = (orderItems) => {
+    let cartPrice = 0;
+    console.log(orderItems)
+    for (let i = 0; i < orderItems.length; ++i) {
+      let itemPrice = Number(orderItems[i].price);
+      let quantity = orderItems[i].quantity
+      let individualPrice = (itemPrice * quantity)
+      cartPrice += individualPrice
+    }
+    return cartPrice
+  }
      
     return (
         // bootstrap styling 
@@ -46,10 +58,15 @@ const OrderConfirmation = () => {
                           <h6 className={styles.itemHeader}>Price:</h6>
                             <p className={styles.itemContent}>${price}</p>
                       </span>
+                      
                     </div>
                   )
                 })
               }
+              <span className={styles.priceContainer}>
+                <h6 className={styles.priceHeader}>Order Total:</h6>
+                  <p className={styles.totalPrice}>${totalCartPrice(orderItems).toFixed(2)}</p>
+              </span>
 
             </div>
             

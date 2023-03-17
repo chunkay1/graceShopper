@@ -98,11 +98,13 @@
     padding: 0 3px;
 } */
 
-.itemHeader {
+.itemHeader,
+.priceHeader {
     margin: 0 1px 0 4px;
 }
 
-.itemContent {
+.itemContent,
+.totalPrice {
     margin: 0 4px 0 1px;
 }
 
@@ -122,6 +124,14 @@
     width: 100%;
     margin: 3px 0;
 }
+
+.priceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* When the browser is at least 600px and above */
 @media screen and (min-width: 1430px) {
