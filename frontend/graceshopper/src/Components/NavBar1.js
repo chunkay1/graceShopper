@@ -87,16 +87,16 @@ function NavBar({ token }) {
 
                                     :
 
-                                    <li className={`nav-item ${styles.logout}`}>
+                                    <li className={`nav-item ${styles.logOut}`}>
                                         <button 
                                             type="button" 
-                                            className={`btn btn-link text-white ${styles.logOut}`} 
+                                            className={`btn text-white ${styles.logOut}`} 
                                             onClick={ (event) => {
                                                 console.log('logout!');
                                                 logOut();
                                                 navigate('/home');
                                                 window.location.reload();
-                                            }}>LogOut</button>
+                                            }}>Logout</button>
                                     </li>
                                 }
 
