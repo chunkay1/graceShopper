@@ -27,20 +27,21 @@ const AddProducts = ({ token,products,setProducts }) => {
         e.preventDefault();
 
         try {
-                  const response = await fetch(`${BASEURL}/items`, {
+                  const response = await fetch(`${BASEURL}/items/`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
                       Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
-                      addname,
-                      addcategory,
-                      addbrand,
-                      addsize,
-                      addprice,
-                      adddescription,
-                      addinventory
+                      name:addname,
+                      category:addcategory,
+                      brand: addbrand,
+                      size: addsize,
+                      price:addprice,
+                      description:adddescription,
+                      inventory:addinventory,
+                      image:image
                         
                   }),
 
@@ -48,7 +49,7 @@ const AddProducts = ({ token,products,setProducts }) => {
           
                   const json = await response.json();
                   console.log(json);
-                  const responseProduct = json;
+                  const responseProduct = json.item;
                   setProducts([responseProduct,...products]);
                   console.log(responseProduct)
           

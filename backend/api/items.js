@@ -73,14 +73,17 @@ itemsRouter.get( '/:itemId/item', async (req, res , next) => {
     }
 })
 
-//create a new item (admin)
-itemsRouter.post( '/:add-item/item', isAdministrator, async (req, res, next) => {
+//create a new item (admin) /:add-item/item
+itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
     const { 
         name,
         category,
         brand,
         size,
-        price
+        price,
+        description,
+        inventory,
+        image
     } = req.body
 
     try {
@@ -89,12 +92,12 @@ itemsRouter.post( '/:add-item/item', isAdministrator, async (req, res, next) => 
         // check for items with the same name
         // items may have the same name , same category , different brands
         if (items) {
-            const _item = items.find(elem => elem.name === name)
+            const _item = items.find(elem => elem.name === name && elem.brand === brand)
             
             if (_item) {
                 next ({
                     error: 'duplicateItem',
-                    message: `An item with the name ${name} already exists in the database`,
+                    message: `An item with the name ${name} and ${brand} already exists in the database`,
                     name: 'noDuplicateItemError'
                 })
             } else {
@@ -103,7 +106,11 @@ itemsRouter.post( '/:add-item/item', isAdministrator, async (req, res, next) => 
                     category: category,
                     brand: brand,
                     size: size,
-                    price: price
+                    price: price,
+                    description: description,
+                    inventory: inventory,
+                    image:image
+
                 })
 
                 res.send(
