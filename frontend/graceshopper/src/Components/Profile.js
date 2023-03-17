@@ -49,6 +49,15 @@ import styles from '../styles/Profile.module.css'
 const Profile = ({ token }) => {
      const [orderHistory, setOrderHistory] = useState([]);
      const [orderState, setOrderState] = useState(false);
+     const [testState, setTestState] = useState(false);
+
+    const allOrders = getOrderHistory(token).then((answer) => {
+    setTestState(true)
+    })
+        
+    useEffect(() => {
+    setOrderHistory(allOrders)
+    }, [testState])
     // console.log(token)
     //  useEffect(() => {
     //      const getOrderHistoryAsync = async (token) => {
@@ -62,34 +71,54 @@ const Profile = ({ token }) => {
     //  }, [token, orderHistory])
      
     return (
-        <div>
-            <h1 class={`${styles.h1Profile}`}>Profile</h1>
+        <div class={styles.mainContainer}>
+            <h1 class={styles.h1Profile}>Profile</h1>
 
             {/* <h1>Hi there, `${user}`</h1> */}
 
-            <h3>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+            <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
 
             <button class='btn btn-info' onClick={async (e) => { 
                 e.preventDefault();
-                const previousOrders = await getOrderHistory(token)
-                setOrderHistory(previousOrders)
+               await getOrderHistory(token).then((value) => {
+                    setOrderHistory(value)
+                })
+            
                 console.log('frontend orderhistory:',orderHistory)
+                
+               
                 setOrderState(true)
+                
             }}>Get Order History</button>
 
            
-            <h5>And find something new that you'll love!</h5>
+            <h5 class={styles.h5}>And find something new that you'll love!</h5>
             
 
             { orderState ?
-            //    map here so I can get the list for every single order - refer to Cart.js line 89 (and Products.js)
-            // {
-            //     orderDetails.map(({name, brand, size, price}) => {
-            //         return(
-                       
-            //         )
-            //     })
-            // }
+
+        //     return(
+        //         for(let i =0; i < orderHistory.length; i++) {
+        //             let orderHistoryObj = orderHistory[i].itemsInCart
+        //              // console.log(orderHistoryObj)
+        
+        //              orderHistoryObj.map(({name}) => {
+        //                  return(
+        //                     console.log(name)
+        //                  <div>
+        //                     <p>Name</p>
+        //                     <p>{name}</p>
+
+        //                 </div>
+        //                  )
+                         
+        //                  )
+          
+    
+                     
+                 
+        //      })
+        //  }
             console.log(orderHistory.itemsInCart)
             // orderHistory.itemsInCart.map(({name, brand, size, price}) => {
                 
