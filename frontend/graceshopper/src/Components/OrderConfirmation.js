@@ -18,14 +18,28 @@ const OrderConfirmation = () => {
             <h1 class={`h1-thank-you ${styles.h1ThankYou}`}>Thank you for your purchase!</h1>
             <p class={`p-confirmation-num ${styles.pConfirmationNum}`}>Your order confirmation number is: {confirmationNumber}</p>
             
-            <button
+            {/* <button
+              className={styles.button}
               onClick={(e) => {
                 e.preventDefault();
                 console.log(orderItems)
-              }}>Test</button>
+              }}>Test</button> */}
+            
+            <div className={styles.detailsContainer}>
+              {
+                orderItems.map(({brand, category, name, quantity, size, price}) => {
+                  return ( 
+                    <div className={styles.orderItem}>
+                      <p>{brand}</p>
+                    </div>
+                  )
+                })
+              }
+
+            </div>
             
             <Link to={'/products'}>
-              <button class="w-100 btn btn-warning btn-lg" type="submit">
+              <button className={`w-100 btn btn-warning btn-lg ${styles.button}`} type="submit">
                   Continue Shopping</button>
             </Link>
 
