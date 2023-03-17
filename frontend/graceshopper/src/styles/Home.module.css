@@ -103,7 +103,7 @@
     padding-right: calc(3px + 0.5vw);
     margin-right: 5px;
     padding-left: calc(7px + 0.75vmin);
-    font-size: calc(6px + 1.12vmin);
+    font-size: calc(6.5px + 1.12vmin);
 }
 
 .heading {
@@ -148,7 +148,7 @@
 
 .price {
     /* border-right: 1px solid white; */
-    font-size: calc(6px + 1vmin);
+    font-size: calc(6.5px + 1vmin);
     padding-left: 3px;
 }
 
@@ -175,6 +175,7 @@
     /* background-color: rgba(2, 45, 22, 0.7); */
     width: 97%;
     padding-left: 10px;
+    font-size: calc(6.5px + 1.12vmin);
 }
 
 .header {
@@ -217,8 +218,7 @@
     min-height: 70vmin;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: transparent;
-    /* background-color: rgba(48, 73, 73, 0.7) */
+    background: linear-gradient(transparent);
 }
 
   .aboutCards::-webkit-scrollbar {

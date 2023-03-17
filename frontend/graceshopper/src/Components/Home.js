@@ -246,7 +246,9 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
 
         {/* about me card deck */}
         <div className={`card-deck ${styles.cardDeck}`}>
-          <div className={`card ${styles.aboutCards}`}>
+          <div className={`card ${styles.aboutCards}`} style={{
+                        background: "transparent",
+                      }}>
             <img className={`card-img-top ${styles.aboutImg}`} src={"Aboutheadshot.jpg"} alt="About Samuel Banister" />
             <div className={`card-body ${styles.aboutBody}`}>
               <h5 className={`card-title ${styles.aboutName}`}>Samuel Banister

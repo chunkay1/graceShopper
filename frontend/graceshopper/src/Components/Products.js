@@ -67,19 +67,20 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
   return (
     <div>
-
-      <select onChange={(e) => {
-        setSelectValue(e.target.value)
-      }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
-        <option selected value="">Browse by category</option>
-        <option value="Shoes">Shoes</option>
-        <option value="Tents">Tents</option>
-        <option value="Clothing">Outdoor Clothing</option>
-        <option value="Firepits and Grills">Firepits and Grills</option>
-        <option value="Skis">Skis and Gear</option>
-        <option value="Snowboards">Snowboards and Gear</option>
-        <option value="">All Products</option>
-      </select>
+      <div className={styles.topWrapper}>
+        <select onChange={(e) => {
+          setSelectValue(e.target.value)
+        }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
+          <option selected value="">Browse by category</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Tents">Tents</option>
+          <option value="Clothing">Outdoor Clothing</option>
+          <option value="Firepits and Grills">Firepits and Grills</option>
+          <option value="Skis">Skis and Gear</option>
+          <option value="Snowboards">Snowboards and Gear</option>
+          <option value="">All Products</option>
+        </select>
+      </div>
 
       {
         singleProduct
@@ -106,8 +107,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                     <div
                       className={`card ${styles.productCard}`}
                       style={{
-                        width: "18rem",
-                        backgroundColor: "#B7E4C7"
+                        width: "19rem",
                       }}
                       // this is where you click the div and it takes you to the single product view
                       onClick={async (e) => {
@@ -124,18 +124,21 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                       <img src={image} class="card-img-top" alt="..." />
 
                       <div class="card-body">
-                        {/* <h5 class="card-title">Brand</h5>
-                          <p class="card-text">{brand}</p> */}
-                        <p class="card-text">{name}</p>
+                        <span className={styles.brandContainer}>
+                          <p class="card-text">{brand}®</p>
+                          <p className={`card-text ${styles.Name}`}>{name}</p>
+                        </span>
                         {/* <h5 class="card-title">size</h5>
                           <p class="card-text">{size}</p> */}
                         {/* <h5 class="card-title">Category</h5>
                           <p class="card-text">{category}</p> */}
-                        <p class="card-text">${price}</p>
-                        <h5 className={`card-title ${styles.stock}`}>In-stock 
-                          <p class="card-text">{inventory}</p>
-                        </h5>
-                        
+                        <span className={styles.priceContainer}>
+                          <h5 className={`card-title ${styles.stock}`}>In-stock
+                            <p class="card-text">{inventory}</p>
+                          </h5>
+                          <p className = {`card-text ${styles.price}`}>${price}</p>
+                        </span>
+
                         {/* <h5 class="card-title">Id</h5>
                           <p class="card-text">{id}</p> */}
 
