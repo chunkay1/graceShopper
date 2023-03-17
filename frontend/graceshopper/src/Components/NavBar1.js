@@ -106,8 +106,17 @@ function NavBar({ token }) {
                                     </a>
                                 </li>
                                 <li className="nav-item">
+                                    
                                     <a
-                                         class="nav-link text-white" href="profile">Profile
+                                        class="nav-link text-white" 
+
+                                        className={`nav-link text-white ${styles.profileIconLi}`}
+
+                                        href="profile">
+                                        
+                                        <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
+
+                                            
                                     </a>
                                 </li>
                                 <li class="nav-item">
