@@ -16,6 +16,11 @@ const {
     getAllUsers
 } = require('../db/users')
 
+const {
+    createCart,
+    getCartByUserId
+} = require('../db/carts')
+
 //Register
 usersRouter.post( '/register', async (req, res , next) => {
 
@@ -75,6 +80,12 @@ usersRouter.post( '/register', async (req, res , next) => {
                 isAdmin: user.isAdmin
             }, JWT_SECRET)
 
+            const cart = await getCartByUserId(user.id)
+
+            if (!cart) {
+            await createCart(user.id)
+            }
+
             res.send ({
                 token: token,
                 message: 'Success! Thanks for signing up with Hike and Seek.'
@@ -108,6 +119,7 @@ usersRouter.post( '/login', async (req, res , next) => {
         username: username,
         password: password 
       })
+
       //next if no user is found
       if(!user) {
         next({
@@ -122,6 +134,14 @@ usersRouter.post( '/login', async (req, res , next) => {
             username: user.username,
             isAdmin: user.isAdmin
         }, JWT_SECRET)
+
+        
+        const cart = await getCartByUserId(user.id)
+
+        if (!cart) {
+            await createCart(user.id)
+        }
+        
 
         res.send({
             message: "You're logged in! Enjoy the Hike and Seek experience.",

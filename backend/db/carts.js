@@ -105,7 +105,8 @@ async function getCartByUserId(userId) {
       WHERE "userId" = ${userId}
       AND purchased = false;
       `);
-
+      
+    
     if (!cart) {
       return null;
     }
