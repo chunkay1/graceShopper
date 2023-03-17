@@ -50,7 +50,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                 name: name,
                 price: price,
                 size: size,
-                inventory:inventory,
+                inventory: inventory,
             }
         )
         return itemProps
@@ -61,6 +61,16 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
         <div>
 
             <h1>Products</h1>
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Browse by category</option>
+                <option value="shoes">Shoes</option>
+                <option value="tents">Tents</option>
+                <option value="Clothing">Outdoor Clothing</option>
+                <option value="Firepits and Grills">Firepits and Grills</option>
+                <option value="Skiing">Skis and Gear</option>
+                <option value="Snowboarding">Snowboards and Gear</option>
+            </select>
 
             <button onClick={(e) => {
                 window.location.reload();
