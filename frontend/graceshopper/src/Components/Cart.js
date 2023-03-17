@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { myProfile } from '../api/userRequests';
 import { getUserCart, deleteItemFromCart, updateCartQuantity, checkoutCart } from '../api/cartRequests';
 import { cartHealth } from '../api/testRequests';
@@ -9,7 +9,7 @@ const Cart = ({ token }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [cartID, setCartID] = useState(0);
   const [cartChange, setCartChange] = useState(false)
-  
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const getCartItemsAsync = async () => {
@@ -33,6 +33,14 @@ const Cart = ({ token }) => {
     }
     getCartItemsAsync();
   }, [token, cartChange])
+
+  const toOrderConfirmationPage = () => {
+    navigate('/order-confirmation', {
+        state: {
+            itemsInCart: { itemsInCart }
+        }
+    })
+}
   
   let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
@@ -203,6 +211,12 @@ const Cart = ({ token }) => {
               onClick={async (event) => {
                 event.preventDefault();
                 console.log(await checkoutCart(cartID, token))
+                navigate('/order-confirmation', {
+                  state: {
+                      orderedItems: { itemsInCart }
+                  }
+              })
+                
               }} >Checkout</button>
 
           </div>
