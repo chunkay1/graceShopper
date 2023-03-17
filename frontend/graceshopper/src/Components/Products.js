@@ -12,196 +12,181 @@ import SingleProduct from './SingleProduct';
 
 
 const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory }) => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [selectValue, setSelectValue] = useState('')
 
-    useEffect(() => {
-        const getAllProductsAsync = async () => {
-            let allProducts = await getAllItems();
-            setProducts(allProducts);
-            // console.log('products are', products)
-        }
-        getAllProductsAsync();
-    }, [])
-
-    useEffect(() => {
-        const getProductsByCategoryAsync = async () => {
-            let allProducts = await getAllItems();
-            if (category) {
-                let categoryItems = allProducts.filter(product => product.category === category)
-                setProducts(categoryItems);
-                console.log(categoryItems)
-            }
-
-        }
-        getProductsByCategoryAsync();
-    }, [category])
-
-    let getCategoryItems = async (category) => {
-        await getProductsByCategory(category);
+  useEffect(() => {
+    const getAllProductsAsync = async () => {
+      let allProducts = await getAllItems();
+      setProducts(allProducts);
+      // console.log('products are', products)
     }
+    getAllProductsAsync();
+  }, [])
 
-    let getItemProps = (brand, category, id, name, price, size, inventory) => {
-        console.log('props are', brand, category, id, name, price, size)
-        setItemProps(
-            {
-                brand: brand,
-                category: category,
-                id: id,
-                name: name,
-                price: price,
-                size: size,
-                inventory:inventory,
-            }
-        )
-        return itemProps
+  useEffect(() => {
+    const getProductsByCategoryAsync = async () => {
+      let allProducts = await getAllItems();
+      if (category) {
+        let categoryItems = allProducts.filter(product => product.category === category)
+        setProducts(categoryItems);
+        console.log(categoryItems)
+      }
+      else {
+        setProducts(allProducts)
+      }
+
     }
+    getProductsByCategoryAsync();
+  }, [category])
+
+  useEffect(() => {
+    setCategory(selectValue)
+  }, [selectValue])
+
+  // let getCategoryItems = async (category) => {
+  //     await getProductsByCategory(category);
+  // }
+
+  let getItemProps = (brand, category, id, name, price, size, inventory) => {
+    console.log('props are', brand, category, id, name, price, size)
+    setItemProps(
+      {
+        brand: brand,
+        category: category,
+        id: id,
+        name: name,
+        price: price,
+        size: size,
+        inventory: inventory,
+      }
+    )
+    return itemProps
+  }
 
 
-    return (
-        <div>
+  return (
+    <div>
 
-            <h1>Products</h1>
+      <select onChange={(e) => {
+        setSelectValue(e.target.value)
+      }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
+        <option selected value="">Browse by category</option>
+        <option value="Shoes">Shoes</option>
+        <option value="Tents">Tents</option>
+        <option value="Clothing">Outdoor Clothing</option>
+        <option value="Firepits and Grills">Firepits and Grills</option>
+        <option value="Skis">Skis and Gear</option>
+        <option value="Snowboards">Snowboards and Gear</option>
+        <option value="">All Products</option>
+      </select>
 
-            <button onClick={(e) => {
-                window.location.reload();
-            }}>View All Products</button>
+      {
+        singleProduct
 
-            <button onClick={(e) => {
-                getCategoryItems('shoes');
-                setCategory('shoes');
+          ?
 
-            }}>Shoes</button>
+          <SingleProduct
+            setSingleProduct={setSingleProduct}
+            setItemProps={setItemProps}
+            itemProps={itemProps}
+            token={token}
+            addToCart={addToCart}
+            getProductById={getProductById}
+          />
 
-            <button onClick={(e) => {
-                // setTargetValue(setCategory)
-                getCategoryItems('tents');
-                setCategory('tents');
-            }}>tents</button>
-
-            <button onClick={(e) => {
-                setTargetValue(setCategory)
-                getCategoryItems('Clothing');
-                setCategory('Clothing');
-            }}>Clothing</button>
-
-            <button onClick={(e) => {
-                // setTargetValue(setCategory)
-                getCategoryItems('Firepits and Grills');
-                setCategory('Firepits and Grills');
-            }}>Grills and firepits</button>
-
-            {/* tests adding to cart with some set info */}
-            <button onClick={async (e) => {
-                const addedToCart = await addToCart(7, token)
-                console.log(addedToCart)
-            }}> add to cart test</button>
+          :
+          <div className={styles.container}>
 
             {
-                singleProduct
+              products.map(({ brand, category, id, name, price, size, image, inventory }) => {
+                return (
+                  <div key={id}>
 
-                    ?
+                    <div
+                      className={`card ${styles.productCard}`}
+                      style={{
+                        width: "18rem",
+                        backgroundColor: "#B7E4C7"
+                      }}
+                      // this is where you click the div and it takes you to the single product view
+                      onClick={async (e) => {
+                        // console.log('brand is,', brand);
+                        // console.log('name is,', name);
+                        // console.log('price is,', price);
+                        const props = await getProductById(id);
+                        setItemProps(props)
+                        console.log(itemProps)
+                        setSingleProduct(true);
 
-                    <SingleProduct
-                        setSingleProduct={setSingleProduct}
-                        setItemProps={setItemProps}
-                        itemProps={itemProps}
-                        token={token}
-                        addToCart={addToCart}
-                        getProductById={getProductById}
-                    />
+                      }}>
 
-                    :
-                    <div className={styles.container}>
+                      <img src={image} class="card-img-top" alt="..." />
 
-                        {
-                            products.map(({ brand, category, id, name, price, size, image, inventory }) => {
-                                return (
-                                    <div key={id}>
+                      <div class="card-body">
+                        {/* <h5 class="card-title">Brand</h5>
+                          <p class="card-text">{brand}</p> */}
+                        <p class="card-text">{name}</p>
+                        {/* <h5 class="card-title">size</h5>
+                          <p class="card-text">{size}</p> */}
+                        {/* <h5 class="card-title">Category</h5>
+                          <p class="card-text">{category}</p> */}
+                        <p class="card-text">${price}</p>
+                        <h5 className={`card-title ${styles.stock}`}>In-stock 
+                          <p class="card-text">{inventory}</p>
+                        </h5>
+                        
+                        {/* <h5 class="card-title">Id</h5>
+                          <p class="card-text">{id}</p> */}
 
-                                        <div
-                                            className={`card ${styles.productCard}`}
-                                            style={{
-                                                width: "18rem",
-                                                backgroundColor: "#B7E4C7"
-                                            }}
-                                            // this is where you click the div and it takes you to the single product view
-                                            onClick={async (e) => {
-                                                // console.log('brand is,', brand);
-                                                // console.log('name is,', name);
-                                                // console.log('price is,', price);
-                                                const props = await getProductById(id);
-                                                setItemProps(props)
-                                                console.log(itemProps)
-                                                setSingleProduct(true);
+                        {/* <div className={styles.buttonDiv}>
+                          <button
+                            className={styles.cartButton}
+                            onClick={async (event) => {
+                            event.preventDefault();
 
-                                            }}>
-
-                                            <img src={image} class="card-img-top" alt="..." />
-
-                                            <div class="card-body">
-                                                {/* <h5 class="card-title">Brand</h5>
-                                                    <p class="card-text">{brand}</p> */}
-                                                <h5 class="card-title">Name</h5>
-                                                <p class="card-text">{name}</p>
-                                                {/* <h5 class="card-title">size</h5>
-                                                    <p class="card-text">{size}</p> */}
-                                                {/* <h5 class="card-title">Category</h5>
-                                                    <p class="card-text">{category}</p> */}
-                                                <h5 class="card-title">Price</h5>
-                                                <p class="card-text">{price}</p>
-                                                <h5 class="card-title">Inventory</h5>
-                                                <p class="card-text">{inventory}</p>
-                                                {/* <h5 class="card-title">Id</h5>
-                                                    <p class="card-text">{id}</p> */}
-
-                                                {/* <div className={styles.buttonDiv}>
-                                                    <button
-                                                        className={styles.cartButton}
-                                                        onClick={async (event) => {
-                                                            event.preventDefault();
-
-                                                            console.log('added to cart')
-                                                            let test = await addToCart(getItemProps(brand, category, id, name, price, size, image, inventory))
-                                                            console.log(test);
-                                                            // this prevents from going to single product view after clicking add to cart
-                                                            const props = await getProductById(id);
-                                                            setItemProps(props)
-                                                            console.log(itemProps)
-                                                            setSingleProduct(false);
+                                  console.log('added to cart')
+                                  let test = await addToCart(getItemcategory, id, name, price, inventory))
+                                  console.log(test);
+                                  // this prevents from going to siview after clicking add to cart
+                                  const props = await getProductById(id);
+                                  setItemProps(props)
+                                  console.log(itemProps)
+                                  setSingleProduct(false);
 
 
-                                                            // const { [id] : userId } = jwt.verify(token)
-                                                            console.log("this is the id", id, "this is the token", token)
-                                                            const something = await addToCart(id, token)
-                                                            console.log("this is something", something)
-                                                            // let test = await addToCart(getItemProps(brand, category, id, name, price, size, image))
+                                  // const { [id] : userId } = jwt.verify(token)
+                                  console.log("this is the id", id, token", token)
+                                  const something = await addToCart(id, token)
+                                  console.log("this is something", something)
+                                  // let test = await addToCart(brand, category, id, name, image))
 
 
-                                                            // getCartItemProps(brand, category, id, name, price, size, image).then((result) => {
-                                                            //     console.log(result)
-                                                            //     addToCart(result);
-                                                            // }).catch((err) => {
-                                                            //     console.log(err)
-                                                            // });
-                                                        }}>
-                                                        Add to Cart!
-                                                    </button>
-                                                </div> */}
-                                            </div>
+                                  // getCartItemProps(brand, categorprice, size, image).then((result) => {
+                                  //     console.log(result)
+                                  //     addToCart(result);
+                                  // }).catch((err) => {
+                                  //     console.log(err)
+                                  // });
+                              }}>
+                              Add to Cart!
+                          </button>
+                       </div> */}
+                      </div>
 
-                                        </div>
-
-                                    </div>
-
-                                )
-
-                            })
-                        }
                     </div>
+
+                  </div>
+
+                )
+
+              })
             }
+          </div>
+      }
 
 
-            {/* {
+      {/* {
                     products.map(({brand, category, id, name, price, size, image}) => {
                         return (
                             <div 
@@ -235,13 +220,12 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                                     }
                             </div>
                         )
-                    
                     })
                 } */}
 
-        </div>
+    </div>
 
-    )
+  )
 }
 
 export default Products;
