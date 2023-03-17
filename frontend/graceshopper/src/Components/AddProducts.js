@@ -49,7 +49,7 @@ const AddProducts = ({ token,products,setProducts }) => {
           
                   const json = await response.json();
                   console.log(json);
-                  const responseProduct = json.item;
+                  const responseProduct = json.data;
                   setProducts([responseProduct,...products]);
                   console.log(responseProduct)
           
@@ -65,6 +65,8 @@ const AddProducts = ({ token,products,setProducts }) => {
                 // setAddCategory('');
                 // SetAddInventory('');
                 // setImage('');
+
+                // window.location.reload();
 
                 navigate('/admin')
 
