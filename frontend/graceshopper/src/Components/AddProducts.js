@@ -80,6 +80,9 @@ const AddProducts = ({ token,products,setProducts }) => {
         }
         setItemProps("");
        */}
+
+      {/* <div className={styles.AddItem}> */}
+      
       <div className={styles.addItem}>
       <label for="name">Name:</label>
       <input
@@ -89,7 +92,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
       </div>
 
-      <div className={styles.AddItem}>
+      <div className={styles.addItem}>
       <label for="brand">Brand:</label>
       <input
         placeholder="brand"
@@ -98,7 +101,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
       </div>
 
-      <div className={styles.AddItem}>
+      <div className={styles.addItem}>
       <label for="category">Category:</label>
       <input
         placeholder="category"
@@ -107,7 +110,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
       </div>
 
-    <div className={styles.AddItem}>
+    <div className={styles.addItem}>
     <label for="size">Size:</label>
       <input
         placeholder="size"
@@ -116,7 +119,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
     </div>
 
-    <div className={styles.AddItem}>
+    <div className={styles.addItem}>
     <label for="price">Price:</label>
       <input
         placeholder="price"
@@ -125,7 +128,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
     </div>
 
-    <div className={styles.AddItem}>
+    <div className={styles.addItem}>
     <label for="description">Description:</label>
       <input
         placeholder="description"
@@ -134,7 +137,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input>
     </div>
 
-    <div className={styles.AddItem}>
+    <div className={styles.addItem}>
     <label for="inventory">Inventory:</label>
         <input
         placeholder="inventory"
@@ -143,7 +146,7 @@ const AddProducts = ({ token,products,setProducts }) => {
       ></input> 
     </div>
 
-    <div className={styles.AddItem}>
+    <div className={styles.addItem}>
     <label for="image">Image:</label>
       <input
         placeholder="image"
@@ -151,6 +154,7 @@ const AddProducts = ({ token,products,setProducts }) => {
         onChange={(e) => setImage(e.target.value)}
       ></input> 
     </div>
+    {/* </div> */}
 
       <button className={styles.itemSubmit}>Submit</button>
     </form>
