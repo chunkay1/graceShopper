@@ -1,15 +1,19 @@
-* {
+.mainContainer {
     text-align: center;
 }
 .h1Profile {
     padding: 50px
 }
 
-h3 {
+.h3 {
     padding-bottom: 75px;
     text-align: center;
 }
 
-h5{
+.h5 {
     padding-top: 50px;
+}
+
+.ul {
+    list-style: none;
 }

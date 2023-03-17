@@ -41,7 +41,7 @@
 
 // export default Profile;
 
-// BUTTON ONLY VERSION //////////////////////////////////////////
+// BUTTON ONLY VERSION - WED 3/15 ///////////////////////////////////////////////
 import React, { useEffect, useState } from 'react';
 import { getOrderHistory,  } from '../api/cartRequests';
 import styles from '../styles/Profile.module.css'
@@ -79,6 +79,7 @@ const Profile = ({ token }) => {
 
            
             <h5>And find something new that you'll love!</h5>
+            
 
             { orderState ?
             //    map here so I can get the list for every single order - refer to Cart.js line 89 (and Products.js)
@@ -89,25 +90,26 @@ const Profile = ({ token }) => {
             //         )
             //     })
             // }
-
-            orderHistory.map(({name, brand, size, price}) => {
-                return(
-                    <div className={styles.container}>
-                        <ul className={styles.orderDetails}>
-                            <li>Order Number</li>
+            console.log(orderHistory.itemsInCart)
+            // orderHistory.itemsInCart.map(({name, brand, size, price}) => {
                 
-                        <ul className={styles.orderItems}>
-                    {/* for loop or map */}
-                            <li>Name</li>
-                            <li>Brand</li>
-                            <li>Size</li>
-                            <li>Price</li>
-                        </ul>
-                        <ul>Total Price</ul>
-                        </ul>
-                    </div>
-                )
-            })
+            //     return(
+            //         <div className={styles.container}>
+            //             <ul className={styles.orderDetails}>
+            //                 <li>Order Number</li>
+                
+            //             <ul className={styles.orderItems}>
+            //         {/* for loop or map */}
+            //                 <li>Name</li>
+            //                 <li>Brand</li>
+            //                 <li>Size</li>
+            //                 <li>Price</li>
+            //             </ul>
+            //             <ul>Total Price</ul>
+            //             </ul>
+            //         </div>
+            //     )
+            // })
         //     <div className={styles.container}>
         //     <ul className={styles.orderDetails}>
         //         <li>Order Number</li>
@@ -133,6 +135,106 @@ const Profile = ({ token }) => {
 }
 
 export default Profile;
+
+// BUTTON ONLY VERSION - THU 3/16 //////////////////////////////////////////
+// import React, { useEffect, useState } from 'react';
+// import { getOrderHistory,  } from '../api/cartRequests';
+// import styles from '../styles/Profile.module.css'
+
+// const Profile = ({ token }) => {
+//      const [orderHistory, setOrderHistory] = useState([]);
+//      const [orderState, setOrderState] = useState(false);
+//     // console.log(token)
+//     //  useEffect(() => {
+//     //      const getOrderHistoryAsync = async (token) => {
+//     //          console.log(token)
+//     //          let allOrders = await getOrderHistory(token);
+//     //          setOrderHistory(allOrders);
+//     //          console.log('past orders are:', allOrders)
+//     //      }
+//     //      getOrderHistoryAsync();
+//     //      console.log(orderHistory)
+//     //  }, [token, orderHistory])
+     
+//     return (
+//         <div class={styles.mainContainer}>
+//             <h1 class={styles.h1Profile}>Profile</h1>
+
+//             {/* <h1>Hi there, `${user}`</h1> */}
+
+//             <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+
+//             <button class='btn btn-info' onClick={async (e) => { 
+//                 e.preventDefault();
+//                 const previousOrders = await getOrderHistory(token)
+//                 setOrderHistory(previousOrders)
+//                 console.log('frontend orderhistory:',orderHistory)
+//                 setOrderState(true)
+//             }}>Get Order History</button>
+
+           
+//             <h5 class={styles.h5}>And find something new that you'll love!</h5>
+
+//             { orderState ?
+
+//             // orderHistory.map(({name, brand, size, price}) => {
+//             //     return(
+//                     <div key={token} className={styles.container}>
+                        
+//                         <ul className={styles.orderDetails}>
+//                         {
+//                             orderHistory.map(({name, brand, size, price}) => {
+//                                 return(
+//                                     <ul>
+//                                     <li>New List Item Returned!</li>
+//                                     <li>{orderHistory.name}</li>
+//                                     </ul>
+//                                 )
+//                             })
+//                         }
+//                             <li>Order Number</li>
+                
+//                         <ul className={styles.orderItems}>
+//                     {/* for loop or map */}
+//                             <li>Name</li>
+//                             <li>Brand</li>
+//                             <li>Size</li>
+//                             <li>Price</li>
+//                         </ul>
+//                         <ul>Total Price</ul>
+//                         </ul>
+//                     </div>
+//         //////////////////////////
+//                 )
+//             })
+//         //////////////////////////
+//         //     <div className={styles.container}>
+//         //     <ul className={styles.orderDetails}>
+//         //         <li>Order Number</li>
+                
+//         //         <ul className={styles.orderItems}>
+//         //             {/* for loop or map */}
+//         //             <li>Name</li>
+//         //             <li>Brand</li>
+//         //             <li>Size</li>
+//         //             <li>Price</li>
+//         //         </ul>
+//         //         <ul>Total Price</ul>
+//         //     </ul>
+//         // </div>
+
+//                 :
+
+//                 null}
+            
+//         </div>
+        
+//     )
+// }
+
+// export default Profile;
+
+// REFERENCE ///////////////////////////////////////////////////////////////////
 
 // cart pricing tool - rename variables
 // let totalCartPrice = (itemsInCart) => {
