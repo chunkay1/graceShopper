@@ -1,26 +1,26 @@
 /* whole container */
 /* .ordercontainer { */
-    
-    /* margin-left: 20rem;
+
+/* margin-left: 20rem;
     margin-right: 20rem;
     margin-top: 90px; */
-    /* height: 50rem;
+/* height: 50rem;
     width: 50rem;  */
 
 
-    /* margin-left: 100px; */
-    /* padding: 50px; */
-    /* max-height: 80vh;
+/* margin-left: 100px; */
+/* padding: 50px; */
+/* max-height: 80vh;
     max-width: 80vw;
     min-height: 80vh;
     min-width: 80vw; */
-    /* background-color: rgba(211, 211, 211, 0.798);
+/* background-color: rgba(211, 211, 211, 0.798);
 
     display: flex;
     align-items: center;
     flex-direction: column; */
-    /* position: relative; */
-    /* min-width: 50%;
+/* position: relative; */
+/* min-width: 50%;
     max-width: 50%;
     position: fixed;
    
@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    
+
 }
 
 /* .ordercontainer:after {
@@ -47,13 +47,13 @@
     justify-content: center;
     flex-direction: column;
     /* border: 3px solid black; */
-    box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     margin: 10%;
     background-color: rgba(211, 211, 211, 0.798);
-    
+
 }
 
-.btn {
+.button {
     margin-bottom: 20px;
 }
 
@@ -70,7 +70,7 @@
     width: 6rem;
     height: 6rem;
     margin-bottom: 50px;
-    
+
 }
 
 /* line: Thank you for your purchase! */
@@ -83,15 +83,65 @@
     margin-bottom: 50px;
 }
 
+.detailsContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+
+/* .itemHeader,
+.itemContent {
+    margin: 0 3px;
+    padding: 0 3px;
+} */
+
+.itemHeader,
+.priceHeader {
+    margin: 0 1px 0 4px;
+}
+
+.itemContent,
+.totalPrice {
+    margin: 0 4px 0 1px;
+}
+
+.orderDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderItem {
+    box-sizing: border-box;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 3px 0;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* When the browser is at least 600px and above */
 @media screen and (min-width: 1430px) {
     .h1ThankYou {
-      /* Apply some styles */
-      color: blue;
+        /* Apply some styles */
+        color: blue;
     }
-  }
-  
-  @media (min-width: 768px){
+}
+
+@media (min-width: 768px) {
     .ordercontainer {
         justify-content: center;
         align-items: center;
@@ -105,8 +155,9 @@
         align-items: center;
     }
 
-    
-  }
-  /* HELPFUL LINKS */
-  /* https://css-tricks.com/a-complete-guide-to-css-media-queries/ */
-  /* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+
+}
+
+/* HELPFUL LINKS */
+/* https://css-tricks.com/a-complete-guide-to-css-media-queries/ */
+/* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */

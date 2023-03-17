@@ -87,16 +87,16 @@ function NavBar({ token }) {
 
                                     :
 
-                                    <li className={`nav-item ${styles.logout}`}>
+                                    <li className={`nav-item ${styles.logOut}`}>
                                         <button 
                                             type="button" 
-                                            className={`btn btn-link text-white ${styles.logOut}`} 
+                                            className={`btn text-white ${styles.logOut}`} 
                                             onClick={ (event) => {
                                                 console.log('logout!');
                                                 logOut();
                                                 navigate('/home');
                                                 window.location.reload();
-                                            }}>LogOut</button>
+                                            }}>Logout</button>
                                     </li>
                                 }
 
@@ -106,8 +106,17 @@ function NavBar({ token }) {
                                     </a>
                                 </li>
                                 <li className="nav-item">
+                                    
                                     <a
-                                         class="nav-link text-white" href="profile">Profile
+                                        class="nav-link text-white" 
+
+                                        className={`nav-link text-white ${styles.profileIconLi}`}
+
+                                        href="profile">
+                                        
+                                        <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
+
+                                            
                                     </a>
                                 </li>
                                 <li class="nav-item">

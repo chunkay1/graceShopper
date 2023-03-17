@@ -15,9 +15,6 @@
     /* changed by Sam */
     background-color: rgb(19, 66, 41);
 }
-.logout {
-    padding: 2px;
-}
 
 /* NAVBAR TOGGLER */
 /* div {
@@ -47,12 +44,14 @@
     margin-left: 8px;
 }
 
-.cartIcon {
+.cartIcon,
+.profileIcon {
     font-size: calc(5px + 1.35vh)
 }
 
-.cartIconLi {
-    padding-top: 6px;
+.cartIconLi,
+.profileIconLi {
+    padding-top: 7px;
 }
 
 .logOut {

@@ -1,10 +1,24 @@
 import React from 'react';
 import styles from '../styles/OrderConfirmation.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const OrderConfirmation = () => {
 
   let confirmationNumber =  Math.floor(Math.random() * 1000000);
+  const location = useLocation();
+  const orderItems = location.state.orderedItems.itemsInCart;
+
+  let totalCartPrice = (orderItems) => {
+    let cartPrice = 0;
+    console.log(orderItems)
+    for (let i = 0; i < orderItems.length; ++i) {
+      let itemPrice = Number(orderItems[i].price);
+      let quantity = orderItems[i].quantity
+      let individualPrice = (itemPrice * quantity)
+      cartPrice += individualPrice
+    }
+    return cartPrice
+  }
      
     return (
         // bootstrap styling 
@@ -16,8 +30,48 @@ const OrderConfirmation = () => {
             <h1 class={`h1-thank-you ${styles.h1ThankYou}`}>Thank you for your purchase!</h1>
             <p class={`p-confirmation-num ${styles.pConfirmationNum}`}>Your order confirmation number is: {confirmationNumber}</p>
             
+            {/* <button
+              className={styles.button}
+              onClick={(e) => {
+                e.preventDefault();
+                console.log(orderItems)
+              }}>Test</button> */}
+            
+            <div className={styles.detailsContainer}>
+              {
+                orderItems.map(({brand, category, name, quantity, size, price}) => {
+                  return (
+                    <div className={styles.orderDiv}>
+                      <span className={styles.orderItem}>
+                          <h6 className={styles.itemHeader}>Brand: </h6>
+                            <p className={styles.itemContent}>{brand}</p>
+
+                          <h6 className={styles.itemHeader}>Name:</h6>
+                            <p className={styles.itemContent}>{name}</p>
+
+                          <h6 className={styles.itemHeader}>Size:</h6>
+                            <p className={styles.itemContent}>{size}</p>
+
+                          <h6 className={styles.itemHeader}>Quantity:</h6>
+                            <p className={styles.itemContent}>{quantity}</p>
+
+                          <h6 className={styles.itemHeader}>Price:</h6>
+                            <p className={styles.itemContent}>${price}</p>
+                      </span>
+                      
+                    </div>
+                  )
+                })
+              }
+              <span className={styles.priceContainer}>
+                <h6 className={styles.priceHeader}>Order Total:</h6>
+                  <p className={styles.totalPrice}>${totalCartPrice(orderItems).toFixed(2)}</p>
+              </span>
+
+            </div>
+            
             <Link to={'/products'}>
-              <button class="w-100 btn btn-warning btn-lg" type="submit">
+              <button className={`w-100 btn btn-warning btn-lg ${styles.button}`} type="submit">
                   Continue Shopping</button>
             </Link>
 
