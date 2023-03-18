@@ -20,7 +20,8 @@
     border-radius: 4%;
     margin: 2em;
     color: rgb(82, 81, 81);
-    background-color: rgba(249, 249, 249, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 1px 1px 1px rgb(209, 206, 206);
     
     /* made a change here experimenting with a gradient, feel free to reverse it or modify it! -Sam */
     /* background: linear-gradient(120deg,rgb(216, 231, 222) 0%, rgb(201, 231, 212) 100%); */
@@ -30,6 +31,14 @@
     /* box-shadow: 6px 6px 1px .5px #344E41; */
     /* height: fit-content; */
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.cardBody {
+  padding: 0
+}
+
+.homeDiv {
+    /* background-color: rgba(243, 243, 243, 0.7); */
 }
 
 .productCard:hover {
@@ -80,11 +89,17 @@
 
 .brandContainer {
     display: flex;
-    
+    padding-left: 10px;
+    border-bottom:1px ridge #344E41;
+    padding-top: 5px;
 }
 .priceContainer {
     display: flex;
     justify-content: space-between;
+    /* background-color: rgb(59, 99, 99, 0.1); */
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    padding: 9px 10px 5px 10px; 
 }
 .price {
     font-size: calc(6.5px + 0.68vmin);
