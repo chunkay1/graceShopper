@@ -66,7 +66,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
 
   return (
-    <div>
+    <div className={styles.homeDiv}>
       <div className={styles.topWrapper}>
         <select onChange={(e) => {
           setSelectValue(e.target.value)
@@ -123,7 +123,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
                       <img src={image} class="card-img-top" alt="..." />
 
-                      <div class="card-body">
+                      <div className={`card-body ${styles.cardBody}`}>
                         <span className={styles.brandContainer}>
                           <p class="card-text">{brand}®</p>
                           <p className={`card-text ${styles.Name}`}>{name}</p>

@@ -213,8 +213,9 @@
 }
 
 .aboutCards {
-    flex: 0 0 calc(73%/4);
+    flex: 0 0 calc(80%/4);
     margin-left: 4vw;
+    max-height: 80vmin;
     min-height: 70vmin;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -229,7 +230,7 @@
     /* border-radius: 1%; */
     width: 100%;
     object-fit: cover;
-    height: 50%;
+    /* height: 50%; */
 }
 
 .aboutBody {
@@ -251,12 +252,12 @@
 }
 
 .aboutSummary {
-    color: rgb(207, 203, 203)
+    color: rgb(207, 203, 203);
 }
 
 .linkWrapper {
-    width: 16%;
-    margin-right: 3px;
+    width: 15%;
+    margin-right: 2%;
     display: flex;
     justify-content: space-between;
 }
