@@ -1,4 +1,50 @@
-// FINAL VERSION //////////////////////////////////////////////
+// ATTEMPT TO UPDATE - WITHOUT MAPS //////////////////////////////////////////////
+// import React, { useEffect, useState } from 'react';
+// import { getOrderHistory, } from '../api/cartRequests';
+// import styles from '../styles/Profile.module.css'
+
+// const Profile = ({ token }) => {
+//   const [orderHistory, setOrderHistory] = useState([]);
+
+//   useEffect(() => {
+//     getOrderHistory(token).then((answer) => {
+//       if (answer) {
+//         setOrderHistory(answer)
+//       }
+//     })
+//   }, [token])
+
+//   function listOrderHistory() {
+//     // line by line drill down accessing the order history details individually
+//     // console.log('orderHistory[0]:', orderHistory[0])
+//     // console.log('orderHistory[0].id:', orderHistory[0].id)
+//     // console.log('orderHistory[0].itemsInCart:', orderHistory[0].itemsInCart)
+//     // console.log('orderHistory[0].itemsInCart[0]:', orderHistory[0].itemsInCart[0])
+//     // console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name)
+
+//     // for loop attempt
+//     // for(let i = 0; i < orderHistory.length; i++) {
+//     // console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name);
+//     // }
+
+//     // hardcode attempt
+//     console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name)
+//     // console.log('ITEM NAME IS: ', orderHistory[2].itemsInCart[2].name)
+//     // console.log('ITEM NAME IS: ', orderHistory[4].itemsInCart[4].name)
+//     // console.log('ITEM NAME IS: ', orderHistory[5].itemsInCart[5].name)
+ 
+//   }
+
+//   listOrderHistory()
+
+//   return (
+//     <div class={styles.mainContainer}>
+//       <h1 class={styles.h1Profile}>Profile</h1>
+
+//       <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+
+
+// ATTEMPT TO UPDATE - WITH MAPS //////////////////////////////////////////////
 import React, { useEffect, useState } from 'react';
 import { getOrderHistory, } from '../api/cartRequests';
 import styles from '../styles/Profile.module.css'
@@ -14,6 +60,29 @@ const Profile = ({ token }) => {
     })
   }, [token])
 
+  function listOrderHistory() {
+    // line by line drill down accessing the order history details individually
+    // console.log('orderHistory[0]:', orderHistory[0])
+    // console.log('orderHistory[0].id:', orderHistory[0].id)
+    // console.log('orderHistory[0].itemsInCart:', orderHistory[0].itemsInCart)
+    // console.log('orderHistory[0].itemsInCart[0]:', orderHistory[0].itemsInCart[0])
+    // console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name)
+
+    // for loop attempt
+    // for(let i = 0; i < orderHistory.length; i++) {
+    // console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name);
+    // }
+
+    // hardcode attempt
+    console.log('ITEM NAME IS: ', orderHistory[0].itemsInCart[0].name)
+    // console.log('ITEM NAME IS: ', orderHistory[2].itemsInCart[2].name)
+    // console.log('ITEM NAME IS: ', orderHistory[4].itemsInCart[4].name)
+    // console.log('ITEM NAME IS: ', orderHistory[5].itemsInCart[5].name)
+ 
+  }
+
+  listOrderHistory()
+
   return (
     <div class={styles.mainContainer}>
       <h1 class={styles.h1Profile}>Profile</h1>
@@ -23,13 +92,34 @@ const Profile = ({ token }) => {
       { orderHistory.length &&
 
         orderHistory.map((order) => {
+            // listOrderHistory()
+            // console.log('this is your order:', order)
+            // for(let i = 0; i < orderHistory.length; i++){
+            //     console.log('orderHistory[i]:', orderHistory)
+            // }
+            // console.log('this is your orderHISTORY:', orderHistory[0])
           return (
             <ul key={order.id}>
 
               {
+                  
                 order.itemsInCart.map((itemInCart) => {
+                    // create empty array to house final past ordered items
+                        // let pastOrderedItemsArr = [];
+                        // console.log('items in cart are: ', itemInCart.name)
+                    // grab all item in cart names/ assign to variable
+                        // let pastOrderedItems = itemInCart.name
+                        // console.log('pastOrderedItems: ', pastOrderedItems);
+                        // pastOrderedItemsArr.push(pastOrderedItems)
+                        // console.log('pastOrderedItems array: ', pastOrderedItemsArr)
+                    // listOrderHistory()
+                    // push to array
+                    // filter out duplicates from array 
+                    // return final array to console
+                    // separate items in final array to list items
+                    // return list items on screen
                   return (
-                    <li key={itemInCart.id}>{itemInCart.name}</li>
+                    <li class={styles.li} key={itemInCart.id}>{itemInCart.name}</li>
                   )
                 })
               }
@@ -44,6 +134,75 @@ const Profile = ({ token }) => {
 }
 
 export default Profile;
+
+
+
+// RESET POINT: ORIGINAL FINAL VERSION //////////////////////////////////////////////
+// import React, { useEffect, useState } from 'react';
+// import { getOrderHistory, } from '../api/cartRequests';
+// import styles from '../styles/Profile.module.css'
+
+// const Profile = ({ token }) => {
+//   const [orderHistory, setOrderHistory] = useState([]);
+
+//   useEffect(() => {
+//     getOrderHistory(token).then((answer) => {
+//       if (answer) {
+//         setOrderHistory(answer)
+//       }
+//     })
+//   }, [token])
+
+//   return (
+//     <div class={styles.mainContainer}>
+//       <h1 class={styles.h1Profile}>Profile</h1>
+
+//       <h3 class={styles.h3}>Take a stroll down memory lane to see what awesome stuff you've already purchased</h3>
+
+//       { orderHistory.length &&
+
+//         orderHistory.map((order) => {
+//             // console.log('this is your order:', order[0])
+//             // console.log('this is your orderHISTORY:', orderHistory[0])
+//           return (
+//             <ul key={order.id}>
+
+//               {
+                  
+//                 order.itemsInCart.map((itemInCart) => {
+//                   return (
+//                     <li class={styles.li} key={itemInCart.id}>{itemInCart.name}</li>
+//                   )
+//                 })
+//               }
+
+//             </ul>
+//           )
+//         })
+//       }
+      
+//     </div>
+//   )
+// }
+
+// export default Profile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // FULL VERSION //////////////////////////////////////////////
 // import React, { useEffect, useState } from 'react';
 // import { getOrderHistory,  } from '../api/cartRequests';
