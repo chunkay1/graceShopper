@@ -23,6 +23,11 @@ export const categories = [
         siteCategory: 'Tents'
     },
     {
+        category: 'Firepits and Grills',
+        image: 'category-firepits-and-grills3.png',
+        siteCategory: 'Firepits and Grills'
+    },
+    {
         category: 'Skiing',
         image: 'category-skiing3.png',
         siteCategory: 'Skis'
@@ -31,11 +36,6 @@ export const categories = [
         category: 'Snowboarding',
         image: 'category-snowboarding3.png',
         siteCategory: 'Snowboards'
-    },
-    {
-        category: 'Firepits and Grills',
-        image: 'category-firepits-and-grills3.png',
-        siteCategory: 'Firepits and Grills'
     },
 ]
 

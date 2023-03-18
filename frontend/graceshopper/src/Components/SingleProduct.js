@@ -50,7 +50,7 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
     }, [itemsInCart, id])
     
     return(
-        <div>
+        <div className={styles.singleDiv}>
 
             <div className={`container ${styles.productContainer}`}>
                 <h5 class="display-5">{brand} {name}</h5>
