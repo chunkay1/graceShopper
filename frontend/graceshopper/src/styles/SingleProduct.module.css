@@ -51,6 +51,11 @@
     font-size: larger;
 }
 
+.contentText {
+    font-weight: 300;
+    font-size: medium;
+}
+
 .iconDiv {
     display: flex;
     flex-direction: row;

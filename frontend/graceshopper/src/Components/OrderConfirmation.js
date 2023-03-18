@@ -30,33 +30,26 @@ const OrderConfirmation = () => {
             <h1 class={`h1-thank-you ${styles.h1ThankYou}`}>Thank you for your purchase!</h1>
             <p class={`p-confirmation-num ${styles.pConfirmationNum}`}>Your order confirmation number is: {confirmationNumber}</p>
             
-            {/* <button
-              className={styles.button}
-              onClick={(e) => {
-                e.preventDefault();
-                console.log(orderItems)
-              }}>Test</button> */}
-            
             <div className={styles.detailsContainer}>
               {
                 orderItems.map(({brand, category, name, quantity, size, price}) => {
                   return (
                     <div className={styles.orderDiv}>
                       <span className={styles.orderItem}>
-                          <h6 className={styles.itemHeader}>Brand: </h6>
-                            <p className={styles.itemContent}>{brand}</p>
+                          <h6 className={styles.itemHeader}>Item: <p className={styles.itemContent}>{brand} {name} - {size} | <span className={styles.quantityHeader}>Quantity:</span> {quantity}</p></h6>
+                            
 
-                          <h6 className={styles.itemHeader}>Name:</h6>
-                            <p className={styles.itemContent}>{name}</p>
+                          {/* <h6 className={styles.itemHeader}>Name:</h6>
+                            <p className={styles.itemContent}>{name}</p> */}
 
-                          <h6 className={styles.itemHeader}>Size:</h6>
-                            <p className={styles.itemContent}>{size}</p>
+                          {/* <h6 className={styles.itemHeader}>Size: <p className={styles.itemContent}>{size}</p></h6> */}
+                            
 
-                          <h6 className={styles.itemHeader}>Quantity:</h6>
-                            <p className={styles.itemContent}>{quantity}</p>
+                          {/* <h6 className={styles.itemHeader}>Quantity: <p className={styles.itemContent}>{quantity}</p></h6> */}
+                            
 
-                          <h6 className={styles.itemHeader}>Price:</h6>
-                            <p className={styles.itemContent}>${price}</p>
+                          <h6 className={styles.itemHeader}>Price: <p className={styles.itemContent}>${(price * quantity).toFixed(2)}</p></h6>
+                            
                       </span>
                       
                     </div>

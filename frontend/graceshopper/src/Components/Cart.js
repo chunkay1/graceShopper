@@ -63,8 +63,6 @@ const Cart = ({ token }) => {
             
       <div class="py-5 text-center">
 
-        {/* <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"/> */}
-
         <h2>You're almost ready to hit the great outdoors</h2>
 
         <p class="lead">Be sure you didn't miss anything!</p>
@@ -76,7 +74,7 @@ const Cart = ({ token }) => {
 
           <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span className={`text ${styles.cartLabel}`}>Your cart</span>
+              <span className={`text ${styles.cartLabel}`}>Your Cart</span>
               <span className={`badge rounded-pill ${styles.countBadge}`}>{numberOfItems(itemsInCart)}</span>
             </h4>
 
@@ -193,7 +191,6 @@ const Cart = ({ token }) => {
 
             {itemsInCart.length > 0 ?
               <button 
-                // className={`${styles.button}`}
                 className={`${styles.button}`}
                 onClick={async (event) => {
                   event.preventDefault();
