@@ -1,21 +1,51 @@
+.container {
+    margin-bottom: 1em;
+}
+
 .priceAndIcons {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    text-align: center;
+    align-items: center;
 }
+
+.price {
+    /* border: 1px solid black; */
+    margin-bottom: 5px;
+}
+
+.deleteIcon {
+    transition: transform 0.25s, color 0.25s;
+
+}
+
+.deleteIcon:hover,
+.dashIcon:hover {
+    color: red;
+}
+
+.addIcon:hover {
+    color: #16697a;
+}
+
+
+.deleteIcon,
+.dashIcon,
+.addIcon:hover {
+    cursor: pointer;
+}
+
 
 .quantity {
     display: flex;
     flex-direction: row;
+    margin-top: 5px;
+    /* border: 1px solid red; */
 }
 
 .count {
     padding: 0;
     margin: 0;
-}
-
-.button {
-    background-color: blueviolet;
 }
 
 .button {

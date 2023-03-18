@@ -59,21 +59,7 @@ const Cart = ({ token }) => {
 
 
   return (
-    <div>
-      <h1>My Cart</h1>
-
-      <button 
-        onClick={async (event) => {
-          event.preventDefault();
-          //myProfile returns a #, which is the logged in users' ID#
-          // let myID = await myProfile(token)
-          console.log('cartId', cartID);
-          
-          await getUserCart(token);
-          await cartHealth()
-        }}>
-        Get Cart Testing
-      </button>
+    <div className={styles.container}>
             
       <div class="py-5 text-center">
 
@@ -106,7 +92,7 @@ const Cart = ({ token }) => {
                       </div>
                       
                       <div className={styles.priceAndIcons}>
-                        <span class="text-muted">{price}</span>
+                        <span className={`text-muted ${styles.price}`}>${price}</span>
                         <small class="text-muted">
                           <i 
                             className={`bi bi-trash3 ${styles.deleteIcon}`}
@@ -150,7 +136,7 @@ const Cart = ({ token }) => {
                                 null
                               :
                                 <i 
-                                class="bi bi-dash"
+                                className={`bi bi-dash ${styles.dashIcon}`}
                                 onClick={async (e) => {
                                   //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
                                   e.preventDefault();
@@ -167,7 +153,7 @@ const Cart = ({ token }) => {
 
                             {quantity < inventory ? 
                               <i 
-                              class="bi bi-plus"
+                              className={`bi bi-plus ${styles.addIcon}`}
                               onClick={async (e) => {
                                 e.preventDefault();
                                 let incrementQuantity = quantity + 1;
@@ -193,7 +179,7 @@ const Cart = ({ token }) => {
 
               <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
-                <strong>{totalCartPrice(itemsInCart).toFixed(2)}</strong>
+                <strong>${totalCartPrice(itemsInCart).toFixed(2)}</strong>
               </li>
 
             </ul>
