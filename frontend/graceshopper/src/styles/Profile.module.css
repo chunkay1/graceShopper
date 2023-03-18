@@ -2,7 +2,8 @@
     text-align: center;
 }
 .h1Profile {
-    padding: 50px
+    padding: 50px;
+    background-color: lightblue;
 }
 
 .h3 {
@@ -16,4 +17,10 @@
 
 .ul {
     list-style: none;
+}
+
+.li {
+    color: blue;
+    list-style: none;
+    /* border: 2px solid black; */
 }
