@@ -57,8 +57,8 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                 <div className={`row ${styles.productDiv}`}>
 
                     {/* this is a parent div */}
-                    <div class="col-xl-6">
-                        <img src={image} class="card-img-top" alt="..."/>
+                    <div className={`col-xl-6 ${styles.imageDiv}`}>
+                        <img src={image} className={`card-img-top ${styles.image}`} alt="..."/>
                     </div>
 
                     {/* this is the second parent div */}
@@ -199,13 +199,10 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
 
                             </div>
 
-                        
-                        {/* <h5 class="card-title">Inventory</h5>
-                            <p class="card-text">{inventory}</p> */}
                         </div>          
 
                     </div>
-
+                    
                 </div>
 
             </div>
