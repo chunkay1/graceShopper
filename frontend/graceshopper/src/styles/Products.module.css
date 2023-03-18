@@ -12,7 +12,7 @@
 .topWrapper{
     display: flex;
     justify-content: right;
-    width: 93vw;
+    width: 100%;
 }
 
 .productCard {
@@ -39,6 +39,8 @@
 
 .homeDiv {
     /* background-color: rgba(243, 243, 243, 0.7); */
+    overflow-x: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .productCard:hover {
@@ -53,7 +55,8 @@
 }
 
 .stock {
-    font-size: calc(6px + 0.6vmin);
+    font-size: calc(6.5px + 0.7vmin);
+    font-weight: 400;
 }
 
 .description {
@@ -67,8 +70,8 @@
 .selector {
     max-width: calc(50px + 25vmin);
     margin-top: calc(5px + 1.5%);
-    margin-left: 1.5%;
     border: 1px solid black;
+    margin-right: 3%;
 }
 
 .Name {
@@ -92,6 +95,7 @@
     padding-left: 10px;
     border-bottom:1px ridge #344E41;
     padding-top: 5px;
+    font-size: calc(7px + 1.1vmin);
 }
 .priceContainer {
     display: flex;
@@ -100,9 +104,10 @@
     border-bottom-left-radius: 10%;
     border-bottom-right-radius: 10%;
     padding: 9px 10px 5px 10px; 
+    font-weight: 600;
 }
 .price {
-    font-size: calc(6.5px + 0.68vmin);
+    font-size: calc(6.5px + 0.7vmin);
 }
 
 .buttonDiv {
