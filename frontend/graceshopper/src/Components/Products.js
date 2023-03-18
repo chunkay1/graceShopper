@@ -85,7 +85,9 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
           :
           <>
             <div className={styles.topWrapper}>
-              <select onChange={(e) => {
+
+              <span className = {styles.heading}>Gear Up. Get Out.</span>
+              <select style={{display: "inline"}} onChange={(e) => {
                 setSelectValue(e.target.value)
               }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
                 <option selected value="">Browse by category</option>

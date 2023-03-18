@@ -17,10 +17,20 @@
 
 .ul {
     list-style: none;
+    color: rebeccapurple;
+        border: 2px solid black;
+    padding: 20px;
+    margin: 20px;
 }
 
 .li {
     color: blue;
     list-style: none;
-    /* border: 2px solid black; */
+    
+}
+
+.orderDivCard {
+    /* border: 2px solid black;
+    padding: 20px;
+    margin: 20px; */
 }
