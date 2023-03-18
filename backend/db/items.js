@@ -4,7 +4,7 @@ const client = require('./client')
 
 async function adminCreateItem ({ name, category, brand, size, price, image, description, inventory }) {
     try {
-        const { rows: [item] } = await client.query(`
+        const { rows: [item]} = await client.query(`
             INSERT INTO items (name, category, brand, size, price, image, description, inventory)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8)
             ON CONFLICT (name) DO NOTHING
@@ -96,6 +96,8 @@ async function getItemsByCategory ({ categoryId }) {
         throw error
     }
 }
+
+
 
 module.exports = {
     adminCreateItem,
