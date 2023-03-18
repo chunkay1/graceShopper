@@ -9,7 +9,7 @@
     font-family: 'Montserrat', sans-serif;
     /* margin-left: 28%;} */
 
-.topWrapper{
+.topWrapper {
     display: flex;
     justify-content: right;
     width: 100%;
@@ -22,7 +22,7 @@
     color: rgb(82, 81, 81);
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 1px 1px 1px rgb(209, 206, 206);
-    
+
     /* made a change here experimenting with a gradient, feel free to reverse it or modify it! -Sam */
     /* background: linear-gradient(120deg,rgb(216, 231, 222) 0%, rgb(201, 231, 212) 100%); */
     /* background: linear-gradient(90deg, rgba(253, 253, 253, 0.7) 0%, rgba(214, 230, 223, 0.7) 50%); */
@@ -34,7 +34,7 @@
 }
 
 .cardBody {
-  padding: 0
+    padding: 0
 }
 
 .homeDiv {
@@ -75,8 +75,8 @@
 }
 
 .Name {
-  padding-left: 2%;
-  margin-left: 2%;
+    padding-left: 2%;
+    margin-left: 2%;
 }
 
 .image {
@@ -87,25 +87,28 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     width: 99vw;
 }
 
 .brandContainer {
     display: flex;
     padding-left: 10px;
-    border-bottom:1px ridge #344E41;
+    border-bottom: 1px ridge #344E41;
     padding-top: 5px;
     font-size: calc(7px + 1.1vmin);
 }
+
 .priceContainer {
     display: flex;
     justify-content: space-between;
     /* background-color: rgb(59, 99, 99, 0.1); */
     border-bottom-left-radius: 10%;
     border-bottom-right-radius: 10%;
-    padding: 9px 10px 5px 10px; 
+    padding: 9px 10px 5px 10px;
     font-weight: 600;
 }
+
 .price {
     font-size: calc(6.5px + 0.7vmin);
 }
