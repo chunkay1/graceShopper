@@ -96,28 +96,6 @@
     border: 1px solid black;
 }
 
-
-.cartButton {
-    border-radius: 7px;
-    background-color: #16697a;
-    color: #EDE7E3;
-    font-weight: 500;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-}
-
-.cartButton:hover {
-    cursor: pointer;
-    border-color: #16697A;
-    box-shadow: 0 0.5em 0.5em -0.4em #EEEF20;
-    transform: translatey(-0.25em);
-}
-
-.cartButton:active {
-    background-color: #EDE7E3;
-    color: #16697a;
-    border: 1px solid #16697a;
-}
-
 .cartControl {
     /* border: 1px solid black; */
     display: flex;
