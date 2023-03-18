@@ -51,6 +51,11 @@
     font-size: larger;
 }
 
+.contentText {
+    font-weight: 300;
+    font-size: medium;
+}
+
 .iconDiv {
     display: flex;
     flex-direction: row;
@@ -63,8 +68,15 @@
 .deleteIcon,
 .arrowIcon,
 .quantIcons {
-    font-size: 2em;
+    /* font-size: 2em; */
+    font-size: calc(8px + 2.5vmin);
     transition: transform 0.25s, color 0.25s;
+}
+
+.count {
+    margin-bottom: 4px;
+    /* font-size: 2em; */
+    font-size: calc(8px + 3vmin);
 }
 
 .cartIcon,
@@ -81,6 +93,7 @@
 .cartIcon:hover {
     cursor: pointer;
     transform: translatey(-0.15em);
+    background: transparent;
 }
 
 .deleteIcon:hover {
@@ -91,12 +104,10 @@
     color: red;
 }
 
-.addIcon:hover {
-    color: #80B918
-}
-
+.addIcon:hover,
+.cartIcon:hover,
 .arrowIcon:hover {
-    color: #80B918;
+    color: #80B918
 }
 
 .boogerAIDS {
@@ -129,11 +140,7 @@
     margin: 0 .5em;
 }
 
-.count {
-    margin-bottom: 4px;
 
-    font-size: 2em;
-}
 
 /* .test {
     border: 1px solid black;
