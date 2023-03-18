@@ -104,6 +104,17 @@ function NavBar({ token }) {
                                                 window.location.reload();
                                             }}>Logout</button>
                                     </li>
+                                    // <li className={`nav-item ${styles.logOut}`}>
+                                    //     <button 
+                                    //         type="button" 
+                                    //         className={`btn text-white ${styles.logOut}`} 
+                                    //         onClick={ (event) => {
+                                    //             console.log('logout!');
+                                    //             logOut();
+                                    //             navigate('/home');
+                                    //             window.location.reload();
+                                    //         }}>Logout</button>
+                                    // </li>
                                 }
                                 <li className="nav-item">
                                     
