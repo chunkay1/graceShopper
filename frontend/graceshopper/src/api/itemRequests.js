@@ -95,3 +95,26 @@ export async function getProductById(id) {
 //         console.log(error);
 //       }
 //     }
+
+
+export async function  itemDelete (token,id) {
+
+    try {
+      const response = await fetch(`${BASEURL}/items/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      
+      const json = await response.json();
+      console.log(json);
+
+    } catch (error) {
+      console.log("Failed to delete post");
+      console.log(error);
+    }
+  };
