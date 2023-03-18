@@ -113,7 +113,7 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                 </div>
 
                                 <div class="col xl-4">
-                                    <div className={styles.buttonDiv}> 
+                                    <div className={styles.iconDiv}> 
 
                                         <i className={`bi bi-arrow-left-circle ${styles.arrowIcon}`}
                                             onClick={async (e) => {
