@@ -67,20 +67,6 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
   return (
     <div className={styles.homeDiv}>
-      <div className={styles.topWrapper}>
-        <select onChange={(e) => {
-          setSelectValue(e.target.value)
-        }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
-          <option selected value="">Browse by category</option>
-          <option value="Shoes">Shoes</option>
-          <option value="Tents">Tents</option>
-          <option value="Clothing">Outdoor Clothing</option>
-          <option value="Firepits and Grills">Firepits and Grills</option>
-          <option value="Skis">Skis and Gear</option>
-          <option value="Snowboards">Snowboards and Gear</option>
-          <option value="">All Products</option>
-        </select>
-      </div>
 
       {
         singleProduct
@@ -97,52 +83,67 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
           />
 
           :
-          <div className={styles.container}>
+          <>
+            <div className={styles.topWrapper}>
+              <select onChange={(e) => {
+                setSelectValue(e.target.value)
+              }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
+                <option selected value="">Browse by category</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Tents">Tents</option>
+                <option value="Clothing">Outdoor Clothing</option>
+                <option value="Firepits and Grills">Firepits and Grills</option>
+                <option value="Skis">Skis and Gear</option>
+                <option value="Snowboards">Snowboards and Gear</option>
+                <option value="">All Products</option>
+              </select>
+            </div>
+            <div className={styles.container}>
 
-            {
-              products.map(({ brand, category, id, name, price, size, image, inventory }) => {
-                return (
-                  <div key={id}>
+              {
+                products.map(({ brand, category, id, name, price, size, image, inventory }) => {
+                  return (
+                    <div key={id}>
 
-                    <div
-                      className={`card ${styles.productCard}`}
-                      style={{
-                        width: "19rem",
-                      }}
-                      // this is where you click the div and it takes you to the single product view
-                      onClick={async (e) => {
-                        // console.log('brand is,', brand);
-                        // console.log('name is,', name);
-                        // console.log('price is,', price);
-                        const props = await getProductById(id);
-                        setItemProps(props)
-                        console.log(itemProps)
-                        setSingleProduct(true);
+                      <div
+                        className={`card ${styles.productCard}`}
+                        style={{
+                          width: "19rem",
+                        }}
+                        // this is where you click the div and it takes you to the single product view
+                        onClick={async (e) => {
+                          // console.log('brand is,', brand);
+                          // console.log('name is,', name);
+                          // console.log('price is,', price);
+                          const props = await getProductById(id);
+                          setItemProps(props)
+                          console.log(itemProps)
+                          setSingleProduct(true);
 
-                      }}>
+                        }}>
 
-                      <img src={image} class="card-img-top" alt="..." />
+                        <img src={image} class="card-img-top" alt="..." />
 
-                      <div className={`card-body ${styles.cardBody}`}>
-                        <span className={styles.brandContainer}>
-                          <p class="card-text">{brand}®</p>
-                          <p className={`card-text ${styles.Name}`}>{name}</p>
-                        </span>
-                        {/* <h5 class="card-title">size</h5>
+                        <div className={`card-body ${styles.cardBody}`}>
+                          <span className={styles.brandContainer}>
+                            <p class="card-text">{brand}®</p>
+                            <p className={`card-text ${styles.Name}`}>{name}</p>
+                          </span>
+                          {/* <h5 class="card-title">size</h5>
                           <p class="card-text">{size}</p> */}
-                        {/* <h5 class="card-title">Category</h5>
+                          {/* <h5 class="card-title">Category</h5>
                           <p class="card-text">{category}</p> */}
-                        <span className={styles.priceContainer}>
-                          <h5 className={`card-title ${styles.stock}`}>In-stock
-                            <p class="card-text">{inventory}</p>
-                          </h5>
-                          <p className = {`card-text ${styles.price}`}>${price}</p>
-                        </span>
+                          <span className={styles.priceContainer}>
+                            <h5 className={`card-title ${styles.stock}`}>In-stock
+                              <p class="card-text">{inventory}</p>
+                            </h5>
+                            <p className={`card-text ${styles.price}`}>${price}</p>
+                          </span>
 
-                        {/* <h5 class="card-title">Id</h5>
+                          {/* <h5 class="card-title">Id</h5>
                           <p class="card-text">{id}</p> */}
 
-                        {/* <div className={styles.buttonDiv}>
+                          {/* <div className={styles.buttonDiv}>
                           <button
                             className={styles.cartButton}
                             onClick={async (event) => {
@@ -175,17 +176,18 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                               Add to Cart!
                           </button>
                        </div> */}
+                        </div>
+
                       </div>
 
                     </div>
 
-                  </div>
+                  )
 
-                )
-
-              })
-            }
-          </div>
+                })
+              }
+            </div>
+          </>
       }
 
 
@@ -227,7 +229,6 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                 } */}
 
     </div>
-
   )
 }
 
