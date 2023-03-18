@@ -58,6 +58,12 @@ function NavBar({ token }) {
                                     </a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link text-white" href="products">Products
+                                    </a>
+                                </li>
+
                                 {/* <li className={`nav-item dropdown ${styles.dropdown}`}> */}
 
                                 {
@@ -99,12 +105,6 @@ function NavBar({ token }) {
                                             }}>Logout</button>
                                     </li>
                                 }
-
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link text-white" href="products">Products
-                                    </a>
-                                </li>
                                 <li className="nav-item">
                                     
                                     <a
