@@ -204,20 +204,27 @@ const Cart = ({ token }) => {
 
         <div class="row justify-content-center">
           <div class="col-md-5 text-center">
+
+            {itemsInCart.length > 0 ?
+              <button 
+                // className={`${styles.button}`}
+                className={`${styles.button}`}
+                onClick={async (event) => {
+                  event.preventDefault();
+                  console.log(await checkoutCart(cartID, token))
+                  navigate('/order-confirmation', {
+                    state: {
+                        orderedItems: { itemsInCart }
+                    }
+                })
+                  
+                }} >Checkout</button>
             
-            <button 
-              // className={`${styles.button}`}
-              className={`${styles.button}`}
-              onClick={async (event) => {
-                event.preventDefault();
-                console.log(await checkoutCart(cartID, token))
-                navigate('/order-confirmation', {
-                  state: {
-                      orderedItems: { itemsInCart }
-                  }
-              })
-                
-              }} >Checkout</button>
+              :
+
+              null
+          }
+            
 
           </div>
         </div>
