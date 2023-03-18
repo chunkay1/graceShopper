@@ -54,11 +54,12 @@
     padding-top: 7px;
 }
 
-.logOut {
+.logOutButton {
     text-decoration: none;
-    padding-top: 2px;
+    font-size: 400;
+
 }
 
-.logOut:hover {
+.logOutButton:hover {
     text-decoration: underline;
 }
