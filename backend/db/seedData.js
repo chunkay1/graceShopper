@@ -91,10 +91,14 @@ async function createInitialUsers() {
         const usersToCreate = [
             { username: "albert", password: "bertie99", email:"test1@gmail.com", address:"8008 Herb Kelleher Way, Dallas, TX 75235"},
             { username: "sandra", password: "sandra123", email:"test2@gmail.com", address:"2400 Aviation Dr, DFW Airport, TX 75261"},
-            { username: "Sam", password: "Samson123", email:"test5@gmail.com", address:"123 big boy lane, Mountainton, CO 80555", isAdmin: true},
-            { username: "Fabian", password: "Fabian123", email:"test6@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
-            { username: "Vivienne", password: "Vivienne123", email:"test7@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
-            { username: "Kendall", password: "Kendall123", email:"test8@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
+            { username: "Sam", password: "Samson123", email:"test5@gmail.com", address:"123 big boy lane, Mountainton, CO 80555", isAdmin: false},
+            { username: "SamAdmin", password: "Samson123", email:"test15@gmail.com", address:"123 big boy lane, Mountainton, CO 80555", isAdmin: true},
+            { username: "Fabian", password: "Fabian123", email:"test6@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: false},
+            { username: "FabianAdmin", password: "Fabian123", email:"test16@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
+            { username: "Vivienne", password: "Vivienne123", email:"test7@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: false},
+            { username: "VivienneAdmin", password: "Vivienne123", email:"test17@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
+            { username: "Kendall", password: "Kendall123", email:"test8@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: false},
+            { username: "KendallAdmin", password: "Kendall123", email:"test18@gmail.com", address:"123 Texas st, Texas-town, TX", isAdmin: true},
      
     ]
     const users = await Promise.all(usersToCreate.map(createUser));
