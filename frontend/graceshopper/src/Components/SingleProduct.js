@@ -50,158 +50,167 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
     }, [itemsInCart, id])
     
     return(
+        <div>
 
-        <>
-            <h1>Woot woot</h1>
+            <div className={`container ${styles.productContainer}`}>
+                <h5 class="display-5">{name}</h5>
+                <div className={`row ${styles.productDiv}`}>
 
-            <button
-                onClick={(e) => {
-                    e.preventDefault();
-                    console.log(itemProps)
-                }}
-            >
-                Props
-            </button>
+                    {/* this is a parent div */}
+                    <div class="col-xl-6">
+                        <img src={image} class="card-img-top" alt="..."/>
+                    </div>
 
-            <button onClick={async (e) => { 
-                e.preventDefault();
-                setCartState(false)
-            }}> Cart State Test</button>
-
-            <div key={id}>
-        
-                <div 
-                    class={`card ${styles.productCard}`} 
-                    style={{
-                        width: "30rem",
-                        backgroundColor: "#B7E4C7"
-                    }}>
-        
-                    <img src={image} class="card-img-top" alt="..."/>
-                                            
-                    <div class="card-body">
-                        <h5 class="card-title">Brand</h5>
-                            <p class="card-text">{brand}</p>
-                        <h5 class="card-title">Name</h5>
-                            <p class="card-text">{name}</p>
-                        <h5 class="card-title">size</h5>
-                            <p class="card-text">{size}</p>
-                        <h5 class="card-title">Category</h5>
-                            <p class="card-text">{category}</p>
-                        <h5 class="card-title">Description</h5>
-                            <p class="card-text">{description}</p>
-                        <h5 class="card-title">Price</h5>
-                            <p class="card-text">${price}</p>
-                        <h5 class="card-title">Inventory</h5>
-                            <p class="card-text">{inventory}</p>
-                        {/* <h5 class="card-title">Quantity</h5>
-                            <p class="card-text">{quantity}</p> */}
+                    {/* this is the second parent div */}
+                    <div className={`col-xl-6 justify-content-space-around ${styles.detailsDiv}`}>
                         
-                                                
-                        <div className={styles.buttonDiv}> 
+                        <div className={`row ${styles.detailRow}`}>
 
-                            <button
-                                className={styles.cartButton}
-                                onClick={async (e) => {
-                                    const props = await getProductById(id);
-                                    setItemProps(props)
-                                    console.log(itemProps)
-                                    setSingleProduct(false);
-                                }}>
-                                Return to Products
-                            </button>
+                            <div class="col xl-4">
+                                <h5 class="card-title">Brand: </h5>
+                                <p class="card-text">{brand}</p>
+                            </div>
 
-                            {
-                                cartState && cartItemQuantity >= 1 
+                            <div class="col xl-4">
+                                <h5 class="card-title">Size: </h5>
+                                <p class="card-text">{size}</p>
+                            </div>
 
-                                ?
-                                <div className={styles.cartControl}>
+                            <div class="col xl-4">
+                                <h5 class="card-title">Category: </h5>
+                                <p class="card-text">{category}</p>
+                            </div>
 
-                                    <small className={`text-muted`}>
-                                        <i 
-                                            className={`bi bi-trash3 ${styles.deleteIcon}`}
-                                            onClick={async (e) => {
-                                            e.preventDefault();
-                                            // console.log('delete item!')
-                                            await deleteItemFromCart(id, cartID, token)
-                                            setCartChange(true)
-                                            setCartState(false)
-                                            }}>
-                                        </i>
-                                        
-                                        <div className={styles.quantityControl}>
+                        </div>
+
+                        <div className={`row ${styles.detailRow}`}>
+
+                            <div class="col xl-12">
+                                <h5 class="card-title">Description: </h5>
+                                <p class="card-text">{description}</p>
+                            </div>
+
+                        </div>
+
+                        <div className={`row align-items-center ${styles.detailRow}`}>
+                            
+                            <div class="col xl-4">
+                                <h5 class="card-title">Price: </h5>
+                                <p class="card-text">${price}</p>
+                            </div>
+
+                            <div class="col xl-4">
+                                <div className={styles.buttonDiv}> 
+
+                                    <button
+                                        className={styles.cartButton}
+                                        onClick={async (e) => {
+                                            const props = await getProductById(id);
+                                            setItemProps(props)
+                                            console.log(itemProps)
+                                            setSingleProduct(false);
+                                        }}>
+                                        Return to Products
+                                    </button>
+
+                                    {
+                                        cartState && cartItemQuantity >= 1 
+
+                                        ?
+
+                                        <div className={styles.cartControl}>
                                             
-                                            { cartItemQuantity <= 1
-                                            ?
-                                                null
-                                            :
+                                            <small className={`text-muted`}>
                                                 <i 
-                                                class="bi bi-dash"
-                                                onClick={async (e) => {
+                                                    className={`bi bi-trash3 ${styles.deleteIcon}`}
+                                                    onClick={async (e) => {
+                                                    e.preventDefault();
+                                                    // console.log('delete item!')
+                                                    await deleteItemFromCart(id, cartID, token)
+                                                    setCartChange(true)
+                                                    setCartState(false)
+                                                    }}>
+                                                </i>
                                                 
-                                                e.preventDefault();
-                                                let decrementQuantity = cartItemQuantity - 1;
-                                                console.log('itemId is', id)
-                                                console.log('arguments are', id, cartID, decrementQuantity)
-                                                let updatedCartItem = await updateCartQuantity(id, cartID, decrementQuantity, token)
-                                                setCartChange(true)
-                                                console.log('updated cart item is:', updatedCartItem)
-                                                }}></i>
-                                            }
+                                                <div className={styles.quantityControl}>
+                                                    
+                                                    { cartItemQuantity <= 1
+                                                    ?
+                                                        null
+                                                    :
+                                                        <i 
+                                                        class="bi bi-dash"
+                                                        onClick={async (e) => {
+                                                        
+                                                        e.preventDefault();
+                                                        let decrementQuantity = cartItemQuantity - 1;
+                                                        console.log('itemId is', id)
+                                                        console.log('arguments are', id, cartID, decrementQuantity)
+                                                        let updatedCartItem = await updateCartQuantity(id, cartID, decrementQuantity, token)
+                                                        setCartChange(true)
+                                                        console.log('updated cart item is:', updatedCartItem)
+                                                        }}></i>
+                                                    }
+                                                
+                                                    <p className={styles.count}>{cartItemQuantity}</p>
+
+                                                    {cartItemQuantity < inventory ? 
+                                                    <i 
+                                                    class="bi bi-plus"
+                                                    onClick={async (e) => {
+                                                        e.preventDefault();
+                                                        let incrementQuantity = cartItemQuantity + 1;
+                                                        let updatedCartItem = await updateCartQuantity(id, cartID, incrementQuantity, token)
+                                                        setCartChange(true)
+                                                        console.log('updated cart item is:', updatedCartItem)
+                                                    }}></i>
+
+                                                    : 
+
+                                                    null
+                                                    }
                                         
-                                            <p className={styles.count}>{cartItemQuantity}</p>
+                                                </div>
 
-                                            {cartItemQuantity < inventory ? 
-                                            <i 
-                                            class="bi bi-plus"
-                                            onClick={async (e) => {
-                                                e.preventDefault();
-                                                let incrementQuantity = cartItemQuantity + 1;
-                                                let updatedCartItem = await updateCartQuantity(id, cartID, incrementQuantity, token)
-                                                setCartChange(true)
-                                                console.log('updated cart item is:', updatedCartItem)
-                                            }}></i>
-
-                                            : 
-
-                                            null
-                                            }
-                                
+                                            </small>
                                         </div>
 
-                                    </small>
+
+                                        : (inventory >= 1) && token ?
+                                        <button
+                                        className={styles.cartButton}
+                                        onClick={async (event) => {
+                                            event.preventDefault();
+                                            console.log('added to cart');
+                                            await addToCart(id, token);
+                                            // console.log('single product added to cart', test);
+                                            setCartState(true)
+                                            setCartChange(true)
+                                        }}>
+                                        Add to Cart!
+                                        </button>
+
+                                        :
+
+                                        null
+                                    }
+
                                 </div>
 
+                            </div>
 
-                                : (inventory >= 1) && token ?
-                                <button
-                                className={styles.cartButton}
-                                onClick={async (event) => {
-                                    event.preventDefault();
-                                    console.log('added to cart');
-                                    await addToCart(id, token);
-                                    // console.log('single product added to cart', test);
-                                    setCartState(true)
-                                    setCartChange(true)
-                                }}>
-                                Add to Cart!
-                                </button>
-                                :
-                                null
-                            }
+                        
+                        {/* <h5 class="card-title">Inventory</h5>
+                            <p class="card-text">{inventory}</p> */}
+                        </div>          
 
-                            
-
-                            
-                        </div>
                     </div>
-        
+
                 </div>
-        
+
             </div>
         
-        </>
-
+        </div>
     )
 }
 
