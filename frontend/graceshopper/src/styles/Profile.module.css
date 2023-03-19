@@ -8,11 +8,13 @@
 }
 .h1Profile {
     padding: 50px;
+    font-size: calc(12px + 2.4vmin);
 }
 
 .h3 {
     padding-bottom: 60px;
     text-align: center;
+    font-size: calc(8px + 1.9vmin);
     color: rgb(41, 79, 56);
 }
 
