@@ -132,15 +132,15 @@ To start:
     CREATE DATABASE hikeandseek;
     ```
   
-  6. Seed the database from /backend/
+  6. Seed the database from /backend
     ```sh
    npm run seed:dev
    ```
-  7. Boot up the server from /backend/
+  7. Boot up the server from /backend
     ```sh
     npm run start:dev to boot up the server
     ```
-  8. Navigate to frontend/graceshopper/ and run
+  8. Navigate to frontend/graceshopper and run
     ```sh
     npm install
     ```
