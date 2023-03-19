@@ -93,7 +93,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
+* Add express
+* Add postgres
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
