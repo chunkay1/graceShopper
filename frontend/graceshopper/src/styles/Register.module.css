@@ -6,19 +6,11 @@
 }
 
 .innerContainer {
-    background-color: rgba(19, 66, 41, 0.643);
+    background-color: rgba(11, 36, 23, 0.643);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-/* .img {
-    opacity: .55;
-    padding-right: 100px;
-    
-} */
-
-
 
 .pageTitle {
     color: white;
@@ -28,36 +20,15 @@
 
 .submit, .submitButton{
     margin-top: 50px;
-    margin-bottom: 50px;
-    
+    margin-bottom: 50px; 
 }
 
-/* Form with gif as background img - issues with opacity */
-/* .innerContainer {
-    background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    opacity: .7;
-} */
-
-/* gif as background img for entire page - attempt 1 */
-/* html { 
-    background: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  } */
-
-  /* gif as background img for entire page - attempt 2 */
+  /* makes gif the background img for the entire page */
   .img {
     position: absolute; 
     top: 0; 
     left: 0; 
     z-index: -3;
-      
     /* Preserve aspet ratio */
     min-width: 100%;
     min-height: 100%;
@@ -66,8 +37,4 @@
 
   .registerForm {
     color: white;
-    /* display: flex;
-    flex-direction: column;
-    justify-content:right; */
-
 }

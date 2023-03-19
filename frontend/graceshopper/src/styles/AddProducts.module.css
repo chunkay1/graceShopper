@@ -49,7 +49,6 @@
     border: none;
     border-radius: 4px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
   }
 
   .img{
@@ -57,7 +56,6 @@
     top: 0; 
     left: 0; 
     z-index: -3;
-      
     /* Preserve aspet ratio */
     min-width: 100%;
     min-height: 100%;
