@@ -88,7 +88,7 @@ const Cart = ({ token }) => {
                             onClick={async (e) => {
                               e.preventDefault();
                               // console.log('delete item!')
-                              let cart = await getUserCart(token)
+                              // let cart = await getUserCart(token)
                               
                               // console.log('full cart is', cart)
                               //full cart is an object
