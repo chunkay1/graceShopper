@@ -1,14 +1,20 @@
 .mainContainer {
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .h1Profile {
     padding: 50px;
-    background-color: lightblue;
+
 }
 
 .h3 {
     padding-bottom: 75px;
     text-align: center;
+    color: rgb(41, 79, 56);
 }
 
 .h5 {
@@ -17,20 +23,25 @@
 
 .ul {
     list-style: none;
-    color: rebeccapurple;
-        border: 2px solid black;
     padding: 20px;
     margin: 20px;
-}
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    min-width: 500px;
 
-.li {
-    color: blue;
-    list-style: none;
+    
     
 }
 
-.orderDivCard {
-    /* border: 2px solid black;
-    padding: 20px;
-    margin: 20px; */
+.li {
+    list-style: none;
+    
+    
 }
+
+.button {
+    margin-bottom: 100px;
+    margin-top: 20px;
+
+}
+
