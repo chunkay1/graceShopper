@@ -27,8 +27,10 @@ useEffect(() => {
 
 
         <main>
+            
             <div className={`${styles.subNav}`}>
                 <h3>Add Product</h3>
+                
                     <AddProducts products={adminproducts} setProducts={setAdminProducts} token={token} />
             </div>
 
@@ -67,7 +69,7 @@ useEffect(() => {
             )}
 
             </div>
-
+          
         </main>
     
     </>

@@ -1,23 +1,33 @@
 
+.divContainer {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(211, 211, 211, 0.798);
+    margin-top: 200px;
+}
 
 .title{
-    padding: 5px; 
-    margin: 10px;
+    /* padding: 5px; 
+    margin: 10px; */
     /* padding: 15px 15px;
     margin: 20px; */
-    border: none;
+    /* border: none;
     border-radius: 4px;
     display: flex;
+    text-align: center; */
     /* justify-content: space-around; */
+    margin-top: 50px;
 }
 .subNav{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-items: flex-start;
     padding: 10px; 
     margin: 10px;
     width:25%;
-    max-width: 50%;
+    max-width: 50%; */
 }
 
 /* .getProducts{
@@ -30,18 +40,27 @@
 
 } */
 
-.link{
+/* .link{
     background-color: rgba(141, 183, 161, 0.643);
     margin: 5px;
     border:solid black 1px;
-}
+} */
 
 .img{
-    margin: 10px;
-    width: 85%;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: -3;
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    opacity: .95;
 }
 
-
+.button {
+    margin: 50px 50px;
+}
 /* .subNav{
     display: flex;
     flex-direction: column;

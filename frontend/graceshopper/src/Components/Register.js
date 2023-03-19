@@ -22,7 +22,7 @@ const Register = ({ token }) => {
 
         <div className={`container text-center ${styles.outterContainer}`}>
 
-            <img className={`${styles.img}`} alt='gif' src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif'></img>
+            <img className={styles.img} alt='gif' src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif'></img>
 
             <div className={`container text-center ${styles.innerContainer}`}>
 
@@ -136,9 +136,9 @@ const Register = ({ token }) => {
                 <div className={`col-12 ${styles.submit}`}>
                         <button 
                             className={`${styles.submitButton}`}
-                            class="btn btn-warning"
+                            class="w-25 btn btn-warning"
                             type="submit">
-                                Submit form
+                                Submit
                         </button>
                         
                 </div>
