@@ -190,16 +190,6 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact the Team
 
@@ -220,9 +210,12 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Bootstrap](https://getbootstrap.com/)
+* [Bootstrap Icons](https://icons.getbootstrap.com/)
+* [CSS Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [Google Fonts](https://fonts.google.com/)
+* [nodemon](https://www.npmjs.com/package/nodemon)
+* [Coolors Color Palettes](https://coolors.co/palettes/trending)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
