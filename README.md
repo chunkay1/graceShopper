@@ -243,8 +243,8 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [kendall-linkedin-url]: https://www.linkedin.com/in/kendall-b-hudson/
 [sam-linkedin-url]: https://www.linkedin.com/in/sam-banister/
-[vivienne-linkedin-url]: https://https://www.linkedin.com/in/viviennechawande/
-[fabian-linkedin-url]: https://www.linkedin.com/in/fabian-hernandez/
+[vivienne-linkedin-url]: https://www.linkedin.com/in/viviennechawande/
+[fabian-linkedin-url]: https://www.linkedin.com/in/fabian-s-hernandez/
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
