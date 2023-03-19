@@ -1,6 +1,5 @@
 const express = require("express");
 const cartsRouter = express.Router();
-const stripe = require('stripe')('sk_test_51MkrV7LhUbC2qSKjwkRldGXO3SWOaNfdWAE6UlMRnJdexd051wYtfauJIPq8UrhGDwSIlHgp4xGYnzqLBVVdP7bW00bkQL5qn2')
 
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
@@ -39,28 +38,7 @@ cartsRouter.get('/health', async (req, res, next) => {
   })
 });
 
-// GET /api/carts/:cartId get a cart by id
-// cartsRouter.get("/:cartId", isUser, async (req, res) => {
-
-//     const { id } = req.body;
-
-//     try {
-//       const cart = await getCartById({id});
-//       const withItems = await attachItemsToCart(cart)
-//       if (withItems) {
-//         res.send(withItems);
-//       } 
-//       else if (cart) {
-//         res.send(cart)
-//       }
-//     } catch (error) {
-//       throw Error("Failed to get cart by cartId", error);
-//     }
-//   });
-
 // GET /api/carts/:userId gets a cart by userId
-//this is nearly identical to api/carts/:userId, except we're grabbing the cart by userId instead.
-//I couldn't figure out how to capture the cartId and set it into our get request
 cartsRouter.get("/userCart", isUser, async (req, res) => {
 
   const userId  = req.user.id
@@ -90,32 +68,6 @@ cartsRouter.get("/userCart", isUser, async (req, res) => {
     throw Error("Failed to get cart by cartId", error);
   }
 });
-// cartsRouter.get("/userCart", isUser, async (req, res) => {
-
-//   const userId  = req.user.id
-
-//   try {
-//     // console.log('hit');
-//     const cart = await getCartByUserId(userId);
-//     // console.log('cart is:', cart)
-//     const withItems = await getCartAndItemDetails(cart)
-//     console.log('withItems is:', withItems)
-//     if (withItems) {
-//        res.send(withItems);
-//     } 
-//     else if (cart) {
-//       res.send(cart)
-//     } else if(!cart) {
-//       res.send({
-//         message: "Whoops, doesn't look like there's an active cart...yet",
-//         name: "noCartError",
-//       })
-//     }
-//   } catch (error) {
-//     throw Error("Failed to get cart by cartId", error);
-//   }
-// });
-
 
 cartsRouter.get("/userCart/orderHistory", isUser, async (req, res) => {
 
@@ -154,17 +106,6 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
     const { userId } = req.body;
 
   try {
-
-    // check for valid user - logged in for userId
-
-    // if (req.headers.authorization) {
-    //     const usertoken = req.headers.authorization;
-    //     const token = usertoken.split(' ');
-    //     const data = jwt.verify(token[1], JWT_SECRET);
-    //     const userId = data.id;
-    
-
-    // check for carts with the same userId
     const cart = await getCartByUserId({ userId });
 
     if (cart) {
@@ -182,20 +123,6 @@ cartsRouter.post("/", isUser, async (req, res, next) => {
   }
 });
 
-// the route below works
-// cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
-//   try {
-//     const cartId = parseInt(req.params.cartId);
-//     console.log('backend api cartID is: ', cartId)
-//     const cart = await checkoutCart(cartId)
-//     console.log('return cart is', cart)
-
-//     res.send(cart)
-//   } catch (error) {
-//     throw Error('failed to checkout cart with cartId: ', cartId)
-//   }
-// })
-
 //this route updates inventory upon checkout by reducing inventory by the quantity in cart.
 cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
   try {
@@ -209,9 +136,6 @@ cartsRouter.patch('/:cartId', isUser, async (req, res, next) => {
      
       await updateInventory(newInventory, itemsId)
     })
-
-
-
 
     const cartId = parseInt(req.params.cartId);
     console.log('backend api cartID is: ', cartId)

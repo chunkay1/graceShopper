@@ -61,37 +61,6 @@ itemsInCartRouter.post("/addItem", isUser, async (req, res, next) => {
     }
 });
 
-
-// itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
-  
-//   const { itemInCartId, quantity } = req.body
-//   const userId = req.user.id
-
-//   try{
-//     // find the cart by userId
-//     let cart = await getCartByUserId (userId)
-
-//     //if no cart exists send an error
-//     if (!cart) {
-//       next({
-//         error: "Cart doesn't exist"
-//       })
-//     }
-    
-//     //updating the quantity of the itemInCart
-//     const updatedItemInCart = await updateItemsInCart( itemInCartId, quantity ) 
-//     //re-attaching all itemsInCart then send back the whole cart
-//     const withItems = await attachItemsToCart(cart)
-
-//     res.send(
-//       withItems
-//     );
-
-//   }catch (error) {
-//       next(error)
-//   }
-// });
-
 itemsInCartRouter.patch("/change-quantity", isUser, async (req, res, next) => {
   const {itemInCartId, newQuantity, cartID} = req.body;
 
@@ -154,7 +123,7 @@ itemsInCartRouter.delete("/", isUser, async (req, res, next) => {
 
       console.log('deletedItemInCart is', deletedItemInCart)
 
-      //will also need to grab the cart and remove the associated item on the javascript level, otherwise it will show that it is still in the cart even after it's been removed from the db
+      //will also need to grab the cart and remove the ssociated item on the javascript level, otherwise it will show that it is still in the cart even after it's been removed from the db
 
       //^^by grabbing the item by its' itemID inside of the itemsInCart table we are able to complete this, at least so I think
 

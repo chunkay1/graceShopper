@@ -8,7 +8,6 @@ import {
   Home,
   Profile,
   Cart,
-  Checkout,
   OrderConfirmation,
   Products,
   Register,
@@ -75,13 +74,6 @@ const App = () => {
           <>
             <NavBar token={token}/>
             <Cart token={token} />
-          </>
-          } 
-        />
-        <Route path='/checkout' element={
-          <>
-            <NavBar token={token}/>
-            <Checkout />
           </>
           } 
         />
