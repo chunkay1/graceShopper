@@ -8,11 +8,10 @@
 }
 .h1Profile {
     padding: 50px;
-
 }
 
 .h3 {
-    padding-bottom: 75px;
+    padding-bottom: 60px;
     text-align: center;
     color: rgb(41, 79, 56);
 }
@@ -28,20 +27,53 @@
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     max-width: 500px;
     min-width: 500px;
+    background-color: rgba(19, 66, 41, 0.643);
+    color: white; 
+}
 
-    
-    
+.liOrderNumber {
+    list-style: none;
+    margin-bottom: 10px;
+    font-size:x-large;
+    font-weight: 600;
+}
+
+.liName {
+    list-style: none;
+    text-align: left;
+    margin-left: 75px;
+    font-size: larger; 
+}
+
+.liBrand {
+    list-style: none;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.liSize{
+    list-style: none;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.liPrice {
+    list-style: none;
+    text-align: right;
+    margin-right: 75px;
+}
+
+.liTotal {
+    font-size: larger;
+    font-weight: 600;
 }
 
 .li {
     list-style: none;
-    
-    
 }
 
 .button {
     margin-bottom: 100px;
     margin-top: 20px;
-
 }
 
