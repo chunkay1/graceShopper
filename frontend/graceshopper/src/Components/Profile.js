@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const Profile = ({ token }) => {
   const [orderHistory, setOrderHistory] = useState([]);
   let cartPrice = 0;
+  let roundedCartPrice = 0;
 
   useEffect(() => {
     getOrderHistory(token).then((answer) => {
@@ -59,7 +60,7 @@ const Profile = ({ token }) => {
           return (
               
             <ul class={styles.ul} key={order.id}>
-                <li class={styles.li}>Order Number: {orderConfirmationNum}</li>
+                <li class={styles.liOrderNumber}>Order Number: {orderConfirmationNum}</li>
 
               {
                   
@@ -90,19 +91,22 @@ const Profile = ({ token }) => {
                           let quantity = order.itemsInCart[i].quantity
                           let individualPrice = (itemPrice * quantity)
                           cartPrice += individualPrice
+                        // rounds totals to 2 decimal places
+                        roundedCartPrice = cartPrice.toFixed(2);
                         //   Math.round()
                         }
                     //     return cartPrice
                   return (
                       <div class={styles.orderDivCard} key={itemInCart.id}>
                           {/* <li class={styles.li}>Order Number:{orderConfirmationNum}</li> */}
-                          <li class={styles.li}>{itemInCart.name}: {itemInCart.brand} Brand</li>
-                          <li class={styles.li}>${itemInCart.price}</li>
+                          <li class={styles.liName}>{itemInCart.name}</li>
+                          <li class={styles.liBrand}>Brand: {itemInCart.brand} | Size: {itemInCart.size}</li>
+                          <li class={styles.liPrice}>${itemInCart.price}</li>
                       </div>
                   )
                 })
               }
-            <li class={styles.li}>Total: ${cartPrice}</li>
+            <li class={styles.liTotal}>Total: ${roundedCartPrice}</li>
             </ul>
           )
         })
