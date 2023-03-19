@@ -107,11 +107,48 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow the steps below. 
 
 ### Prerequisites
 
+database name: hikeandseek
+
+To start:
+  1. Clone the repo
+   ```sh
+   git clone https://github.com/chunkay1/graceShopper.git
+   ```
+  2. Navigate to the /backend/ folder and run 
+    ```sh 
+    npm install
+    ``` 
+  3. Create a .env file with a JWT_SECRET in the /backend folder
+  4. Make sure you have postgres running
+    ```sh
+    sudo service postgresql start
+    ```
+  5. If it's your first time running our app, create a db called hikeandseek
+    ```sh
+    CREATE DATABASE hikeandseek;
+    ```
+  
+  6. Seed the database from /backend/
+    ```sh
+   npm run seed:dev
+   ```
+  7. Boot up the server from /backend/
+    ```sh
+    npm run start:dev to boot up the server
+    ```
+  8. Navigate to frontend/graceshopper/ and run
+    ```sh
+    npm install
+    ```
+  9. While in frontend/graceshopper start react
+    ```sh
+    npm start
+    ```
+    
 This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
@@ -191,9 +228,12 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+## Contact the Team
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Fabian Hernandez - [@twitter_handle](https://twitter.com/twitter_handle) - fabian.hernandez1713@gmail.com
+Sam Banister - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Kendall Hudson - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Vivienne Chawande - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
 Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chunkay1/graceShopper)
 
