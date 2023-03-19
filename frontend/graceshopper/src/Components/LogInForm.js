@@ -34,7 +34,7 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
 
 
                             await myProfile(response.token).then ((data) => {
-                                if (data === true && (username === "Administrator")) {
+                                if (data === false && (username === "Administrator")) {
                                     navigate('/admin')
                                 }
                             })

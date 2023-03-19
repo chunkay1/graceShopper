@@ -107,31 +107,42 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+To get a local copy up and running follow the steps below. 
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/chunkay1/graceShopper.git
    ```
-3. Install NPM packages
+2. Navigate to the /backend/ folder and run
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Create a .env file with a JWT_SECRET in the backend folder
+4. Make sure postgres is running
+   ```sh
+   sudo service postgresql start
+   ```
+5. If it's your first time running our app, create a db called hikeandseek
+   ```sh
+   CREATE DATABASE hikeandseek;
+   ```
+6. Seed the database while in the backend folder
+   ```sh
+   npm run seed:dev
+   ```
+7. Then, boot up the server while in backend
+   ```sh
+   npm run start:dev
+   ```
+8. Navigate to frontend/graceshopper and run
+   ```sh
+   npm install
+   ```
+9. While in frontend/graceshopper start react
+   ```sh
+   npm start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -191,9 +202,15 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+## Contact the Team
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Fabian Hernandez - [@twitter_handle](https://twitter.com/twitter_handle) - fabian.hernandez1713@gmail.com
+<br>
+Sam Banister - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+<br>
+Kendall Hudson - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+<br>
+Vivienne Chawande - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
 Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chunkay1/graceShopper)
 
