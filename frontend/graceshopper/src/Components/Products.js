@@ -13,7 +13,6 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
     const getAllProductsAsync = async () => {
       let allProducts = await getAllItems();
       setProducts(allProducts);
-      // console.log('products are', products)
     }
     getAllProductsAsync();
   }, [])
@@ -33,22 +32,6 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
     }
     getProductsByCategoryAsync();
   }, [category])
-
-  let getItemProps = (brand, category, id, name, price, size, inventory) => {
-    console.log('props are', brand, category, id, name, price, size)
-    setItemProps(
-      {
-        brand: brand,
-        category: category,
-        id: id,
-        name: name,
-        price: price,
-        size: size,
-        inventory: inventory,
-      }
-    )
-    return itemProps
-  }
 
   return (
     <div className={styles.homeDiv}>
@@ -75,7 +58,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
               <select style={{display: "inline"}} onChange={(e) => {
                 setCategory(e.target.value)
               }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
-                <option selected value="">Browse by category</option>
+                <option selected value="">Browse By Category</option>
                 <option value="Shoes">Shoes</option>
                 <option value="Tents">Tents</option>
                 <option value="Clothing">Outdoor Clothing</option>
