@@ -10,18 +10,20 @@ const Admin = () => {
   // const [adminproducts, setAdminProducts] = useState([]);
 
   return (
-      <div>
+      <div className={styles.divContainer}>
         <header>
-          <h1 className={`${styles.title}`}>Admin</h1>
+          <h1 className={`${styles.title}`}>Inventory Management</h1>
         </header>
 
         <div className={`${styles.subNav}`}>
           <div className={`${styles.link}`}>
-            <Link to="/add-products">Add Products</Link>
+            <Link to="/add-products">
+              <button class={`btn btn-warning btn-lg ${styles.button}`}>Add Products</button>
+              </Link>
           </div>
         </div>
 
-        <img className={`${styles.img}`} alt='gif' src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjY0MDJjMWM5YzA2NmI5NjRkZWE3M2Y3YTBhNTUyZTJkMjE1MGNkZCZjdD1n/xUA7b4arnbo3THfzi0/giphy.gif'></img>
+        <img className={`${styles.img}`} alt='gif' src='https://vastphotos.com/files/uploads/photos/10519/forest-with-ferns-m.jpg?v=20220712073521'></img>
       
     </div>
   
