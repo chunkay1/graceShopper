@@ -156,18 +156,38 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/chunkay1/graceShopper.git
    ```
-3. Install NPM packages
+2. Navigate to the /backend/ folder and run
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Create a .env file with a JWT_SECRET in the backend folder
+4. Make sure postgres is running
+   ```sh
+   sudo service postgresql start
+   ```
+5. If it's your first time running our app, create a db called hikeandseek
+   ```sh
+   CREATE DATABASE hikeandseek;
+   ```
+6. Seed the database while in the backend folder
+   ```sh
+   npm run seed:dev
+   ```
+7. Then, boot up the server while in backend
+   ```sh
+   npm run start:dev
+   ```
+8. Navigate to frontend/graceshopper and run
+   ```sh
+   npm install
+   ```
+9. While in frontend/graceshopper start react
+   ```sh
+   npm start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
