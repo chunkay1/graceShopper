@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-router.use(cors())
 
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
@@ -15,6 +14,7 @@ const {
 router.use(async (req, res, next) => {
     const prefix = 'Bearer ';
     const auth = req.header('Authorization');
+    console.log("in api/index")
   
     if (!auth) { 
       next();
@@ -22,7 +22,7 @@ router.use(async (req, res, next) => {
       const token = auth.slice(prefix.length);
   
       try {
-        const { id } = jwt.verify(token, JWT_SECRET);
+        const { id, isAdmin } = jwt.verify(token, JWT_SECRET);
         
         
         //attach a user property to the request object if the token is valid
@@ -31,8 +31,9 @@ router.use(async (req, res, next) => {
         }
         
         //attach an admin property if the isAdmin boolean is true
-        if (req.user.isadmin) {
-          req.admin = true
+        console.log("isAdmin", isAdmin)
+        if (isAdmin) {
+          req.Admin = true
         }
 
         //move on to the next route
