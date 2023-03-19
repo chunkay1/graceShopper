@@ -475,17 +475,6 @@ async function createInitialItems() {
   }
 }
 
-// async function createInitialcarts(){
-
-// }
-
-// async function createInitialitemsInCart(){
-    
-// }
-
-
-
-
 async function rebuildDB() {
   try {
     await dropTables();
