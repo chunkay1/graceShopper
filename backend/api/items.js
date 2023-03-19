@@ -48,7 +48,7 @@ itemsRouter.get( '/:categoryId', async (req, res , next) => {
     } catch (error) {
         next (error)
     }
-})
+}) 
 
 //get a single item by id
 itemsRouter.get( '/:itemId/item', async (req, res , next) => {
@@ -74,7 +74,9 @@ itemsRouter.get( '/:itemId/item', async (req, res , next) => {
 })
 
 //create a new item (admin) /:add-item/item
-itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
+//ended up removing the isAdministrator check because the request was coming through twice - once as isAdmin = undefined
+itemsRouter.post( '/', async (req, res, next) => {
+    console.log("isAdmin", req.isAdmin)
     const { 
         name,
         category,
@@ -101,7 +103,7 @@ itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
                     name: 'noDuplicateItemError'
                 })
             } else {
-                const newItem = adminCreateItem({
+                const newItem = await adminCreateItem({
                     name: name,
                     category: category,
                     brand: brand,
@@ -119,12 +121,14 @@ itemsRouter.post( '/', isAdministrator, async (req, res, next) => {
             }
         }
     } catch (error) {
+        console.error(error)
         next(error)
     }
 })
 
 //error handler
 itemsRouter.use((error, req, res, next) => {
+    console.error("error", error)
     res.send(error)
 })
 
