@@ -23,7 +23,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -191,26 +190,16 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact the Team
 
-Fabian Hernandez - [@twitter_handle](https://twitter.com/twitter_handle) - fabian.hernandez1713@gmail.com
+Fabian Hernandez - fabian.hernandez1713@gmail.com [![LinkedIn][linkedin-shield]][fabian-linkedin-url]
 <br>
-Sam Banister - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Sam Banister - email@email_client.com [![LinkedIn][linkedin-shield]][sam-linkedin-url]
 <br>
-Kendall Hudson - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Kendall Hudson - email@email_client.com [![LinkedIn][linkedin-shield]][kendall-linkedin-url]
 <br>
-Vivienne Chawande - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Vivienne Chawande - email@email_client.com [![LinkedIn][linkedin-shield]][vivienne-linkedin-url]
 
 Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chunkay1/graceShopper)
 
@@ -221,9 +210,12 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Bootstrap](https://getbootstrap.com/)
+* [Bootstrap Icons](https://icons.getbootstrap.com/)
+* [CSS Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [Google Fonts](https://fonts.google.com/)
+* [nodemon](https://www.npmjs.com/package/nodemon)
+* [Coolors Color Palettes](https://coolors.co/palettes/trending)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -242,7 +234,10 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 [license-shield]: https://img.shields.io/github/license/chunkay1/graceShopper.svg?style=for-the-badge
 [license-url]: https://github.com/chunkay1/graceShopper/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[kendall-linkedin-url]: https://www.linkedin.com/in/kendall-b-hudson/
+[sam-linkedin-url]: https://www.linkedin.com/in/sam-banister/
+[vivienne-linkedin-url]: https://www.linkedin.com/in/viviennechawande/
+[fabian-linkedin-url]: https://www.linkedin.com/in/fabian-s-hernandez/
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
