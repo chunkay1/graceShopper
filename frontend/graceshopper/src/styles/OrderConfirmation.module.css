@@ -60,7 +60,9 @@
     margin: 0 1px 0 4px;
 }
 
-.quantityHeader {
+.quantityHeader,
+.itemHeader,
+.priceHeader {
     font-weight: 600;
 }
 
@@ -115,4 +117,3 @@
     }
 
 }
-

@@ -38,16 +38,6 @@ const OrderConfirmation = () => {
                       <span className={styles.orderItem}>
                           <h6 className={styles.itemHeader}>Item: <p className={styles.itemContent}>{brand} {name} - {size} | <span className={styles.quantityHeader}>Quantity:</span> {quantity}</p></h6>
                             
-
-                          {/* <h6 className={styles.itemHeader}>Name:</h6>
-                            <p className={styles.itemContent}>{name}</p> */}
-
-                          {/* <h6 className={styles.itemHeader}>Size: <p className={styles.itemContent}>{size}</p></h6> */}
-                            
-
-                          {/* <h6 className={styles.itemHeader}>Quantity: <p className={styles.itemContent}>{quantity}</p></h6> */}
-                            
-
                           <h6 className={styles.itemHeader}>Price: <p className={styles.itemContent}>${(price * quantity).toFixed(2)}</p></h6>
                             
                       </span>
