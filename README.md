@@ -205,8 +205,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact the Team
 
 Fabian Hernandez - [@twitter_handle](https://twitter.com/twitter_handle) - fabian.hernandez1713@gmail.com
+<br>
 Sam Banister - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+<br>
 Kendall Hudson - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+<br>
 Vivienne Chawande - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
 Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chunkay1/graceShopper)
