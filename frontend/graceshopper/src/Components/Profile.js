@@ -85,7 +85,7 @@ const Profile = ({ token }) => {
                     // let orderConfirmationNum = Math.floor(Math.random() * 1000000);
                     // let totalCartPrice = (itemsInCart) => {
                         // let cartPrice = 0;
-                        console.log(order.itemsInCart)
+                        // console.log(order.itemsInCart)
                         for (let i = 0; i < order.itemsInCart.length; ++i) {
                           let itemPrice = Number(order.itemsInCart[i].price);
                           let quantity = order.itemsInCart[i].quantity
