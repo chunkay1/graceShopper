@@ -279,7 +279,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
                   <a href={'https://github.com/chunkay1'} target="_blank" rel="noreferrer">
                     <IoLogoGithub size={'calc(5px + 1.2vmin)'} color="azure" />
                   </a>
-                  <a href={'https://www.linkedin.com/in/sam-banister/'} target="_blank" rel="noreferrer">
+                  <a href={'https://www.linkedin.com/in/fabian-hernandez-036467264/'} target="_blank" rel="noreferrer">
                     <IoLogoLinkedin size={'calc(5px + 1.25vmin)'} color='azure' />
                   </a>
 
