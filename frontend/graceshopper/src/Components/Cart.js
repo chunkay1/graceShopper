@@ -1,8 +1,6 @@
 import {React, useEffect, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { myProfile } from '../api/userRequests';
+import { useNavigate } from 'react-router-dom';
 import { getUserCart, deleteItemFromCart, updateCartQuantity, checkoutCart } from '../api/cartRequests';
-import { cartHealth } from '../api/testRequests';
 import styles from '../styles/Cart.module.css'
 
 const Cart = ({ token }) => {
@@ -10,16 +8,6 @@ const Cart = ({ token }) => {
   const [cartID, setCartID] = useState(0);
   const [cartChange, setCartChange] = useState(false)
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const getCartItemsAsync = async () => {
-  //     let cartItems = await getUserCart(token);
-  //     console.log('use Effect is', cartItems.itemsInCart)
-  //     setItemsInCart(cartItems.itemsInCart);
-  //     setCartID(cartItems.id)
-  //   }
-  //   getCartItemsAsync();
-  // }, [token])
   
   useEffect(() => {
     const getCartItemsAsync = async () => {
@@ -33,18 +21,10 @@ const Cart = ({ token }) => {
     }
     getCartItemsAsync();
   }, [token, cartChange])
-
-  const toOrderConfirmationPage = () => {
-    navigate('/order-confirmation', {
-        state: {
-            itemsInCart: { itemsInCart }
-        }
-    })
-}
   
   let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
-    console.log(itemsInCart)
+    // console.log(itemsInCart)
     for (let i = 0; i < itemsInCart.length; ++i) {
       let itemPrice = Number(itemsInCart[i].price);
       let quantity = itemsInCart[i].quantity
@@ -63,9 +43,20 @@ const Cart = ({ token }) => {
             
       <div class="py-5 text-center">
 
-        <h2>You're almost ready to hit the great outdoors</h2>
-
-        <p class="lead">Be sure you didn't miss anything!</p>
+        {itemsInCart.length < 1 ?
+          <>
+            <h2>Your Cart Is Empty...For Now</h2>
+            <p className={`lead`}>
+              <a className={`lead nav-link text-black ${styles.productsLink}`} 
+                href="products">Get Ready For Your Next Adventure Here!</a>
+            </p>
+          </>
+        :
+          <>
+            <h2>You're almost ready to hit the great outdoors</h2>
+            <p class="lead">Be sure you didn't miss anything!</p>
+          </>
+        }
         
       </div>
 
@@ -99,7 +90,7 @@ const Cart = ({ token }) => {
                               // console.log('delete item!')
                               let cart = await getUserCart(token)
                               
-                              console.log('full cart is', cart)
+                              // console.log('full cart is', cart)
                               //full cart is an object
                               // { 
                               //   id: carts.id, 
@@ -139,35 +130,33 @@ const Cart = ({ token }) => {
                                   //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
                                   e.preventDefault();
                                   let decrementQuantity = quantity - 1;
-                                  console.log('itemId is', itemsId)
-                                  console.log('arguments are', itemsId, cartID, decrementQuantity)
-                                  let updatedCartItem = await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
+                                  // console.log('itemId is', itemsId)
+                                  // console.log('arguments are', itemsId, cartID, decrementQuantity)
+
+                                  await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
                                   setCartChange(true)
-                                  console.log('updated cart item is:', updatedCartItem)
                                 }}></i>
                             }
                           
                             <p className={styles.count}>{quantity}</p>
 
-                            {quantity < inventory ? 
-                              <i 
-                              className={`bi bi-plus ${styles.addIcon}`}
-                              onClick={async (e) => {
-                                e.preventDefault();
-                                let incrementQuantity = quantity + 1;
-                                let updatedCartItem = await updateCartQuantity(itemsId, cartID, incrementQuantity, token)
-                                setCartChange(true)
-                                console.log('updated cart item is:', updatedCartItem)
-                              }}></i>
-
+                            { quantity < inventory 
+                              ? 
+                                <i 
+                                className={`bi bi-plus ${styles.addIcon}`}
+                                onClick={async (e) => {
+                                  e.preventDefault();
+                                  let incrementQuantity = quantity + 1;
+                                  await updateCartQuantity(itemsId, cartID, incrementQuantity, token)
+                                  setCartChange(true)
+                                }}></i>
                               :
-
-                              null
+                                null
                             }
                             
                           </div>
 
-                          </small>
+                        </small>
                             
                       </div>
                     </li>
@@ -194,7 +183,7 @@ const Cart = ({ token }) => {
                 className={`${styles.button}`}
                 onClick={async (event) => {
                   event.preventDefault();
-                  console.log(await checkoutCart(cartID, token))
+                  await checkoutCart(cartID, token)
                   navigate('/order-confirmation', {
                     state: {
                         orderedItems: { itemsInCart }
@@ -206,9 +195,8 @@ const Cart = ({ token }) => {
               :
 
               null
-          }
+            }
             
-
           </div>
         </div>
 
