@@ -119,9 +119,9 @@ To start:
    git clone https://github.com/chunkay1/graceShopper.git
    ```
   2. Navigate to the /backend/ folder and run 
-    ```sh 
-    npm install
-    ``` 
+    ```sh
+   npm install
+   ```
   3. Create a .env file with a JWT_SECRET in the /backend folder
   4. Make sure postgres is running
     ```sh
