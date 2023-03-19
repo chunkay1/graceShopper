@@ -245,48 +245,98 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
         <span className={styles.backgroundImg}></span>
 
         {/* about me card deck */}
+        <h4 className= {styles.aboutHeader}>Meet Our Development Team</h4>
         <div className={`card-deck ${styles.cardDeck}`}>
           <div className={`card ${styles.aboutCards}`} style={{
-                        background: "transparent",
-                      }}>
-            <img className={`card-img-top ${styles.aboutImg}`} src={"Aboutheadshot.jpg"} alt="About Samuel Banister" />
+            background: "transparent",
+          }}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Sam-about5.jpg"} alt="About Samuel Banister" />
             <div className={`card-body ${styles.aboutBody}`}>
               <h5 className={`card-title ${styles.aboutName}`}>Samuel Banister
                 <span className={styles.linkWrapper}>
                   <a href={'https://github.com/Samson343'} target="_blank" rel="noreferrer">
-                    <IoLogoGithub size={18} color="azure" />
+                    <IoLogoGithub size={'calc(5px + 1.2vmin)'} color="azure" />
                   </a>
                   <a href={'https://www.linkedin.com/in/sam-banister/'} target="_blank" rel="noreferrer">
-                      <IoLogoLinkedin size={21} color = 'azure' />
+                    <IoLogoLinkedin size={'calc(5px + 1.25vmin)'} color='azure' />
                   </a>
 
                 </span>
               </h5>
-              <h6 className={styles.aboutTitle}>Fullstack Developer</h6>
+              <h6 className={styles.aboutTitle}>Fullstack Engineer</h6>
               <p className={`card-text ${styles.aboutSummary}`}>Sam brings the passion to fullstack development and aims to build the coolest, craziest things possible. His proudest accomplishments on this project are creating the landing page, helping to spearhead the backend database and api, and building this modern homepage you're browsing now.</p>
             </div>
           </div>
-          <div className={`card ${styles.aboutCards}`}>
-            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+
+          {/* card 2 */}
+          <div className={`card ${styles.aboutCards}`} style={{
+            background: "transparent",
+          }}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Fabian-about2.jpg"} alt="About Fabian Hernandez" />
             <div className={`card-body ${styles.aboutBody}`}>
-              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
-              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className={`card-title ${styles.aboutName}`}>Fabian Hernandez
+                <span className={styles.linkWrapper}>
+                  <a href={'https://github.com/chunkay1'} target="_blank" rel="noreferrer">
+                    <IoLogoGithub size={'calc(5px + 1.2vmin)'} color="azure" />
+                  </a>
+                  <a href={'https://www.linkedin.com/in/fabian-hernandez-036467264/'} target="_blank" rel="noreferrer">
+                    <IoLogoLinkedin size={'calc(5px + 1.25vmin)'} color='azure' />
+                  </a>
+
+                </span>
+              </h5>
+              <h6 className={styles.aboutTitle}>Fullstack Engineer</h6>
+              <p className={`card-text ${styles.aboutSummary}`}>Fabian is a budding developer who embraces the fullstack process and aims to hone his skills with each project.
+                In this project he contributed to the frontend foundation by integrating bootstrap, setting up a framework to access data from our backend and is most proud of the dynamic cart and inventory system you'll see throughout the product and cart pages.</p>
             </div>
           </div>
-          <div className={`card ${styles.aboutCards}`}>
-            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+
+
+          {/* card 3 */}
+          <div className={`card ${styles.aboutCards}`} style={{
+            background: "transparent",
+          }}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Kendall-about2.jpg"} alt="About Kendall Hudson" />
             <div className={`card-body ${styles.aboutBody}`}>
-              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
-              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className={`card-title ${styles.aboutName}`}>Kendall Hudson
+                <span className={styles.linkWrapper}>
+                  <a href={'https://github.com/kendallhudson'} target="_blank" rel="noreferrer">
+                    <IoLogoGithub size={'calc(5px + 1.2vmin)'} color="azure" />
+                  </a>
+                  <a href={'https://www.linkedin.com/in/kendall-b-hudson/'} target="_blank" rel="noreferrer">
+                    <IoLogoLinkedin size={'calc(5px + 1.25vmin)'} color='azure' />
+                  </a>
+
+                </span>
+              </h5>
+              <h6 className={styles.aboutTitle}>Fullstack Engineer</h6>
+              <p className={`card-text ${styles.aboutSummary}`}>Kendall is a creative developer who eagerly embraces the challenge of a new project and particularly enjoys frontend development. Her favorite parts of this project were helping to set the foundation of the frontend pages, leading the charge on the Profile and Order Confirmation pages, and collaborating on styling across the website. </p>
             </div>
           </div>
-          <div className={`card ${styles.aboutCards}`}>
-            <img className={`card-img-top ${styles.aboutImg}`} src={""} alt="Card image cap" />
+
+          {/* card 4 */}
+
+          <div className={`card ${styles.aboutCards}`} style={{
+            background: "transparent",
+          }}>
+            <img className={`card-img-top ${styles.aboutImg}`} src={"Vivienne-About.jpg"} alt="About Samuel Banister" />
             <div className={`card-body ${styles.aboutBody}`}>
-              <h5 className={`card-title ${styles.aboutName}`}>Card title</h5>
-              <p className={`card-text ${styles.aboutSummary}`}>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className={`card-title ${styles.aboutName}`}>Vivienne Chawande
+                <span className={styles.linkWrapper}>
+                  <a href={'https://github.com/vivienne9'} target="_blank" rel="noreferrer">
+                    <IoLogoGithub size={'calc(5px + 1.2vmin)'} color="azure" />
+                  </a>
+                  <a href={'https://www.linkedin.com/in/viviennechawande/'} target="_blank" rel="noreferrer">
+                    <IoLogoLinkedin size={'calc(5px + 1.25vmin)'} color='azure' />
+                  </a>
+
+                </span>
+              </h5>
+              <h6 className={styles.aboutTitle}>Fullstack Engineer</h6>
+              <p className={`card-text ${styles.aboutSummary}`}>Vivienne is a developer with a passion for continuous learning. Her accomplishments in this capstone project are creating the Figma board for the database tables; spearheading the backend development for database and api; creating routes and pages for admin users and adding new products on the frontend side.</p>
             </div>
           </div>
+
         </div>
       </div>
     </>
