@@ -1,21 +1,5 @@
 import { BASEURL } from "../constants/constants";
 
-// export async function addToCart({brand, category, id, name, price, size, image}) {
-//     try {
-//         return (
-//             `Brand: ${brand}, 
-//             category : ${category},
-//             id : ${id},
-//             name : ${name},
-//             price : ${price},
-//             size : ${size}`  
-//         ) 
-        
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
 export async function addToCart( id, token ) {
     // console.log('id type is', typeof(id))
     try {
@@ -32,10 +16,8 @@ export async function addToCart( id, token ) {
                 })
             }
         )
-        // console.log(response)
 
         const json = await response.json();
-        console.log(json);
         return json;
         
     } catch (error) {
@@ -56,7 +38,6 @@ export async function getUserCart(token) {
             }
         )
         const json = await response.json();
-
         console.log(`cart info for user is:`, json);
 
         return json
