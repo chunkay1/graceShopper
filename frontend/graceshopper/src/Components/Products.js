@@ -14,6 +14,7 @@ import SingleProduct from './SingleProduct';
 const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory }) => {
   const [products, setProducts] = useState([]);
   const [selectValue, setSelectValue] = useState('')
+  const [selectCategory, setSelectCategory] = useState('')
 
   useEffect(() => {
     const getAllProductsAsync = async () => {
@@ -23,6 +24,10 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
     }
     getAllProductsAsync();
   }, [])
+
+  // useEffect(() => {
+  //   setCategory(selectValue)
+  // }, [selectValue])
 
   useEffect(() => {
     const getProductsByCategoryAsync = async () => {
@@ -39,10 +44,6 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
     }
     getProductsByCategoryAsync();
   }, [category])
-
-  useEffect(() => {
-    setCategory(selectValue)
-  }, [selectValue])
 
   // let getCategoryItems = async (category) => {
   //     await getProductsByCategory(category);
@@ -88,7 +89,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
               <span className = {styles.heading}>Gear Up. Get Out.</span>
               <select style={{display: "inline"}} onChange={(e) => {
-                setSelectValue(e.target.value)
+                setCategory(e.target.value)
               }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
                 <option selected value="">Browse by category</option>
                 <option value="Shoes">Shoes</option>
