@@ -64,8 +64,6 @@ function NavBar({ token }) {
                                     </a>
                                 </li>
 
-                                {/* <li className={`nav-item dropdown ${styles.dropdown}`}> */}
-
                                 {
                                     (!token && loginDropdown)
 
@@ -79,9 +77,7 @@ function NavBar({ token }) {
                                         Log In
                                     </a>
 
-                                    <ul
-                                        className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
-                                        {/* <li><a class="dropdown-item" href="#">Action</a></li> */}
+                                    <ul className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
                                         <li>
                                             <LogInForm 
                                               loginDropdown = {loginDropdown} 
@@ -104,25 +100,12 @@ function NavBar({ token }) {
                                                 window.location.reload();
                                             }}>Logout</button>
                                     </li>
-                                    // <li className={`nav-item ${styles.logOut}`}>
-                                    //     <button 
-                                    //         type="button" 
-                                    //         className={`btn text-white ${styles.logOut}`} 
-                                    //         onClick={ (event) => {
-                                    //             console.log('logout!');
-                                    //             logOut();
-                                    //             navigate('/home');
-                                    //             window.location.reload();
-                                    //         }}>Logout</button>
-                                    // </li>
                                 }
+
                                 <li className="nav-item">
-                                    
                                     <a
                                         class="nav-link text-white" 
-
                                         className={`nav-link text-white ${styles.profileIconLi}`}
-
                                         href="profile">
                                         
                                         <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
@@ -130,12 +113,11 @@ function NavBar({ token }) {
                                             
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a
                                         class="nav-link text-white"
-
                                         className={`nav-link text-white ${styles.cartIconLi}`}
-
                                         href="cart">
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
