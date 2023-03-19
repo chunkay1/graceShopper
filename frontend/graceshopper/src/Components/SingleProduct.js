@@ -1,7 +1,5 @@
-// import styles from '../styles/Products.module.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import styles from '../styles/Products.module.css'
 import styles from '../styles/SingleProduct.module.css'
 import { getUserCart, deleteItemFromCart, updateCartQuantity} from '../api/cartRequests';
 
@@ -202,19 +200,6 @@ function SingleProduct({setSingleProduct, itemProps, setItemProps, token, addToC
                                                     setCartState(true)
                                                     setCartChange(true)
                                                 }}></i>
-
-                                            {/* <button
-                                            className={styles.cartButton}
-                                            onClick={async (event) => {
-                                                event.preventDefault();
-                                                console.log('added to cart');
-                                                await addToCart(id, token);
-                                                // console.log('single product added to cart', test);
-                                                setCartState(true)
-                                                setCartChange(true)
-                                            }}>
-                                            Add to Cart!
-                                            </button> */}
 
                                             </>
 

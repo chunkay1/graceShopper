@@ -2,24 +2,9 @@
     margin-bottom: 2px;
 }
 
-/* .TitleandIcon {
-    border: 1px solid red;
-} */
-
-/* .links {
-    border: 1px solid red;
-} */
-
 .dropdown {
-    background-color: #40916C;
-    /* changed by Sam */
     background-color: rgb(19, 66, 41);
 }
-
-/* NAVBAR TOGGLER */
-/* div {
-    color: red;
-} */
 
 #container-fluid {
     color: red;
@@ -33,7 +18,6 @@
 
 .mainBar {
     background: linear-gradient(90deg, rgb(41, 79, 56) 0%, rgba(19, 66, 41, 0.916) 100%);
-    /* height: calc(18px + 5vh); */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: calc(7px + 1.1vh);
 }

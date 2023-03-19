@@ -68,9 +68,12 @@
     font-weight: 600;
 }
 
+.li {
+    list-style: none;
+}
+
 .button {
     margin-bottom: 100px;
     margin-top: 20px;
-
 }
 
