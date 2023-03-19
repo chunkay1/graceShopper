@@ -1,5 +1,4 @@
-
-.singleDiv{
+.singleDiv {
     margin-top: 10vmin;
 }
 
@@ -10,7 +9,6 @@
 .productDiv {
     border: 1px solid black;
     margin-bottom: 2.5em;
-    /* background-color: #168AAD25; */
     border-radius: 8px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -73,14 +71,12 @@
 .deleteIcon,
 .arrowIcon,
 .quantIcons {
-    /* font-size: 2em; */
     font-size: calc(8px + 2.5vmin);
     transition: transform 0.25s, color 0.25s;
 }
 
 .count {
     margin-bottom: 4px;
-    /* font-size: 2em; */
     font-size: calc(8px + 3vmin);
 }
 
@@ -115,12 +111,7 @@
     color: #80B918
 }
 
-.boogerAIDS {
-    border: 1px solid black;
-}
-
 .cartControl {
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -130,26 +121,16 @@
 }
 
 .quantityControl {
-
     margin-left: .5em;
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* font-size: 2em; */
-    /* margin: 0 5px;
-    padding: 0 5px; */
 }
 
 .deleteControl,
 .quantityControl {
     margin: 0 .5em;
 }
-
-
-
-/* .test {
-    border: 1px solid black;
-} */
 
 .flexRow {
     margin: 1.5em 0;
