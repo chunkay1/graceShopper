@@ -7,11 +7,13 @@ import SingleProduct from './SingleProduct';
 const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProduct, category, setCategory }) => {
   const [products, setProducts] = useState([]);
   const [selectValue, setSelectValue] = useState('')
+  const [selectCategory, setSelectCategory] = useState('')
 
   useEffect(() => {
     const getAllProductsAsync = async () => {
       let allProducts = await getAllItems();
       setProducts(allProducts);
+      // console.log('products are', products)
     }
     getAllProductsAsync();
   }, [])
@@ -22,6 +24,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
       if (category) {
         let categoryItems = allProducts.filter(product => product.category === category)
         setProducts(categoryItems);
+        console.log(categoryItems)
       }
       else {
         setProducts(allProducts)
@@ -31,9 +34,21 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
     getProductsByCategoryAsync();
   }, [category])
 
-  useEffect(() => {
-    setCategory(selectValue)
-  }, [selectValue])
+  let getItemProps = (brand, category, id, name, price, size, inventory) => {
+    console.log('props are', brand, category, id, name, price, size)
+    setItemProps(
+      {
+        brand: brand,
+        category: category,
+        id: id,
+        name: name,
+        price: price,
+        size: size,
+        inventory: inventory,
+      }
+    )
+    return itemProps
+  }
 
   return (
     <div className={styles.homeDiv}>
@@ -58,7 +73,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
 
               <span className = {styles.heading}>Gear Up. Get Out.</span>
               <select style={{display: "inline"}} onChange={(e) => {
-                setSelectValue(e.target.value)
+                setCategory(e.target.value)
               }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
                 <option selected value="">Browse by category</option>
                 <option value="Shoes">Shoes</option>
