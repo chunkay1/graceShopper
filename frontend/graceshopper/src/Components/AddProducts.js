@@ -3,8 +3,6 @@ import { BASEURL } from "../constants/constants";
 import styles from '../styles/AddProducts.module.css'
 import { useNavigate } from 'react-router-dom';
 
-// import { addProducts } from "../api/itemRequests";
-
 const AddProducts = ({ token, products, setProducts }) => {
 
   const [addname, setAddName] = useState([]);
@@ -19,7 +17,7 @@ const AddProducts = ({ token, products, setProducts }) => {
   const navigate = useNavigate()
 
   return (
-    <>
+    <div className={styles.mainContainer}>
     
       <h3 className={`${styles.title}`}> Add Product </h3>
       <form
@@ -58,39 +56,14 @@ const AddProducts = ({ token, products, setProducts }) => {
             if (json) {
               alert(`Product ${json.name} successfully created`)
             }
-            // const responseProduct = json.data;
-            // setProducts([responseProduct, products]);
-            // console.log(responseProduct)
 
           } catch (error) {
             console.log(error);
           }
 
-          // setAddName('');
-          // setAddDescription('');
-          // setAddPrice('');
-          // setAddSize('');
-          // setAddBrand('');
-          // setAddCategory('');
-          // SetAddInventory('');
-          // setImage('');
-
-          // window.location.reload();
-
           navigate('/admin')
 
         }}>
-        {/* try {
-          const addItem = await addProducts();
-
-          setItemProps(addItem);
-        } catch (error) {
-          console.log(error);
-        }
-        setItemProps("");
-       */}
-
-        {/* <div className={styles.AddItem}> */}
 
         <div className={styles.addItem}>
           <label for="name">Name:</label>
@@ -163,11 +136,10 @@ const AddProducts = ({ token, products, setProducts }) => {
             onChange={(e) => setImage(e.target.value)}
           ></input>
         </div>
-        {/* </div> */}
 
         <button className={styles.itemSubmit}>Submit</button>
       </form>
-    </>
+    </div>
   );
 };
 
