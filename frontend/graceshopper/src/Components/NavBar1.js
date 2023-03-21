@@ -98,6 +98,7 @@ function NavBar({ token }) {
                           console.log('logout!');
                           await logOut().then(() => {
                             navigate('/');
+                            setLoginDropdown(true)
                             alert("Logout successful - thank you for using our service.")
                           })
 
