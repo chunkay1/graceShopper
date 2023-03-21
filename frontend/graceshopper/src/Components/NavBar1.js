@@ -8,131 +8,134 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
 function NavBar({ token }) {
-    const [loginDropdown, setLoginDropdown] = useState(true)
+  const [loginDropdown, setLoginDropdown] = useState(true)
 
-    const navigate = useNavigate()
-
-
-    return (
-        <div>
-            <nav class={`navbar navbar-expand-lg bg-success ${styles.mainBar}`}>
-                <div class="container-fluid">
-
-                    <div className={styles.TitleandIcon}>
-                        <Link
-                            className={`navbar-brand text-white ${styles.title}`}
-                            href="home">Hike & Seek</Link>
-                        <a
-                            class="navbar-brand"
-                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                            target="blank"
-                        >
-                            <img
-                                className={`nav-item ${styles.icon}`}
-                                src="TransparentMountains.png"
-                                alt="Forest"
-                                width="100"
-                                height="50">
-                            </img>
-                        </a>
-                    </div>
+  const navigate = useNavigate()
 
 
-                    <div className={styles.links}>
-                        <button
-                            class="navbar-toggler"
-                            type="button"
-                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                            aria-label="Toggle navigation">
+  return (
+    <div>
+      <nav class={`navbar navbar-expand-lg bg-success ${styles.mainBar}`}>
+        <div class="container-fluid">
 
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div
-                            class="collapse navbar-collapse" id="navbarNavDropdown">
-
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-                                    <Link to="/home" class="nav-link active text-white" aria-current="page"
-                                    >Home
-                                    </Link>
-                                </li>
-
-                                <li class="nav-item">
-                                    <Link to="/products" class="nav-link text-white" >
-                                        Products
-                                    </Link>
-                                </li>
-
-                                {
-                                    (!token && loginDropdown)
-
-                                        ?
-
-                                        <li className={`nav-item dropdown`}>
-                                            <Link 
-                                                class="nav-link dropdown-toggle text-white"
-                                                // href={`${BASEURL}`}
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Log In
-                                            </Link>
-
-                                            <ul className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
-                                                <li>
-                                                    <LogInForm
-                                                        loginDropdown={loginDropdown}
-                                                        setLoginDropdown={setLoginDropdown}
-                                                    />
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        :
-
-                                        <li className={`nav-item ${styles.logOut}`}>
-                                            <button
-                                                type="button"
-                                                className={`btn text-white ${styles.logOut}`}
-                                                onClick={(event) => {
-                                                    console.log('logout!');
-                                                    logOut();
-                                                    navigate('/');
-                                                }}>Logout</button>
-                                        </li>
-                                }
-
-                                <li className="nav-item">
-                                    <Link to="/profile"
-                                        class="nav-link text-white"
-                                        className={`nav-link text-white ${styles.profileIconLi}`}
-                                    >
-
-                                        <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
-
-                                    </Link>
-                                </li>
-
-                                <li class="nav-item">
-                                    <Link to="/cart"
-                                        class="nav-link text-white"
-                                        className={`nav-link text-white ${styles.cartIconLi}`}
-                                    >
-
-                                        <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
-                                    </Link>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+          <div className={styles.TitleandIcon}>
+            <Link
+              className={`navbar-brand text-white ${styles.title}`}
+              href="home">Hike & Seek</Link>
+            <a
+              class="navbar-brand"
+              href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
+              target="blank"
+            >
+              <img
+                className={`nav-item ${styles.icon}`}
+                src="TransparentMountains.png"
+                alt="Forest"
+                width="100"
+                height="50">
+              </img>
+            </a>
+          </div>
 
 
+          <div className={styles.links}>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+              aria-label="Toggle navigation">
 
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+              class="collapse navbar-collapse" id="navbarNavDropdown">
+
+              <ul class="navbar-nav">
+
+                <li class="nav-item">
+                  <Link to="/home" class="nav-link active text-white" aria-current="page"
+                  >Home
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/products" class="nav-link text-white" >
+                    Products
+                  </Link>
+                </li>
+
+                {
+                  (!token && loginDropdown)
+
+                    ?
+
+                    <li className={`nav-item dropdown`}>
+                      <Link
+                        class="nav-link dropdown-toggle text-white"
+                        // href={`${BASEURL}`}
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Log In
+                      </Link>
+
+                      <ul className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
+                        <li>
+                          <LogInForm
+                            loginDropdown={loginDropdown}
+                            setLoginDropdown={setLoginDropdown}
+                          />
+                        </li>
+                      </ul>
+                    </li>
+
+                    :
+
+                    <li className={`nav-item ${styles.logOut}`}>
+                      <button
+                        type="button"
+                        className={`btn text-white ${styles.logOut}`}
+                        onClick={async (event) => {
+                          console.log('logout!');
+                          await logOut().then(() => {
+                            navigate('/');
+                            alert("Logout successful - thank you for using our service.")
+                          })
+
+                        }}>Logout</button>
+                    </li>
+                }
+
+                <li className="nav-item">
+                  <Link to="/profile"
+                    class="nav-link text-white"
+                    className={`nav-link text-white ${styles.profileIconLi}`}
+                  >
+
+                    <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
+
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/cart"
+                    class="nav-link text-white"
+                    className={`nav-link text-white ${styles.cartIconLi}`}
+                  >
+
+                    <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
+                  </Link>
+                </li>
+
+              </ul>
+            </div>
+          </div>
         </div>
-    )
+      </nav>
+
+
+
+    </div>
+  )
 }
 
 export default NavBar

@@ -40,4 +40,5 @@ export const categories = [
 ]
 
 export const STORAGE_KEY = 'replyToken';
+// export const BASEURL = 'http://localhost:5500/api'
 export const BASEURL = 'https://hike-and-seek.onrender.com/api'

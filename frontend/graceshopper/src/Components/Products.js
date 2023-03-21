@@ -58,7 +58,7 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
               <select style={{display: "inline"}} onChange={(e) => {
                 setCategory(e.target.value)
               }} className={`form-select form-select-sm ${styles.selector}`} aria-label=".form-select-sm example">
-                <option selected value="">Browse By Category</option>
+                <option defaultValue=''>Browse By Category</option>
                 <option value="Shoes">Shoes</option>
                 <option value="Tents">Tents</option>
                 <option value="Clothing">Outdoor Clothing</option>
@@ -86,11 +86,11 @@ const Products = ({ token, itemProps, setItemProps, singleProduct, setSingleProd
                           setSingleProduct(true);
                         }}>
 
-                        <img src={image} class="card-img-top" alt="..." />
+                        <img src={image} className="card-img-top" alt="..." />
 
                         <div className={`card-body ${styles.cardBody}`}>
                           <span className={styles.brandContainer}>
-                            <p class="card-text">{brand}®</p>
+                            <p className="card-text">{brand}®</p>
                             <p className={`card-text ${styles.Name}`}>{name}</p>
                           </span>
                           <span className={styles.priceContainer}>

@@ -32,7 +32,10 @@ const App = () => {
     if(token) {
       setToken(token)
     }
-  }, []) 
+    else {
+      setToken('')
+    }
+  }, [singleProduct]) 
   
 
   return (
