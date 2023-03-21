@@ -97,7 +97,7 @@ function NavBar({ token }) {
                                                 onClick={(event) => {
                                                     console.log('logout!');
                                                     logOut();
-                                                    navigate('/home');
+                                                    navigate('/');
                                                 }}>Logout</button>
                                         </li>
                                 }
