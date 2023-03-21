@@ -25,6 +25,7 @@ const App = () => {
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
   const [category, setCategory] = useState('');
+  const [tokenCheck, setTokenCheck] = useState(false)
   
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
@@ -35,7 +36,7 @@ const App = () => {
     else {
       setToken('')
     }
-  }, [singleProduct]) 
+  }, [singleProduct, tokenCheck]) 
   
 
   return (
@@ -49,14 +50,22 @@ const App = () => {
         />
         <Route path='/register' element={
           <>
-            <NavBar token={token}/>
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <Register token={token}/>
             </>
           } 
         />
         <Route path='/home' element={
           <>
-            <NavBar token={token}/>
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <Banner/>
             <Home 
               setSingleProduct = {setSingleProduct}
@@ -68,28 +77,44 @@ const App = () => {
         />
         <Route path='/profile' element={
           <>
-            <NavBar token={token}/> 
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <Profile token={token}/>
           </>
           } 
         />
         <Route path='/cart' element={
           <>
-            <NavBar token={token}/>
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <Cart token={token} />
           </>
           } 
         />
         <Route path='/order-confirmation' element={
           <>
-            <NavBar token={token}/>
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <OrderConfirmation />
           </>
           } 
         />
         <Route path='/products' element={
           <>
-            <NavBar token={token}/> 
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            /> 
             <Products 
             token={token}
             itemProps = {itemProps}
@@ -105,7 +130,11 @@ const App = () => {
         
         <Route path='/admin' element={
           <>
-            <NavBar token={token}/>
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <Admin token={token}/> 
           </>
           }
@@ -113,7 +142,11 @@ const App = () => {
         
         <Route path='/add-products' element={
           <>
-            <NavBar token={token}/> 
+            <NavBar 
+              token={token} 
+              setTokenCheck = {setTokenCheck}
+              tokenCheck = {tokenCheck}
+            />
             <AddProducts token={token}/>
           </>
           } 

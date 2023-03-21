@@ -11,7 +11,7 @@ import { useNavigate, Link } from 'react-router-dom'
 //     }
 // }
 
-function LogInForm({ loginDropdown, setLoginDropdown }) {
+function LogInForm({ loginDropdown, setLoginDropdown, setTokenCheck, tokenCheck }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
@@ -28,6 +28,13 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
 
                             if (response.token) {
                                 setLoginDropdown(false)
+                                setTokenCheck(true)
+                            }
+
+                            if (tokenCheck === false) {
+                                setTokenCheck(true)
+                            } else {
+                                setTokenCheck(false)
                             }
 
                             setLoginDropdown(false)
