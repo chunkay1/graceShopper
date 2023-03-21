@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { logOut } from "../api/userRequests"
 import { BASEURL } from "../constants/constants"
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function NavBar({ token }) {
     const [loginDropdown, setLoginDropdown] = useState(true)
@@ -19,12 +19,14 @@ function NavBar({ token }) {
                 <div class="container-fluid">
 
                     <div className={styles.TitleandIcon}>
-                        <a
+                        <Link
                             className={`navbar-brand text-white ${styles.title}`}
-                            href="home">Hike & Seek</a>
+                            href="home">Hike & Seek</Link>
                         <a
                             class="navbar-brand"
-                            href="www.google.com">
+                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                            target="blank"
+                        >
                             <img
                                 className={`nav-item ${styles.icon}`}
                                 src="TransparentMountains.png"
@@ -52,76 +54,73 @@ function NavBar({ token }) {
                             <ul class="navbar-nav">
 
                                 <li class="nav-item">
-                                    <a
-                                        class="nav-link active text-white" aria-current="page"
-                                        href="home">Home
-                                    </a>
+                                    <Link to="/home" class="nav-link active text-white" aria-current="page"
+                                    >Home
+                                    </Link>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a
-                                        class="nav-link text-white" href="products">Products
-                                    </a>
+                                    <Link to="/products" class="nav-link text-white" >
+                                        Products
+                                    </Link>
                                 </li>
 
                                 {
                                     (!token && loginDropdown)
 
-                                    ?
+                                        ?
 
-                                <li className={`nav-item dropdown`}>
-                                    <a
-                                        class="nav-link dropdown-toggle text-white"
-                                        href={`${BASEURL}`}
-                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Log In
-                                    </a>
+                                        <li className={`nav-item dropdown`}>
+                                            <Link 
+                                                class="nav-link dropdown-toggle text-white"
+                                                // href={`${BASEURL}`}
+                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Log In
+                                            </Link>
 
-                                    <ul className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
-                                        <li>
-                                            <LogInForm 
-                                              loginDropdown = {loginDropdown} 
-                                              setLoginDropdown = {setLoginDropdown}
-                                            />
+                                            <ul className={`dropdown-menu dropdown-menu-lg-end ${styles.dropdown}`}>
+                                                <li>
+                                                    <LogInForm
+                                                        loginDropdown={loginDropdown}
+                                                        setLoginDropdown={setLoginDropdown}
+                                                    />
+                                                </li>
+                                            </ul>
                                         </li>
-                                    </ul>
-                                </li>
 
-                                    :
+                                        :
 
-                                    <li className={`nav-item ${styles.logOut}`}>
-                                        <button 
-                                            type="button" 
-                                            className={`btn text-white ${styles.logOut}`} 
-                                            onClick={ (event) => {
-                                                console.log('logout!');
-                                                logOut();
-                                                navigate('/home');
-                                                window.location.reload();
-                                            }}>Logout</button>
-                                    </li>
+                                        <li className={`nav-item ${styles.logOut}`}>
+                                            <button
+                                                type="button"
+                                                className={`btn text-white ${styles.logOut}`}
+                                                onClick={(event) => {
+                                                    console.log('logout!');
+                                                    logOut();
+                                                    navigate('/home');
+                                                }}>Logout</button>
+                                        </li>
                                 }
 
                                 <li className="nav-item">
-                                    <a
-                                        class="nav-link text-white" 
+                                    <Link to="/profile"
+                                        class="nav-link text-white"
                                         className={`nav-link text-white ${styles.profileIconLi}`}
-                                        href="profile">
-                                        
+                                    >
+
                                         <i className={`bi bi-person-square ${styles.profileIcon}`}></i>
 
-                                            
-                                    </a>
+                                    </Link>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a
+                                    <Link to="/cart"
                                         class="nav-link text-white"
                                         className={`nav-link text-white ${styles.cartIconLi}`}
-                                        href="cart">
+                                    >
 
                                         <i className={`bi bi-cart text-white ${styles.cartIcon}`}></i>
-                                    </a>
+                                    </Link>
                                 </li>
 
                             </ul>

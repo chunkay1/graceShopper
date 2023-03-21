@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { setTargetValue } from '../constants/constants';
 import { logIn } from '../api/userRequests';
 import { myProfile } from '../api/userRequests';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 // const setTargetValue = (callback) => {
 //     return (event) => {
@@ -16,24 +16,24 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-    return ( 
+    return (
         <div className={styles.container}>
             <form
                 onSubmit={
                     async (event) => {
                         event.preventDefault();
                         console.log('Submit Form')
-                        await logIn({username,password}).then(async (response) => {
+                        await logIn({ username, password }).then(async (response) => {
                             alert(response.message)
 
                             if (response.token) {
                                 setLoginDropdown(false)
                             }
 
-                            setLoginDropdown(false) 
+                            setLoginDropdown(false)
 
 
-                            await myProfile(response.token).then ((data) => {
+                            await myProfile(response.token).then((data) => {
                                 if (data === false && (username === "Administrator")) {
                                     navigate('/admin')
                                 }
@@ -68,14 +68,15 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
                     />
                 </div>
 
-
                 <div className={styles.submit}>
                     <button className={styles.button}>Log In</button>
                 </div>
 
                 <p className={styles.secondHeader}>Don't Have an Account?
 
-                    <a className={styles.signUpLink} href='http://localhost:3000/register'>Create One Here!</a>
+                    <Link to="/register" className={styles.signUpLink} >
+                        Create One Here!
+                    </Link>
                 </p>
             </form>
 
