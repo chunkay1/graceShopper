@@ -7,7 +7,7 @@ import { BASEURL } from "../constants/constants"
 import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
-function NavBar({ token, setTokenCheck, tokenCheck }) {
+function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
   const [loginDropdown, setLoginDropdown] = useState(true)
 
   const navigate = useNavigate()
@@ -99,8 +99,9 @@ function NavBar({ token, setTokenCheck, tokenCheck }) {
                         onClick={async (event) => {
                           console.log('logout!');
                           await logOut().then(() => {
-                            navigate('/');
+          
                             setLoginDropdown(true)
+                            setSingleProduct(false)
 
                             if (tokenCheck === false) {
                               setTokenCheck(true)
@@ -108,6 +109,7 @@ function NavBar({ token, setTokenCheck, tokenCheck }) {
                               setTokenCheck(false)
                             }
                             alert("Logout successful - thank you for using our service.")
+                            navigate('/');
                           })
 
                         }}>Logout</button>

@@ -54,6 +54,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <Register token={token}/>
             </>
@@ -65,6 +66,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <Banner/>
             <Home 
@@ -81,6 +83,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <Profile token={token}/>
           </>
@@ -92,6 +95,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <Cart token={token} />
           </>
@@ -103,6 +107,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <OrderConfirmation />
           </>
@@ -114,6 +119,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             /> 
             <Products 
             token={token}
@@ -134,6 +140,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <Admin token={token}/> 
           </>
@@ -146,6 +153,7 @@ const App = () => {
               token={token} 
               setTokenCheck = {setTokenCheck}
               tokenCheck = {tokenCheck}
+              setSingleProduct = {setSingleProduct}
             />
             <AddProducts token={token}/>
           </>
