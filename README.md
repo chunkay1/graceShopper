@@ -30,22 +30,22 @@
 <br />
 <div align="center">
   <a href="https://github.com/chunkay1/graceShopper">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://media.istockphoto.com/id/1004093210/vector/abstract-vector-landscape-nature-or-outdoor-mountain-view-silhouette.jpg?s=612x612&w=0&k=20&c=cy35M0he0XBLOwYnQcziDICQ3zmtpb_BA8njDLJyYgQ=" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Hike & Seek</h3>
 
   <p align="center">
-    project_description
+    Welcome to our e-commerce shopping experience. This web application functions like many of the sites we use every day like Amazon, eBay, and Etsy.
     <br />
-    <a href="https://github.com/chunkay1/graceShopper/tree/main"><strong>Explore the docs »</strong></a>
+    <!-- <a href="https://github.com/chunkay1/graceShopper/tree/main"><strong>Explore the docs »</strong></a> -->
     <br />
     <br />
-    <a href="https://github.com/chunkay1/graceShopper/tree/main">View Demo</a>
+    <a href="https://hike-seek.onrender.com/home">View Demo</a>
     ·
-    <a href="https://github.com/chunkay1/graceShopper/issues">Report Bug</a>
+    <!-- <a href="https://github.com/chunkay1/graceShopper/issues">Report Bug</a>
     ·
-    <a href="https://github.com/chunkay1/graceShopper/issues">Request Feature</a>
+    <a href="https://github.com/chunkay1/graceShopper/issues">Request Feature</a> -->
   </p>
 </div>
 
@@ -82,9 +82,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](HASLandingPage.png)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+-	Our site is for outdoor enthusiasts, so we drew inspiration from companies like REI, and the North Face.
+-	With Hike & Seek’s web application, you can create an account, search by category and add products to your cart, checkout with them, and even view your past orders.
+-	Administrative users can manage inventory by adding products through their own secure portal as well, only accessible with the right credentials.
+
+<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,8 +96,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* Add express
-* Add postgres
+* [![Express][Express.js]][Express-url]
+* [![PostgreSQL][PostgreSQL.org]][PostgreSQL-url]
+* [![Node][Node.js]][Node-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
@@ -149,11 +154,11 @@ To get a local copy up and running follow the steps below.
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+<!-- ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,12 +167,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Log in and create an account
+- [ ] Add products to cart
+-     [ ] Delete items from cart
+- [ ] Checkout cart
+- [ ] Administrator can add items to inventory
 
-See the [open issues](https://github.com/chunkay1/graceShopper/issues) for a full list of proposed features (and known issues).
+<!-- See the [open issues](https://github.com/chunkay1/graceShopper/issues) for a full list of proposed features (and known issues). -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -234,11 +240,16 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 [license-shield]: https://img.shields.io/github/license/chunkay1/graceShopper.svg?style=for-the-badge
 [license-url]: https://github.com/chunkay1/graceShopper/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+<<<<<<< HEAD
+[linkedin-url]: https://linkedin.com/in/linkedin_username
+[product-screenshot]: HASLandingPage.png
+=======
 [kendall-linkedin-url]: https://www.linkedin.com/in/kendall-b-hudson/
 [sam-linkedin-url]: https://www.linkedin.com/in/sam-banister/
 [vivienne-linkedin-url]: https://www.linkedin.com/in/viviennechawande/
 [fabian-linkedin-url]: https://www.linkedin.com/in/fabian-s-hernandez/
 [product-screenshot]: images/screenshot.png
+>>>>>>> 15e8a8ec488aba12a7bf9bbcb33603e7eb81474c
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
@@ -255,3 +266,9 @@ Project Link: [https://github.com/chunkay1/graceShopper](https://github.com/chun
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com
+[Express-shield]: https://img.shields.io/badge/-Express-black?logo=express&logoColor=white&style=for-the-badge
+[Express-url]: https://expressjs.com/
+[PostgreSQL-shield]: https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=for-the-badge
+[PostgreSQL-url]: https://www.postgresql.org/
+[Node-shield]: https://img.shields.io/badge/-NodeJs-339933?logo=node.js&logoColor=white&style=for-the-badge
+[Node-url]: https://nodejs.org/en
