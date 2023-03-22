@@ -21,7 +21,7 @@ function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
           <div className={styles.TitleandIcon}>
             <Link
               className={`navbar-brand text-white ${styles.title}`}
-              href="home">Hike & Seek</Link>
+              to = '/home'>Hike & Seek</Link>
             <a
               class="navbar-brand"
               href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
@@ -49,11 +49,11 @@ function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
             </button>
 
             <div
-              class="collapse navbar-collapse" id="navbarNavDropdown">
+              className={`collapse navbar-collapse ${styles.rightNav}`} id="navbarNavDropdown">
 
-              <ul class="navbar-nav">
+              <ul className={`navbar-nav`}>
 
-                <li class="nav-item">
+                <li className={`nav-item ${styles.home}`}>
                   <Link to="/home" class="nav-link active text-white" aria-current="page"
                   >Home
                   </Link>
@@ -118,7 +118,6 @@ function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
 
                 <li className="nav-item">
                   <Link to="/profile"
-                    class="nav-link text-white"
                     className={`nav-link text-white ${styles.profileIconLi}`}
                   >
 

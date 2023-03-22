@@ -223,7 +223,7 @@
     margin-top: 155vh;
     display: flex;
     width: 100%;
-    padding: 0 10vw 0 10vw;
+    padding: 0 8vw 0 8vw;
     height: 40vh; 
     justify-content: space-between;
     align-content: space-between;
@@ -232,7 +232,7 @@
 }
 
 .aboutCards {
-    flex: 0 0 calc(78%/4);
+    flex: 0 0 calc(79%/4);
     margin-left: 0vw;
     max-height: 80vmin;
     min-height: 70vmin;
@@ -304,3 +304,88 @@
     background-repeat: no-repeat;
     background-size: cover; 
 }
+
+@media screen and (max-width:990px) { 
+    .cardDeck {
+      padding: 0 2vw 0 2vw;
+    }
+     
+    .aboutCards {
+      flex: 0 0 calc(97%/4);
+      min-height: 75vh;
+    }
+
+    .heading {
+        min-width: 35%;
+    }
+    .description {
+        width: 48%;
+    }
+
+    .productCard {
+        flex: 0 0 calc(51%);
+    }
+  
+  
+  }
+
+@media screen and (max-width:500px) {
+    .aboutCards {
+        margin-left: 0vw;
+        flex-basis: auto;
+        min-height: 23.5%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background: linear-gradient(transparent);
+    }
+    .aboutImg {
+        min-height: 53%
+    }
+    .cardDeck {
+        position: absolute;
+        margin-top: 155vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 255vh;
+        
+        padding: 0 18.5vw 0 18.5vw;
+        justify-content: space-between;
+        align-content: space-between;
+        background: transparent;
+        font-size: calc(6px + 0.95vmin);
+    }
+    .homeDiv {
+        min-height: 440vh;
+    }
+    .heading {
+        min-width: 45%;
+    }
+    .aboutHeader {
+        min-width: 55vw;
+        margin-left: 35vw;
+    }
+    .productCard {
+        flex: 0 0 calc(100%);
+        display: block;
+        padding: 0 0 0 0;
+        background-color: rgba(201, 215, 217);
+        /* font-size: calc(50px + 0.65vmin) */
+       /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  */
+    }
+    .description {
+        font-size: calc(8px + 1vmin);
+        width: 100%;
+    }
+    .price, .brand{
+        /* border-right: 1px solid white; */
+        font-size: calc(8px + 1vmin);
+    }
+    .cardValue2 {
+        font-size: calc(8px + 1vmin);
+    }
+
+}
+
