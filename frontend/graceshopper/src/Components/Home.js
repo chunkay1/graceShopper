@@ -62,7 +62,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
       helper()
     
 
-  }, [])
+  }, [gatherProducts])
 
   //carousel animation effects called when either end is clicked
   useEffect(() => {
