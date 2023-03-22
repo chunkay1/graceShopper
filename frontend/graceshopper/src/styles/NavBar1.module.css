@@ -63,5 +63,8 @@
     .profileIconLi {
         display: none;
     }
+    .profileLi {
+        display: none;
+    }
 
 }

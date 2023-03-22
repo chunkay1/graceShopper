@@ -51,10 +51,10 @@ function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
             <div
               className={`collapse navbar-collapse ${styles.rightNav}`} id="navbarNavDropdown">
 
-              <ul className={`navbar-nav`}>
+              <ul className={`navbar-nav ${styles.navList}`}>
 
                 <li className={`nav-item ${styles.home}`}>
-                  <Link to="/home" class="nav-link active text-white" aria-current="page"
+                  <Link to="/home" className={`nav-link active text-white ${styles.home}`} aria-current="page"
                   >Home
                   </Link>
                 </li>
@@ -116,7 +116,7 @@ function NavBar({ token, setTokenCheck, tokenCheck, setSingleProduct }) {
                     </li>
                 }
 
-                <li className="nav-item">
+                <li className={`nav-item ${styles.profileLi}`}>
                   <Link to="/profile"
                     className={`nav-link text-white ${styles.profileIconLi}`}
                   >
