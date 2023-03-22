@@ -301,3 +301,21 @@ footer {
     transform-origin : 16px 16px ;
     transform : rotate( -262deg ) ;
 }
+
+
+@media screen and (max-width:500px) {
+    .mountain {
+        display: none;
+    }
+    .button {
+        position: absolute;
+        width: 25vw;
+        margin-top: 12%;
+    }
+    .container {
+        margin-right: 25vw;
+    }
+    .banner h2 {
+        font-size: 17vh;
+    }
+}
