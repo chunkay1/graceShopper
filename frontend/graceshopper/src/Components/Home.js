@@ -18,11 +18,20 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const [scrollPosition2, setScrollPosition2] = useState(0)
 
+  //waits to gather products, added after deployment
+  const [gatherProducts, setGatherProducts] = useState (false)
+
   //below will be used to set a smaller, random pool of items for the carousels
   const [carouselItems, setCarouselItems] = useState([])
   // const [randomHelper, setRandomizer] = useState(0)
   const [initiateRender, setInitiateRender] = useState(false)
   // const randomSet = [randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()]
+
+  useEffect (() => {
+    setTimeout (() => {
+       setGatherProducts(true)
+    }, 1000)
+  })
 
   //only render if carouselItems is populated, prevents rendering errors
   useEffect(() => {
@@ -50,7 +59,8 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
         setInitiateRender(true)
       })
     }
-    helper()
+      helper()
+    
 
   }, [])
 
