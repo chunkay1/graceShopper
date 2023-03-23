@@ -12,7 +12,6 @@ export async function getAllItems() {
             }
         )
         const json = await response.json();
-        // console.log(json);
         return json;
 
     } catch (error) {
@@ -34,7 +33,6 @@ export async function getProductsByCategory(categoryId) {
         )
 
         const json = await response.json();
-        console.log(`here are all ${categoryId} items:`, json);
 
         return json;
     } catch (error) {
@@ -55,7 +53,6 @@ export async function getProductById(id) {
         )
 
         const json = await response.json();
-        // console.log(`product info for ID #:${id} - info:`, json);
 
         return json;
     } catch (error) {

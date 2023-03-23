@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from '../styles/LandingPage.module.css'
 import { Link } from 'react-router-dom';
 
-
 function LandingPage () {
   const [addClass, setAddClass] = useState(false)
 

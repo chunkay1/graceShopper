@@ -1,4 +1,3 @@
-
 .divContainer {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
@@ -8,16 +7,15 @@
     margin-top: 200px;
 }
 
-.title{
+.title {
     margin-top: 50px;
 }
 
-.img{
-    position: absolute; 
-    top: 0; 
-    left: 0; 
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: -3;
-    /* Preserve aspet ratio */
     min-width: 100%;
     min-height: 100%;
     opacity: .95;
@@ -26,8 +24,3 @@
 .button {
     margin: 50px 50px;
 }
-
-    
-
-    
-  

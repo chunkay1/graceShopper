@@ -20,8 +20,6 @@ import { STORAGE_KEY } from './constants/constants';
 
 const App = () => {
   const [token, setToken] = useState('')
-
-  //moved upstream from products.js so that it can be set and linked to from the homepage carousels
   const [singleProduct, setSingleProduct] = useState(false);
   const [itemProps, setItemProps] = useState({});
   const [category, setCategory] = useState('');
@@ -39,7 +37,6 @@ const App = () => {
     <div>
 
       <Routes>
-        {/* <Route path='/' element={<NavBar />} /> */}
         <Route exact path='/' element={
           <LandingPage/>
           } 
@@ -121,23 +118,3 @@ const App = () => {
 }
 
 export default App;
-
-// routes needed
-// not found
-// home
-// profile
-// cart
-// checkout
-// order confirmation
-// products (tier 1) 
-    // each category (tier 2)
-        // clothing
-        // shoes
-        // gear
-        // accessories
-// admin related:
-    // admin home
-    // admin view users
-    // repurpose existing routes for:
-        // carts
-        // products

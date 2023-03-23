@@ -5,12 +5,6 @@ import { logIn } from '../api/userRequests';
 import { myProfile } from '../api/userRequests';
 import { useNavigate } from 'react-router-dom'
 
-// const setTargetValue = (callback) => {
-//     return (event) => {
-//         callback(event.target.value)
-//     }
-// }
-
 function LogInForm({ loginDropdown, setLoginDropdown }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -22,7 +16,6 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
                 onSubmit={
                     async (event) => {
                         event.preventDefault();
-                        console.log('Submit Form')
                         await logIn({username,password}).then(async (response) => {
                             alert(response.message)
 
@@ -39,8 +32,6 @@ function LogInForm({ loginDropdown, setLoginDropdown }) {
                                 }
                             })
                         })
-                        //no longer needed to re-render the navbar
-                        // window.location.reload();
                     }
                 }
             >
