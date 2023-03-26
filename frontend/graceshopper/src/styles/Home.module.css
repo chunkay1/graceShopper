@@ -4,24 +4,14 @@
     background: rgba(19, 66, 41, 0.7);
     position: absolute;
 }
+
 .productCard {
     flex: 0 0 calc(101%/3);
     display: block;
     padding: 0 0.5em 0 0;
     background-color: rgba(201, 215, 217);
-    /* font-size: calc(50px + 0.65vmin) */
-   /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  */
 }
 
-/* .firstCard {
-    padding-left: 0;
-} */
-/* .firstProductCard {
-   flex: 0 0 calc(33.1%);
-   display: block;
-   padding: 0 0 0.5em 0;
-   /* font-size: calc(12px + 0.65vmin);
-   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }*/
 .carouselBackground {
     display: flex;
     flex-direction: column;
@@ -40,15 +30,6 @@
     padding-right: 6%;
 }
 
-/* .saleBanner {
-    width: 100%;
-    background-color: rgb(247, 247, 247);
-    height: 10%;
-    position: absolute;
-    margin-top: 60vh;
-
-} */
-
 .carouselBackground2 {
     display: flex;
     flex-direction: column;
@@ -56,10 +37,6 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(247, 247, 247);
-    /* background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
     width: fit-content;
     position: absolute;
     height: 45vh;
@@ -83,22 +60,15 @@
     justify-content: flex-end;
     padding-left: 10px;
     padding-bottom: 5px;
-    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
     font-weight: 200;
 }
 
-/* .price {
-    font-size: calc(011px + 0.65vmin);
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-} */
 .cardValue {
     background-color: rgba(48, 73, 73, 0.7);
-    /* background-color: rgba(2, 45, 22, 0.7); */
     width: 97%;
 }
 
 .brand {
-    /* border-right: 1px solid white; */
     border-right: 1px solid rgb(147, 111, 111);
     padding-right: calc(3px + 0.5vw);
     margin-right: 5px;
@@ -123,7 +93,6 @@
 
 .firstLine {
     width: 90%;
-    /* background-color: rgb(51, 84, 49); */
     background-color: black;
     margin-top: 0;
     margin-bottom: 6px;
@@ -132,7 +101,6 @@
 
 .secondLine {
     width: 80%;
-    /* background-color: rgb(51, 84, 49); */
     background-color: black;
     margin-top: 0;
     padding-top: 0;
@@ -147,7 +115,6 @@
 }
 
 .price {
-    /* border-right: 1px solid white; */
     font-size: calc(6.5px + 1vmin);
     padding-left: 3px;
 }
@@ -167,12 +134,10 @@
     box-shadow: 4px 4px 10px black;
     display: flex;
     margin-top: 3px;
-    /* padding: 1em; */
 }
 
 .cardValue2 {
     background-color: rgba(48, 73, 73, 0.7);
-    /* background-color: rgba(2, 45, 22, 0.7); */
     width: 97%;
     padding-left: 10px;
     font-size: calc(6.5px + 1.12vmin);
@@ -186,7 +151,6 @@
 .homeDiv {
     display: flex;
     justify-content: center;
-    /* margin-top: calc(20px + 10vh); */
     min-height: 238vh;
 }
 
@@ -201,7 +165,6 @@
 .aboutHeader {
     margin-top: 140vh;
     margin-right: 78%;
-    /* background-color: rgba(48, 73, 73, 0.7); */
     position: absolute;
     width: 100%;
     justify-self: left;
@@ -224,7 +187,7 @@
     display: flex;
     width: 100%;
     padding: 0 10vw 0 10vw;
-    height: 40vh; 
+    height: 40vh;
     justify-content: space-between;
     align-content: space-between;
     background: transparent;
@@ -241,13 +204,11 @@
     background: linear-gradient(transparent);
 }
 
-  .aboutCards::-webkit-scrollbar {
+.aboutCards::-webkit-scrollbar {
     display: none;
-  }
-  
+}
+
 .aboutImg {
-    /* border-radius: 1%; */
-    /* width: 100%; */
     object-fit: cover;
     min-height: 47%;
     max-height: 47%;
@@ -258,10 +219,10 @@
 }
 
 .aboutName {
-  color: rgb(238, 238, 238);
-  display: flex;
-  justify-content: space-between;
-  font-size: calc(10px + 0.95vmin)
+    color: rgb(238, 238, 238);
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(10px + 0.95vmin)
 }
 
 .aboutTitle {
@@ -283,24 +244,11 @@
 }
 
 .backgroundImg {
-    /* background-image: url("../../public/abstractMountain.jpg"); */
-    /* background-image: url("../../public/mountainBackground.png"); */
-    /* background-image: url("../../public/altMountainBackground.png"); */
-    /* background-image: url("../../public/campingBackground.png"); */
-    /* background-image: url("../../public/SolidForest.png"); */
     background-image: url("../../public/mountainBackground3.png");
-
-
-    /* Set a specific height */
-    
-    /* margin-bottom: 0 auto; */
     min-width: 100%;
-    /* margin-bottom: 140vh; */
     margin-top: 130vh;
-
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
 }

@@ -12,7 +12,6 @@ export async function createAccount(props) {
     });
 
     try {
-        console.log('body:', body)
         const response = await fetch(
             `${BASEURL}/users/register`,
             {
@@ -25,15 +24,11 @@ export async function createAccount(props) {
         )
 
         const json = await response.json();
-        console.log(json);
         const replyToken = json.token;
 
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-        console.log(replyToken);
-        
-
         
     } catch (error) {
         console.error(error)
@@ -61,15 +56,11 @@ export async function logIn(props) {
             }
         )
         const json = await response.json();
-        console.log(json);
         const replyToken = json.token;
-
 
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-        
-        console.log(replyToken)
 
         return json
         
@@ -82,7 +73,6 @@ export async function logIn(props) {
 export async function logOut() {
     try {
         localStorage.clear();
-        console.log('logged out!');
     } catch (error) {
         console.error(error)
     }
@@ -101,16 +91,7 @@ export async function myProfile(token) {
             }
         )
         const json = await response.json();
-        // console.log('user info is:', json);
-
-        // const id = json.user.id;
-        console.log(json)
         const admin = json.user.isAdmin;
-
-        // const user = json.user
-        // const id = json.user.id;
-        // console.log('user ID is:', id)
-        console.log( admin)
 
         return admin
         

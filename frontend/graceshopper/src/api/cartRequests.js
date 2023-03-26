@@ -1,7 +1,6 @@
 import { BASEURL } from "../constants/constants";
 
 export async function addToCart( id, token ) {
-    // console.log('id type is', typeof(id))
     try {
         const response = await fetch(
             `${BASEURL}/itemsInCart/addItem`, 
@@ -38,7 +37,6 @@ export async function getUserCart(token) {
             }
         )
         const json = await response.json();
-        console.log(`cart info for user is:`, json);
 
         return json
     } catch (error) {
@@ -60,8 +58,6 @@ export async function getOrderHistory(token) {
         )
         const json = await response.json();
 
-        console.log(`your order history:`, json);
-
         return json
     } catch (error) {
         console.error(error)
@@ -81,8 +77,6 @@ export async function checkoutCart(cartId, token) {
             }
         )
         const json = await response.json();
-
-        console.log(`checked out cart:`, json);
 
         return json
     } catch (error) {
@@ -107,7 +101,6 @@ export async function deleteItemFromCart(itemInCartId, cartId, token) {
             }
         )
         const json = await response.json();
-        console.log(`deleted item successfully in API route`);
 
         return json
 

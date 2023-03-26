@@ -24,7 +24,6 @@ const Cart = ({ token }) => {
   
   let totalCartPrice = (itemsInCart) => {
     let cartPrice = 0;
-    // console.log(itemsInCart)
     for (let i = 0; i < itemsInCart.length; ++i) {
       let itemPrice = Number(itemsInCart[i].price);
       let quantity = itemsInCart[i].quantity
@@ -87,33 +86,6 @@ const Cart = ({ token }) => {
                             className={`bi bi-trash3 ${styles.deleteIcon}`}
                             onClick={async (e) => {
                               e.preventDefault();
-                              // console.log('delete item!')
-                              // let cart = await getUserCart(token)
-                              
-                              // console.log('full cart is', cart)
-                              //full cart is an object
-                              // { 
-                              //   id: carts.id, 
-                              //   userId: carts.userId,
-                              //   purchased: false, 
-                              //   itemsInCart: [
-                              //     {brand: items.brand, 
-                              //     cartId: itemsInCart.cartId,
-                              //     category:  items.category,
-                              //     description: items.description,
-                              //     id: itemsInCart.id?
-                              //     image: items.image,
-                              //     inventory: items.inventory,
-                              //     itemsId: itemsInCart.itemsId,
-                              //     name: items.name,
-                              //     price: items.price,
-                              //     quantity: itemsInCart.quantity
-                              //     size: items.size}
-                              //   ]
-                              // }
-
-                              //both arguments are needed in order to ensure we're deleting only that item, for that user in one specific cart and not that item across all carts.
-                              
                               await deleteItemFromCart(itemsId, cartID, token)
                               setCartChange(true)
                             }}></i>
@@ -127,12 +99,8 @@ const Cart = ({ token }) => {
                                 <i 
                                 className={`bi bi-dash ${styles.dashIcon}`}
                                 onClick={async (e) => {
-                                  //the updateCartQuantity functions very similar to delete, it just takes a quantity as well. 
                                   e.preventDefault();
                                   let decrementQuantity = quantity - 1;
-                                  // console.log('itemId is', itemsId)
-                                  // console.log('arguments are', itemsId, cartID, decrementQuantity)
-
                                   await updateCartQuantity(itemsId, cartID, decrementQuantity, token)
                                   setCartChange(true)
                                 }}></i>

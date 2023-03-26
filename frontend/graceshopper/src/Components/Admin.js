@@ -2,12 +2,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styles from '../styles/Admin.module.css'
-// import { getAllItems } from "../api/itemRequests";
-// import { getAllUsers } from '../api/users.js'
 
 const Admin = () => {
-
-  // const [adminproducts, setAdminProducts] = useState([]);
 
   return (
       <div className={styles.divContainer}>

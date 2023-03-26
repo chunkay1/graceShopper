@@ -1,9 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    user-select: none;
-} */
-
 .banner {
     position: relative;
     width: 100%;
@@ -32,17 +26,12 @@
     text-align: center;
     text-transform: uppercase;
     color: #000;
-    /* use line-height if you want to adjust how far down the main text appears on the page */
-    line-height:75vh;
-    /* This single line is where the magic happens to make your text have a video bleed-through effect */
+    line-height: 75vh;
     mix-blend-mode: screen;
     font-family: 'Work Sans', sans-serif;
 }
 
 .banner h2 {
-    /* a few different options with dramatic effects on the final animation, pure white seems to have the best effect */
-    /* background: #e2d9d9;  */
-    /* background: #ffffff; */
     background: rgb(219, 216, 216, 0.7);
 }
 
@@ -51,41 +40,36 @@
     border: 1px solid black;
 }
 
-.header, .footer {
+.header,
+.footer {
     width: 100%;
     height: 0.96vh;
-    background: linear-gradient(90deg,rgba(19,19,19) 0%, rgba(10, 26, 36, 0.916) 100%);
-    position:sticky;
+    background: linear-gradient(90deg, rgba(19, 19, 19) 0%, rgba(10, 26, 36, 0.916) 100%);
+    position: sticky;
 }
 
-/* An inverse gradient of the header */
 .footer {
-    background: linear-gradient(90deg,rgba(10, 26, 36, 0.916) 0%, rgb(19, 19, 19) 100%);
+    background: linear-gradient(90deg, rgba(10, 26, 36, 0.916) 0%, rgb(19, 19, 19) 100%);
 }
 
-/* These 2 classes and the animation are for the overlay fade-in for the button, banner, and mountain png */
-.fadeIn{
+.fadeIn {
     opacity: 0%;
     animation: fadeIn 7s 0.3s;
     animation-fill-mode: forwards;
 }
 
-.fadeIn2{
+.fadeIn2 {
     opacity: 0%;
     animation: fadeIn 7s 4s;
     animation-fill-mode: forwards;
 }
-.mainDiv {
-    /* margin-bottom: 10vh; */
-}
 
 @keyframes fadeIn {
-    0%
-  {
-    opacity: 0;
-  }
-    100%
-  {
-    opacity: 1;
-  }
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

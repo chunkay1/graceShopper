@@ -10,28 +10,20 @@ import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io";
 
 
 const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
-  //prevents the first card from rendering before allItems are set
   const [carouselRender, setCarouselRender] = useState(false)
-  //measures the width of the first card for the carousel animation to move the proper amount
   const [ref, { width }] = useMeasure()
-  //tracks the positions that are visible in the carousels
   const [scrollPosition, setScrollPosition] = useState(0)
   const [scrollPosition2, setScrollPosition2] = useState(0)
 
-  //below will be used to set a smaller, random pool of items for the carousels
   const [carouselItems, setCarouselItems] = useState([])
-  // const [randomHelper, setRandomizer] = useState(0)
   const [initiateRender, setInitiateRender] = useState(false)
-  // const randomSet = [randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper(), randomHelper()]
 
-  //only render if carouselItems is populated, prevents rendering errors
   useEffect(() => {
     if (carouselItems.length) {
       setCarouselRender(true)
     }
   }, [initiateRender])
 
-  //grab all items, then pull out random products by their indexes while preventing duplicates (still occationally produces a single duplicate)
   useEffect(() => {
 
     async function helper() {
@@ -54,12 +46,10 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
 
   }, [])
 
-  //carousel animation effects called when either end is clicked
   useEffect(() => {
     $('#carousel-inner1').animate({ scrollLeft: scrollPosition }, 600)
   }, [scrollPosition])
 
-  //same effect for second carousel
   useEffect(() => {
     $('#carousel-inner2').animate({ scrollLeft: scrollPosition2 }, 600)
   }, [scrollPosition2])
@@ -71,15 +61,14 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
         <div className={styles.topBar}></div>
         <div className={styles.carouselBackground}>
           <h4 className={`headings ${styles.heading}`}>Top sellers, near you</h4>
-          {/* <hr className = {styles.firstLine}></hr>
-      <hr className= {styles.secondLine}></hr> */}
+  
           <div id="carouselExampleControlsAutoplay" className={`carousel slide ${styles.carouselOuter}`} data-bs-ride="carousel">
             <div id='carousel-inner1' className={`carousel-inner ${styles.carousel}`}>
               {
                 carouselRender && carouselItems.length &&
                 <>
                   <div ref={ref} class="carousel-item active" className={`${styles.productCard} ${styles.firstCard}`}>
-                    {/* <h4 className={styles.heading}>Top sellers near you</h4> */}
+                
                     <Link onClick={() => {
                       setItemProps(carouselItems[0])
                       setSingleProduct(true)
@@ -90,9 +79,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
                           <span className={styles.name}>{carouselItems[0].name}</span>
                           <span className={styles.price}>${carouselItems[0].price}</span>
                         </span>
-
-                        {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-                        {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
+                    
                       </div>
                     </Link>
 
@@ -118,8 +105,8 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
                               <span className={styles.name}>{name}</span>
                               <span className={styles.price}>${price}</span>
                             </span>
-                            {/* <p className={styles.cardValue}>{allItems[0].name}</p> */}
-                            {/* <h3 className={styles.header}>Size: <p className={styles.cardValue}>{allItems[0].size}</p></h3> */}
+                        
+                        
                           </div>
                         </Link>
                         <img src={image} alt={'shoes png'} width={"100%"} className={`d-block w-100 ${styles.image}`}></img>
@@ -131,7 +118,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
               }
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onClick={async () => {
-              //creates a custom bounceback effect if you hit prev on left side
+          
               if (scrollPosition === 0) {
                 setScrollPosition(width)
               }
@@ -147,7 +134,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
               if (scrollPosition === 0) {
                 setScrollPosition(width)
               }
-              //creates a custom bounceback effect if you hit next on the right side at the end of the carousel
+          
               else if (scrollPosition === (carouselItems.length - 4) * width) {
                 setScrollPosition((carouselItems.length - 5) * width)
               }
@@ -161,7 +148,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
           </div>
         </div>
 
-        {/* beginning of second Carousel */}
+    
         <div className={styles.saleBanner}></div>
 
         <div className={styles.carouselBackground2}>
@@ -193,7 +180,6 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
                         <Link onClick={() => {
                           setCategory(siteCategory)
                           setSingleProduct(false)
-                          console.log(siteCategory)
                         }} to="/products">
                           <div className={styles.description}>
                             <span className={styles.cardValue2}>
@@ -222,11 +208,11 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
               <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" onClick={async () => {
-              //creates a custom bounceback effect if you hit prev on left side
+          
               if (scrollPosition2 === 0) {
                 setScrollPosition2(width)
               }
-              //creates a custom bounceback effect for the right side
+          
               else if (scrollPosition2 === width * 3) {
                 setScrollPosition2(width * 2)
               }
@@ -240,11 +226,11 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
           </div>
         </div>
 
-        {/* transparent divider and mountain background img*/}
+    
         <div className={styles.divider}></div>
         <span className={styles.backgroundImg}></span>
 
-        {/* about me card deck */}
+    
         <h4 className= {styles.aboutHeader}>Meet Our Development Team</h4>
         <div className={`card-deck ${styles.cardDeck}`}>
           <div className={`card ${styles.aboutCards}`} style={{
@@ -268,7 +254,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
             </div>
           </div>
 
-          {/* card 2 */}
+      
           <div className={`card ${styles.aboutCards}`} style={{
             background: "transparent",
           }}>
@@ -292,7 +278,7 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
           </div>
 
 
-          {/* card 3 */}
+      
           <div className={`card ${styles.aboutCards}`} style={{
             background: "transparent",
           }}>
@@ -346,13 +332,3 @@ const Home = ({ setItemProps, setSingleProduct, setCategory }) => {
 }
 
 export default Home;
-
-
-  // const carouselWidth = $(`.carousel_inner`.scrollWidth)
-
-  // $('.carousel').carousel({
-  //   interval: 100,
-  //   ride: "false"
-  // })
-
-  //setCarousel1( allItems.filter (item => item.id === randomHelper[0] || randomHelper[1] || randomHelper[2]) )
